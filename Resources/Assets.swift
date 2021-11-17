@@ -35,6 +35,9 @@ internal enum Asset {
   internal static let search20px = ImageAsset(name: "search_20px")
   internal static let sliders = ImageAsset(name: "sliders")
   internal static let spaceStation = ImageAsset(name: "space_station")
+  internal static let characters = ImageAsset(name: "characters")
+  internal static let episodes = ImageAsset(name: "episodes")
+  internal static let locations = ImageAsset(name: "locations")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 
