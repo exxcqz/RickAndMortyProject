@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -44,6 +44,9 @@
 		AC1AA25AC69B229E5B459221 /* FilterEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B6E56E91FA1C93EFC54989 /* FilterEnvironment.swift */; };
 		B25C9473FBAEBE9D308E0E82 /* EpisodesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364625FA897ADA7DEA2C25D7 /* EpisodesScreen.swift */; };
 		BBDAAEBD960BB8B03FE8E97A /* SplashAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78666022321AEFC7146AA0A /* SplashAction.swift */; };
+		C39DC25927465DB80056C306 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = C39DC25827465DB80056C306 /* Networking */; };
+		C39DC25C27465DC40056C306 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = C39DC25B27465DC40056C306 /* Nuke */; };
+		C39DC25F27465DCF0056C306 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = C39DC25E27465DCF0056C306 /* ComposableArchitecture */; };
 		C3D08F4F2101B9B600FDC15E /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D08F4D2101B9B500FDC15E /* Assets.swift */; };
 		C4CF98403AF3388D9071EE84 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EB3DB1D9FCAECB1BA57956 /* SplashScreen.swift */; };
 		C5C57802B327ACF6B57BDD00 /* EpisodesEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD27C071AF8A31130D3FED /* EpisodesEnvironment.swift */; };
@@ -116,6 +119,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C39DC25927465DB80056C306 /* Networking in Frameworks */,
+				C39DC25C27465DC40056C306 /* Nuke in Frameworks */,
+				C39DC25F27465DCF0056C306 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,7 +240,6 @@
 			children = (
 				81EB3DB1D9FCAECB1BA57956 /* SplashScreen.swift */,
 			);
-			name = Screens;
 			path = Screens;
 			sourceTree = "<group>";
 		};
@@ -243,7 +248,6 @@
 			children = (
 				00E042B0A39824F2354AFF7E /* SplashHelloComponent.swift */,
 			);
-			name = Components;
 			path = Components;
 			sourceTree = "<group>";
 		};
@@ -252,7 +256,6 @@
 			children = (
 				D83F3152C50964B80891586D /* CharactersScreen.swift */,
 			);
-			name = Screens;
 			path = Screens;
 			sourceTree = "<group>";
 		};
@@ -261,7 +264,6 @@
 			children = (
 				2A2353FE67D168D3A7D561B9 /* DeatilsHelloComponent.swift */,
 			);
-			name = Components;
 			path = Components;
 			sourceTree = "<group>";
 		};
@@ -270,7 +272,6 @@
 			children = (
 				1A3FA5537B496CE642491386 /* FilterHelloComponent.swift */,
 			);
-			name = Components;
 			path = Components;
 			sourceTree = "<group>";
 		};
@@ -279,7 +280,6 @@
 			children = (
 				FA06DADBFB311A2F782607A5 /* LocationsScreen.swift */,
 			);
-			name = Screens;
 			path = Screens;
 			sourceTree = "<group>";
 		};
@@ -301,7 +301,6 @@
 				5DA071327A4A1C0AEEBA435D /* SplashEnvironment.swift */,
 				549B5E4D8C79CB3C03543689 /* SplashReducer.swift */,
 			);
-			name = Splash;
 			path = Splash;
 			sourceTree = "<group>";
 		};
@@ -310,7 +309,6 @@
 			children = (
 				74F64C9B7778DF8BBD828B01 /* DeatilsScreen.swift */,
 			);
-			name = Screens;
 			path = Screens;
 			sourceTree = "<group>";
 		};
@@ -324,7 +322,6 @@
 				A82391782C34AA87DAD6BDD4 /* DeatilsEnvironment.swift */,
 				789BA2DAD21B4422F9259A7F /* DeatilsReducer.swift */,
 			);
-			name = Deatils;
 			path = Deatils;
 			sourceTree = "<group>";
 		};
@@ -333,7 +330,6 @@
 			children = (
 				F422174EE53EA0FD46CBBAC0 /* EpisodesHelloComponent.swift */,
 			);
-			name = Components;
 			path = Components;
 			sourceTree = "<group>";
 		};
@@ -342,7 +338,6 @@
 			children = (
 				364625FA897ADA7DEA2C25D7 /* EpisodesScreen.swift */,
 			);
-			name = Screens;
 			path = Screens;
 			sourceTree = "<group>";
 		};
@@ -356,7 +351,6 @@
 				63B6E56E91FA1C93EFC54989 /* FilterEnvironment.swift */,
 				86DC89AA63C519F339EBA263 /* FilterReducer.swift */,
 			);
-			name = Filter;
 			path = Filter;
 			sourceTree = "<group>";
 		};
@@ -365,7 +359,6 @@
 			children = (
 				0BF99FF6D47AD033FED0BE30 /* FilterScreen.swift */,
 			);
-			name = Screens;
 			path = Screens;
 			sourceTree = "<group>";
 		};
@@ -379,7 +372,6 @@
 				6D2B183A35E026726B497D7D /* LocationsEnvironment.swift */,
 				0FF20F6970EBC600C5051EE4 /* LocationsReducer.swift */,
 			);
-			name = Locations;
 			path = Locations;
 			sourceTree = "<group>";
 		};
@@ -393,7 +385,6 @@
 				FCCD27C071AF8A31130D3FED /* EpisodesEnvironment.swift */,
 				79F7B90F42A06EBE78EEE18D /* EpisodesReducer.swift */,
 			);
-			name = Episodes;
 			path = Episodes;
 			sourceTree = "<group>";
 		};
@@ -402,7 +393,6 @@
 			children = (
 				0CF7078D0582B812C8AA1E0F /* CharactersHelloComponent.swift */,
 			);
-			name = Components;
 			path = Components;
 			sourceTree = "<group>";
 		};
@@ -411,7 +401,6 @@
 			children = (
 				046983031E36DF3EE26FC619 /* LocationsHelloComponent.swift */,
 			);
-			name = Components;
 			path = Components;
 			sourceTree = "<group>";
 		};
@@ -425,7 +414,6 @@
 				2572717657BE18B694162D1A /* CharactersEnvironment.swift */,
 				B41BCD25DE71D6F96D83024D /* CharactersReducer.swift */,
 			);
-			name = Characters;
 			path = Characters;
 			sourceTree = "<group>";
 		};
@@ -447,6 +435,11 @@
 			dependencies = (
 			);
 			name = RickAndMorty;
+			packageProductDependencies = (
+				C39DC25827465DB80056C306 /* Networking */,
+				C39DC25B27465DC40056C306 /* Nuke */,
+				C39DC25E27465DCF0056C306 /* ComposableArchitecture */,
+			);
 			productName = RickAndMorty;
 			productReference = 060F08441E4D6B3900D9166F /* RickAndMorty.app */;
 			productType = "com.apple.product-type.application";
@@ -473,10 +466,16 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
 			mainGroup = 060F083B1E4D6B3900D9166F;
+			packageReferences = (
+				C39DC25727465DB80056C306 /* XCRemoteSwiftPackageReference "networking" */,
+				C39DC25A27465DC40056C306 /* XCRemoteSwiftPackageReference "Nuke" */,
+				C39DC25D27465DCF0056C306 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			productRefGroup = 060F08451E4D6B3900D9166F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -705,7 +704,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = ADHOC;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -720,7 +720,10 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RickAndMorty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ronas-it.rickandmorty";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -738,7 +741,10 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RickAndMorty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ronas-it.rickandmorty";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "ADHOC_DEVELOPMENT ADHOC";
@@ -814,7 +820,10 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RickAndMorty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ronas-it.rickandmorty";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -892,7 +901,10 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RickAndMorty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ronas-it.rickandmorty";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -950,7 +962,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = ADHOC;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -963,7 +976,10 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RickAndMorty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ronas-it.rickandmorty";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "ADHOC_STAGING ADHOC";
@@ -1019,7 +1035,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = ADHOC;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1032,7 +1049,10 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RickAndMorty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ronas-it.rickandmorty";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "ADHOC_PRODUCTION ADHOC";
@@ -1088,7 +1108,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APPSTORE;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1101,7 +1122,10 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RickAndMorty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ronas-it.rickandmorty";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -1171,7 +1195,10 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RickAndMorty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies -Xfrontend -warn-long-function-bodies=100 -Xfrontend -warn-long-expression-type-checking=100";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ronas-it.rickandmorty";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1215,6 +1242,51 @@
 			defaultConfigurationName = "Debug Development";
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C39DC25727465DB80056C306 /* XCRemoteSwiftPackageReference "networking" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://projects.ronasit.com/ronas-it/ios/networking";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.0;
+			};
+		};
+		C39DC25A27465DC40056C306 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.5.1;
+			};
+		};
+		C39DC25D27465DCF0056C306 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.28.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C39DC25827465DB80056C306 /* Networking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C39DC25727465DB80056C306 /* XCRemoteSwiftPackageReference "networking" */;
+			productName = Networking;
+		};
+		C39DC25B27465DC40056C306 /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C39DC25A27465DC40056C306 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+		C39DC25E27465DCF0056C306 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C39DC25D27465DCF0056C306 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 060F083C1E4D6B3900D9166F /* Project object */;
 }
