@@ -6,25 +6,25 @@
 import ComposableArchitecture
 import SwiftUI
 
-struct DeatilsScreen: View {
-    let store: Store<DeatilsState, DeatilsAction>
+struct DetailsScreen: View {
+    let store: Store<DetailsState, DetailsAction>
 
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
-                DeatilsHelloComponent()
+                DetailsHelloComponent()
             }
         }
     }
 }
 
-struct DeatilsScreen_Previews: PreviewProvider {
+struct DetailsScreen_Previews: PreviewProvider {
     static var previews: some View {
-        DeatilsScreen(
+        DetailsScreen(
             store: Store(
-                initialState: DeatilsState(),
-                reducer: deatilsReducer,
-                environment: DeatilsEnvironment()
+                initialState: DetailsState(),
+                reducer: detailsReducer,
+                environment: DetailsEnvironment()
             )
         )
     }

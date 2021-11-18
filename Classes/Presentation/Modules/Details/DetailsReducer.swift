@@ -5,6 +5,6 @@
 
 import ComposableArchitecture
 
-let deatilsReducer = Reducer<DeatilsState, DeatilsAction, DeatilsEnvironment> { state, action, environment in
+let detailsReducer = Reducer<DetailsState, DetailsAction, DetailsEnvironment> { state, action, environment in
     return .none
 }

@@ -5,15 +5,15 @@
 
 import SwiftUI
 
-struct DeatilsHelloComponent: View {
+struct DetailsHelloComponent: View {
 
     var body: some View {
-        Text("Hello, Deatils 👋")
+        Text("Hello, Details 👋")
     }
 }
 
-struct DeatilsHelloComponent_Previews: PreviewProvider {
+struct DetailsHelloComponent_Previews: PreviewProvider {
     static var previews: some View {
-        DeatilsHelloComponent()
+        DetailsHelloComponent()
     }
 }

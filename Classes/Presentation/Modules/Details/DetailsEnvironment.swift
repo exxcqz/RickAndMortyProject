@@ -3,6 +3,6 @@
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
-enum DeatilsAction: Equatable {
+struct DetailsEnvironment {
 
 }
