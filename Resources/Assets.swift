@@ -10,6 +10,8 @@
 #endif
 
 // Deprecated typealiases
+@available(*, deprecated, renamed: "ColorAsset.Color", message: "This typealias will be removed in SwiftGen 7.0")
+internal typealias AssetColorTypeAlias = ColorAsset.Color
 @available(*, deprecated, renamed: "ImageAsset.Image", message: "This typealias will be removed in SwiftGen 7.0")
 internal typealias AssetImageTypeAlias = ImageAsset.Image
 
@@ -19,29 +21,91 @@ internal typealias AssetImageTypeAlias = ImageAsset.Image
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Asset {
-  internal static let arrowBack = ImageAsset(name: "arrow_back")
-  internal static let cluster = ImageAsset(name: "cluster")
-  internal static let dream = ImageAsset(name: "dream")
-  internal static let fantasyTown = ImageAsset(name: "fantasy_town")
-  internal static let microverse = ImageAsset(name: "microverse")
-  internal static let planet = ImageAsset(name: "planet")
-  internal static let planetFilled = ImageAsset(name: "planet_filled")
-  internal static let play = ImageAsset(name: "play")
-  internal static let playFilled = ImageAsset(name: "play_filled")
-  internal static let resort = ImageAsset(name: "resort")
-  internal static let rick = ImageAsset(name: "rick")
-  internal static let rickFilled = ImageAsset(name: "rick_filled")
-  internal static let search = ImageAsset(name: "search")
-  internal static let search20px = ImageAsset(name: "search_20px")
-  internal static let sliders = ImageAsset(name: "sliders")
-  internal static let spaceStation = ImageAsset(name: "space_station")
-  internal static let characters = ImageAsset(name: "characters")
-  internal static let episodes = ImageAsset(name: "episodes")
-  internal static let locations = ImageAsset(name: "locations")
+  internal enum Colors {
+    internal static let blackBG = ColorAsset(name: "Colors/BlackBG")
+    internal static let blackCard = ColorAsset(name: "Colors/BlackCard")
+    internal static let blackElements = ColorAsset(name: "Colors/BlackElements")
+    internal static let grayDark = ColorAsset(name: "Colors/GrayDark")
+    internal static let grayLight = ColorAsset(name: "Colors/GrayLight")
+    internal static let grayNormal = ColorAsset(name: "Colors/GrayNormal")
+    internal static let primary = ColorAsset(name: "Colors/Primary")
+    internal static let primaryTap = ColorAsset(name: "Colors/PrimaryTap")
+    internal static let white = ColorAsset(name: "Colors/White")
+  }
+  internal enum Icons {
+    internal static let arrowBack = ImageAsset(name: "Icons/arrow_back")
+    internal static let cluster = ImageAsset(name: "Icons/cluster")
+    internal static let dream = ImageAsset(name: "Icons/dream")
+    internal static let fantasyTown = ImageAsset(name: "Icons/fantasy_town")
+    internal static let microverse = ImageAsset(name: "Icons/microverse")
+    internal static let planet = ImageAsset(name: "Icons/planet")
+    internal static let planetFilled = ImageAsset(name: "Icons/planet_filled")
+    internal static let play = ImageAsset(name: "Icons/play")
+    internal static let playFilled = ImageAsset(name: "Icons/play_filled")
+    internal static let resort = ImageAsset(name: "Icons/resort")
+    internal static let rick = ImageAsset(name: "Icons/rick")
+    internal static let rickFilled = ImageAsset(name: "Icons/rick_filled")
+    internal static let search = ImageAsset(name: "Icons/search")
+    internal static let search20px = ImageAsset(name: "Icons/search_20px")
+    internal static let sliders = ImageAsset(name: "Icons/sliders")
+    internal static let spaceStation = ImageAsset(name: "Icons/space_station")
+  }
+  internal enum Pictures {
+    internal static let characters = ImageAsset(name: "Pictures/characters")
+    internal static let episodes = ImageAsset(name: "Pictures/episodes")
+    internal static let locations = ImageAsset(name: "Pictures/locations")
+  }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 
 // MARK: - Implementation Details
+
+internal final class ColorAsset {
+  internal fileprivate(set) var name: String
+
+  #if os(macOS)
+  internal typealias Color = NSColor
+  #elseif os(iOS) || os(tvOS) || os(watchOS)
+  internal typealias Color = UIColor
+  #endif
+
+  @available(iOS 11.0, tvOS 11.0, watchOS 4.0, macOS 10.13, *)
+  internal private(set) lazy var color: Color = {
+    guard let color = Color(asset: self) else {
+      fatalError("Unable to load color asset named \(name).")
+    }
+    return color
+  }()
+
+  #if os(iOS) || os(tvOS)
+  @available(iOS 11.0, tvOS 11.0, *)
+  internal func color(compatibleWith traitCollection: UITraitCollection) -> Color {
+    let bundle = BundleToken.bundle
+    guard let color = Color(named: name, in: bundle, compatibleWith: traitCollection) else {
+      fatalError("Unable to load color asset named \(name).")
+    }
+    return color
+  }
+  #endif
+
+  fileprivate init(name: String) {
+    self.name = name
+  }
+}
+
+internal extension ColorAsset.Color {
+  @available(iOS 11.0, tvOS 11.0, watchOS 4.0, macOS 10.13, *)
+  convenience init?(asset: ColorAsset) {
+    let bundle = BundleToken.bundle
+    #if os(iOS) || os(tvOS)
+    self.init(named: asset.name, in: bundle, compatibleWith: nil)
+    #elseif os(macOS)
+    self.init(named: NSColor.Name(asset.name), bundle: bundle)
+    #elseif os(watchOS)
+    self.init(named: asset.name)
+    #endif
+  }
+}
 
 internal struct ImageAsset {
   internal fileprivate(set) var name: String
