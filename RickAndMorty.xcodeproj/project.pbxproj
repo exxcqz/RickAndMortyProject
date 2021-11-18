@@ -8,35 +8,43 @@
 
 /* Begin PBXBuildFile section */
 		060F086D1E4D6C9200D9166F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060F085B1E4D6C9200D9166F /* AppDelegate.swift */; };
-		FBA90FB626DE2F040092A824 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA90FB526DE2F040092A824 /* SceneDelegate.swift */; };
 		060F08711E4D6C9200D9166F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 060F08651E4D6C9200D9166F /* Assets.xcassets */; };
 		063834571F6F62AC0057A831 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063834561F6F62AC0057A831 /* ContentView.swift */; };
 		066238161F879B4D00AA6B14 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 066238181F879B4D00AA6B14 /* Localizable.strings */; };
 		0679BEDF205A4DEC0058E8F3 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0679BEDE205A4DEC0058E8F3 /* Strings.swift */; };
-		C3D08F4F2101B9B600FDC15E /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D08F4D2101B9B500FDC15E /* Assets.swift */; };
 		06DAD03A1F4E95B700FD62BD /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 06DAD0391F4E95B700FD62BD /* Settings.bundle */; };
 		06E0EBD11FAC0BB4002715AE /* AppConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E0EBD01FAC0BB4002715AE /* AppConfigurator.swift */; };
+		11E3398C2746790E00D3B145 /* Gilroy-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11E339892746790D00D3B145 /* Gilroy-Bold.ttf */; };
+		11E3398D2746790E00D3B145 /* Gilroy-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11E3398A2746790E00D3B145 /* Gilroy-Medium.ttf */; };
+		11E3398E2746790E00D3B145 /* Gilroy-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11E3398B2746790E00D3B145 /* Gilroy-SemiBold.ttf */; };
+		11E339982746891500D3B145 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E339972746891500D3B145 /* Fonts.swift */; };
 		6D35B59A216B647100C72B29 /* Bundle+Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35B599216B646F00C72B29 /* Bundle+Info.swift */; };
 		6D3A04222170BE06007B6860 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A04212170BE03007B6860 /* AppConfiguration.swift */; };
 		6D6D7EA221F743FA000FFA4D /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6D7EA121F743F9000FFA4D /* Services.swift */; };
+		C3D08F4F2101B9B600FDC15E /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D08F4D2101B9B500FDC15E /* Assets.swift */; };
+		FBA90FB626DE2F040092A824 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA90FB526DE2F040092A824 /* SceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		060F08441E4D6B3900D9166F /* RickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		060F085B1E4D6C9200D9166F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FBA90FB526DE2F040092A824 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		060F08651E4D6C9200D9166F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		060F087C1E4D702C00D9166F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		063834561F6F62AC0057A831 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		066238171F879B4D00AA6B14 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0679BEDE205A4DEC0058E8F3 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
-		C3D08F4D2101B9B500FDC15E /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		06DAD0391F4E95B700FD62BD /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		06E0EBD01FAC0BB4002715AE /* AppConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurator.swift; sourceTree = "<group>"; };
 		06E0EBD41FAC0D97002715AE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
-		060F08651E4D6C9200D9166F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		11E339892746790D00D3B145 /* Gilroy-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Bold.ttf"; sourceTree = "<group>"; };
+		11E3398A2746790E00D3B145 /* Gilroy-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Medium.ttf"; sourceTree = "<group>"; };
+		11E3398B2746790E00D3B145 /* Gilroy-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-SemiBold.ttf"; sourceTree = "<group>"; };
+		11E339972746891500D3B145 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		6D35B599216B646F00C72B29 /* Bundle+Info.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Info.swift"; sourceTree = "<group>"; };
 		6D3A04212170BE03007B6860 /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		6D6D7EA121F743F9000FFA4D /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
+		C3D08F4D2101B9B500FDC15E /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		FBA90FB526DE2F040092A824 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,10 +126,12 @@
 		060F08641E4D6C9200D9166F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				11E33988274678A900D3B145 /* Fonts */,
 				060F08651E4D6C9200D9166F /* Assets.xcassets */,
 				066238181F879B4D00AA6B14 /* Localizable.strings */,
 				0679BEDE205A4DEC0058E8F3 /* Strings.swift */,
 				C3D08F4D2101B9B500FDC15E /* Assets.swift */,
+				11E339972746891500D3B145 /* Fonts.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -140,7 +150,7 @@
 				060F087C1E4D702C00D9166F /* Info.plist */,
 				06DAD0391F4E95B700FD62BD /* Settings.bundle */,
 			);
-			path = "RickAndMorty";
+			path = RickAndMorty;
 			sourceTree = "<group>";
 		};
 		060F089C1E4D79C000D9166F /* Core */ = {
@@ -151,11 +161,14 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
-		06A610D91FAC373B009A918A /* Frameworks */ = {
+		11E33988274678A900D3B145 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				11E339892746790D00D3B145 /* Gilroy-Bold.ttf */,
+				11E3398A2746790E00D3B145 /* Gilroy-Medium.ttf */,
+				11E3398B2746790E00D3B145 /* Gilroy-SemiBold.ttf */,
 			);
-			name = Frameworks;
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		6D35B598216B5E3A00C72B29 /* Extensions */ = {
@@ -183,7 +196,7 @@
 			);
 			dependencies = (
 			);
-			name = "RickAndMorty";
+			name = RickAndMorty;
 			productName = RickAndMorty;
 			productReference = 060F08441E4D6B3900D9166F /* RickAndMorty.app */;
 			productType = "com.apple.product-type.application";
@@ -210,6 +223,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -229,8 +243,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				066238161F879B4D00AA6B14 /* Localizable.strings in Resources */,
+				11E3398E2746790E00D3B145 /* Gilroy-SemiBold.ttf in Resources */,
 				060F08711E4D6C9200D9166F /* Assets.xcassets in Resources */,
+				11E3398D2746790E00D3B145 /* Gilroy-Medium.ttf in Resources */,
 				06DAD03A1F4E95B700FD62BD /* Settings.bundle in Resources */,
+				11E3398C2746790E00D3B145 /* Gilroy-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +283,6 @@
 			shellPath = /bin/sh;
 			showEnvVarsInLog = 0;
 		};
-
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -277,10 +293,10 @@
 				0679BEDF205A4DEC0058E8F3 /* Strings.swift in Sources */,
 				C3D08F4F2101B9B600FDC15E /* Assets.swift in Sources */,
 				063834571F6F62AC0057A831 /* ContentView.swift in Sources */,
-				6D7F58AF22647B89001E2906 /* WeakArray.swift in Sources */,
 				6D3A04222170BE06007B6860 /* AppConfiguration.swift in Sources */,
 				6D6D7EA221F743FA000FFA4D /* Services.swift in Sources */,
 				6D35B59A216B647100C72B29 /* Bundle+Info.swift in Sources */,
+				11E339982746891500D3B145 /* Fonts.swift in Sources */,
 				060F086D1E4D6C9200D9166F /* AppDelegate.swift in Sources */,
 				06E0EBD11FAC0BB4002715AE /* AppConfigurator.swift in Sources */,
 				FBA90FB626DE2F040092A824 /* SceneDelegate.swift in Sources */,
@@ -421,7 +437,7 @@
 				"DEBUG_INFORMATION_FORMAT[sdk=iphoneos*]" = "dwarf-with-dsym";
 				"DEBUG_INFORMATION_FORMAT[sdk=iphonesimulator*]" = dwarf;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "RickAndMorty/Info.plist";
+				INFOPLIST_FILE = RickAndMorty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
@@ -439,7 +455,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "RickAndMorty/Info.plist";
+				INFOPLIST_FILE = RickAndMorty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ronas-it.rickandmorty";
@@ -515,7 +531,7 @@
 				"DEBUG_INFORMATION_FORMAT[sdk=iphoneos*]" = "dwarf-with-dsym";
 				"DEBUG_INFORMATION_FORMAT[sdk=iphonesimulator*]" = dwarf;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "RickAndMorty/Info.plist";
+				INFOPLIST_FILE = RickAndMorty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
@@ -593,7 +609,7 @@
 				"DEBUG_INFORMATION_FORMAT[sdk=iphoneos*]" = "dwarf-with-dsym";
 				"DEBUG_INFORMATION_FORMAT[sdk=iphonesimulator*]" = dwarf;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "RickAndMorty/Info.plist";
+				INFOPLIST_FILE = RickAndMorty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
@@ -664,7 +680,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "RickAndMorty/Info.plist";
+				INFOPLIST_FILE = RickAndMorty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ronas-it.rickandmorty";
@@ -733,7 +749,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "RickAndMorty/Info.plist";
+				INFOPLIST_FILE = RickAndMorty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ronas-it.rickandmorty";
@@ -802,7 +818,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "RickAndMorty/Info.plist";
+				INFOPLIST_FILE = RickAndMorty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ronas-it.rickandmorty";
@@ -872,7 +888,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "RickAndMorty/Info.plist";
+				INFOPLIST_FILE = RickAndMorty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies -Xfrontend -warn-long-function-bodies=100 -Xfrontend -warn-long-expression-type-checking=100";
