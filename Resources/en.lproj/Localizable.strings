@@ -2,3 +2,11 @@
 //  Created by Anton Dityativ on 15/11/2021
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
+
+"characters" = "Characters";
+"search" = "Search";
+"filters" = "Filters";
+"resetlAll" = "Reset all";
+"apply" = "Apply";
+"locations" = "Locations";
+"episodes" = "Episodes";
