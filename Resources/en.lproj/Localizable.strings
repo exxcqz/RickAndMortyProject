@@ -3,10 +3,10 @@
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
-"characters" = "Characters";
+"characters.title" = "Characters";
+"locations.title" = "Locations";
+"episodes.title" = "Episodes";
 "search" = "Search";
 "filters" = "Filters";
-"resetlAll" = "Reset all";
-"apply" = "Apply";
-"locations" = "Locations";
-"episodes" = "Episodes";
+"resetAll" = "Reset all";
+"apply_button" = "Apply";
