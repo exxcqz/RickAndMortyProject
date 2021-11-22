@@ -18,7 +18,7 @@ struct SplashHelloComponent: View {
                 .padding(.top, 98.0)
                 .edgesIgnoringSafeArea(.top)
             VStack {
-                Image(Asset.SplashImages.splashTitles.name)
+                Image(Asset.SplashImages.splashTitle.name)
                     .padding(.top, 60.0)
                 LottieView(name: "portal", loopMode: .loop)
                     .scaledToFit()
