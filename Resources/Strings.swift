@@ -10,14 +10,6 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
-  /// Apply
-  internal static let applyButton = L10n.tr("Localizable", "apply_button")
-  /// Filters
-  internal static let filters = L10n.tr("Localizable", "filters")
-  /// Reset all
-  internal static let resetAll = L10n.tr("Localizable", "resetAll")
-  /// Search
-  internal static let search = L10n.tr("Localizable", "search")
 
   internal enum Characters {
     /// Characters
@@ -29,9 +21,25 @@ internal enum L10n {
     internal static let title = L10n.tr("Localizable", "episodes.title")
   }
 
+  internal enum Filters {
+    /// Filters
+    internal static let title = L10n.tr("Localizable", "filters.title")
+    internal enum Action {
+      /// Apply
+      internal static let apply = L10n.tr("Localizable", "filters.action.apply")
+      /// Reset all
+      internal static let resetAll = L10n.tr("Localizable", "filters.action.reset_all")
+    }
+  }
+
   internal enum Locations {
     /// Locations
     internal static let title = L10n.tr("Localizable", "locations.title")
+  }
+
+  internal enum Placeholder {
+    /// Search
+    internal static let search = L10n.tr("Localizable", "placeholder.search")
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
