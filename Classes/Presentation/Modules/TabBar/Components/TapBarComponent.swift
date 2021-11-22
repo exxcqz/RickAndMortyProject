@@ -8,7 +8,6 @@ import SwiftUI
 struct TabBarComponent: View {
     @Binding var selection: Int
 
-    let heightScreen = UIScreen.main.bounds.size.height
     let icons = [
         Asset.Icons.icBarCharacters.image,
         Asset.Icons.icBarLocations.image,
@@ -36,7 +35,7 @@ struct TabBarComponent: View {
             }
         }
         .padding(.top)
-        .padding(.bottom, heightScreen/16)
-        .background(Color(Asset.Colors.blackCard.name))
+        .padding(.bottom)
+        .background(Color(Asset.Colors.blackCard.name).edgesIgnoringSafeArea(.bottom))
     }
 }

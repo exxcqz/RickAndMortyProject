@@ -28,7 +28,7 @@ struct TabBarScreen: View {
                 }
                 Spacer()
                 TabBarComponent(selection: $selection)
-            }.edgesIgnoringSafeArea(.bottom)
+            }
         }
     }
 }
