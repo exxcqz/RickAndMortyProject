@@ -32,7 +32,6 @@
 		3615AC9C579EC0230E764F13 /* LocationsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF20F6970EBC600C5051EE4 /* LocationsReducer.swift */; };
 		3801234611FB3C11FD62C21B /* DetailsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C6A6D54538D96207724630 /* DetailsReducer.swift */; };
 		381DDEBB150FB851C3CBE47B /* LocationsHelloComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046983031E36DF3EE26FC619 /* LocationsHelloComponent.swift */; };
-		3A24DC54CED725FA6660B70E /* TabBarHelloComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C5921F0517E0AC3A4D4D20 /* TabBarHelloComponent.swift */; };
 		3DFC6CA04971F19856C938A3 /* CharactersScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83F3152C50964B80891586D /* CharactersScreen.swift */; };
 		4CDD47B0812EA9DC7B675069 /* TabBarScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9EA900F5119CA37AE9540 /* TabBarScreen.swift */; };
 		5809CA90602E85A305ADC5ED /* SplashHelloComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E042B0A39824F2354AFF7E /* SplashHelloComponent.swift */; };
@@ -87,7 +86,6 @@
 		06E0EBD01FAC0BB4002715AE /* AppConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurator.swift; sourceTree = "<group>"; };
 		06E0EBD41FAC0D97002715AE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		08DE721DEC1D7C8827C8F75B /* LocationsAction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationsAction.swift; sourceTree = "<group>"; };
-		09C5921F0517E0AC3A4D4D20 /* TabBarHelloComponent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TabBarHelloComponent.swift; sourceTree = "<group>"; };
 		0BF99FF6D47AD033FED0BE30 /* FilterScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FilterScreen.swift; sourceTree = "<group>"; };
 		0CF7078D0582B812C8AA1E0F /* CharactersHelloComponent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CharactersHelloComponent.swift; sourceTree = "<group>"; };
 		0FF20F6970EBC600C5051EE4 /* LocationsReducer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationsReducer.swift; sourceTree = "<group>"; };
@@ -337,7 +335,6 @@
 		76E65B3252523983FACD1E6E /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				09C5921F0517E0AC3A4D4D20 /* TabBarHelloComponent.swift */,
 				11E2A808274BB72E0008980D /* TapBarComponent.swift */,
 			);
 			path = Components;
@@ -651,7 +648,6 @@
 				FC54F5AFF55A2AA11F55B6D3 /* DetailsEnvironment.swift in Sources */,
 				3801234611FB3C11FD62C21B /* DetailsReducer.swift in Sources */,
 				4CDD47B0812EA9DC7B675069 /* TabBarScreen.swift in Sources */,
-				3A24DC54CED725FA6660B70E /* TabBarHelloComponent.swift in Sources */,
 				8ADD5F0A2BB72EF68E8B47F2 /* TabBarState.swift in Sources */,
 				87A019A5D32B2AC449FD79B0 /* TabBarAction.swift in Sources */,
 				9C465724E6D840DE10FFA3B1 /* TabBarEnvironment.swift in Sources */,

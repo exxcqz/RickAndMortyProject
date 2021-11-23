@@ -1,5 +1,5 @@
 //
-//  Created by Nikita on 22.11.2021
+//  Created by Nikita Gavrikov on 22.11.2021
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
@@ -7,13 +7,12 @@ import SwiftUI
 
 struct TabBarComponent: View {
     @Binding var selection: Int
-
-    let icons = [
+    private let icons = [
         Asset.Icons.icBarCharacters.image,
         Asset.Icons.icBarLocations.image,
         Asset.Icons.icBarEpisodes.image
     ]
-    let iconsFilled = [
+    private let iconsFilled = [
         Asset.Icons.icBarCharactersFilled.image,
         Asset.Icons.icBarLocationsFilled.image,
         Asset.Icons.icBarEpisodesFilled.image

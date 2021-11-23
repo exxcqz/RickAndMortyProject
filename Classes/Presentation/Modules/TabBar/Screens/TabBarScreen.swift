@@ -7,7 +7,7 @@ import ComposableArchitecture
 import SwiftUI
 
 struct TabBarScreen: View {
-    @State var selection = 0
+    @State private var selectionTabBar = 0
     let store: Store<TabBarState, TabBarAction>
 
     var body: some View {
@@ -15,7 +15,7 @@ struct TabBarScreen: View {
             VStack(spacing: 0) {
                 Spacer()
                 ZStack {
-                    switch selection {
+                    switch selectionTabBar {
                     case 0:
                         CharactersScreen(store: charactersStore)
                     case 1:
@@ -27,11 +27,13 @@ struct TabBarScreen: View {
                     }
                 }
                 Spacer()
-                TabBarComponent(selection: $selection)
+                TabBarComponent(selection: $selectionTabBar)
             }
         }
     }
 }
+
+// MARK: -  Getting store of modules
 
 extension TabBarScreen {
 
