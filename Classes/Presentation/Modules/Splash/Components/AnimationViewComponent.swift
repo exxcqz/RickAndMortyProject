@@ -13,17 +13,21 @@ struct AnimationViewComponent: UIViewRepresentable {
     func makeUIView(context: UIViewRepresentableContext<AnimationViewComponent>) -> UIView {
         let view = UIView()
         let animationView = AnimationView()
+
         animationView.animation = Animation.named(name)
         animationView.contentMode = .scaleAspectFill
         animationView.loopMode = loopMode
         animationView.animationSpeed = 1.0
         animationView.play()
         animationView.translatesAutoresizingMaskIntoConstraints = false
+
         view.addSubview(animationView)
-        NSLayoutConstraint.activate([
-            animationView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            animationView.heightAnchor.constraint(equalTo: view.heightAnchor)
-        ])
+        NSLayoutConstraint.activate(
+            [
+                animationView.widthAnchor.constraint(equalTo: view.widthAnchor),
+                animationView.heightAnchor.constraint(equalTo: view.heightAnchor)
+            ]
+        )
         return view
     }
 

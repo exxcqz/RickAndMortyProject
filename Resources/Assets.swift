@@ -55,6 +55,7 @@ internal enum Asset {
     internal static let locations = ImageAsset(name: "Pictures/locations")
   }
   internal enum SplashImages {
+    internal static let splashPortal = ImageAsset(name: "SplashImages/splashPortal")
     internal static let splashStars = ImageAsset(name: "SplashImages/splashStars")
     internal static let splashTitle = ImageAsset(name: "SplashImages/splashTitle")
   }

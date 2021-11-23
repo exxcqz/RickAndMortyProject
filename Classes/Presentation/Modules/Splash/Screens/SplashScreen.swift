@@ -8,12 +8,24 @@ import SwiftUI
 
 struct SplashScreen: View {
     let store: Store<SplashState, SplashAction>
+    let scaleFactorW: CGFloat = UIScreen.main.bounds.size.width / 375
+    let scaleFactorH: CGFloat = UIScreen.main.bounds.size.height / 812
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            VStack {
-                SplashScreenComponent()
-            }
+                ZStack {
+                    Color(Asset.Colors.blackBG.color)
+                        .edgesIgnoringSafeArea(.all)
+                    SplashScreenStarsComponent(scaleFactorW: scaleFactorW, scaleFactorH: scaleFactorH)
+                    VStack {
+                        SplashScreenTitleComponent(scaleFactorW: scaleFactorW, scaleFactorH: scaleFactorH)
+                        Spacer()
+                            .frame(height: scaleFactorH*36)
+                        SplashScreenPortalComponent(scaleFactorW: scaleFactorW, scaleFactorH: scaleFactorH)
+                        Spacer()
+                    }
+                    // AnimationViewComponent(name: "portal", loopMode: .loop)
+                }
         }
     }
 }
