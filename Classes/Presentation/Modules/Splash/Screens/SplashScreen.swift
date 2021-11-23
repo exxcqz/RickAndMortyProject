@@ -12,7 +12,7 @@ struct SplashScreen: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
-                SplashHelloComponent()
+                SplashScreenComponent()
             }
         }
     }

@@ -17,7 +17,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view that provides the window contents.
 //        let contentView = ContentView()
-        let contentView = SplashHelloComponent()
+        let contentView = SplashScreen(
+            store: .init(
+                initialState: SplashState(),
+                reducer: splashReducer,
+                environment: SplashEnvironment())
+        )
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

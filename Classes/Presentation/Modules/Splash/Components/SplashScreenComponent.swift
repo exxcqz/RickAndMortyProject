@@ -5,10 +5,10 @@
 
 import SwiftUI
 
-struct SplashHelloComponent: View {
+struct SplashScreenComponent: View {
 
     let heightScreen = UIScreen.main.bounds.size.height
-    
+
     var body: some View {
         ZStack {
             Color(Asset.Colors.blackBG.color).edgesIgnoringSafeArea(.all)
@@ -19,9 +19,9 @@ struct SplashHelloComponent: View {
                 .edgesIgnoringSafeArea(.top)
             VStack {
                 Image(Asset.SplashImages.splashTitle.name)
-                    .padding(.top, 60.0)
-                LottieView(name: "portal", loopMode: .loop)
-                    .scaledToFit()
+                    .frame(width: 140, height: 100)
+                AnimationViewComponent(name: "portal", loopMode: .loop)
+                    .frame(width: 300, height: 200, alignment: .center)
                     .padding(.horizontal)
                 Spacer()
             }
@@ -33,6 +33,6 @@ struct SplashHelloComponent: View {
 
 struct SplashHelloComponent_Previews: PreviewProvider {
     static var previews: some View {
-        SplashHelloComponent()
+        SplashScreenComponent()
     }
 }
