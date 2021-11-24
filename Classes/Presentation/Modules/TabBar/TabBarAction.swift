@@ -7,5 +7,5 @@ enum TabBarAction: Equatable {
     case characters(CharactersAction)
     case locations(LocationsAction)
     case episodes(EpisodesAction)
-    case selectedTabChange(TabBarState.Tab)
+    case selectedTabIDChange(TabID)
 }

@@ -7,15 +7,17 @@ import ComposableArchitecture
 import SwiftUI
 
 struct TabBarScreen: View {
-    @State private var selectionTabBar = 0
     let store: Store<TabBarState, TabBarAction>
 
     var body: some View {
         WithViewStore(store) { viewStore in
+            var selection = viewStore.binding(
+                get: { $0.selectedTabID },
+                send: TabBarAction.selectedTabIDChange)
             VStack(spacing: 0) {
                 Spacer()
                 ZStack {
-                    switch selectionTabBar {
+                    switch 0 {
                     case 0:
                         CharactersScreen(store: charactersStore)
                     case 1:
@@ -27,7 +29,23 @@ struct TabBarScreen: View {
                     }
                 }
                 Spacer()
-                TabBarComponent(selection: $selectionTabBar)
+                Divider()
+                    .frame(height: 2)
+                    .background(Color(Asset.Colors.grayDark.name))
+                HStack {
+                    ForEach(0..<3, id: \.self) { index in
+                        Spacer()
+                        Button(action: {
+//                            selection = index
+                        }, label: {
+//                            Image(uiImage: selection == index ? iconsFilled[index] : icons[index])
+                        })
+                        Spacer()
+                    }
+                }
+                .padding(.top)
+                .padding(.bottom)
+                .background(Color(Asset.Colors.blackCard.name).edgesIgnoringSafeArea(.bottom))
             }
         }
     }
@@ -39,19 +57,19 @@ extension TabBarScreen {
 
     private var charactersStore: Store<CharactersState, CharactersAction> {
         return store.scope(
-            state: { $0.charactersState },
+            state: { $0.characters },
             action: TabBarAction.characters)
     }
 
     private var locationsStore: Store<LocationsState, LocationsAction> {
         return store.scope(
-            state: { $0.locationsState },
+            state: { $0.locations },
             action: TabBarAction.locations)
     }
 
     private var episodesStore: Store<EpisodesState, EpisodesAction> {
         return store.scope(
-            state: { $0.episodesState },
+            state: { $0.episodes },
             action: TabBarAction.episodes)
     }
 }
