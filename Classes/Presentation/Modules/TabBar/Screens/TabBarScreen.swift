@@ -11,21 +11,19 @@ struct TabBarScreen: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            var selection = viewStore.binding(
+            let selection = viewStore.binding(
                 get: { $0.selectedTabID },
                 send: TabBarAction.selectedTabIDChange)
             VStack(spacing: 0) {
                 Spacer()
                 ZStack {
-                    switch 0 {
-                    case 0:
+                    switch selection.wrappedValue {
+                    case TabID.characters:
                         CharactersScreen(store: charactersStore)
-                    case 1:
+                    case TabID.locations:
                         LocationsScreen(store: locationsStore)
-                    case 2:
+                    case TabID.episodes:
                         EpisodesScreen(store: episodesStore)
-                    default:
-                        CharactersScreen(store: charactersStore)
                     }
                 }
                 Spacer()
@@ -33,13 +31,17 @@ struct TabBarScreen: View {
                     .frame(height: 2)
                     .background(Color(Asset.Colors.grayDark.name))
                 HStack {
-                    ForEach(0..<3, id: \.self) { index in
+                    ForEach(TabID.allCases, id: \.self) { tabID in
                         Spacer()
                         Button(action: {
-//                            selection = index
+                            viewStore.send(TabBarAction.selectedTabIDChange(tabID))
                         }, label: {
-//                            Image(uiImage: selection == index ? iconsFilled[index] : icons[index])
-                        })
+                            Image(uiImage:
+                                    selection.wrappedValue == tabID
+                                  ? viewStore.tabBarItems[tabID.rawValue].iconFilled
+                                  : viewStore.tabBarItems[tabID.rawValue].icon)
+                        }
+                        )
                         Spacer()
                     }
                 }

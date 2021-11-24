@@ -7,9 +7,8 @@ import ComposableArchitecture
 
 let tabBarReducer = Reducer<TabBarState, TabBarAction, TabBarEnvironment> { state, action, environment in
     switch action {
-    case .selectedTabIDChange:
-        state.tabBarItems[id: state.selectedTabID]?.isActive = true
+    case .selectedTabIDChange(let selectedTab):
+        state.selectedTabID = selectedTab
         return .none
-
     }
 }
