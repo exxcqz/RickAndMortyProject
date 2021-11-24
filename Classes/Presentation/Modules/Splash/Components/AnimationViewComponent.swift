@@ -7,7 +7,7 @@ import SwiftUI
 import Lottie
 
 struct AnimationViewComponent: UIViewRepresentable {
-    var name: String
+    var name: String = "loading"
     var loopMode: LottieLoopMode = .loop
 
     func makeUIView(context: UIViewRepresentableContext<AnimationViewComponent>) -> UIView {

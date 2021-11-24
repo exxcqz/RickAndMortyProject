@@ -8,25 +8,40 @@ import SwiftUI
 
 struct SplashScreen: View {
     let store: Store<SplashState, SplashAction>
-    let scaleFactorW: CGFloat = UIScreen.main.bounds.size.width / 375
-    let scaleFactorH: CGFloat = UIScreen.main.bounds.size.height / 812
 
     var body: some View {
         WithViewStore(store) { viewStore in
             ZStack {
                 Color(Asset.Colors.blackBG.color)
                     .edgesIgnoringSafeArea(.all)
-                SplashScreenStarsComponent(scaleFactorW: scaleFactorW, scaleFactorH: scaleFactorH)
+                Image(Asset.SplashImages.splashStars.name)
+                    .resizable(resizingMode: .stretch)
+                    .padding(.leading, viewStore.scaleFactorW * 16.0)
+                    .padding(.trailing, viewStore.scaleFactorW * 25.0)
+                    .padding(.top, viewStore.scaleFactorH * 98.0)
+                    .padding(.bottom, viewStore.scaleFactorH * 64.0)
+                    .edgesIgnoringSafeArea(.all)
                 VStack {
-                    SplashScreenTitleComponent(scaleFactorW: scaleFactorW, scaleFactorH: scaleFactorH)
+                    Image(Asset.SplashImages.splashTitle.name)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: viewStore.scaleFactorW * 140, height: viewStore.scaleFactorH * 40)
+                        .padding(.horizontal, viewStore.scaleFactorW * 118.0)
+                        .padding(.top, viewStore.scaleFactorH * 164.0)
+                        .edgesIgnoringSafeArea(.all)
                     Spacer()
-                        .frame(height: scaleFactorH*36)
-                    SplashScreenPortalComponent(scaleFactorW: scaleFactorW, scaleFactorH: scaleFactorH)
+                        .frame(height: viewStore.scaleFactorH * 36)
+                    Image(Asset.SplashImages.splashPortal.name)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: viewStore.scaleFactorW * 140, height: viewStore.scaleFactorH * 228)
+                        .padding(.horizontal, viewStore.scaleFactorW * 118.0)
+                        .edgesIgnoringSafeArea(.all)
                     Spacer()
-                        .frame(height: scaleFactorH*133)
-                    AnimationViewComponent(name: "loading", loopMode: .loop)
-                        .frame(width: scaleFactorW*72, height: scaleFactorH*72)
-                        .padding(.bottom, scaleFactorH*180)
+                        .frame(height: viewStore.scaleFactorH * 133)
+                    AnimationViewComponent()
+                        .frame(width: viewStore.scaleFactorW * 72, height: viewStore.scaleFactorH * 72)
+                        .padding(.bottom, viewStore.scaleFactorH * 180)
                 }
             }
         }
@@ -42,6 +57,5 @@ struct SplashScreen_Previews: PreviewProvider {
                 environment: SplashEnvironment()
             )
         )
-        .previewDevice("iPhone 12 mini")
     }
 }
