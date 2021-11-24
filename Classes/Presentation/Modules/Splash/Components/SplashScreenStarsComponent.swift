@@ -1,5 +1,5 @@
 //
-//  Created by Александр Васильевич on 23.11.2021
+//  Created by Alexander Loshakov on 23.11.2021
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
@@ -22,6 +22,6 @@ struct SplashScreenStarsComponent: View {
 
 struct SplashScreenStarsComponent_Previews: PreviewProvider {
     static var previews: some View {
-        CharactersHelloComponent()
+        SplashScreenStarsComponent(scaleFactorW: 1, scaleFactorH: 1)
     }
 }

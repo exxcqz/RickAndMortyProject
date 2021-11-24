@@ -13,19 +13,22 @@ struct SplashScreen: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-                ZStack {
-                    Color(Asset.Colors.blackBG.color)
-                        .edgesIgnoringSafeArea(.all)
-                    SplashScreenStarsComponent(scaleFactorW: scaleFactorW, scaleFactorH: scaleFactorH)
-                    VStack {
-                        SplashScreenTitleComponent(scaleFactorW: scaleFactorW, scaleFactorH: scaleFactorH)
-                        Spacer()
-                            .frame(height: scaleFactorH*36)
-                        SplashScreenPortalComponent(scaleFactorW: scaleFactorW, scaleFactorH: scaleFactorH)
-                        Spacer()
-                    }
-                    // AnimationViewComponent(name: "portal", loopMode: .loop)
+            ZStack {
+                Color(Asset.Colors.blackBG.color)
+                    .edgesIgnoringSafeArea(.all)
+                SplashScreenStarsComponent(scaleFactorW: scaleFactorW, scaleFactorH: scaleFactorH)
+                VStack {
+                    SplashScreenTitleComponent(scaleFactorW: scaleFactorW, scaleFactorH: scaleFactorH)
+                    Spacer()
+                        .frame(height: scaleFactorH*36)
+                    SplashScreenPortalComponent(scaleFactorW: scaleFactorW, scaleFactorH: scaleFactorH)
+                    Spacer()
+                        .frame(height: scaleFactorH*133)
+                    AnimationViewComponent(name: "loading", loopMode: .loop)
+                        .frame(width: scaleFactorW*72, height: scaleFactorH*72)
+                        .padding(.bottom, scaleFactorH*180)
                 }
+            }
         }
     }
 }
@@ -39,5 +42,6 @@ struct SplashScreen_Previews: PreviewProvider {
                 environment: SplashEnvironment()
             )
         )
+        .previewDevice("iPhone 12 mini")
     }
 }

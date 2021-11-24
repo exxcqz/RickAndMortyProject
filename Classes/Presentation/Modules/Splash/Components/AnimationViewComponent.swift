@@ -11,7 +11,7 @@ struct AnimationViewComponent: UIViewRepresentable {
     var loopMode: LottieLoopMode = .loop
 
     func makeUIView(context: UIViewRepresentableContext<AnimationViewComponent>) -> UIView {
-        let view = UIView()
+        let view = UIView(frame: .zero)
         let animationView = AnimationView()
 
         animationView.animation = Animation.named(name)

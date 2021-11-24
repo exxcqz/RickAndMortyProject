@@ -1,5 +1,5 @@
 //
-//  Created by Александр Васильевич on 23.11.2021
+//  Created by Alexander Loshakov on 23.11.2021
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
@@ -15,13 +15,12 @@ struct SplashScreenPortalComponent: View {
             .aspectRatio(contentMode: .fit)
             .frame(width: scaleFactorW*140, height: scaleFactorH*228)
             .padding(.horizontal, scaleFactorW*118.0)
-            .padding(.bottom, scaleFactorH*344.0)
             .edgesIgnoringSafeArea(.all)
     }
 }
 
 struct SplashScreenPortalComponent_Previews: PreviewProvider {
     static var previews: some View {
-        CharactersHelloComponent()
+        SplashScreenPortalComponent(scaleFactorW: 1, scaleFactorH: 1)
     }
 }
