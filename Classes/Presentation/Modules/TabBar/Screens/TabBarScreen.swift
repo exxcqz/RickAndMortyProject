@@ -12,17 +12,21 @@ struct TabBarScreen: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             let selection = viewStore.binding(
-                get: { $0.selectedTabID },
-                send: TabBarAction.selectedTabIDChange)
+                get: {
+                    $0.selectedTabID
+                },
+                send:
+                    TabBarAction.selectedTabIDChange
+            )
             VStack(spacing: 0) {
                 Spacer()
                 ZStack {
                     switch selection.wrappedValue {
-                    case TabID.characters:
+                    case .characters:
                         CharactersScreen(store: charactersStore)
-                    case TabID.locations:
+                    case .locations:
                         LocationsScreen(store: locationsStore)
-                    case TabID.episodes:
+                    case .episodes:
                         EpisodesScreen(store: episodesStore)
                     }
                 }
@@ -33,14 +37,17 @@ struct TabBarScreen: View {
                 HStack {
                     ForEach(TabID.allCases, id: \.self) { tabID in
                         Spacer()
-                        Button(action: {
-                            viewStore.send(TabBarAction.selectedTabIDChange(tabID))
-                        }, label: {
-                            Image(uiImage:
-                                    selection.wrappedValue == tabID
-                                  ? viewStore.tabBarItems[tabID.rawValue].iconFilled
-                                  : viewStore.tabBarItems[tabID.rawValue].icon)
-                        }
+                        Button(
+                            action: {
+                                viewStore.send(TabBarAction.selectedTabIDChange(tabID))
+                            },
+                            label: {
+                                Image(
+                                    uiImage: selection.wrappedValue == tabID
+                                    ? viewStore.tabBarItems[tabID.rawValue].iconFilled
+                                    : viewStore.tabBarItems[tabID.rawValue].icon
+                                )
+                            }
                         )
                         Spacer()
                     }
@@ -59,20 +66,29 @@ extension TabBarScreen {
 
     private var charactersStore: Store<CharactersState, CharactersAction> {
         return store.scope(
-            state: { $0.characters },
-            action: TabBarAction.characters)
+            state: {
+                $0.characters
+            },
+            action: TabBarAction.characters
+        )
     }
 
     private var locationsStore: Store<LocationsState, LocationsAction> {
         return store.scope(
-            state: { $0.locations },
-            action: TabBarAction.locations)
+            state: {
+                $0.locations
+            },
+            action: TabBarAction.locations
+        )
     }
 
     private var episodesStore: Store<EpisodesState, EpisodesAction> {
         return store.scope(
-            state: { $0.episodes },
-            action: TabBarAction.episodes)
+            state: {
+                $0.episodes
+            },
+            action: TabBarAction.episodes
+        )
     }
 }
 

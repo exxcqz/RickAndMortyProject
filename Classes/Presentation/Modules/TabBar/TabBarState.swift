@@ -19,16 +19,3 @@ struct TabBarState: Equatable {
     var locations = LocationsState()
     var episodes = EpisodesState()
 }
-
-enum TabID: Int, Hashable, CaseIterable {
-    case characters
-    case locations
-    case episodes
-}
-
-struct TabBarItemState: Equatable, Identifiable {
-    var id: TabID
-    var isActive: Bool = false
-    var icon: UIImage
-    var iconFilled: UIImage
-}
