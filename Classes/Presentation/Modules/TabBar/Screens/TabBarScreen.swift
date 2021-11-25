@@ -15,8 +15,7 @@ struct TabBarScreen: View {
                 get: {
                     $0.selectedTabID
                 },
-                send:
-                    TabBarAction.selectedTabIDChange
+                send: TabBarAction.selectedTabIDChange
             )
             VStack(spacing: 0) {
                 Spacer()

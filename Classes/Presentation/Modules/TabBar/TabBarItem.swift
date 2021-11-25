@@ -6,13 +6,7 @@
 import ComposableArchitecture
 import SwiftUI
 
-enum TabID: Int, Hashable, CaseIterable {
-    case characters
-    case locations
-    case episodes
-}
-
-struct TabBarItemState: Equatable, Identifiable {
+struct TabBarItem: Equatable, Identifiable {
     var id: TabID
     var isActive: Bool = false
     var icon: UIImage
