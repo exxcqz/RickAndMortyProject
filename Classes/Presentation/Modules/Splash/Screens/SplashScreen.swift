@@ -11,8 +11,36 @@ struct SplashScreen: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            VStack {
-                SplashHelloComponent()
+            ZStack {
+                Color(Asset.Colors.blackBG.color)
+                    .edgesIgnoringSafeArea(.all)
+                Image(Asset.SplashImages.splashStars.name)
+                    .resizable(resizingMode: .stretch)
+                    .padding(.leading, viewStore.scaleFactorW * 16.0)
+                    .padding(.trailing, viewStore.scaleFactorW * 25.0)
+                    .padding(.top, viewStore.scaleFactorH * 98.0)
+                    .padding(.bottom, viewStore.scaleFactorH * 64.0)
+                    .edgesIgnoringSafeArea(.all)
+                VStack {
+                    Image(Asset.SplashImages.splashTitle.name)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: viewStore.scaleFactorW * 140, height: viewStore.scaleFactorH * 40, alignment: .center)
+                        .padding(.top, viewStore.scaleFactorH * 164.0)
+                        .edgesIgnoringSafeArea(.all)
+                    Spacer()
+                        .frame(height: viewStore.scaleFactorH * 36)
+                    Image(Asset.SplashImages.splashPortal.name)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: viewStore.scaleFactorW * 140, height: viewStore.scaleFactorH * 228, alignment: .center)
+                        .edgesIgnoringSafeArea(.all)
+                    Spacer()
+                        .frame(height: viewStore.scaleFactorH * 133)
+                    AnimationViewComponent()
+                        .frame(width: viewStore.scaleFactorW * 72, height: viewStore.scaleFactorH * 72)
+                        .padding(.bottom, viewStore.scaleFactorH * 180)
+                }
             }
         }
     }
