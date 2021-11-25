@@ -765,6 +765,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.3;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Debug Development";
 		};
@@ -787,6 +788,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "ADHOC_DEVELOPMENT ADHOC";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.3;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "AdHoc Development";
 		};
@@ -871,6 +873,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-0none";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.3;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Debug Staging";
 		};
@@ -955,6 +958,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.3;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Debug Production";
 		};
@@ -1031,6 +1035,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "ADHOC_STAGING ADHOC";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.3;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "AdHoc Staging";
 		};
@@ -1107,6 +1112,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "ADHOC_PRODUCTION ADHOC";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.3;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "AdHoc Production";
 		};
@@ -1182,6 +1188,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.3;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = AppStore;
 		};
@@ -1260,6 +1267,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.3;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Analyze;
 		};
