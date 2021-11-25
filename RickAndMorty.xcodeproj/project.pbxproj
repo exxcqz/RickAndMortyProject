@@ -337,13 +337,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		76E65B3252523983FACD1E6E /* Components */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
 		7A0DAA0F032971722D5DA9A3 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -361,7 +354,6 @@
 			isa = PBXGroup;
 			children = (
 				2BD04256084D04F84EE093E1 /* Screens */,
-				76E65B3252523983FACD1E6E /* Components */,
 				A624C70F9B836C187021D071 /* TabBarState.swift */,
 				740ED4B41741423AEA6699B9 /* TabBarAction.swift */,
 				B973621A468EC297D2962353 /* TabBarEnvironment.swift */,
