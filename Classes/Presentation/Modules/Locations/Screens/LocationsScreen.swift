@@ -12,7 +12,7 @@ struct LocationsScreen: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
-                LocationsHelloComponent()
+                LocationsNavigationComponent()
             }
         }
     }
