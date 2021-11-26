@@ -20,6 +20,7 @@
 		0F2A99AF57F8FAF272D3A536 /* FilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1912B6F08E19ECCF5FEB624C /* FilterState.swift */; };
 		1148D5C2274FD1200047E20E /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1148D5C1274FD11F0047E20E /* TabBarItem.swift */; };
 		1148D5CC275147CE0047E20E /* LocationsNavigationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1148D5CB275147CE0047E20E /* LocationsNavigationComponent.swift */; };
+		1148D5CE275149FD0047E20E /* LocationsCardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1148D5CD275149FD0047E20E /* LocationsCardItem.swift */; };
 		11E3398C2746790E00D3B145 /* Gilroy-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11E339892746790D00D3B145 /* Gilroy-Bold.ttf */; };
 		11E3398D2746790E00D3B145 /* Gilroy-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11E3398A2746790E00D3B145 /* Gilroy-Medium.ttf */; };
 		11E3398E2746790E00D3B145 /* Gilroy-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11E3398B2746790E00D3B145 /* Gilroy-SemiBold.ttf */; };
@@ -91,6 +92,7 @@
 		0FF20F6970EBC600C5051EE4 /* LocationsReducer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationsReducer.swift; sourceTree = "<group>"; };
 		1148D5C1274FD11F0047E20E /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		1148D5CB275147CE0047E20E /* LocationsNavigationComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsNavigationComponent.swift; sourceTree = "<group>"; };
+		1148D5CD275149FD0047E20E /* LocationsCardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsCardItem.swift; sourceTree = "<group>"; };
 		11E339892746790D00D3B145 /* Gilroy-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Bold.ttf"; sourceTree = "<group>"; };
 		11E3398A2746790E00D3B145 /* Gilroy-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Medium.ttf"; sourceTree = "<group>"; };
 		11E3398B2746790E00D3B145 /* Gilroy-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 				08DE721DEC1D7C8827C8F75B /* LocationsAction.swift */,
 				6D2B183A35E026726B497D7D /* LocationsEnvironment.swift */,
 				0FF20F6970EBC600C5051EE4 /* LocationsReducer.swift */,
+				1148D5CD275149FD0047E20E /* LocationsCardItem.swift */,
 			);
 			path = Locations;
 			sourceTree = "<group>";
@@ -626,6 +629,7 @@
 				1148D5C2274FD1200047E20E /* TabBarItem.swift in Sources */,
 				63FA1F903922012978134029 /* LocationsScreen.swift in Sources */,
 				C9AE9C6699DE4AA3BEBF08E7 /* LocationsState.swift in Sources */,
+				1148D5CE275149FD0047E20E /* LocationsCardItem.swift in Sources */,
 				28BE4E6F1D94586798FF337B /* LocationsAction.swift in Sources */,
 				CF6948EA9EA86232E5A1ABEB /* LocationsEnvironment.swift in Sources */,
 				3615AC9C579EC0230E764F13 /* LocationsReducer.swift in Sources */,
