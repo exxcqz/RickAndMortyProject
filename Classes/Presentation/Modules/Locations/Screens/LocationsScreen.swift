@@ -9,11 +9,14 @@ import SwiftUI
 struct LocationsScreen: View {
     let store: Store<LocationsState, LocationsAction>
     let massive = [
-        LocationsCardItem(id: 1, nameLocation: "Earth", typeLocation: "Portal", icon: Asset.Icons.icBarLocations.image),
-        LocationsCardItem(id: 2, nameLocation: "Abadango", typeLocation: "Cluster", icon: Asset.Icons.icCluster.image),
-        LocationsCardItem(id: 3, nameLocation: "Citadel", typeLocation: "Microversa", icon: Asset.Icons.icMicroverse.image),
-        LocationsCardItem(id: 4, nameLocation: "Earth", typeLocation: "Portal", icon: Asset.Icons.icBarLocations.image),
-        LocationsCardItem(id: 5, nameLocation: "Abadango", typeLocation: "Cluster", icon: Asset.Icons.icCluster.image)
+        LocationsCardModel(id: 1, name: "Testicle Monster Dimension", type: "Cluster", dimension: nil, residents: nil, url: nil, created: nil),
+        LocationsCardModel(id: 2, name: "Earth (C-137)", type: "Planet", dimension: nil, residents: nil, url: nil, created: nil),
+        LocationsCardModel(id: 3, name: "Citadel of Ricks", type: "Space station", dimension: nil, residents: nil, url: nil, created: nil),
+        LocationsCardModel(id: 4, name: "Worldender's lair", type: "Planet", dimension: nil, residents: nil, url: nil, created: nil),
+        LocationsCardModel(id: 5, name: "Interdimensional Cable", type: "TV", dimension: nil, residents: nil, url: nil, created: nil),
+        LocationsCardModel(id: 6, name: "Immortality Field Resort", type: "Resort", dimension: nil, residents: nil, url: nil, created: nil),
+        LocationsCardModel(id: 7, name: "Purge Planet", type: "Planet", dimension: nil, residents: nil, url: nil, created: nil),
+        LocationsCardModel(id: 8, name: "Giant's Town", type: "Fantasy town", dimension: nil, residents: nil, url: nil, created: nil),
     ]
 
     var body: some View {
@@ -24,11 +27,11 @@ struct LocationsScreen: View {
                     VStack {
                         LocationsNavigationComponent()
                         ScrollView {
-                            ForEach(massive, id: \.self) { card in
+                            ForEach(massive, id: \.id) { card in
                                 NavigationLink {
                                     DetailsHelloComponent()
                                 } label: {
-                                    LocationsCardComponent(card: card)
+                                    LocationsCardComponent(locationName: card.name!, locationType: card.type!)
                                 }
                             }
                             .padding(.bottom, 8)
