@@ -6,5 +6,11 @@
 import ComposableArchitecture
 
 let splashReducer = Reducer<SplashState, SplashAction, SplashEnvironment> { state, action, environment in
+    switch action {
+    case .onAppear:
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            // открыть tabbar-модуль через какое-то время
+        }
+    }
     return .none
 }

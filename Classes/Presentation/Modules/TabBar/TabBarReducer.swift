@@ -10,5 +10,8 @@ let tabBarReducer = Reducer<TabBarState, TabBarAction, TabBarEnvironment> { stat
     case .selectedTabIDChange(let selectedTab):
         state.selectedTabID = selectedTab
         return .none
+    case .characters(let action):
+        break
     }
+    return .none
 }

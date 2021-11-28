@@ -4,5 +4,5 @@
 //
 
 enum SplashAction: Equatable {
-
+    case onAppear
 }

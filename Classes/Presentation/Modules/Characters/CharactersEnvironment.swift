@@ -3,6 +3,18 @@
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
-struct CharactersEnvironment {
+import ComposableArchitecture
 
+struct CharactersEnvironment {
+//    var charactersRequest: (JSONDecoder) -> Effect<[CharacterModel], APIError>
 }
+
+//enum APIError: Error {
+//    case downloadError
+//    case decodingError
+//}
+//
+//func dummyCharactersEffect(decoder: JSONDecoder) -> Effect<[CharacterModel], APIError> {
+//    let dummyCharactersArray: [CharacterModel] = [dummyCharacterModel1, dummyCharacterModel1, dummyCharacterModel1]
+//    return Effect(value: dummyCharactersArray)
+//}

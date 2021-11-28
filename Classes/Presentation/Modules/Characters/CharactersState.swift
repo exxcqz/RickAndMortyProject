@@ -3,6 +3,12 @@
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
-struct CharactersState: Equatable {
+import ComposableArchitecture
+import UIKit
 
+struct CharactersState: Equatable {
+    let scaleFactorW: CGFloat = UIScreen.main.bounds.size.width / 375
+    let scaleFactorH: CGFloat = UIScreen.main.bounds.size.height / 812
+    var data: [CharacterModel] = []
+    var grid: [Int] = []
 }

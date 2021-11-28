@@ -3,28 +3,30 @@
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
+import ComposableArchitecture
 import SwiftUI
 
 struct FilterButton: View {
-    @Binding var scaleFactorW: CGFloat
-    @Binding var scaleFactorH: CGFloat
+    let store: Store<CharactersState, CharactersAction>
 
     var body: some View {
-        Button(
-            action: {},
-            label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 16)
-                        .frame(width: scaleFactorW * 52, height: scaleFactorH * 52)
-                        .foregroundColor(Color(Asset.Colors.blackCard.name))
-                    Image(Asset.Icons.icFilter.name)
-                        .resizable()
-                        .renderingMode(.template)
-                        .foregroundColor(Color(Asset.Colors.grayDark.name))
-                        .scaledToFit()
-                        .frame(width: scaleFactorW * 24, height: scaleFactorH * 24)
+        WithViewStore(store) { viewStore in
+            Button(
+                action: {},
+                label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 16)
+                            .frame(width: viewStore.scaleFactorW * 52, height: viewStore.scaleFactorH * 52)
+                            .foregroundColor(Color(Asset.Colors.blackCard.name))
+                        Image(Asset.Icons.icFilter.name)
+                            .resizable()
+                            .renderingMode(.template)
+                            .foregroundColor(Color(Asset.Colors.grayDark.name))
+                            .scaledToFit()
+                            .frame(width: viewStore.scaleFactorW * 24, height: viewStore.scaleFactorH * 24)
+                    }
                 }
-            }
-        )
+            )
+        }
     }
 }
