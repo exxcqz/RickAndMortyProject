@@ -4,7 +4,7 @@
 //
 
 import ComposableArchitecture
-import SwiftUI
+import UIKit
 
 struct SplashState: Equatable {
     let scaleFactorW: CGFloat = UIScreen.main.bounds.size.width / 375
