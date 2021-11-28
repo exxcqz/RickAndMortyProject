@@ -6,21 +6,23 @@
 import SwiftUI
 
 struct LocationsNavigationComponent: View {
+    let scaleFactorW: CGFloat = UIScreen.main.bounds.size.width / 375
+    let scaleFactorH: CGFloat = UIScreen.main.bounds.size.height / 812
 
     var body: some View {
         ZStack {
             Image(Asset.Pictures.locations.name)
                 .resizable()
-                .frame(height: 248.0)
+                .frame(height: scaleFactorH * 248.0)
             HStack {
                 Text(L10n.Locations.title)
                     .font(Font.appFontBold(ofSize: 28))
-                    .padding(.leading, 24.0)
+                    .padding(.leading, scaleFactorW * 24.0)
                     .foregroundColor(.white)
-                    .frame(height: 34.0)
+                    .frame(height: scaleFactorH * 34.0)
                 Spacer()
             }
-            .padding(.top, 214.0)
+            .padding(.top, scaleFactorH * 214.0)
         }
     }
 }
