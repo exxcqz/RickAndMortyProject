@@ -33,21 +33,17 @@ internal enum Asset {
   }
   internal enum Icons {
     internal static let icBack = ImageAsset(name: "Icons/icBack")
-    internal static let icBarCharacters = ImageAsset(name: "Icons/icBarCharacters")
-    internal static let icBarCharactersFilled = ImageAsset(name: "Icons/icBarCharactersFilled")
-    internal static let icBarEpisodes = ImageAsset(name: "Icons/icBarEpisodes")
-    internal static let icBarEpisodesFilled = ImageAsset(name: "Icons/icBarEpisodesFilled")
-    internal static let icBarLocations = ImageAsset(name: "Icons/icBarLocations")
-    internal static let icBarLocationsFilled = ImageAsset(name: "Icons/icBarLocationsFilled")
     internal static let icCluster = ImageAsset(name: "Icons/icCluster")
     internal static let icDream = ImageAsset(name: "Icons/icDream")
     internal static let icFantasyTown = ImageAsset(name: "Icons/icFantasyTown")
     internal static let icFilter = ImageAsset(name: "Icons/icFilter")
     internal static let icMicroverse = ImageAsset(name: "Icons/icMicroverse")
+    internal static let icPlanet = ImageAsset(name: "Icons/icPlanet")
     internal static let icResort = ImageAsset(name: "Icons/icResort")
     internal static let icSearch = ImageAsset(name: "Icons/icSearch")
     internal static let icSearchSmall = ImageAsset(name: "Icons/icSearchSmall")
     internal static let icSpaceStation = ImageAsset(name: "Icons/icSpaceStation")
+    internal static let icTV = ImageAsset(name: "Icons/icTV")
   }
   internal enum Pictures {
     internal static let characters = ImageAsset(name: "Pictures/characters")
@@ -58,6 +54,14 @@ internal enum Asset {
     internal static let splashPortal = ImageAsset(name: "SplashImages/splashPortal")
     internal static let splashStars = ImageAsset(name: "SplashImages/splashStars")
     internal static let splashTitle = ImageAsset(name: "SplashImages/splashTitle")
+  }
+  internal enum TabBarIcons {
+    internal static let icCharactersIsActive = ImageAsset(name: "TabBarIcons/icCharactersIsActive")
+    internal static let icCharactersNotActive = ImageAsset(name: "TabBarIcons/icCharactersNotActive")
+    internal static let icEpisodesIsActive = ImageAsset(name: "TabBarIcons/icEpisodesIsActive")
+    internal static let icEpisodesNotActive = ImageAsset(name: "TabBarIcons/icEpisodesNotActive")
+    internal static let icLocationsIsActive = ImageAsset(name: "TabBarIcons/icLocationsIsActive")
+    internal static let icLocationsNotActive = ImageAsset(name: "TabBarIcons/icLocationsNotActive")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

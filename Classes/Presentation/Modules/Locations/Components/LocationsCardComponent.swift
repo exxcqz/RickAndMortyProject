@@ -49,11 +49,11 @@ struct LocationsCardComponent: View {
 
     func pickIcons(typeLocations: String) -> UIImage {
         switch typeLocations {
-        case "Planet": return Asset.Icons.icBarLocations.image
+        case "Planet": return Asset.Icons.icPlanet.image
         case "Cluster": return Asset.Icons.icCluster.image
         case "Space station": return Asset.Icons.icSpaceStation.image
         case "Microverse": return Asset.Icons.icMicroverse.image
-        case "TV": return Asset.Icons.icBarEpisodes.image
+        case "TV": return Asset.Icons.icTV.image
         case "Resort": return Asset.Icons.icResort.image
         case "Fantasy town": return Asset.Icons.icFantasyTown.image
         case "Dream": return Asset.Icons.icDream.image

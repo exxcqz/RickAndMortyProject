@@ -10,9 +10,9 @@ struct TabBarState: Equatable {
     @BindableState var selectedTabID: TabID = .characters
 
     var tabBarItems: IdentifiedArrayOf<TabBarItem> = [
-        .init(id: .characters, icon: Asset.Icons.icBarCharacters.image, iconFilled: Asset.Icons.icBarCharactersFilled.image),
-        .init(id: .locations, icon: Asset.Icons.icBarLocations.image, iconFilled: Asset.Icons.icBarLocationsFilled.image),
-        .init(id: .episodes, icon: Asset.Icons.icBarEpisodes.image, iconFilled: Asset.Icons.icBarEpisodesFilled.image)
+        .init(id: .characters, icon: Asset.TabBarIcons.icCharactersNotActive.image, iconFilled: Asset.TabBarIcons.icCharactersIsActive.image),
+        .init(id: .locations, icon: Asset.TabBarIcons.icLocationsNotActive.image, iconFilled: Asset.TabBarIcons.icLocationsIsActive.image),
+        .init(id: .episodes, icon: Asset.TabBarIcons.icEpisodesNotActive.image, iconFilled: Asset.TabBarIcons.icEpisodesIsActive.image)
     ]
 
     var characters = CharactersState()
