@@ -17,7 +17,7 @@ struct CharacterCard: View {
                     .frame(width: Layout.scaleFactorW * 156, height: Layout.scaleFactorW * 202)
                     .foregroundColor(Color(Asset.Colors.blackCard.name))
                 VStack {
-                    Image(Asset.Illustrations.dummyCharacterIllustration.name)
+                    Image(data.image)
                         .resizable()
                         .cornerRadius(10)
                         .frame(width: Layout.scaleFactorW * 140, height: Layout.scaleFactorW * 140)
@@ -33,9 +33,8 @@ struct CharacterCard: View {
                 }
             }
             .onTapGesture {
-                print("\(self.data.name) selected")
+                viewStore.send(.characterCardTapped(data))
             }
         }
-
     }
 }

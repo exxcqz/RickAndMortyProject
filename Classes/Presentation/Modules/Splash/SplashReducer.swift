@@ -4,13 +4,24 @@
 //
 
 import ComposableArchitecture
+import SwiftUI
 
-let splashReducer = Reducer<SplashState, SplashAction, SplashEnvironment> { state, action, environment in
-    switch action {
-    case .onAppear:
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            // открыть tabbar-модуль через какое-то время
+let splashReducer: Reducer<SplashState, SplashAction, SplashEnvironment> = .combine(
+    .init { state, action, _ in
+        switch action {
+        case .onAppear:
+            state.isShown.toggle()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                withAnimation(Animation.easeOut(duration: 0.45)) {
+                    // открыть tabbar-модуль через какое-то время
+                }
+            }
+        case .tabBar(let action):
+            break
         }
+        return .none
+    },
+    tabBarReducer.pullback(state: \.tabBar, action: /SplashAction.tabBar) { _ in
+        TabBarEnvironment()
     }
-    return .none
-}
+)

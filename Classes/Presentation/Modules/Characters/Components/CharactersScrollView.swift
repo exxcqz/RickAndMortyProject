@@ -14,9 +14,9 @@ struct CharactersScrollView: View {
             VStack {
                 if !viewStore.grid.isEmpty {
                     ScrollView(.vertical, showsIndicators: false) {
-                        VStack(spacing : viewStore.scaleFactorH * 20) {
+                        VStack(spacing : Layout.scaleFactorW * 16) {
                             ForEach(viewStore.grid, id: \.self) { row in
-                                HStack(spacing: viewStore.scaleFactorW * 16) {
+                                HStack(spacing: Layout.scaleFactorW * 16) {
                                     ForEach(row...row+1, id: \.self) { column in
                                         VStack {
                                             if column != viewStore.data.count {
@@ -33,7 +33,7 @@ struct CharactersScrollView: View {
                                 }
                             }
                         }
-                        .padding(.horizontal, viewStore.scaleFactorW * 24)
+                        .padding(.horizontal, Layout.scaleFactorW * 23)
                     }
                 }
             }

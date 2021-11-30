@@ -6,18 +6,19 @@
 import SwiftUI
 import Lottie
 
-struct AnimationViewComponent: UIViewRepresentable {
+struct AnimationViewComponent: UIViewRepresentable, Equatable {
+    var isPlaying: Bool
+    let view = UIView(frame: .zero)
+    let animationView = AnimationView()
 
     func makeUIView(context: UIViewRepresentableContext<AnimationViewComponent>) -> UIView {
-        let view = UIView(frame: .zero)
-        let animationView = AnimationView()
-
         animationView.animation = Animation.named("loading")
         animationView.contentMode = .scaleAspectFill
         animationView.loopMode = .loop
         animationView.animationSpeed = 1.0
         animationView.play()
         animationView.translatesAutoresizingMaskIntoConstraints = false
+        animationView.backgroundBehavior = .pauseAndRestore
 
         view.addSubview(animationView)
         NSLayoutConstraint.activate(

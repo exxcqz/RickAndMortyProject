@@ -3,22 +3,20 @@
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
-import ComposableArchitecture
 import SwiftUI
 
 struct SearchAndFilter: View {
-    let store: Store<CharactersState, CharactersAction>
+    @State var searchText = ""
+    @State var searching = false
 
     var body: some View {
-        WithViewStore(store) { viewStore in
-            HStack(spacing: viewStore.scaleFactorW * 16) {
-                SearchButton(store: store)
-                FilterButton(store: store)
-            }
-            .frame(height: viewStore.scaleFactorH * 52)
-            .padding(.horizontal, viewStore.scaleFactorW * 24)
-            .padding(.top, viewStore.scaleFactorH * 16)
-            .padding(.bottom, viewStore.scaleFactorH * 24)
+        HStack(spacing: Layout.scaleFactorW * 16) {
+            SearchBar(searchText: $searchText, searching: $searching)
+            FilterButton()
         }
+        .frame(height: Layout.scaleFactorH * 52)
+        .padding(.horizontal, Layout.scaleFactorW * 24)
+        .padding(.top, Layout.scaleFactorH * 16)
+        .padding(.bottom, Layout.scaleFactorH * 24)
     }
 }

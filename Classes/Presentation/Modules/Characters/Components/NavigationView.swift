@@ -3,29 +3,24 @@
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
-import ComposableArchitecture
 import SwiftUI
 
 struct NavigationView: View {
-    let store: Store<CharactersState, CharactersAction>
-
     var body: some View {
-        WithViewStore(store) { viewStore in
-            ZStack {
-                Image(Asset.Pictures.characters.name)
-                    .resizable()
-                    .frame(height: viewStore.scaleFactorW * 248.0)
-                HStack {
-                    Text(L10n.Characters.title)
-                        .font(Font.appFontBold(ofSize: 28))
-                        .padding(.leading, viewStore.scaleFactorW * 24)
-                        .foregroundColor(.white)
-                        .frame(height: viewStore.scaleFactorH * 34)
-                    Spacer()
-                }
-                .padding(.top, viewStore.scaleFactorH * 214)
+        ZStack {
+            Image(Asset.Illustrations.characters.name)
+                .resizable()
+                .frame(height: Layout.scaleFactorH * 248.0)
+            HStack {
+                Text(L10n.Characters.title)
+                    .font(Font.appFontBold(ofSize: Layout.scaleFactorW * 28))
+                    .padding(.leading, Layout.scaleFactorW * 24)
+                    .foregroundColor(.white)
+                    .frame(height: Layout.scaleFactorH * 34)
+                Spacer()
             }
-            .frame(width: viewStore.scaleFactorW * 375, height: viewStore.scaleFactorH * 248)
+            .padding(.top, Layout.scaleFactorH * 214)
         }
+        .frame(width: Layout.scaleFactorW * 375, height: Layout.scaleFactorH * 248)
     }
 }

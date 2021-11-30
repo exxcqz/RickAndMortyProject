@@ -7,6 +7,6 @@ import ComposableArchitecture
 import UIKit
 
 struct SplashState: Equatable {
-    let scaleFactorW: CGFloat = UIScreen.main.bounds.size.width / 375
-    let scaleFactorH: CGFloat = UIScreen.main.bounds.size.height / 812
+    var isShown: Bool = true
+    var tabBar = TabBarState()
 }

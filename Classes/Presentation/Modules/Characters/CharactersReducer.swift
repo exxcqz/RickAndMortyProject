@@ -6,16 +6,17 @@
 import ComposableArchitecture
 
 let charactersReducer = Reducer<CharactersState, CharactersAction, CharactersEnvironment> { state, action, environment in
-    // The function of a reducer depends on the given action.
     switch action {
     case .onAppear:
         state.data = dummyCharactersArray
-        print("data count = \(state.data.count)")
+        state.grid.removeAll()
+        print("number of characters: \(state.data.count)")
         for row in stride(from: 0, to: state.data.count, by: 2) where row != state.data.count {
             state.grid.append(row)
         }
-        print("grid count = \(state.grid.count)")
-    case .characterCardTapped(let character): break
+        print("number of rows for grid: \(state.grid.count)")
+    case .characterCardTapped(let character):
+        print("character \(character.name) selected")
     }
     return .none
 }
