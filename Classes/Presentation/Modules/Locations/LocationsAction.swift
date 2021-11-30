@@ -4,5 +4,5 @@
 //
 
 enum LocationsAction: Equatable {
-
+    case updateData
 }

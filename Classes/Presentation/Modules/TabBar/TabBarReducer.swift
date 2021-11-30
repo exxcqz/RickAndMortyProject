@@ -5,10 +5,21 @@
 
 import ComposableArchitecture
 
-let tabBarReducer = Reducer<TabBarState, TabBarAction, TabBarEnvironment> { state, action, environment in
-    switch action {
-    case .selectedTabIDChange(let selectedTab):
-        state.selectedTabID = selectedTab
+let tabBarReducer: Reducer<TabBarState, TabBarAction, TabBarEnvironment> = .combine(
+    .init { state, action, _ in
+        switch action {
+        case .selectedTabIDChange(let selectedTab):
+            state.selectedTabID = selectedTab
+            return .none
+        case .characters(let action):
+            break
+        case .locations(let action):
+            break
+        }
         return .none
-    }
-}
+    },
+
+    charactersReducer.pullback(state: \.characters, action: /TabBarAction.characters) { _ in CharactersEnvironment() },
+    locationsReducer.pullback(state: \.locations, action: /TabBarAction.locations) { _ in LocationsEnvironment() },
+    episodesReducer.pullback(state: \.episodes, action: /TabBarAction.episodes) { _ in EpisodesEnvironment() }
+)

@@ -15,36 +15,36 @@ struct LocationsCardComponent: View {
         ZStack {
             RoundedRectangle(cornerRadius: 16)
                 .foregroundColor(Color(Asset.Colors.blackCard.name))
-                .frame(width: scaleFactorW * 327.0, height: scaleFactorH * 80.0, alignment: .center)
+                .frame(width: scaleFactorW * 327.0, height: 80, alignment: .center)
             HStack {
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundColor(Color(Asset.Colors.blackElements.name))
-                        .frame(width: scaleFactorW * 64.0, height: scaleFactorH * 64.0)
+                        .frame(width: scaleFactorW * 64.0, height: 64)
                     Image(uiImage: pickIcons(typeLocations: locationType))
                         .resizable()
-                        .scaledToFill()
-                        .frame(width: scaleFactorW * 24.0, height: scaleFactorH * 24.0)
+                        .scaledToFit()
+                        .frame(width: scaleFactorW * 24.0, height: 24)
                 }
                 .padding(.leading, scaleFactorW * 32.0)
                 .padding(.trailing, scaleFactorW * 16.0 )
                 VStack(alignment: .leading, spacing: 0) {
                     Text(locationName)
                         .font(Font.appFontSemibold(ofSize: 17))
-                        .frame(height: scaleFactorH * 22.0)
+                        .frame(height: 22)
                         .foregroundColor(.white)
-                        .padding(.bottom, scaleFactorH * 4.0)
+                        .padding(.bottom, 4)
                     Text(locationType)
                         .font(Font.appFontMedium(ofSize: 13))
-                        .frame(height: scaleFactorH * 18.0)
+                        .frame(height: 18)
                         .foregroundColor(Color(Asset.Colors.primary.name))
-                        .padding(.top, scaleFactorH * 4.0)
+                        .padding(.top, 4)
                 }
                 Spacer()
             }
         }
-        .padding(.top, scaleFactorH * 8.0)
-        .padding(.bottom, scaleFactorH * 8.0)
+        .padding(.top, 8)
+        .padding(.bottom, 8)
     }
 
     func pickIcons(typeLocations: String) -> UIImage {

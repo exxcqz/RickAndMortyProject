@@ -4,7 +4,15 @@
 //
 
 import ComposableArchitecture
+import SwiftUI
 
 let locationsReducer = Reducer<LocationsState, LocationsAction, LocationsEnvironment> { state, action, environment in
+    switch action {
+    case .updateData:
+        state.locationsData = []
+        for card in massiveResult {
+            state.locationsData.append(card)
+        }
+    }
     return .none
 }

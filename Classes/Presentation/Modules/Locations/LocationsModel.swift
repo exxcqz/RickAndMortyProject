@@ -5,25 +5,27 @@
 
 import Foundation
 
-// MARK: - Locations
-struct LocationsModel: Decodable {
+struct Locations: Decodable {
     let info: LocationsInfo?
-    let results: [LocationsResult]?
+    let results: [LocationsResult]
 }
 
-// MARK: - Info
 struct LocationsInfo: Decodable {
-    let count, pages: Int?
+    let count, pages: Int
     let next, prev: String?
 }
 
-// MARK: - Result
-struct LocationsResult: Decodable {
-    let id: Int?
-    let name, type, dimension: String?
-    let residents: [String]?
-    let url: String?
-    let created: String?
+struct LocationsResult: Decodable, Equatable {
+    let id: Int
+    let name, type, dimension: String
+    let residents: [String]
+    let url: String
+    let created: String
 }
 
-typealias LocationsCardModel = LocationsResult
+let massiveResult = [
+    LocationsResult(id: 1, name: "Testicle Monster Dimension", type: "Cluster", dimension: "1", residents: ["1"], url: "1", created: "1"),
+    LocationsResult(id: 2, name: "Testicle Monster Dimension", type: "Cluster", dimension: "1", residents: ["1"], url: "1", created: "1"),
+    LocationsResult(id: 3, name: "Testicle Monster Dimension", type: "Cluster", dimension: "1", residents: ["1"], url: "1", created: "1"),
+    LocationsResult(id: 4, name: "Testicle Monster Dimension", type: "Cluster", dimension: "1", residents: ["1"], url: "1", created: "1")
+    ]

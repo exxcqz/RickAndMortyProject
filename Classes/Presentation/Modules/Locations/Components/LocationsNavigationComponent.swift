@@ -19,7 +19,7 @@ struct LocationsNavigationComponent: View {
                     .font(Font.appFontBold(ofSize: 28))
                     .padding(.leading, scaleFactorW * 24.0)
                     .foregroundColor(.white)
-                    .frame(height: scaleFactorH * 34.0)
+                    .frame(height: 34)
                 Spacer()
             }
             .padding(.top, scaleFactorH * 214.0)
