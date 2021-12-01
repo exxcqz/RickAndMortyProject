@@ -55,7 +55,7 @@ struct SearchBar: View {
                 .frame(height: Layout.scaleFactorW * 52)
                 .padding(.horizontal, Layout.scaleFactorW * 24)
                 .background(Color(Asset.Colors.blackCard.name))
-                .foregroundColor(Color(Asset.Colors.grayDark.name))
+                .foregroundColor(Color.white)
                 .accentColor(Color(Asset.Colors.primary.name))
                 .cornerRadius(16)
         }
