@@ -18,11 +18,15 @@ struct LocationsScreen: View {
                         LocationsNavigationComponent()
                         ScrollView {
                             VStack(spacing: 0) {
-                                ForEach(viewStore.state.locationsData, id: \.id) { card in
+                                ForEach(viewStore.state.locationsCardData, id: \.id) { card in
                                     NavigationLink {
                                         DetailsHelloComponent()
                                     } label: {
-                                        LocationsCardComponent(locationName: card.name, locationType: card.type)
+                                        LocationsCardComponent(
+                                            locationName: card.name,
+                                            locationType: card.type,
+                                            locationIcon: card.icon
+                                        )
                                     }
                                 }
                             }
@@ -34,6 +38,7 @@ struct LocationsScreen: View {
                 .edgesIgnoringSafeArea(.all)
                 .onAppear {
                     viewStore.send(.updateLocationsData)
+                    viewStore.send(.pickIcon)
                 }
             }
         }

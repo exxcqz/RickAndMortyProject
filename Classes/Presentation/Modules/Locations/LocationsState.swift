@@ -3,6 +3,9 @@
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
+import UIKit
+
 struct LocationsState: Equatable {
     var locationsData = [LocationsModel]()
+    var locationsCardData = [LocationsCardItem]()
 }

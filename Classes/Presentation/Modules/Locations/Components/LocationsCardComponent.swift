@@ -8,6 +8,7 @@ import SwiftUI
 struct LocationsCardComponent: View {
     let locationName: String
     let locationType: String
+    let locationIcon: UIImage
 
     var body: some View {
         ZStack {
@@ -19,7 +20,7 @@ struct LocationsCardComponent: View {
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundColor(Color(Asset.Colors.blackElements.name))
                         .frame(width: Layout.scaleFactorW * 64, height: 64)
-                    Image(uiImage: pickIcons(typeLocations: locationType))
+                    Image(uiImage: locationIcon)
                         .resizable()
                         .scaledToFit()
                         .frame(width: Layout.scaleFactorW * 24, height: 24)
@@ -43,19 +44,5 @@ struct LocationsCardComponent: View {
         }
         .padding(.top, 8)
         .padding(.bottom, 8)
-    }
-
-    func pickIcons(typeLocations: String) -> UIImage {
-        switch typeLocations {
-        case "Planet": return Asset.Icons.icPlanet.image
-        case "Cluster": return Asset.Icons.icCluster.image
-        case "Space station": return Asset.Icons.icSpaceStation.image
-        case "Microverse": return Asset.Icons.icMicroverse.image
-        case "TV": return Asset.Icons.icTV.image
-        case "Resort": return Asset.Icons.icResort.image
-        case "Fantasy town": return Asset.Icons.icFantasyTown.image
-        case "Dream": return Asset.Icons.icDream.image
-        default: return Asset.Icons.icCluster.image
-        }
     }
 }
