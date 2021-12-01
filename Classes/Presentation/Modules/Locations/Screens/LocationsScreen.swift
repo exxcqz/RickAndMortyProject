@@ -17,16 +17,18 @@ struct LocationsScreen: View {
                     VStack {
                         LocationsNavigationComponent()
                         ScrollView {
-                            ForEach(viewStore.state.locationsData, id: \.id) { card in
-                                NavigationLink {
-                                    DetailsHelloComponent()
-                                } label: {
-                                    LocationsCardComponent(locationName: card.name, locationType: card.type)
+                            VStack(spacing: 0) {
+                                ForEach(viewStore.state.locationsData, id: \.id) { card in
+                                    NavigationLink {
+                                        DetailsHelloComponent()
+                                    } label: {
+                                        LocationsCardComponent(locationName: card.name, locationType: card.type)
+                                    }
                                 }
                             }
                             .padding(.bottom, 8)
+                            .padding(.top, 8)
                         }
-                        .padding(.top, 8)
                     }
                 }
                 .edgesIgnoringSafeArea(.all)

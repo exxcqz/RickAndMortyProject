@@ -8,34 +8,32 @@ import SwiftUI
 struct LocationsCardComponent: View {
     let locationName: String
     let locationType: String
-    let scaleFactorW: CGFloat = UIScreen.main.bounds.size.width / 375
-    let scaleFactorH: CGFloat = UIScreen.main.bounds.size.height / 812
 
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 16)
                 .foregroundColor(Color(Asset.Colors.blackCard.name))
-                .frame(width: scaleFactorW * 327.0, height: 80, alignment: .center)
+                .frame(width: Layout.scaleFactorW * 327, height: 80, alignment: .center)
             HStack {
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundColor(Color(Asset.Colors.blackElements.name))
-                        .frame(width: scaleFactorW * 64.0, height: 64)
+                        .frame(width: Layout.scaleFactorW * 64, height: 64)
                     Image(uiImage: pickIcons(typeLocations: locationType))
                         .resizable()
                         .scaledToFit()
-                        .frame(width: scaleFactorW * 24.0, height: 24)
+                        .frame(width: Layout.scaleFactorW * 24, height: 24)
                 }
-                .padding(.leading, scaleFactorW * 32.0)
-                .padding(.trailing, scaleFactorW * 16.0 )
+                .padding(.leading, Layout.scaleFactorW * 32)
+                .padding(.trailing, Layout.scaleFactorW * 16)
                 VStack(alignment: .leading, spacing: 0) {
                     Text(locationName)
-                        .font(Font.appFontSemibold(ofSize: 17))
+                        .font(Font.appFontSemibold(ofSize: Layout.scaleFactorW * 17))
                         .frame(height: 22)
                         .foregroundColor(.white)
                         .padding(.bottom, 4)
                     Text(locationType)
-                        .font(Font.appFontMedium(ofSize: 13))
+                        .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 13))
                         .frame(height: 18)
                         .foregroundColor(Color(Asset.Colors.primary.name))
                         .padding(.top, 4)
