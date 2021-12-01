@@ -6,6 +6,5 @@
 import UIKit
 
 struct LocationsState: Equatable {
-    var locationsData = [LocationsModel]()
-    var locationsCardData = [LocationsCardItem]()
+    var locationsData = [LocationsCardItem]()
 }

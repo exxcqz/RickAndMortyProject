@@ -9,11 +9,9 @@ import SwiftUI
 let locationsReducer = Reducer<LocationsState, LocationsAction, LocationsEnvironment> { state, action, environment in
     switch action {
     case .updateLocationsData:
-        state.locationsData = listLocations
-    case .pickIcon:
-        state.locationsCardData = [LocationsCardItem]()
-        state.locationsData.forEach { index in
-            var icon = Asset.Icons.icPlanet.image
+        state.locationsData = [LocationsCardItem]()
+        listLocations.forEach { index in
+            var icon = Asset.Icons.icCluster.image
             switch index.type {
             case "Planet": icon = Asset.Icons.icPlanet.image
             case "Cluster": icon = Asset.Icons.icCluster.image
@@ -25,7 +23,7 @@ let locationsReducer = Reducer<LocationsState, LocationsAction, LocationsEnviron
             case "Dream": icon = Asset.Icons.icDream.image
             default: icon = Asset.Icons.icPlanet.image
             }
-            state.locationsCardData.append(
+            state.locationsData.append(
                 LocationsCardItem(
                     id: index.id,
                     name: index.name,

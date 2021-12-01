@@ -5,5 +5,4 @@
 
 enum LocationsAction: Equatable {
     case updateLocationsData
-    case pickIcon
 }
