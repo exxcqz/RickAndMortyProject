@@ -11,7 +11,7 @@ struct SearchAndFilter: View {
 
     var body: some View {
         HStack(spacing: Layout.scaleFactorW * 16) {
-            SearchBar(searchText: $searchText, searching: $searching)
+            SearchBar(searchText: $searchText)
             FilterButton()
         }
         .frame(height: Layout.scaleFactorH * 52)

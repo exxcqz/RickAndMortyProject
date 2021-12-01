@@ -7,53 +7,90 @@ import SwiftUI
 
 struct SearchBar: View {
     @Binding var searchText: String
-    @Binding var searching: Bool
+    @State private var isEditing: Bool = false
+    @State private var isSearching: Bool = false
 
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 16)
-                .foregroundColor(Color(Asset.Colors.blackCard.name))
-            HStack {
-                Image(Asset.Icons.icSearchSmall.name)
-                    .renderingMode(.template)
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundColor(Color(Asset.Colors.grayDark.name))
-                    .frame(width: Layout.scaleFactorW * 20, height: Layout.scaleFactorW * 20)
-                TextField(
-                    "",
-                    text: $searchText,
-                    onEditingChanged: { startedEditing in
+        HStack {
+            TextField(
+                "",
+                text: $searchText,
+                onEditingChanged: { startedEditing in
+                    if startedEditing {
                         withAnimation {
                             if startedEditing {
-                                searching = true
-                            }
-                        }
-                    },
-                    onCommit: {
-                        withAnimation {
-                            if searchText.isEmpty {
-                                searching = false
-                            } else {
-                                print("searching: \(searchText)")
+                                isSearching = true
+                                isEditing = true
                             }
                         }
                     }
-                )
-                .placeholder(when: searchText.isEmpty) {
-                    Text(L10n.Placeholder.search)
-                        .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
-                        .kerning(-0.32)
-                        .foregroundColor(Color(Asset.Colors.grayDark.name))
-                        .frame(height: Layout.scaleFactorW * 20)
-                        .scaledToFill()
+                },
+                onCommit: {
+                    withAnimation {
+                        if searchText.isEmpty {
+                            isEditing = false
+                            isSearching = false
+                        } else {
+                            print("searching: \(searchText)")
+                        }
+                    }
                 }
-                .frame(width: searching ? nil : Layout.scaleFactorW * 50)
-            }
-            .foregroundColor(.gray)
-            .padding(.horizontal)
+            )
+                .placeholder(when: searchText.isEmpty) {
+                    HStack {
+                        if !isSearching && !isEditing {
+                            Image(Asset.Icons.icSearchSmall.name)
+                                .renderingMode(.template)
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(Color(Asset.Colors.grayDark.name))
+                                .frame(width: Layout.scaleFactorW * 20, height: Layout.scaleFactorW * 20)
+                        }
+                        Text(L10n.Placeholder.search)
+                            .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
+                            .kerning(-0.32)
+                            .foregroundColor(Color(Asset.Colors.grayDark.name))
+                            .frame(height: Layout.scaleFactorW * 20)
+                            .scaledToFill()
+                    }
+                }
+                .padding(.vertical, Layout.scaleFactorW * 16)
+                .padding(.horizontal, Layout.scaleFactorW * 52)
+                .background(Color(Asset.Colors.blackCard.name))
+                .foregroundColor(Color(Asset.Colors.grayDark.name))
+                .cornerRadius(16)
+                .overlay(
+                    HStack {
+                        if isEditing {
+                            Image(Asset.Icons.icSearchSmall.name)
+                                .renderingMode(.template)
+                                .foregroundColor(Color(Asset.Colors.grayDark.name))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.leading, Layout.scaleFactorW * 16)
+                            Button(
+                                action: {
+                                    withAnimation {
+                                        self.searchText = ""
+                                        self.isEditing = false
+                                        self.isSearching = false
+                                        UIApplication.shared.dismissKeyboard()
+                                    }
+                                },
+                                label: {
+                                    Image(systemName: "multiply.circle.fill")
+                                        .foregroundColor(Color(Asset.Colors.grayDark.name))
+                                        .padding(.trailing, Layout.scaleFactorW * 16)
+                                }
+                            )
+                        }
+                    }
+                )
+                .onTapGesture {
+                    withAnimation {
+                        self.isEditing = true
+                    }
+                }
         }
-        .frame(height: Layout.scaleFactorW * 52)
     }
 }
 
@@ -62,11 +99,19 @@ struct SearchBar: View {
 extension View {
     func placeholder<Content: View>(
         when shouldShow: Bool,
-        alignment: Alignment = .leading,
+        alignment: Alignment = .center,
         @ViewBuilder placeholder: () -> Content) -> some View {
             ZStack(alignment: alignment) {
                 placeholder().opacity(shouldShow ? 1 : 0)
                 self
             }
         }
+}
+
+// MARK: -  Dismiss Keyboard
+
+extension UIApplication {
+    func dismissKeyboard() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
 }

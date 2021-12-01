@@ -10,7 +10,7 @@ struct NavigationView: View {
         ZStack {
             Image(Asset.Illustrations.characters.name)
                 .resizable()
-                .frame(height: Layout.scaleFactorH * 248.0)
+                .frame(height: Layout.scaleFactorH * 248)
             HStack {
                 Text(L10n.Characters.title)
                     .font(Font.appFontBold(ofSize: Layout.scaleFactorW * 28))

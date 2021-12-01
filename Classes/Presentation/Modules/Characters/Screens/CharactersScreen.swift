@@ -13,7 +13,7 @@ struct CharactersScreen: View {
         WithViewStore(self.store) { viewStore in
             ZStack {
                 Color(Asset.Colors.blackBG.color)
-                    .edgesIgnoringSafeArea([.bottom, .horizontal])
+                    .edgesIgnoringSafeArea(.all)
                 VStack(spacing: 0) {
                     NavigationView()
                     SearchAndFilter()
@@ -21,7 +21,7 @@ struct CharactersScreen: View {
                     Spacer()
                 }
             }
-            .edgesIgnoringSafeArea([.bottom, .horizontal])
+            .edgesIgnoringSafeArea([.top, .horizontal])
             .onAppear {
                 viewStore.send(.onAppear)
             }
