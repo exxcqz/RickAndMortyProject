@@ -18,6 +18,7 @@
 		07DFC1475C222ADB1D7A10D3 /* EpisodesHelloComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F422174EE53EA0FD46CBBAC0 /* EpisodesHelloComponent.swift */; };
 		0DC28222F850A8C49E69AB14 /* CharactersEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2572717657BE18B694162D1A /* CharactersEnvironment.swift */; };
 		0F2A99AF57F8FAF272D3A536 /* FilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1912B6F08E19ECCF5FEB624C /* FilterState.swift */; };
+		111C50AE27574DB400A3D2B9 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C50AD27574DB400A3D2B9 /* Layout.swift */; };
 		1148D5C2274FD1200047E20E /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1148D5C1274FD11F0047E20E /* TabBarItem.swift */; };
 		1148D5CC275147CE0047E20E /* LocationsNavigationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1148D5CB275147CE0047E20E /* LocationsNavigationComponent.swift */; };
 		1148D5D6275399110047E20E /* LocationsCardComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1148D5D5275399110047E20E /* LocationsCardComponent.swift */; };
@@ -91,6 +92,7 @@
 		0BF99FF6D47AD033FED0BE30 /* FilterScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FilterScreen.swift; sourceTree = "<group>"; };
 		0CF7078D0582B812C8AA1E0F /* CharactersHelloComponent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CharactersHelloComponent.swift; sourceTree = "<group>"; };
 		0FF20F6970EBC600C5051EE4 /* LocationsReducer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationsReducer.swift; sourceTree = "<group>"; };
+		111C50AD27574DB400A3D2B9 /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		1148D5C1274FD11F0047E20E /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		1148D5CB275147CE0047E20E /* LocationsNavigationComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsNavigationComponent.swift; sourceTree = "<group>"; };
 		1148D5D5275399110047E20E /* LocationsCardComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsCardComponent.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				0679BEDE205A4DEC0058E8F3 /* Strings.swift */,
 				C3D08F4D2101B9B500FDC15E /* Assets.swift */,
 				11E339972746891500D3B145 /* Fonts.swift */,
+				111C50AD27574DB400A3D2B9 /* Layout.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 		060F08761E4D6CDF00D9166F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1148D5D72753A69E0047E20E /* LocationsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -421,7 +425,6 @@
 				08DE721DEC1D7C8827C8F75B /* LocationsAction.swift */,
 				6D2B183A35E026726B497D7D /* LocationsEnvironment.swift */,
 				0FF20F6970EBC600C5051EE4 /* LocationsReducer.swift */,
-				1148D5D72753A69E0047E20E /* LocationsModel.swift */,
 			);
 			path = Locations;
 			sourceTree = "<group>";
@@ -613,6 +616,7 @@
 				6D6D7EA221F743FA000FFA4D /* Services.swift in Sources */,
 				6D35B59A216B647100C72B29 /* Bundle+Info.swift in Sources */,
 				11E339982746891500D3B145 /* Fonts.swift in Sources */,
+				111C50AE27574DB400A3D2B9 /* Layout.swift in Sources */,
 				060F086D1E4D6C9200D9166F /* AppDelegate.swift in Sources */,
 				06E0EBD11FAC0BB4002715AE /* AppConfigurator.swift in Sources */,
 				FBA90FB626DE2F040092A824 /* SceneDelegate.swift in Sources */,

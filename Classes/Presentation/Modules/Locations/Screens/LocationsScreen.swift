@@ -31,7 +31,7 @@ struct LocationsScreen: View {
                 }
                 .edgesIgnoringSafeArea(.all)
                 .onAppear {
-                    viewStore.send(.updateData)
+                    viewStore.send(.updateLocationsData)
                 }
             }
         }

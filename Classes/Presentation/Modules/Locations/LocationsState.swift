@@ -4,5 +4,5 @@
 //
 
 struct LocationsState: Equatable {
-    var locationsData = [LocationsResult]()
+    var locationsData = [LocationsModel]()
 }
