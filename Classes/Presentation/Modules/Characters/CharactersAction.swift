@@ -4,5 +4,6 @@
 //
 
 enum CharactersAction: Equatable {
-
+    case onAppear
+    case characterCardTapped(CharacterModel)
 }

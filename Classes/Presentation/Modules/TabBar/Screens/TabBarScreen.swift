@@ -18,7 +18,6 @@ struct TabBarScreen: View {
                 send: TabBarAction.selectedTabIDChange
             )
             VStack(spacing: 0) {
-//                Spacer()
                 ZStack {
                     switch selection.wrappedValue {
                     case .characters:
@@ -29,7 +28,6 @@ struct TabBarScreen: View {
                         EpisodesScreen(store: episodesStore)
                     }
                 }
-//                Spacer()
                 Divider()
                     .frame(height: 2)
                     .background(Color(Asset.Colors.grayDark.name))
