@@ -7,7 +7,7 @@ import SwiftUI
 
 struct LocationsNavigationComponent: View {
     var body: some View {
-        Image(Asset.Pictures.locations.name)
+        Image(Asset.Illustrations.locations.name)
             .resizable()
             .frame(height: Layout.scaleFactorH * 248)
     }

@@ -11,48 +11,54 @@ struct LocationsScreen: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            NavigationView {
-                ZStack {
-                    Color(Asset.Colors.blackBG.name)
-                    ScrollView {
-                        GeometryReader { geo in
-                            let offset = geo.frame(in: .global).maxY
-                            ZStack {
-                                if offset < Layout.scaleFactorH * 95 {
-                                    Color(Asset.Colors.blackBG.name)
-                                } else {
-                                    LocationsNavigationComponent()
+            //            NavigationView {
+            ZStack {
+                Color(Asset.Colors.blackBG.name)
+                ScrollView {
+                    GeometryReader { geo in
+                        let offset = geo.frame(in: .global).maxY
+                        ZStack {
+                            Color(Asset.Colors.blackBG.name)
+                            VStack(spacing: 0) {
+                                ZStack {
+                                    if offset < Layout.scaleFactorH * 170 {
+                                        Color(Asset.Colors.blackBG.name)
+                                    } else {
+                                        LocationsNavigationComponent()
+                                    }
+                                    LocationsTitleComponent()
                                 }
-                                LocationsTitleComponent()
-                            }
-                            .offset(y: self.getOffsetForHeaderImage(geo))
-                        }
-                        .frame(height: Layout.scaleFactorH * 248)
-                        .zIndex(1)
-                        VStack(spacing: 0) {
-                            ForEach(viewStore.state.locationsData, id: \.id) { card in
-                                NavigationLink {
-                                    DetailsHelloComponent()
-                                } label: {
-                                    LocationsCardComponent(
-                                        locationName: card.name,
-                                        locationType: card.type.rawValue,
-                                        locationIcon: card.icon
-                                    )
-                                }
+                                SearchAndFilter()
                             }
                         }
-                        .padding(.bottom, 8)
-                        .padding(.top, 8)
-                        .zIndex(0)
+                        .offset(y: self.getOffsetForHeaderImage(geo))
                     }
+                    .frame(height: Layout.scaleFactorH * 324)
+                    .zIndex(1)
+                    VStack(spacing: 0) {
+                        ForEach(viewStore.state.locationsData, id: \.id) { card in
+                            NavigationLink {
+                                DetailsHelloComponent()
+                            } label: {
+                                LocationsCardComponent(
+                                    locationName: card.name,
+                                    locationType: card.type.rawValue,
+                                    locationIcon: card.icon
+                                )
+                            }
+                        }
+                    }
+                    .padding(.bottom, 8)
+                    .padding(.top, 8)
+                    .zIndex(0)
                 }
-                .edgesIgnoringSafeArea(.all)
-                .onAppear {
-                    viewStore.send(.updateLocationsData)
-                }
-                .navigationBarHidden(true)
             }
+            .edgesIgnoringSafeArea(.all)
+            .onAppear {
+                viewStore.send(.updateLocationsData)
+            }
+            //                .navigationBarHidden(true)
+            //            }
         }
     }
 
