@@ -8,6 +8,6 @@ import UIKit
 struct LocationsCardItem: Equatable {
     var id: Int
     var name: String
-    var type: String
+    var type: LocationsType
     var icon: UIImage
 }

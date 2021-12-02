@@ -13,15 +13,14 @@ let locationsReducer = Reducer<LocationsState, LocationsAction, LocationsEnviron
         listLocations.forEach { index in
             var icon = Asset.Icons.icCluster.image
             switch index.type {
-            case "Planet": icon = Asset.Icons.icPlanet.image
-            case "Cluster": icon = Asset.Icons.icCluster.image
-            case "Space station": icon = Asset.Icons.icSpaceStation.image
-            case "Microverse": icon = Asset.Icons.icMicroverse.image
-            case "TV": icon =  Asset.Icons.icTV.image
-            case "Resort": icon = Asset.Icons.icResort.image
-            case "Fantasy town": icon =  Asset.Icons.icFantasyTown.image
-            case "Dream": icon = Asset.Icons.icDream.image
-            default: icon = Asset.Icons.icPlanet.image
+            case .planet: icon = Asset.Icons.icPlanet.image
+            case .cluster: icon = Asset.Icons.icCluster.image
+            case .spaceStation: icon = Asset.Icons.icSpaceStation.image
+            case .microverse: icon = Asset.Icons.icMicroverse.image
+            case .tvType: icon =  Asset.Icons.icTV.image
+            case .resort: icon = Asset.Icons.icResort.image
+            case .fantasyTown: icon =  Asset.Icons.icFantasyTown.image
+            case .dream: icon = Asset.Icons.icDream.image
             }
             state.locationsData.append(
                 LocationsCardItem(

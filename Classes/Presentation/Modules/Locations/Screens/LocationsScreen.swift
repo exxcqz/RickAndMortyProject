@@ -18,7 +18,7 @@ struct LocationsScreen: View {
                         GeometryReader { geo in
                             let offset = geo.frame(in: .global).maxY
                             ZStack {
-                                if offset < 95 {
+                                if offset < Layout.scaleFactorH * 95 {
                                     Color(Asset.Colors.blackBG.name)
                                 } else {
                                     LocationsNavigationComponent()
@@ -36,7 +36,7 @@ struct LocationsScreen: View {
                                 } label: {
                                     LocationsCardComponent(
                                         locationName: card.name,
-                                        locationType: card.type,
+                                        locationType: card.type.rawValue,
                                         locationIcon: card.icon
                                     )
                                 }

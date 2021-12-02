@@ -6,26 +6,10 @@
 import SwiftUI
 
 struct LocationsNavigationComponent: View {
-
     var body: some View {
         Image(Asset.Pictures.locations.name)
             .resizable()
             .frame(height: Layout.scaleFactorH * 248)
-    }
-}
-
-struct LocationsTitleComponent: View {
-
-    var body: some View {
-        HStack {
-            Text(L10n.Locations.title)
-                .font(Font.appFontBold(ofSize: Layout.scaleFactorW * 28))
-                .padding(.leading, Layout.scaleFactorW * 24)
-                .foregroundColor(.white)
-                .frame(height: 34)
-            Spacer()
-        }
-        .padding(.top, Layout.scaleFactorH * 214)
     }
 }
 
