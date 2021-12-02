@@ -11,36 +11,65 @@ struct LocationsScreen: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            NavigationView {
-                ZStack {
-                    Color(Asset.Colors.blackBG.name)
-                    VStack {
-                        LocationsNavigationComponent()
-                        ScrollView {
-                            VStack(spacing: 0) {
-                                ForEach(viewStore.state.locationsData, id: \.id) { card in
-                                    NavigationLink {
-                                        DetailsHelloComponent()
-                                    } label: {
-                                        LocationsCardComponent(
-                                            locationName: card.name,
-                                            locationType: card.type,
-                                            locationIcon: card.icon
-                                        )
-                                    }
-                                }
+            //            NavigationView {
+            ZStack {
+                Color(Asset.Colors.blackBG.name)
+                ScrollView {
+                    GeometryReader { geo in
+                        let offset = geo.frame(in: .global).maxY
+                        ZStack {
+                            if offset < 95 {
+                                Color(Asset.Colors.blackBG.name)
+                            } else {
+                                LocationsNavigationComponent()
                             }
-                            .padding(.bottom, 8)
-                            .padding(.top, 8)
+                            LocationsTitleComponent()
+                        }
+                        .offset(y: self.getOffsetForHeaderImage(geo))
+                    }
+                    .frame(height: 248)
+                    .zIndex(1)
+
+                    VStack(spacing: 0) {
+                        ForEach(viewStore.state.locationsData, id: \.id) { card in
+                            NavigationLink {
+                                DetailsHelloComponent()
+                            } label: {
+                                LocationsCardComponent(
+                                    locationName: card.name,
+                                    locationType: card.type,
+                                    locationIcon: card.icon
+                                )
+                            }
                         }
                     }
-                }
-                .edgesIgnoringSafeArea(.all)
-                .onAppear {
-                    viewStore.send(.updateLocationsData)
+                    .padding(.bottom, 8)
+                    .padding(.top, 8)
+                    .zIndex(0)
                 }
             }
+            .edgesIgnoringSafeArea(.all)
+            .onAppear {
+                viewStore.send(.updateLocationsData)
+            }
+            //            }
         }
+    }
+
+    private func getOffsetForHeaderImage(_ geometry: GeometryProxy) -> CGFloat {
+        let offset = geometry.frame(in: .global).minY
+        let sizeOffScreen: CGFloat = 154
+
+        if offset < -sizeOffScreen {
+            let imageOffset = abs(min(-sizeOffScreen, offset))
+            return imageOffset - sizeOffScreen
+        }
+
+        if offset > 0 {
+            return -offset
+        }
+
+        return 0
     }
 }
 
