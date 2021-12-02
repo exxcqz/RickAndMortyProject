@@ -49,15 +49,16 @@ internal enum Asset {
     internal static let icSearchSmall = ImageAsset(name: "Icons/icSearchSmall")
     internal static let icSpaceStation = ImageAsset(name: "Icons/icSpaceStation")
   }
-  internal enum Pictures {
-    internal static let characters = ImageAsset(name: "Pictures/characters")
-    internal static let episodes = ImageAsset(name: "Pictures/episodes")
-    internal static let locations = ImageAsset(name: "Pictures/locations")
-  }
-  internal enum SplashImages {
-    internal static let splashPortal = ImageAsset(name: "SplashImages/splashPortal")
-    internal static let splashStars = ImageAsset(name: "SplashImages/splashStars")
-    internal static let splashTitle = ImageAsset(name: "SplashImages/splashTitle")
+  internal enum Illustrations {
+    internal enum SplashIllustrations {
+      internal static let splashPortal = ImageAsset(name: "Illustrations/SplashIllustrations/splashPortal")
+      internal static let splashStars = ImageAsset(name: "Illustrations/SplashIllustrations/splashStars")
+      internal static let splashTitle = ImageAsset(name: "Illustrations/SplashIllustrations/splashTitle")
+    }
+    internal static let characters = ImageAsset(name: "Illustrations/characters")
+    internal static let dummyCharacterIllustration = ImageAsset(name: "Illustrations/dummyCharacterIllustration")
+    internal static let episodes = ImageAsset(name: "Illustrations/episodes")
+    internal static let locations = ImageAsset(name: "Illustrations/locations")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

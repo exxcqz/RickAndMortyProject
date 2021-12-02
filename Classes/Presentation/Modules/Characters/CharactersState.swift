@@ -3,6 +3,10 @@
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
-struct CharactersState: Equatable {
+import ComposableArchitecture
+import UIKit
 
+struct CharactersState: Equatable {
+    var data: [CharacterModel] = []
+    var grid: [Int] = []
 }

@@ -3,10 +3,5 @@
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
-import ComposableArchitecture
-import SwiftUI
-
 struct SplashState: Equatable {
-    let scaleFactorW: CGFloat = UIScreen.main.bounds.size.width / 375
-    let scaleFactorH: CGFloat = UIScreen.main.bounds.size.height / 812
 }

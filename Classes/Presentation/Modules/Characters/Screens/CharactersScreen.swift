@@ -10,9 +10,20 @@ struct CharactersScreen: View {
     let store: Store<CharactersState, CharactersAction>
 
     var body: some View {
-        WithViewStore(store) { viewStore in
-            VStack {
-                CharactersHelloComponent()
+        WithViewStore(self.store) { viewStore in
+            ZStack {
+                Color(Asset.Colors.blackBG.color)
+                    .edgesIgnoringSafeArea(.all)
+                VStack(spacing: 0) {
+                    NavigationView()
+                    SearchAndFilter()
+                    CharactersScrollView(store: store)
+                    Spacer()
+                }
+            }
+            .edgesIgnoringSafeArea([.top, .horizontal])
+            .onAppear {
+                viewStore.send(.onAppear)
             }
         }
     }
