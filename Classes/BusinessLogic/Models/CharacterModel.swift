@@ -11,31 +11,34 @@ struct CharactersRequest: Decodable {
     let results: [CharacterModel]
 }
 
-// MARK: -  Info of request
+// MARK: -  Info of request for all Characters
 struct CharactersInfo: Decodable {
-    let count, pages: Int
-    let next, prev: String?
+    let count: Int
+    let pages: Int
+    let next: String?
+    let prev: String?
 }
 
-// MARK: -  Result (Array of Characters)
+// MARK: -  Character Model
 struct CharacterModel: Decodable, Equatable {
-    var id: Int
+    let id: Int
     let name: String
     let status: String
     let species: String
     let type: String
     let gender: String
-    let origin: Location
-    let location: Location
+    let origin: CharacterLocation
+    let location: CharacterLocation
     let image: String
     let episode: [String]
     let url: String
     let created: String
+}
 
-    struct Location: Decodable, Equatable {
-        let name: String
-        let url: String
-    }
+// MARK: -  Substruct of Character Origin/Location
+struct CharacterLocation: Decodable, Equatable {
+    let name: String
+    let url: String
 }
 
 // MARK: -  dummyModel of Character (Image is dummy too)
@@ -46,11 +49,11 @@ let dummyCharacterModel = CharacterModel(
     species: "Human",
     type: "",
     gender: "Male",
-    origin: CharacterModel.Location(
+    origin: CharacterLocation(
         name: "Earth",
         url: "https://rickandmortyapi.com/api/location/1"
     ),
-    location: CharacterModel.Location(
+    location: CharacterLocation(
         name: "Earth",
         url: "https://rickandmortyapi.com/api/location/20"
     ),

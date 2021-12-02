@@ -35,29 +35,28 @@ struct SearchBar: View {
                         }
                     }
                 }
-            )
-                .placeholder(when: searchText.isEmpty) {
-                    HStack {
-                        Image(Asset.Icons.icSearchSmall.name)
-                            .renderingMode(.template)
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundColor(Color(Asset.Colors.grayDark.name))
-                            .frame(width: Layout.scaleFactorW * 20, height: Layout.scaleFactorW * 20)
-                        Text(L10n.Placeholder.search)
-                            .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
-                            .kerning(-0.32)
-                            .foregroundColor(Color(Asset.Colors.grayDark.name))
-                            .frame(height: Layout.scaleFactorW * 20)
-                            .scaledToFill()
-                    }
+            ).placeholder(when: searchText.isEmpty) {
+                HStack {
+                    Image(Asset.Icons.icSearchSmall.name)
+                        .renderingMode(.template)
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(Color(Asset.Colors.grayDark.name))
+                        .frame(width: Layout.scaleFactorW * 20, height: Layout.scaleFactorW * 20)
+                    Text(L10n.Placeholder.search)
+                        .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
+                        .kerning(-0.32)
+                        .foregroundColor(Color(Asset.Colors.grayDark.name))
+                        .frame(height: Layout.scaleFactorW * 20)
+                        .scaledToFill()
                 }
-                .frame(height: Layout.scaleFactorW * 52)
-                .padding(.horizontal, Layout.scaleFactorW * 24)
-                .background(Color(Asset.Colors.blackCard.name))
-                .foregroundColor(Color.white)
-                .accentColor(Color(Asset.Colors.primary.name))
-                .cornerRadius(16)
+            }
+            .frame(height: Layout.scaleFactorW * 52)
+            .padding(.horizontal, Layout.scaleFactorW * 24)
+            .background(Color(Asset.Colors.blackCard.name))
+            .foregroundColor(Color.white)
+            .accentColor(Color(Asset.Colors.primary.name))
+            .cornerRadius(16)
         }
     }
 }

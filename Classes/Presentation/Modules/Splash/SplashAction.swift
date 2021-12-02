@@ -4,6 +4,4 @@
 //
 
 enum SplashAction: Equatable {
-    case onAppear
-    case tabBar(TabBarAction)
 }

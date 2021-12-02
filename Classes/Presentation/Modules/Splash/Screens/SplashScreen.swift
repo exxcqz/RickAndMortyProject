@@ -12,47 +12,34 @@ struct SplashScreen: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             ZStack {
-                TabBarScreen(
-                    store: .init(
-                        initialState: TabBarState(),
-                        reducer: tabBarReducer,
-                        environment: TabBarEnvironment()
-                    )
-                )
-                ZStack {
-                    Color(Asset.Colors.blackBG.color)
-                        .edgesIgnoringSafeArea(.all)
-                    Image(Asset.Illustrations.SplashIllustrations.splashStars.name)
+                Color(Asset.Colors.blackBG.color)
+                    .edgesIgnoringSafeArea(.all)
+                Image(Asset.Illustrations.SplashIllustrations.splashStars.name)
+                    .resizable()
+                    .padding(.leading, Layout.scaleFactorW * 16)
+                    .padding(.trailing, Layout.scaleFactorW * 25)
+                    .padding(.top, Layout.scaleFactorH * 98)
+                    .padding(.bottom, Layout.scaleFactorH * 64)
+                    .edgesIgnoringSafeArea(.all)
+                VStack(spacing: 0) {
+                    Image(Asset.Illustrations.SplashIllustrations.splashTitle.name)
                         .resizable()
-                        .padding(.leading, Layout.scaleFactorW * 16)
-                        .padding(.trailing, Layout.scaleFactorW * 25)
-                        .padding(.top, Layout.scaleFactorH * 98)
-                        .padding(.bottom, Layout.scaleFactorH * 64)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: Layout.scaleFactorW * 140, height: Layout.scaleFactorH * 40, alignment: .center)
+                        .padding(.top, Layout.scaleFactorH * 164)
                         .edgesIgnoringSafeArea(.all)
-                    VStack(spacing: 0) {
-                        Image(Asset.Illustrations.SplashIllustrations.splashTitle.name)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: Layout.scaleFactorW * 140, height: Layout.scaleFactorH * 40, alignment: .center)
-                            .padding(.top, Layout.scaleFactorH * 164)
-                            .edgesIgnoringSafeArea(.all)
-                        Spacer()
-                            .frame(height: Layout.scaleFactorH * 36)
-                        Image(Asset.Illustrations.SplashIllustrations.splashPortal.name)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: Layout.scaleFactorW * 140, height: Layout.scaleFactorH * 228, alignment: .center)
-                            .edgesIgnoringSafeArea(.all)
-                        Spacer()
-                            .frame(height: Layout.scaleFactorH * 133)
-                        AnimationViewComponent(isPlaying: true)
-                            .frame(width: Layout.scaleFactorW * 72, height: Layout.scaleFactorH * 72)
-                            .padding(.bottom, Layout.scaleFactorH * 180)
-                    }
-                }
-                .edgesIgnoringSafeArea([.top, .horizontal])
-                .onAppear {
-                    viewStore.send(.onAppear)
+                    Spacer()
+                        .frame(height: Layout.scaleFactorH * 36)
+                    Image(Asset.Illustrations.SplashIllustrations.splashPortal.name)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: Layout.scaleFactorW * 140, height: Layout.scaleFactorH * 228, alignment: .center)
+                        .edgesIgnoringSafeArea(.all)
+                    Spacer()
+                        .frame(height: Layout.scaleFactorH * 133)
+                    AnimationViewComponent(isPlaying: true)
+                        .frame(width: Layout.scaleFactorW * 72, height: Layout.scaleFactorH * 72)
+                        .padding(.bottom, Layout.scaleFactorH * 180)
                 }
             }
         }
