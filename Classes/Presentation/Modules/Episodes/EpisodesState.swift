@@ -4,5 +4,12 @@
 //
 
 struct EpisodesState: Equatable {
-
+    var data: [EpisodeModel] = []
+    var filtredData: [EpisodeModel] = []
+    var seasonsNumberArray: [Int] = []
+    var filtredSeasonsNumberArray: [Int] = []
+    var selectedSeasonIndex: Int = 0
+    var seasonsTitles: [String] = ["All"]
+    var searchingRequest: String = ""
+    var isSearching: Bool = false
 }

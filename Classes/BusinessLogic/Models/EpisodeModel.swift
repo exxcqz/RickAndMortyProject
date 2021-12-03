@@ -30,10 +30,29 @@ struct EpisodeModel: Decodable, Equatable {
     let created: String
 
     enum CodingKeys: String, CodingKey {
-        case id, name, characters, url, created
+        case id
+        case name
+        case characters
+        case url
+        case created
         case date = "air_date"
-        case episodeCode  = "episode"
+        case episodeCode = "episode"
     }
+}
+
+// MARK: -  Converting Episode Code to Readable format
+func convertingEpisodeCode(episodeCode: String) -> (episodeNumber: Int, seasonNumber: Int)? {
+    guard let indexOfSeasonCode = episodeCode.firstIndex(of: "S"),
+          let indexOfEpisodeCode = episodeCode.firstIndex(of: "E") else {
+        return nil
+    }
+    let seasonCodeRange = episodeCode.index(indexOfSeasonCode, offsetBy: 1)..<indexOfEpisodeCode
+    let episodeCodeRange = episodeCode.index(indexOfEpisodeCode, offsetBy: 1)...
+    guard let seasonNumber = Int(episodeCode[seasonCodeRange]),
+          let episodeNumber = Int(episodeCode[episodeCodeRange]) else {
+        return nil
+    }
+    return (episodeNumber, seasonNumber)
 }
 
 // MARK: -  Array of dummyModel of Episode
@@ -73,5 +92,5 @@ let dummyEpisodesArray: [EpisodeModel] = [
         characters: [],
         url: "https://rickandmortyapi.com/api/episode/45",
         created: "2021-10-15T17:00:24.103Z"
-    ),
+    )
 ]

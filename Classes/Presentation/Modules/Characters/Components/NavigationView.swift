@@ -6,13 +6,16 @@
 import SwiftUI
 
 struct NavigationView: View {
+    let imageName: String
+    let title: String
+
     var body: some View {
         ZStack {
-            Image(Asset.Illustrations.characters.name)
+            Image(imageName)
                 .resizable()
                 .frame(height: Layout.scaleFactorH * 248)
             HStack {
-                Text(L10n.Characters.title)
+                Text(title)
                     .font(Font.appFontBold(ofSize: Layout.scaleFactorW * 28))
                     .padding(.leading, Layout.scaleFactorW * 24)
                     .foregroundColor(.white)
