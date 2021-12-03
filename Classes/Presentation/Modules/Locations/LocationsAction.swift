@@ -7,5 +7,4 @@ import SwiftUI
 
 enum LocationsAction: Equatable {
     case updateLocationsData
-    case getOffsetForHeader(CGFloat)
 }

@@ -31,17 +31,6 @@ let locationsReducer = Reducer<LocationsState, LocationsAction, LocationsEnviron
                 )
             )
         }
-    case .getOffsetForHeader(let offset):
-        let sizeOffScreen: CGFloat = Layout.scaleFactorH * 154
-        if offset < -sizeOffScreen {
-            let imageOffset = abs(min(-sizeOffScreen, offset))
-            state.navigationOffset = imageOffset - sizeOffScreen
-        }
-        if offset > 0 {
-            state.navigationOffset = -offset
-        }
-
-        state.navigationOffset = 0
     }
     return .none
 }

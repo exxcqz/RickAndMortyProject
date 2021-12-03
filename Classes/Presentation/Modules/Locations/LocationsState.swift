@@ -6,6 +6,7 @@
 import UIKit
 
 struct LocationsState: Equatable {
-    var locationsData = [LocationsCardItem]()
-    var navigationOffset: CGFloat = 0
+    let navigationImage: String = Asset.Illustrations.locations.name
+    let navigationTitle: String = L10n.Locations.title
+    var locationsData: [LocationsCardItem] = []
 }
