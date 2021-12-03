@@ -9,7 +9,7 @@ import SwiftUI
 let locationsReducer = Reducer<LocationsState, LocationsAction, LocationsEnvironment> { state, action, environment in
     switch action {
     case .updateLocationsData:
-        state.locationsData = [LocationsCardItem]()
+        state.locationsData.removeAll()
         listLocations.forEach { index in
             var icon = Asset.Icons.icCluster.image
             switch index.type {
@@ -31,6 +31,17 @@ let locationsReducer = Reducer<LocationsState, LocationsAction, LocationsEnviron
                 )
             )
         }
+    case .getOffsetForHeader(let offset):
+        let sizeOffScreen: CGFloat = Layout.scaleFactorH * 154
+        if offset < -sizeOffScreen {
+            let imageOffset = abs(min(-sizeOffScreen, offset))
+            state.navigationOffset = imageOffset - sizeOffScreen
+        }
+        if offset > 0 {
+            state.navigationOffset = -offset
+        }
+
+        state.navigationOffset = 0
     }
     return .none
 }

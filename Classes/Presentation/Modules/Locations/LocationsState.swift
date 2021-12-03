@@ -7,4 +7,5 @@ import UIKit
 
 struct LocationsState: Equatable {
     var locationsData = [LocationsCardItem]()
+    var navigationOffset: CGFloat = 0
 }
