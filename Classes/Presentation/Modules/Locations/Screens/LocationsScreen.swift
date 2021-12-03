@@ -10,39 +10,39 @@ struct LocationsScreen: View {
     let store: Store<LocationsState, LocationsAction>
 
     var body: some View {
-        //        NavigationView {
-        WithViewStore(store) { viewStore in
-            ZStack {
-                Color(Asset.Colors.blackBG.name)
-                ScrollView(.vertical, showsIndicators: false) {
-                    StickyHeaderComponent(
-                        navigationImage: viewStore.state.navigationImage,
-                        navigationTitle: viewStore.state.navigationTitle
-                    )
-                    VStack(spacing: 0) {
-                        ForEach(viewStore.state.locationsData, id: \.id) { card in
-                            NavigationLink {
-                                DetailsHelloComponent()
-                            } label: {
-                                LocationsCardComponent(
-                                    locationName: card.name,
-                                    locationType: card.type.rawValue,
-                                    locationIcon: card.icon
-                                )
+        NavigationView {
+            WithViewStore(store) { viewStore in
+                ZStack {
+                    Color(Asset.Colors.blackBG.name)
+                    ScrollView(.vertical, showsIndicators: false) {
+                        StickyHeaderComponent(
+                            navigationImage: viewStore.state.navigationImage,
+                            navigationTitle: viewStore.state.navigationTitle
+                        )
+                        VStack(spacing: 0) {
+                            ForEach(viewStore.state.locationsData, id: \.id) { card in
+                                NavigationLink {
+                                    DetailsHelloComponent()
+                                } label: {
+                                    LocationsCardComponent(
+                                        locationName: card.name,
+                                        locationType: card.type.rawValue,
+                                        locationIcon: card.icon
+                                    )
+                                }
                             }
                         }
+                        .padding(.bottom, 8)
+                        .zIndex(0)
                     }
-                    .padding(.bottom, 8)
-                    .zIndex(0)
+                }
+                .edgesIgnoringSafeArea(.all)
+                .onAppear {
+                    viewStore.send(.updateLocationsData)
                 }
             }
-            .edgesIgnoringSafeArea(.all)
-            .onAppear {
-                viewStore.send(.updateLocationsData)
-            }
+            .navigationBarHidden(true)
         }
-        //            .navigationBarHidden(true)
-        //        }
     }
 }
 

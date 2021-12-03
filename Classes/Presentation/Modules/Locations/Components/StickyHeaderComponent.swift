@@ -11,45 +11,47 @@ struct StickyHeaderComponent: View {
     let navigationTitle: String
 
     var body: some View {
-            GeometryReader { geo in
-                let offset = geo.frame(in: .global).maxY
-                ZStack {
-                    Color(Asset.Colors.blackBG.name)
-                    VStack(spacing: 0) {
-                        ZStack {
-                            if offset < Layout.scaleFactorH * 170 {
-                                Color(Asset.Colors.blackBG.name)
-                            } else {
-                                NavigationImageComponent(
-                                    image: navigationImage
-                                )
-                            }
-                            NavigationTitleComponent(
-                                title: navigationTitle
+        GeometryReader { geo in
+            let offset = geo.frame(in: .global).maxY
+            ZStack {
+                Color(Asset.Colors.blackBG.name)
+                VStack(spacing: 0) {
+                    ZStack {
+                        if offset < Layout.scaleFactorH * 170 {
+                            Color(Asset.Colors.blackBG.name)
+                        } else {
+                            NavigationImageComponent(
+                                image: navigationImage
                             )
                         }
-                        SearchAndFilter()
+                        NavigationTitleComponent(
+                            title: navigationTitle
+                        )
                     }
+                    SearchAndFilter()
                 }
-                .offset(y: self.getOffsetForHeaderImage(geo))
             }
-            .frame(height: Layout.scaleFactorH * 324)
-            .zIndex(1)
+            .offset(y: geo.getOffsetForHeader)
+        }
+        .frame(height: Layout.scaleFactorH * 324)
+        .zIndex(1)
     }
+}
 
-    private func getOffsetForHeaderImage(_ geometry: GeometryProxy) -> CGFloat {
-        let offset = geometry.frame(in: .global).minY
+// MARK: -  Get Offset For Sticky Header
+
+extension GeometryProxy {
+
+    var getOffsetForHeader: CGFloat {
+        let offset = self.frame(in: .global).minY
         let sizeOffScreen: CGFloat = Layout.scaleFactorH * 154
-
         if offset < -sizeOffScreen {
-            let imageOffset = abs(min(-sizeOffScreen, offset))
-            return imageOffset - sizeOffScreen
+            let headerOffset = abs(min(-sizeOffScreen, offset))
+            return headerOffset - sizeOffScreen
         }
-
         if offset > 0 {
-            return -offset
+            return CGFloat(-offset)
         }
-
         return 0
     }
 }

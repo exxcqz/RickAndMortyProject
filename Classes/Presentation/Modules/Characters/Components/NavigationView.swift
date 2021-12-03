@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-struct NavigationView: View {
+struct AppNavigationView: View {
     var body: some View {
         ZStack {
             Image(Asset.Illustrations.characters.name)
