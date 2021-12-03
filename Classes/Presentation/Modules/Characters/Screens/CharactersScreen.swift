@@ -15,8 +15,6 @@ struct CharactersScreen: View {
                 Color(Asset.Colors.blackBG.color)
                     .edgesIgnoringSafeArea(.all)
                 VStack(spacing: 0) {
-                    NavigationView()
-                    SearchAndFilter()
                     CharactersScrollView(store: store)
                     Spacer()
                 }

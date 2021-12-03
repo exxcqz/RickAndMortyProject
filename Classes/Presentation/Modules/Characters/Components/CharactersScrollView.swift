@@ -14,6 +14,10 @@ struct CharactersScrollView: View {
             VStack {
                 if !viewStore.grid.isEmpty {
                     ScrollView(.vertical, showsIndicators: false) {
+                        StickyHeaderComponent(
+                            navigationImage: viewStore.state.navigationImage,
+                            navigationTitle: viewStore.state.navigationTitle
+                        )
                         VStack(spacing : Layout.scaleFactorW * 16) {
                             ForEach(viewStore.grid, id: \.self) { row in
                                 HStack(spacing: Layout.scaleFactorW * 16) {

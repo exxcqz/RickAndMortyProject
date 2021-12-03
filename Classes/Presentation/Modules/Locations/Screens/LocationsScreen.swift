@@ -14,8 +14,11 @@ struct LocationsScreen: View {
         WithViewStore(store) { viewStore in
             ZStack {
                 Color(Asset.Colors.blackBG.name)
-                ScrollView {
-                    StickyHeaderComponent(store: store)
+                ScrollView(.vertical, showsIndicators: false) {
+                    StickyHeaderComponent(
+                        navigationImage: viewStore.state.navigationImage,
+                        navigationTitle: viewStore.state.navigationTitle
+                    )
                     VStack(spacing: 0) {
                         ForEach(viewStore.state.locationsData, id: \.id) { card in
                             NavigationLink {

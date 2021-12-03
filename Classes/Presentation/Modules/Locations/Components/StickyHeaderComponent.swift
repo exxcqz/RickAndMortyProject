@@ -7,10 +7,10 @@ import ComposableArchitecture
 import SwiftUI
 
 struct StickyHeaderComponent: View {
-    let store: Store<LocationsState, LocationsAction>
+    let navigationImage: String
+    let navigationTitle: String
 
     var body: some View {
-        WithViewStore(store) { viewStore in
             GeometryReader { geo in
                 let offset = geo.frame(in: .global).maxY
                 ZStack {
@@ -21,11 +21,11 @@ struct StickyHeaderComponent: View {
                                 Color(Asset.Colors.blackBG.name)
                             } else {
                                 NavigationImageComponent(
-                                    image: viewStore.state.navigationImage
+                                    image: navigationImage
                                 )
                             }
                             NavigationTitleComponent(
-                                title: viewStore.state.navigationTitle
+                                title: navigationTitle
                             )
                         }
                         SearchAndFilter()
@@ -35,7 +35,6 @@ struct StickyHeaderComponent: View {
             }
             .frame(height: Layout.scaleFactorH * 324)
             .zIndex(1)
-        }
     }
 
     private func getOffsetForHeaderImage(_ geometry: GeometryProxy) -> CGFloat {
