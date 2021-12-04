@@ -13,6 +13,8 @@ let tabBarReducer: Reducer<TabBarState, TabBarAction, TabBarEnvironment> = .comb
             return .none
         case .characters(let action):
             break
+        case .locations(let action):
+			break
         case .episodes(let episode):
             break
         }

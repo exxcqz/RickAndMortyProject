@@ -27,8 +27,7 @@ struct EpisodesScreen: View {
                                 EpisodesAction.searchFor($0)
                             }
                         )
-                    )
-                        .frame(height: Layout.scaleFactorH * 52)
+                    ).frame(height: Layout.scaleFactorH * 52)
                         .padding(.horizontal, Layout.scaleFactorW * 24)
                         .padding(.top, Layout.scaleFactorH * 16)
                         .padding(.bottom, Layout.scaleFactorH * 24)

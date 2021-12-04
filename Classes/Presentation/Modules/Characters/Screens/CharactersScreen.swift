@@ -15,11 +15,6 @@ struct CharactersScreen: View {
                 Color(Asset.Colors.blackBG.color)
                     .edgesIgnoringSafeArea(.all)
                 VStack(spacing: 0) {
-                    NavigationView(
-                        imageName: Asset.Illustrations.characters.name,
-                        title: L10n.Characters.title
-                    )
-                    SearchAndFilter()
                     CharactersScrollView(store: store)
                     Spacer()
                 }

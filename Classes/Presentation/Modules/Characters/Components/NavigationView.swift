@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-struct NavigationView: View {
+struct AppNavigationView: View {
     let imageName: String
     let title: String
 

@@ -10,10 +10,36 @@ struct LocationsScreen: View {
     let store: Store<LocationsState, LocationsAction>
 
     var body: some View {
-        WithViewStore(store) { viewStore in
-            VStack {
-                LocationsHelloComponent()
+        NavigationView {
+            WithViewStore(store) { viewStore in
+                ZStack {
+                    Color(Asset.Colors.blackBG.name)
+                    ScrollView(.vertical, showsIndicators: false) {
+                        VStack(spacing: 0) {
+                            StickyHeaderComponent(
+                                navigationImage: viewStore.state.navigationImage,
+                                navigationTitle: viewStore.state.navigationTitle
+                            )
+                            VStack(spacing: 16) {
+                                ForEach(viewStore.state.locationsData, id: \.id) { card in
+                                    NavigationLink {
+                                        DetailsHelloComponent()
+                                    } label: {
+                                        LocationsCardComponent(locationDetail: card)
+                                    }
+                                }
+                            }
+                            .padding(.vertical, 16)
+                            .zIndex(0)
+                        }
+                    }
+                }
+                .edgesIgnoringSafeArea(.all)
+                .onAppear {
+                    viewStore.send(.updateLocationsData)
+                }
             }
+            .navigationBarHidden(true)
         }
     }
 }
