@@ -22,7 +22,7 @@ struct CharactersScrollView: View {
                             VStack(spacing : Layout.scaleFactorW * 16) {
                                 ForEach(viewStore.grid, id: \.self) { row in
                                     HStack(spacing: Layout.scaleFactorW * 16) {
-                                        ForEach(row...row+1, id: \.self) { column in
+                                        ForEach(row...row + 1, id: \.self) { column in
                                             VStack {
                                                 if column != viewStore.data.count {
                                                     CharacterCard(

@@ -16,7 +16,6 @@ struct CharactersScreen: View {
                     .edgesIgnoringSafeArea(.all)
                 VStack(spacing: 0) {
                     CharactersScrollView(store: store)
-                    Spacer()
                 }
             }
             .edgesIgnoringSafeArea([.top, .horizontal])
