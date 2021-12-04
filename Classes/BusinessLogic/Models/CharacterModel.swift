@@ -66,4 +66,4 @@ let dummyCharacterModel = CharacterModel(
     created: "2017-11-04T18:48:46.250Z"
 )
 
-let dummyCharactersArray: [CharacterModel] = Array(repeating: dummyCharacterModel, count: 3)
+let dummyCharactersArray: [CharacterModel] = Array(repeating: dummyCharacterModel, count: 9)

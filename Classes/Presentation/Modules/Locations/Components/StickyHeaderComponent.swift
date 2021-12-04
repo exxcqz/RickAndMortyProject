@@ -9,6 +9,7 @@ import SwiftUI
 struct StickyHeaderComponent: View {
     let navigationImage: String
     let navigationTitle: String
+    let heightForHide = Layout.scaleFactorH * 170
 
     var body: some View {
         GeometryReader { geo in
@@ -17,16 +18,12 @@ struct StickyHeaderComponent: View {
                 Color(Asset.Colors.blackBG.name)
                 VStack(spacing: 0) {
                     ZStack {
-                        if offset < Layout.scaleFactorH * 170 {
+                        if offset < heightForHide {
                             Color(Asset.Colors.blackBG.name)
                         } else {
-                            NavigationImageComponent(
-                                image: navigationImage
-                            )
+                            NavigationImageComponent(image: navigationImage)
                         }
-                        NavigationTitleComponent(
-                            title: navigationTitle
-                        )
+                        NavigationTitleComponent(title: navigationTitle)
                     }
                     SearchAndFilter()
                 }
