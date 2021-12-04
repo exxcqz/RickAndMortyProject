@@ -24,11 +24,7 @@ struct LocationsScreen: View {
                                 NavigationLink {
                                     DetailsHelloComponent()
                                 } label: {
-                                    LocationsCardComponent(
-                                        locationName: card.name,
-                                        locationType: card.type.rawValue,
-                                        locationIcon: card.icon
-                                    )
+                                    LocationsCardComponent(locationDetail: card)
                                 }
                             }
                         }

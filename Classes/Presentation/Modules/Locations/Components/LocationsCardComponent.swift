@@ -6,9 +6,7 @@
 import SwiftUI
 
 struct LocationsCardComponent: View {
-    let locationName: String
-    let locationType: String
-    let locationIcon: UIImage
+    let locationDetail: LocationsCardItem
 
     var body: some View {
         ZStack {
@@ -20,7 +18,7 @@ struct LocationsCardComponent: View {
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundColor(Color(Asset.Colors.blackElements.name))
                         .frame(width: Layout.scaleFactorW * 64, height: 64)
-                    Image(uiImage: locationIcon)
+                    Image(uiImage: locationDetail.icon)
                         .resizable()
                         .scaledToFit()
                         .frame(width: Layout.scaleFactorW * 24, height: 24)
@@ -28,12 +26,12 @@ struct LocationsCardComponent: View {
                 .padding(.leading, Layout.scaleFactorW * 32)
                 .padding(.trailing, Layout.scaleFactorW * 16)
                 VStack(alignment: .leading, spacing: 0) {
-                    Text(locationName)
+                    Text(locationDetail.name)
                         .font(Font.appFontSemibold(ofSize: Layout.scaleFactorW * 17))
                         .frame(height: 22)
                         .foregroundColor(.white)
                         .padding(.bottom, 4)
-                    Text(locationType)
+                    Text(locationDetail.type.rawValue)
                         .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 13))
                         .frame(height: 18)
                         .foregroundColor(Color(Asset.Colors.primary.name))

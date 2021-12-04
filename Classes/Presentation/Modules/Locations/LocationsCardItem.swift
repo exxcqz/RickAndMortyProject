@@ -6,8 +6,12 @@
 import UIKit
 
 struct LocationsCardItem: Equatable {
-    var id: Int
-    var name: String
-    var type: LocationsType
-    var icon: UIImage
+    let id: Int
+    let name: String
+    let type: LocationsType
+    let icon: UIImage
+    let dimension: String
+    let residents: [String]
+    let url: String
+    let created: String
 }

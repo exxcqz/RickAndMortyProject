@@ -27,10 +27,16 @@ let locationsReducer = Reducer<LocationsState, LocationsAction, LocationsEnviron
                     id: index.id,
                     name: index.name,
                     type: index.type,
-                    icon: icon
+                    icon: icon,
+                    dimension: index.dimension,
+                    residents: index.residents,
+                    url: index.url,
+                    created: index.created
                 )
             )
         }
+    case .goToLocationDetail(let location):
+        print("Hello \(location.name)")
     }
     return .none
 }
