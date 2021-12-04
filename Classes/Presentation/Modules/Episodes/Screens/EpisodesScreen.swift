@@ -8,8 +8,6 @@ import SwiftUI
 
 struct EpisodesScreen: View {
     let store: Store<EpisodesState, EpisodesAction>
-    @State var selectedIndex: Int = 0
-    @State var searchText: String = ""
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -21,7 +19,15 @@ struct EpisodesScreen: View {
                         imageName: Asset.Illustrations.episodes.name,
                         title: L10n.Episodes.title
                     )
-                    SearchBar(searchText: $searchText)
+                    SearchBar(
+                        searchText: viewStore.binding(
+                            get: {
+                                $0.searchingRequest
+                            }, send: {
+                                EpisodesAction.searchFor($0)
+                            }
+                        )
+                    )
                         .frame(height: Layout.scaleFactorH * 52)
                         .padding(.horizontal, Layout.scaleFactorW * 24)
                         .padding(.top, Layout.scaleFactorH * 16)

@@ -1,5 +1,5 @@
 //
-//  Created by Александр Васильевич on 27.11.2021
+//  Created by Alexander Loshakov on 27.11.2021
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
@@ -62,7 +62,6 @@ struct SearchBar: View {
 }
 
 // MARK: -  Custom Placeholder
-
 extension View {
     func placeholder<Content: View>(
         when shouldShow: Bool,
@@ -76,7 +75,6 @@ extension View {
 }
 
 // MARK: -  Dismiss Keyboard
-
 extension UIApplication {
     func dismissKeyboard() {
         sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)

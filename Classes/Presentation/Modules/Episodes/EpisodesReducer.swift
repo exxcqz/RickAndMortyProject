@@ -51,6 +51,9 @@ let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment
         print("Filter: \(state.seasonsTitles[state.selectedSeasonIndex]) with index: \(state.selectedSeasonIndex)")
     case .episodeCardSelected(let episode):
         print("episode \(episode.name) selected")
+    case .searchFor(let request):
+        state.searchingRequest = request
+        print("searching episode: \(state.searchingRequest)")
     }
     return .none
 }
