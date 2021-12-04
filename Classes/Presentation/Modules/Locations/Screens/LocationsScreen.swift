@@ -15,21 +15,23 @@ struct LocationsScreen: View {
                 ZStack {
                     Color(Asset.Colors.blackBG.name)
                     ScrollView(.vertical, showsIndicators: false) {
-                        StickyHeaderComponent(
-                            navigationImage: viewStore.state.navigationImage,
-                            navigationTitle: viewStore.state.navigationTitle
-                        )
                         VStack(spacing: 0) {
-                            ForEach(viewStore.state.locationsData, id: \.id) { card in
-                                NavigationLink {
-                                    DetailsHelloComponent()
-                                } label: {
-                                    LocationsCardComponent(locationDetail: card)
+                            StickyHeaderComponent(
+                                navigationImage: viewStore.state.navigationImage,
+                                navigationTitle: viewStore.state.navigationTitle
+                            )
+                            VStack(spacing: 16) {
+                                ForEach(viewStore.state.locationsData, id: \.id) { card in
+                                    NavigationLink {
+                                        DetailsHelloComponent()
+                                    } label: {
+                                        LocationsCardComponent(locationDetail: card)
+                                    }
                                 }
                             }
+                            .padding(.vertical, 16)
+                            .zIndex(0)
                         }
-                        .padding(.bottom, 8)
-                        .zIndex(0)
                     }
                 }
                 .edgesIgnoringSafeArea(.all)

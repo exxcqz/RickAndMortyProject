@@ -11,8 +11,10 @@ struct Locations: Decodable {
 }
 
 struct LocationsInfo: Decodable {
-    let count, pages: Int
-    let next, prev: String?
+    let count: Int
+    let pages: Int
+    let next: String?
+    let prev: String?
 }
 
 struct LocationsModel: Decodable, Equatable {

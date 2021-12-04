@@ -14,7 +14,7 @@ struct NavigationTitleComponent: View {
                 .font(Font.appFontBold(ofSize: Layout.scaleFactorW * 28))
                 .padding(.leading, Layout.scaleFactorW * 24)
                 .foregroundColor(.white)
-                .frame(height: 34)
+                .frame(height: Layout.scaleFactorH * 34)
             Spacer()
         }
         .padding(.top, Layout.scaleFactorH * 214)

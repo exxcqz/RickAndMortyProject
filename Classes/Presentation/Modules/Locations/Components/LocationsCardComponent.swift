@@ -40,7 +40,5 @@ struct LocationsCardComponent: View {
                 Spacer()
             }
         }
-        .padding(.top, 8)
-        .padding(.bottom, 8)
     }
 }
