@@ -3,7 +3,4 @@
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
-import ComposableArchitecture
-
-struct CharactersEnvironment {
-}
+struct CharactersEnvironment {}

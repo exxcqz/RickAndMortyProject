@@ -19,10 +19,10 @@ struct LocationsScreen: View {
                             StickyHeaderComponent(
                                 navigationImage: viewStore.state.navigationImage,
                                 navigationTitle: viewStore.state.navigationTitle,
-                                isFilterShown: true,
-                                searchingRequset: viewStore.binding(
+                                isFilterHidden: true,
+                                searchRequest: viewStore.binding(
                                     get: {
-                                        $0.searchingRequest
+                                        $0.searchRequest
                                     }, send: {
                                         LocationsAction.searchFor($0)
                                     }

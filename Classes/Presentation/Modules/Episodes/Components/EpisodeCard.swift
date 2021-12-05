@@ -8,8 +8,8 @@ import SwiftUI
 struct EpisodeCard: View {
     let data: EpisodeModel
     var episodeCodeReadable: String {
-        guard let episode = convertingEpisodeCode(episodeCode: data.episodeCode)?.episodeNumber,
-              let season = convertingEpisodeCode(episodeCode: data.episodeCode)?.seasonNumber else {
+        guard let episode = data.convertedEpisodeCode?.episodeNumber,
+              let season = data.convertedEpisodeCode?.seasonNumber else {
             return "Unknown episode code"
         }
         return "Episode: \(episode), Season: \(season)"

@@ -5,21 +5,6 @@
 
 import Foundation
 
-// MARK: -  Request for all Episodes
-struct EpisodesRequest: Decodable {
-    let info: EpisodesInfo
-    let results: [EpisodeModel]
-}
-
-// MARK: -  Info of request for all Episodes
-struct EpisodesInfo: Decodable {
-    let count: Int
-    let pages: Int
-    let next: String?
-    let prev: String?
-}
-
-// MARK: -  Episode Model
 struct EpisodeModel: Decodable, Equatable {
     let id: Int
     let name: String
@@ -38,34 +23,24 @@ struct EpisodeModel: Decodable, Equatable {
         case date = "air_date"
         case episodeCode = "episode"
     }
-}
 
-// MARK: -  Converting Episode Code to Readable format
-func convertingEpisodeCode(episodeCode: String) -> (episodeNumber: Int, seasonNumber: Int)? {
-    guard let indexOfSeasonCode = episodeCode.firstIndex(of: "S"),
-          let indexOfEpisodeCode = episodeCode.firstIndex(of: "E") else {
-        return nil
+    var convertedEpisodeCode: (episodeNumber: Int, seasonNumber: Int)? {
+        guard let indexOfSeasonCode = episodeCode.firstIndex(of: "S"),
+              let indexOfEpisodeCode = episodeCode.firstIndex(of: "E") else {
+            return nil
+        }
+        let seasonCodeRange = episodeCode.index(indexOfSeasonCode, offsetBy: 1)..<indexOfEpisodeCode
+        let episodeCodeRange = episodeCode.index(indexOfEpisodeCode, offsetBy: 1)...
+        guard let seasonNumber = Int(episodeCode[seasonCodeRange]),
+              let episodeNumber = Int(episodeCode[episodeCodeRange]) else {
+            return nil
+        }
+        return (episodeNumber, seasonNumber)
     }
-    let seasonCodeRange = episodeCode.index(indexOfSeasonCode, offsetBy: 1)..<indexOfEpisodeCode
-    let episodeCodeRange = episodeCode.index(indexOfEpisodeCode, offsetBy: 1)...
-    guard let seasonNumber = Int(episodeCode[seasonCodeRange]),
-          let episodeNumber = Int(episodeCode[episodeCodeRange]) else {
-        return nil
-    }
-    return (episodeNumber, seasonNumber)
 }
 
 // MARK: -  Array of dummyModel of Episode
 let dummyEpisodesArray: [EpisodeModel] = [
-    EpisodeModel(
-        id: 1,
-        name: "Pilot",
-        date: "December 2, 2013",
-        episodeCode: "S01E01",
-        characters: [],
-        url: "https://rickandmortyapi.com/api/episode/1",
-        created: "2017-11-10T12:56:33.798Z"
-    ),
     EpisodeModel(
         id: 11,
         name: "Ricksy Business",
@@ -74,6 +49,15 @@ let dummyEpisodesArray: [EpisodeModel] = [
         characters: [],
         url: "https://rickandmortyapi.com/api/episode/11",
         created: "2017-11-10T12:56:34.850Z"
+    ),
+    EpisodeModel(
+        id: 1,
+        name: "Pilot",
+        date: "December 2, 2013",
+        episodeCode: "S01E01",
+        characters: [],
+        url: "https://rickandmortyapi.com/api/episode/1",
+        created: "2017-11-10T12:56:33.798Z"
     ),
     EpisodeModel(
         id: 39,

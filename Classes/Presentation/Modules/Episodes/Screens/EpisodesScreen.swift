@@ -14,16 +14,16 @@ struct EpisodesScreen: View {
             WithViewStore(store) { viewStore in
                 ZStack {
                     Color(Asset.Colors.blackBG.color)
-                        .edgesIgnoringSafeArea(.all)
+                        .edgesIgnoringSafeArea(.all) ///////
                     ScrollView(.vertical, showsIndicators: false) {
                         VStack(spacing: 0) {
                             StickyHeaderComponent(
                                 navigationImage: viewStore.state.navigationImage,
                                 navigationTitle: viewStore.state.navigationTitle,
-                                isFilterShown: false,
-                                searchingRequset: viewStore.binding(
+                                isFilterHidden: false,
+                                searchRequest: viewStore.binding(
                                     get: {
-                                        $0.searchingRequest
+                                        $0.searchRequest
                                     }, send: {
                                         EpisodesAction.searchFor($0)
                                     }

@@ -6,18 +6,6 @@
 import Foundation
 import UIKit
 
-struct Locations: Decodable {
-    let info: LocationsInfo
-    let results: [Location]
-}
-
-struct LocationsInfo: Decodable {
-    let count: Int
-    let pages: Int
-    let next: String?
-    let prev: String?
-}
-
 struct Location: Decodable, Equatable {
     let id: Int
     let name: String

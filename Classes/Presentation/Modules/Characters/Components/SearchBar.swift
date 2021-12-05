@@ -6,36 +6,11 @@
 import SwiftUI
 
 struct SearchBar: View {
-    @Binding var searchText: String
-    @State private var isEditing: Bool = false
-    @State private var isSearching: Bool = false
+    @Binding var searchRequest: String
 
     var body: some View {
         HStack {
-            TextField(
-                "",
-                text: $searchText,
-                onEditingChanged: { startedEditing in
-                    if startedEditing {
-                        withAnimation {
-                            if startedEditing {
-                                isSearching = true
-                                isEditing = true
-                            }
-                        }
-                    }
-                },
-                onCommit: {
-                    withAnimation {
-                        if searchText.isEmpty {
-                            isEditing = false
-                            isSearching = false
-                        } else {
-                            print("searching: \(searchText)")
-                        }
-                    }
-                }
-            ).placeholder(when: searchText.isEmpty) {
+            TextField("", text: $searchRequest).placeholder(when: searchRequest.isEmpty) {
                 HStack {
                     Image(Asset.Icons.icSearchSmall.name)
                         .renderingMode(.template)

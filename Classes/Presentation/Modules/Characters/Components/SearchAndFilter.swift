@@ -6,12 +6,11 @@
 import SwiftUI
 
 struct SearchAndFilter: View {
-    @State var searchText = ""
-    @State var searching = false
+    @Binding var searchRequest: String
 
     var body: some View {
         HStack(spacing: Layout.scaleFactorW * 16) {
-            SearchBar(searchText: $searchText)
+            SearchBar(searchRequest: $searchRequest)
             FilterButton()
         }
         .frame(height: Layout.scaleFactorW * 52)

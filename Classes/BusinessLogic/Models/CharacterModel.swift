@@ -5,21 +5,6 @@
 
 import Foundation
 
-// MARK: -  Request for all Characters
-struct CharactersRequest: Decodable {
-    let info: CharactersInfo
-    let results: [CharacterModel]
-}
-
-// MARK: -  Info of request for all Characters
-struct CharactersInfo: Decodable {
-    let count: Int
-    let pages: Int
-    let next: String?
-    let prev: String?
-}
-
-// MARK: -  Character Model
 struct CharacterModel: Decodable, Equatable {
     let id: Int
     let name: String
@@ -35,7 +20,6 @@ struct CharacterModel: Decodable, Equatable {
     let created: String
 }
 
-// MARK: -  Substruct of Character Origin/Location
 struct CharacterLocation: Decodable, Equatable {
     let name: String
     let url: String

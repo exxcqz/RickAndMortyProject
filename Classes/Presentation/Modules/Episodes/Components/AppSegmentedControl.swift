@@ -11,41 +11,36 @@ struct AppSegmentedControl: View {
 
     var body: some View {
         WithViewStore(self.store) { viewStore in
-            VStack {
-                ZStack {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: Layout.scaleFactorW * 16) {
-                            ForEach(viewStore.seasonsTitles.indices, id: \.self) { index in
-                                Button(
-                                    action: {
-                                        withAnimation {
-                                            viewStore.send(.seasonSelected(index))
-                                        }
-                                    }, label: {
-                                        Text(viewStore.seasonsTitles[index])
-                                            .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
-                                            .foregroundColor(
-                                                index == viewStore.selectedSeasonIndex
-                                                ? Color.white
-                                                : Color(Asset.Colors.grayDark.name)
-                                            )
-                                            .kerning(-0.32)
-                                    }
-                                )
-                                    .padding(.vertical, Layout.scaleFactorW * 20)
-                                    .padding(.horizontal, Layout.scaleFactorW * 16)
-                                    .frame(height: Layout.scaleFactorW * 36)
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 22)
-                                            .foregroundColor(Color(Asset.Colors.blackCard.name))
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: Layout.scaleFactorW * 16) {
+                    ForEach(viewStore.seasonsTitles.indices, id: \.self) { index in
+                        Button(
+                            action: {
+                                withAnimation {
+                                    viewStore.send(.seasonSelected(index))
+                                }
+                            }, label: {
+                                Text(viewStore.seasonsTitles[index])
+                                    .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
+                                    .foregroundColor(
+                                        index == viewStore.selectedSeasonIndex
+                                        ? Color.white
+                                        : Color(Asset.Colors.grayDark.name)
                                     )
+                                    .kerning(-0.32)
                             }
-                        }
+                        )
+                        .padding(.vertical, Layout.scaleFactorW * 20)
+                        .padding(.horizontal, Layout.scaleFactorW * 16)
+                        .frame(height: Layout.scaleFactorW * 36)
+                        .background(
+                            RoundedRectangle(cornerRadius: 22)
+                                .foregroundColor(Color(Asset.Colors.blackCard.name))
+                        )
                     }
-                    .padding(.leading, Layout.scaleFactorW * 24)
                 }
-                .animation(.default)
             }
+            .padding(.leading, Layout.scaleFactorW * 24)
         }
     }
 }

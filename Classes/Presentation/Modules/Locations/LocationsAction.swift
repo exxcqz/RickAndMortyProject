@@ -3,8 +3,6 @@
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
-import SwiftUI
-
 enum LocationsAction: Equatable {
     case updateLocationsData
     case didOpenLocationDetails(Location)

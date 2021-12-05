@@ -3,13 +3,11 @@
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
-import ComposableArchitecture
-import UIKit
-
 struct CharactersState: Equatable {
     let navigationImage: String = Asset.Illustrations.characters.name
     let navigationTitle: String = L10n.Characters.title
     var data: [CharacterModel] = []
+    var filteredData: [CharacterModel] = []
     var grid: [Int] = []
-    var searchingRequest: String = ""
+    var searchRequest: String = ""
 }

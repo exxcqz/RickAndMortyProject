@@ -8,7 +8,7 @@ import SwiftUI
 
 struct CharactersScreen: View {
     let store: Store<CharactersState, CharactersAction>
-
+    
     var body: some View {
         NavigationView {
             WithViewStore(store) { viewStore in
@@ -20,18 +20,18 @@ struct CharactersScreen: View {
                             StickyHeaderComponent(
                                 navigationImage: viewStore.state.navigationImage,
                                 navigationTitle: viewStore.state.navigationTitle,
-                                isFilterShown: true,
-                                searchingRequset: viewStore.binding(
+                                isFilterHidden: true,
+                                searchRequest: viewStore.binding(
                                     get: {
-                                        $0.searchingRequest
+                                        $0.searchRequest
                                     }, send: {
                                         CharactersAction.searchFor($0)
                                     }
                                 )
                             )
                             CharactersScrollView(store: store)
-                            .padding(.vertical, Layout.scaleFactorH * 16)
-                            .zIndex(0)
+                                .padding(.vertical, Layout.scaleFactorH * 16)
+                                .zIndex(0)
                         }
                     }
                 }

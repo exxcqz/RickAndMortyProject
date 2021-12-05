@@ -18,8 +18,8 @@ let charactersReducer = Reducer<CharactersState, CharactersAction, CharactersEnv
     case .characterCardSelected(let character):
         print("character \(character.name) selected")
     case .searchFor(let request):
-        state.searchingRequest = request
-        print("searching character: \(state.searchingRequest)")
+        state.searchRequest = request
+        print("searching character: \(state.searchRequest)")
     }
     return .none
 }

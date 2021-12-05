@@ -8,11 +8,13 @@ import ComposableArchitecture
 let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment> { state, action, environment in
     switch action {
     case .onAppear:
-        state.data = dummyEpisodesArray
+        state.data = dummyEpisodesArray.sorted {
+            $0.episodeCode < $1.episodeCode
+        }
         print("number of episodes: \(state.data.count)")
         var seasonsSet = Set<Int>()
         state.data.forEach { episode in
-            guard let (_, seasonNumber) = convertingEpisodeCode(episodeCode: episode.episodeCode) else {
+            guard let (_, seasonNumber) = episode.convertedEpisodeCode else {
                 return
             }
             seasonsSet.insert(seasonNumber)
@@ -25,35 +27,33 @@ let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment
                 state.seasonsTitles.append("Season \(index)")
             }
         }
-        if state.filtredData.isEmpty {
-            state.filtredData = state.data
-            state.filtredSeasonsNumberArray = state.seasonsNumberArray
+        if state.filteredData.isEmpty {
+            state.filteredData = state.data
+            state.filteredSeasonsNumberArray = state.seasonsNumberArray
         }
     case .seasonSelected(let index):
         state.selectedSeasonIndex = index
         if index == 0 {
-            state.filtredData = state.data
-            state.filtredSeasonsNumberArray = state.seasonsNumberArray
+            state.filteredData = state.data
+            state.filteredSeasonsNumberArray = state.seasonsNumberArray
         } else {
-            state.filtredData = []
-            state.filtredSeasonsNumberArray = []
-            var seasonsSet = Set<Int>()
+            state.filteredData = []
+            state.filteredSeasonsNumberArray = [state.seasonsNumberArray[index - 1]]
             state.data.forEach { episode in
-                if let (_, seasonNumber) = convertingEpisodeCode(episodeCode: episode.episodeCode) {
-                    if state.seasonsNumberArray[index - 1] == seasonNumber {
-                        state.filtredData.append(episode)
-                        seasonsSet.insert(seasonNumber)
-                    }
+                guard let (_, seasonNumber) = episode.convertedEpisodeCode else {
+                    return
+                }
+                if state.seasonsNumberArray[index - 1] == seasonNumber {
+                    state.filteredData.append(episode)
                 }
             }
-            state.filtredSeasonsNumberArray = seasonsSet.sorted()
         }
-        print("Filter: \(state.seasonsTitles[state.selectedSeasonIndex]) with index: \(state.selectedSeasonIndex)")
+        print("Filter: \(state.seasonsTitles[state.selectedSeasonIndex])")
     case .episodeCardSelected(let episode):
         print("episode \(episode.name) selected")
     case .searchFor(let request):
-        state.searchingRequest = request
-        print("searching episode: \(state.searchingRequest)")
+        state.searchRequest = request
+        print("searching episode: \(state.searchRequest)")
     }
     return .none
 }
