@@ -53,6 +53,7 @@ struct TabBarScreen: View {
                 .padding(.bottom)
                 .background(Color(Asset.Colors.blackCard.name).edgesIgnoringSafeArea(.bottom))
             }
+            .ignoresSafeArea(.keyboard, edges: .bottom)
         }
     }
 }

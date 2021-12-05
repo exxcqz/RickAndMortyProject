@@ -10,6 +10,9 @@ struct StickyHeaderComponent: View {
     let navigationImage: String
     let navigationTitle: String
     let heightForHide = Layout.scaleFactorH * 170
+    var isFilterShown: Bool = false
+    let store: Store<EpisodesState, EpisodesAction>? = nil
+    @Binding var searchingRequset: String
 
     var body: some View {
         GeometryReader { geo in
@@ -25,7 +28,18 @@ struct StickyHeaderComponent: View {
                         }
                         NavigationTitleComponent(title: navigationTitle)
                     }
-                    SearchAndFilter()
+                    self.isFilterShown
+                    ? AnyView(SearchAndFilter())
+                    : AnyView(
+                        VStack {
+                            SearchBar(searchText: $searchingRequset)
+                                .frame(height: Layout.scaleFactorW * 52)
+                                .padding(.horizontal, Layout.scaleFactorW * 24)
+                                .padding(.top, Layout.scaleFactorH * 16)
+                                .padding(.bottom, Layout.scaleFactorH * 8)
+                        }
+                    )
+
                 }
             }
             .offset(y: geo.getOffsetForHeader)

@@ -11,4 +11,5 @@ struct CharactersState: Equatable {
     let navigationTitle: String = L10n.Characters.title
     var data: [CharacterModel] = []
     var grid: [Int] = []
+    var searchingRequest: String = ""
 }

@@ -69,7 +69,6 @@
 		C3CC729A2752B96E007FFC54 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CC72992752B96E007FFC54 /* SearchBar.swift */; };
 		C3CC729C2752B9E1007FFC54 /* FilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CC729B2752B9E1007FFC54 /* FilterButton.swift */; };
 		C3CC729E2752B9F9007FFC54 /* SearchAndFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CC729D2752B9F9007FFC54 /* SearchAndFilter.swift */; };
-		C3CC72A02752BA22007FFC54 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CC729F2752BA22007FFC54 /* NavigationView.swift */; };
 		C3CC72A22752BA5A007FFC54 /* CharactersScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CC72A12752BA5A007FFC54 /* CharactersScrollView.swift */; };
 		C3D0641B275A34C8003E9148 /* EpisodeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0641A275A34C8003E9148 /* EpisodeCard.swift */; };
 		C3D0641F275A5860003E9148 /* AppSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0641E275A585F003E9148 /* AppSegmentedControl.swift */; };
@@ -150,7 +149,6 @@
 		C3CC72992752B96E007FFC54 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		C3CC729B2752B9E1007FFC54 /* FilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButton.swift; sourceTree = "<group>"; };
 		C3CC729D2752B9F9007FFC54 /* SearchAndFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAndFilter.swift; sourceTree = "<group>"; };
-		C3CC729F2752BA22007FFC54 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
 		C3CC72A12752BA5A007FFC54 /* CharactersScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersScrollView.swift; sourceTree = "<group>"; };
 		C3D0641A275A34C8003E9148 /* EpisodeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCard.swift; sourceTree = "<group>"; };
 		C3D0641E275A585F003E9148 /* AppSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSegmentedControl.swift; sourceTree = "<group>"; };
@@ -475,7 +473,6 @@
 			isa = PBXGroup;
 			children = (
 				C3CC72A12752BA5A007FFC54 /* CharactersScrollView.swift */,
-				C3CC729F2752BA22007FFC54 /* NavigationView.swift */,
 				C3CC729D2752B9F9007FFC54 /* SearchAndFilter.swift */,
 				C3CC729B2752B9E1007FFC54 /* FilterButton.swift */,
 				C3CC72972752B8B8007FFC54 /* CharacterCard.swift */,
@@ -647,7 +644,6 @@
 			files = (
 				0679BEDF205A4DEC0058E8F3 /* Strings.swift in Sources */,
 				C3D08F4F2101B9B600FDC15E /* Assets.swift in Sources */,
-				C3CC72A02752BA22007FFC54 /* NavigationView.swift in Sources */,
 				063834571F6F62AC0057A831 /* ContentView.swift in Sources */,
 				6D3A04222170BE06007B6860 /* AppConfiguration.swift in Sources */,
 				6D6D7EA221F743FA000FFA4D /* Services.swift in Sources */,
@@ -677,7 +673,7 @@
 				3615AC9C579EC0230E764F13 /* LocationsReducer.swift in Sources */,
 				B25C9473FBAEBE9D308E0E82 /* EpisodesScreen.swift in Sources */,
 				111C50B0275791EC00A3D2B9 /* LocationsCardItem.swift in Sources */,
-				07DFC1475C222ADB1D7A10D3 /* EpisodesHelloComponent.swift in Sources */,
+				07DFC1475C222ADB1D7A10D3 /* EpisodesScrollView.swift in Sources */,
 				07DFC1475C222ADB1D7A10D3 /* EpisodesScrollView.swift in Sources */,
 				C3CC72A22752BA5A007FFC54 /* CharactersScrollView.swift in Sources */,
 				1148D5D6275399110047E20E /* LocationsCardComponent.swift in Sources */,
@@ -778,7 +774,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -832,7 +828,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -854,7 +850,7 @@
 				"DEBUG_INFORMATION_FORMAT[sdk=iphonesimulator*]" = dwarf;
 				DEVELOPMENT_TEAM = UNY6DAB8X7;
 				INFOPLIST_FILE = RickAndMorty/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -879,7 +875,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UNY6DAB8X7;
 				INFOPLIST_FILE = RickAndMorty/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -942,7 +938,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -962,7 +958,7 @@
 				"DEBUG_INFORMATION_FORMAT[sdk=iphonesimulator*]" = dwarf;
 				DEVELOPMENT_TEAM = UNY6DAB8X7;
 				INFOPLIST_FILE = RickAndMorty/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1027,7 +1023,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1047,7 +1043,7 @@
 				"DEBUG_INFORMATION_FORMAT[sdk=iphonesimulator*]" = dwarf;
 				DEVELOPMENT_TEAM = UNY6DAB8X7;
 				INFOPLIST_FILE = RickAndMorty/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1107,7 +1103,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = ADHOC;
@@ -1126,7 +1122,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UNY6DAB8X7;
 				INFOPLIST_FILE = RickAndMorty/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1184,7 +1180,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = ADHOC;
@@ -1203,7 +1199,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UNY6DAB8X7;
 				INFOPLIST_FILE = RickAndMorty/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1261,7 +1257,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APPSTORE;
@@ -1280,7 +1276,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UNY6DAB8X7;
 				INFOPLIST_FILE = RickAndMorty/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1339,7 +1335,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1357,7 +1353,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UNY6DAB8X7;
 				INFOPLIST_FILE = RickAndMorty/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

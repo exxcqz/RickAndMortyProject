@@ -18,7 +18,15 @@ struct LocationsScreen: View {
                         VStack(spacing: 0) {
                             StickyHeaderComponent(
                                 navigationImage: viewStore.state.navigationImage,
-                                navigationTitle: viewStore.state.navigationTitle
+                                navigationTitle: viewStore.state.navigationTitle,
+                                isFilterShown: true,
+                                searchingRequset: viewStore.binding(
+                                    get: {
+                                        $0.searchingRequest
+                                    }, send: {
+                                        LocationsAction.searchFor($0)
+                                    }
+                                )
                             )
                             VStack(spacing: 16) {
                                 ForEach(viewStore.state.locationsData, id: \.id) { card in
@@ -29,7 +37,7 @@ struct LocationsScreen: View {
                                     }
                                 }
                             }
-                            .padding(.vertical, 16)
+                            .padding(.vertical, Layout.scaleFactorH * 16)
                             .zIndex(0)
                         }
                     }

@@ -10,37 +10,40 @@ struct EpisodesScreen: View {
     let store: Store<EpisodesState, EpisodesAction>
 
     var body: some View {
-        WithViewStore(store) { viewStore in
-            ZStack {
-                Color(Asset.Colors.blackBG.color)
-                    .edgesIgnoringSafeArea(.all)
-                VStack(spacing: 0) {
-                    NavigationView(
-                        imageName: Asset.Illustrations.episodes.name,
-                        title: L10n.Episodes.title
-                    )
-                    SearchBar(
-                        searchText: viewStore.binding(
-                            get: {
-                                $0.searchingRequest
-                            }, send: {
-                                EpisodesAction.searchFor($0)
-                            }
-                        )
-                    ).frame(height: Layout.scaleFactorH * 52)
-                        .padding(.horizontal, Layout.scaleFactorW * 24)
-                        .padding(.top, Layout.scaleFactorH * 16)
-                        .padding(.bottom, Layout.scaleFactorH * 24)
-                    AppSegmentedControl(store: store)
-                        .padding(.bottom, Layout.scaleFactorH * 24)
-                    EpisodesScrollView(store: store)
-                    Spacer()
+        NavigationView {
+            WithViewStore(store) { viewStore in
+                ZStack {
+                    Color(Asset.Colors.blackBG.color)
+                        .edgesIgnoringSafeArea(.all)
+                    ScrollView(.vertical, showsIndicators: false) {
+                        VStack(spacing: 0) {
+                            StickyHeaderComponent(
+                                navigationImage: viewStore.state.navigationImage,
+                                navigationTitle: viewStore.state.navigationTitle,
+                                isFilterShown: false,
+                                searchingRequset: viewStore.binding(
+                                    get: {
+                                        $0.searchingRequest
+                                    }, send: {
+                                        EpisodesAction.searchFor($0)
+                                    }
+                                )
+                            )
+                            AppSegmentedControl(store: store)
+                                .padding(.top, Layout.scaleFactorH * 16)
+                                .padding(.bottom, Layout.scaleFactorH * 8)
+                            EpisodesScrollView(store: store)
+                                .padding(.vertical, Layout.scaleFactorH * 16)
+                                .zIndex(0)
+                        }
+                    }
+                }
+                .edgesIgnoringSafeArea(.all)
+                .onAppear {
+                    viewStore.send(.onAppear)
                 }
             }
-            .edgesIgnoringSafeArea(.all)
-            .onAppear {
-                viewStore.send(.onAppear)
-            }
+            .navigationBarHidden(true)
         }
     }
 }

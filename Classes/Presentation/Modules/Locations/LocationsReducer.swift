@@ -37,6 +37,9 @@ let locationsReducer = Reducer<LocationsState, LocationsAction, LocationsEnviron
         }
     case .goToLocationDetail(let location):
         print("Hello \(location.name)")
+    case .searchFor(let request):
+        state.searchingRequest = request
+        print("searching location: \(state.searchingRequest)")
     }
     return .none
 }

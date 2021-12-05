@@ -14,7 +14,7 @@ struct SearchAndFilter: View {
             SearchBar(searchText: $searchText)
             FilterButton()
         }
-        .frame(height: Layout.scaleFactorH * 52)
+        .frame(height: Layout.scaleFactorW * 52)
         .padding(.horizontal, Layout.scaleFactorW * 24)
         .padding(.top, Layout.scaleFactorH * 16)
         .padding(.bottom, Layout.scaleFactorH * 8)

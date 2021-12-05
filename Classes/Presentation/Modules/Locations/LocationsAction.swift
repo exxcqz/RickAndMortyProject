@@ -8,4 +8,5 @@ import SwiftUI
 enum LocationsAction: Equatable {
     case updateLocationsData
     case goToLocationDetail(LocationsCardItem)
+    case searchFor(String)
 }

@@ -3,7 +3,12 @@
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
+
+
+
 struct EpisodesState: Equatable {
+    let navigationImage: String = Asset.Illustrations.episodes.name
+    let navigationTitle: String = L10n.Episodes.title
     var data: [EpisodeModel] = []
     var filtredData: [EpisodeModel] = []
     var seasonsNumberArray: [Int] = []
