@@ -8,13 +8,12 @@ import SwiftUI
 
 struct CharactersScreen: View {
     let store: Store<CharactersState, CharactersAction>
-    
+
     var body: some View {
         NavigationView {
             WithViewStore(store) { viewStore in
                 ZStack {
                     Color(Asset.Colors.blackBG.color)
-                        .edgesIgnoringSafeArea(.all)
                     ScrollView(.vertical, showsIndicators: false) {
                         VStack(spacing: 0) {
                             StickyHeaderComponent(

@@ -14,7 +14,6 @@ struct EpisodesScreen: View {
             WithViewStore(store) { viewStore in
                 ZStack {
                     Color(Asset.Colors.blackBG.color)
-                        .edgesIgnoringSafeArea(.all) ///////
                     ScrollView(.vertical, showsIndicators: false) {
                         VStack(spacing: 0) {
                             StickyHeaderComponent(
