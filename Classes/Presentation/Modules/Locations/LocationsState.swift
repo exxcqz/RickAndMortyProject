@@ -8,5 +8,5 @@ import UIKit
 struct LocationsState: Equatable {
     let navigationImage: String = Asset.Illustrations.locations.name
     let navigationTitle: String = L10n.Locations.title
-    var locationsData: [LocationModel] = []
+    var locationsData: [Location] = []
 }

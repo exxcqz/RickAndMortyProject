@@ -8,7 +8,7 @@ import UIKit
 
 struct Locations: Decodable {
     let info: LocationsInfo
-    let results: [LocationModel]
+    let results: [Location]
 }
 
 struct LocationsInfo: Decodable {
@@ -18,7 +18,7 @@ struct LocationsInfo: Decodable {
     let prev: String?
 }
 
-struct LocationModel: Decodable, Equatable {
+struct Location: Decodable, Equatable {
     let id: Int
     let name: String
     let type: LocationType
@@ -37,7 +37,7 @@ struct LocationModel: Decodable, Equatable {
         case fantasyTown = "Fantasy town"
         case dream = "Dream"
 
-        var getLocationIcon: UIImage {
+        var icon: UIImage {
             switch self {
             case .planet:
                 return Asset.Icons.icPlanet.image
@@ -60,7 +60,7 @@ struct LocationModel: Decodable, Equatable {
     }
 }
 
-let locationCardModel = LocationModel(
+let locationCardModel = Location(
     id: 1,
     name: "Testicle Monster Dimension",
     type: .cluster,
@@ -70,4 +70,4 @@ let locationCardModel = LocationModel(
     created: "1"
 )
 
-let listLocations: [LocationModel] = Array(repeating: locationCardModel, count: 20)
+let listLocations: [Location] = Array(repeating: locationCardModel, count: 20)

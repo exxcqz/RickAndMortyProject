@@ -7,5 +7,5 @@ import SwiftUI
 
 enum LocationsAction: Equatable {
     case updateLocationsData
-    case didOpenLocationDetails(LocationModel)
+    case didOpenLocationDetails(Location)
 }
