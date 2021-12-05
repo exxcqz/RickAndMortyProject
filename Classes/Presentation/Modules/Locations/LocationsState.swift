@@ -9,6 +9,6 @@
 struct LocationsState: Equatable {
     let navigationImage: String = Asset.Illustrations.locations.name
     let navigationTitle: String = L10n.Locations.title
-    var locationsData: [LocationsCardItem] = []
+    var locationsData: [Location] = []
     var searchingRequest: String = ""
 }

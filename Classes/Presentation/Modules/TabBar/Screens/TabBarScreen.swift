@@ -43,7 +43,7 @@ struct TabBarScreen: View {
                                     uiImage: selection.wrappedValue == tabID
                                     ? viewStore.tabBarItems[tabID.rawValue].iconFilled
                                     : viewStore.tabBarItems[tabID.rawValue].icon
-                                )
+                                ).foregroundColor(Color(Asset.Colors.grayNormal.name))
                             }
                         )
                         Spacer()
