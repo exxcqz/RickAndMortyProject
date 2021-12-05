@@ -14,26 +14,33 @@ struct CharactersScrollView: View {
             VStack {
                 if !viewStore.grid.isEmpty {
                     ScrollView(.vertical, showsIndicators: false) {
-                        VStack(spacing : Layout.scaleFactorW * 16) {
-                            ForEach(viewStore.grid, id: \.self) { row in
-                                HStack(spacing: Layout.scaleFactorW * 16) {
-                                    ForEach(row...row+1, id: \.self) { column in
-                                        VStack {
-                                            if column != viewStore.data.count {
-                                                CharacterCard(
-                                                    store: store,
-                                                    data: viewStore.data[column]
-                                                )
+                        VStack(spacing:0) {
+                            StickyHeaderComponent(
+                                navigationImage: viewStore.state.navigationImage,
+                                navigationTitle: viewStore.state.navigationTitle
+                            )
+                            VStack(spacing : Layout.scaleFactorW * 16) {
+                                ForEach(viewStore.grid, id: \.self) { row in
+                                    HStack(spacing: Layout.scaleFactorW * 16) {
+                                        ForEach(row...row + 1, id: \.self) { column in
+                                            VStack {
+                                                if column != viewStore.data.count {
+                                                    CharacterCard(
+                                                        store: store,
+                                                        data: viewStore.data[column]
+                                                    )
+                                                }
                                             }
                                         }
-                                    }
-                                    if row == viewStore.grid.last! && viewStore.data.count % 2 != 0 {
-                                        Spacer(minLength: 0)
+                                        if row == viewStore.grid.last! && viewStore.data.count % 2 != 0 {
+                                            Spacer(minLength: 0)
+                                        }
                                     }
                                 }
                             }
+                            .padding(.vertical, 16)
+                            .padding(.horizontal, Layout.scaleFactorW * 23)
                         }
-                        .padding(.horizontal, Layout.scaleFactorW * 23)
                     }
                 }
             }

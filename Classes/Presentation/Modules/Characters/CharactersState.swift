@@ -7,6 +7,8 @@ import ComposableArchitecture
 import UIKit
 
 struct CharactersState: Equatable {
+    let navigationImage: String = Asset.Illustrations.characters.name
+    let navigationTitle: String = L10n.Characters.title
     var data: [CharacterModel] = []
     var grid: [Int] = []
 }
