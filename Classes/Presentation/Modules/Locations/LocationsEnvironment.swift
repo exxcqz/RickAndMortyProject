@@ -3,6 +3,4 @@
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
-struct LocationsEnvironment {
-
-}
+struct LocationsEnvironment {}

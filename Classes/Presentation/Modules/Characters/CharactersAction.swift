@@ -5,5 +5,6 @@
 
 enum CharactersAction: Equatable {
     case onAppear
-    case characterCardTapped(CharacterModel)
+    case characterCardSelected(Character)
+    case searchInputChanged(String)
 }

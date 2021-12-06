@@ -19,9 +19,19 @@ internal enum L10n {
   internal enum Episodes {
     /// Episodes
     internal static let title = L10n.tr("Localizable", "episodes.title")
+    internal enum SeasonCode {
+      /// Episode
+      internal static let episode = L10n.tr("Localizable", "episodes.seasonCode.episode")
+      /// Season
+      internal static let season = L10n.tr("Localizable", "episodes.seasonCode.season")
+      /// Unknown episode code
+      internal static let unknown = L10n.tr("Localizable", "episodes.seasonCode.unknown")
+    }
   }
 
   internal enum Filters {
+    /// All
+    internal static let all = L10n.tr("Localizable", "filters.all")
     /// Filters
     internal static let title = L10n.tr("Localizable", "filters.title")
     internal enum Action {

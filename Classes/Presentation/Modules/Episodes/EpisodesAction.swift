@@ -4,5 +4,8 @@
 //
 
 enum EpisodesAction: Equatable {
-
+    case onAppear
+    case seasonSelected(Int)
+    case episodeCardSelected(Episode)
+    case searchInputChanged(String)
 }
