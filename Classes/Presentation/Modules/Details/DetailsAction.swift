@@ -4,5 +4,5 @@
 //
 
 enum DetailsAction: Equatable {
-
+    case selectedDetailsChange(Details)
 }

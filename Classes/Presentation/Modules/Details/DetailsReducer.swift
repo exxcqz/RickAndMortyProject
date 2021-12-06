@@ -6,5 +6,9 @@
 import ComposableArchitecture
 
 let detailsReducer = Reducer<DetailsState, DetailsAction, DetailsEnvironment> { state, action, environment in
+    switch action {
+    case .selectedDetailsChange(let details):
+        state.selectedDetails = details
+    }
     return .none
 }
