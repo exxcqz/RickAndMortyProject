@@ -24,7 +24,7 @@ struct CharactersScreen: View {
                                     get: {
                                         $0.searchRequest
                                     }, send: {
-                                        CharactersAction.searchFor($0)
+                                        CharactersAction.searchInputChanged($0)
                                     }
                                 )
                             )

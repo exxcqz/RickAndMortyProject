@@ -12,7 +12,7 @@ let locationsReducer = Reducer<LocationsState, LocationsAction, LocationsEnviron
         state.locationsData = listLocations
     case .didOpenLocationDetails(let location):
         print("Hello \(location.name)")
-    case .searchFor(let request):
+    case .searchInputChanged(let request):
         state.searchRequest = request
         print("searching location: \(state.searchRequest)")
     }

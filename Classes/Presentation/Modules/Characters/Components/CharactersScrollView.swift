@@ -20,7 +20,7 @@ struct CharactersScrollView: View {
                                     VStack {
                                         if column != viewStore.data.count {
                                             NavigationLink(destination: DetailsHelloComponent()) {
-                                                CharacterCard(data: viewStore.data[column])
+                                                CharacterCard(сharacter: viewStore.data[column])
                                             }
                                         }
                                     }

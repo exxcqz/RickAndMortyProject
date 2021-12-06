@@ -5,9 +5,9 @@
 
 import Foundation
 
-struct GeneralRequest<ModelType: Decodable>: Decodable {
+struct GeneralRequest<T: Decodable>: Decodable {
     let info: RequestInfo
-    let results: [ModelType]
+    let results: [T]
 }
 
 struct RequestInfo: Decodable {

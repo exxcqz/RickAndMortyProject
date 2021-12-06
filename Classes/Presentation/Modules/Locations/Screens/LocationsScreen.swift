@@ -24,7 +24,7 @@ struct LocationsScreen: View {
                                     get: {
                                         $0.searchRequest
                                     }, send: {
-                                        LocationsAction.searchFor($0)
+                                        LocationsAction.searchInputChanged($0)
                                     }
                                 )
                             )

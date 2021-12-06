@@ -11,11 +11,15 @@
 
 // Episodes
 "episodes.title" = "Episodes";
+"episodes.seasonCode.season" = "Season";
+"episodes.seasonCode.episode" = "Episode";
+"episodes.seasonCode.unknown" = "Unknown episode code";
 
 // Filter
 "filters.title" = "Filters";
 "filters.action.reset_all" = "Reset all";
 "filters.action.apply" = "Apply";
+"filters.all" = "All";
 
 // Placeholder
 "placeholder.search" = "Search";

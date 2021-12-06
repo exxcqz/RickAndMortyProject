@@ -11,6 +11,6 @@ struct EpisodesState: Equatable {
     var seasonsNumberArray: [Int] = []
     var filteredSeasonsNumberArray: [Int] = []
     var selectedSeasonIndex: Int = 0
-    var seasonsTitles: [String] = ["All"]
+    var seasonsTitles: [String] = [L10n.Filters.all]
     var searchRequest: String = ""
 }

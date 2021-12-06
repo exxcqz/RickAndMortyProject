@@ -24,7 +24,7 @@ struct EpisodesScreen: View {
                                     get: {
                                         $0.searchRequest
                                     }, send: {
-                                        EpisodesAction.searchFor($0)
+                                        EpisodesAction.searchInputChanged($0)
                                     }
                                 )
                             )

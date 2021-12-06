@@ -6,5 +6,5 @@
 enum CharactersAction: Equatable {
     case onAppear
     case characterCardSelected(Character)
-    case searchFor(String)
+    case searchInputChanged(String)
 }

@@ -6,13 +6,14 @@
 import SwiftUI
 
 struct EpisodeCard: View {
-    let data: Episode
+    let episode: Episode
+
     var episodeCodeReadable: String {
-        guard let episode = data.convertedEpisodeCode?.episodeNumber,
-              let season = data.convertedEpisodeCode?.seasonNumber else {
-            return "Unknown episode code"
+        guard let episodeNumber = episode.convertedEpisodeCode?.episodeNumber,
+              let seasonNumber = episode.convertedEpisodeCode?.seasonNumber else {
+            return L10n.Episodes.SeasonCode.unknown
         }
-        return "Episode: \(episode), Season: \(season)"
+        return "\(L10n.Episodes.SeasonCode.episode): \(episodeNumber), \(L10n.Episodes.SeasonCode.season): \(seasonNumber)"
     }
 
     var body: some View {
@@ -22,7 +23,7 @@ struct EpisodeCard: View {
                 .foregroundColor(Color(Asset.Colors.blackCard.name))
             VStack(spacing: 0) {
                 HStack {
-                    Text(data.name)
+                    Text(episode.name)
                         .font(Font.appFontSemibold(ofSize: Layout.scaleFactorW * 17))
                         .foregroundColor(.white)
                         .kerning(-0.41)
@@ -39,7 +40,7 @@ struct EpisodeCard: View {
                         .padding(.leading, Layout.scaleFactorW * 15.25)
                         .frame(height: Layout.scaleFactorW * 18)
                     Spacer()
-                    Text(data.date)
+                    Text(episode.date)
                         .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 12))
                         .foregroundColor(Color(Asset.Colors.grayDark.name))
                         .padding(.trailing, Layout.scaleFactorW * 15.86)
@@ -59,7 +60,7 @@ struct EpisodeCard_Previews: PreviewProvider {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing : Layout.scaleFactorW * 16) {
                         HStack(spacing: Layout.scaleFactorW * 16) {
-                            EpisodeCard(data: dummyEpisodesArray[0])
+                            EpisodeCard(episode: dummyEpisodesArray[0])
                         }
                     }
                     .padding(.horizontal, Layout.scaleFactorW * 23)

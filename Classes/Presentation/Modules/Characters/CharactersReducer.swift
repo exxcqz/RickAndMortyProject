@@ -17,7 +17,7 @@ let charactersReducer = Reducer<CharactersState, CharactersAction, CharactersEnv
         print("number of rows for grid: \(state.grid.count)")
     case .characterCardSelected(let character):
         print("character \(character.name) selected")
-    case .searchFor(let request):
+    case .searchInputChanged(let request):
         state.searchRequest = request
         print("searching character: \(state.searchRequest)")
     }

@@ -19,7 +19,8 @@ struct AppSegmentedControl: View {
                                 withAnimation {
                                     viewStore.send(.seasonSelected(index))
                                 }
-                            }, label: {
+                            },
+                            label: {
                                 Text(viewStore.seasonsTitles[index])
                                     .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
                                     .foregroundColor(

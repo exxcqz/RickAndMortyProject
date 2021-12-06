@@ -26,7 +26,7 @@ struct EpisodesScrollView: View {
                                 if seasonTitle == seasonNumber {
                                     HStack(spacing: Layout.scaleFactorW * 16) {
                                         NavigationLink(destination: DetailsHelloComponent()) {
-                                            EpisodeCard(data: episode)
+                                            EpisodeCard(episode: episode)
                                         }
                                     }
                                 }

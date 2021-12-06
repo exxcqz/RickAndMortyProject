@@ -24,7 +24,7 @@ let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment
         print("number of seasons: \(state.seasonsNumberArray.count)")
         if state.seasonsTitles.count == 1 {
             state.seasonsNumberArray.forEach { index in
-                state.seasonsTitles.append("Season \(index)")
+                state.seasonsTitles.append("\(L10n.Episodes.SeasonCode.season) \(index)")
             }
         }
         if state.filteredData.isEmpty {
@@ -51,7 +51,7 @@ let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment
         print("Filter: \(state.seasonsTitles[state.selectedSeasonIndex])")
     case .episodeCardSelected(let episode):
         print("episode \(episode.name) selected")
-    case .searchFor(let request):
+    case .searchInputChanged(let request):
         state.searchRequest = request
         print("searching episode: \(state.searchRequest)")
     }

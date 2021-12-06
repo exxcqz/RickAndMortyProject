@@ -6,5 +6,5 @@
 enum LocationsAction: Equatable {
     case updateLocationsData
     case didOpenLocationDetails(Location)
-    case searchFor(String)
+    case searchInputChanged(String)
 }
