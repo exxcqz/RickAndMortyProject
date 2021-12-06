@@ -10,18 +10,36 @@ struct CharactersScreen: View {
     let store: Store<CharactersState, CharactersAction>
 
     var body: some View {
-        WithViewStore(self.store) { viewStore in
-            ZStack {
-                Color(Asset.Colors.blackBG.color)
-                    .edgesIgnoringSafeArea(.all)
-                VStack(spacing: 0) {
-                    CharactersScrollView(store: store)
+        NavigationView {
+            WithViewStore(store) { viewStore in
+                ZStack {
+                    Color(Asset.Colors.blackBG.color)
+                    ScrollView(.vertical, showsIndicators: false) {
+                        VStack(spacing: 0) {
+                            StickyHeaderComponent(
+                                navigationImage: viewStore.state.navigationImage,
+                                navigationTitle: viewStore.state.navigationTitle,
+                                isFilterHidden: true,
+                                searchRequest: viewStore.binding(
+                                    get: {
+                                        $0.searchRequest
+                                    }, send: {
+                                        CharactersAction.searchInputChanged($0)
+                                    }
+                                )
+                            )
+                            CharactersScrollView(store: store)
+                                .padding(.vertical, Layout.scaleFactorH * 16)
+                                .zIndex(0)
+                        }
+                    }
+                }
+                .edgesIgnoringSafeArea(.all)
+                .onAppear {
+                    viewStore.send(.onAppear)
                 }
             }
-            .edgesIgnoringSafeArea([.top, .horizontal])
-            .onAppear {
-                viewStore.send(.onAppear)
-            }
+            .navigationBarHidden(true)
         }
     }
 }

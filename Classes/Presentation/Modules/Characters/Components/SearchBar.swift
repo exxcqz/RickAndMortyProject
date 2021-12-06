@@ -1,41 +1,16 @@
 //
-//  Created by Александр Васильевич on 27.11.2021
+//  Created by Alexander Loshakov on 27.11.2021
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
 import SwiftUI
 
 struct SearchBar: View {
-    @Binding var searchText: String
-    @State private var isEditing: Bool = false
-    @State private var isSearching: Bool = false
+    @Binding var searchRequest: String
 
     var body: some View {
         HStack {
-            TextField(
-                "",
-                text: $searchText,
-                onEditingChanged: { startedEditing in
-                    if startedEditing {
-                        withAnimation {
-                            if startedEditing {
-                                isSearching = true
-                                isEditing = true
-                            }
-                        }
-                    }
-                },
-                onCommit: {
-                    withAnimation {
-                        if searchText.isEmpty {
-                            isEditing = false
-                            isSearching = false
-                        } else {
-                            print("searching: \(searchText)")
-                        }
-                    }
-                }
-            ).placeholder(when: searchText.isEmpty) {
+            TextField("", text: $searchRequest).placeholder(when: searchRequest.isEmpty) {
                 HStack {
                     Image(Asset.Icons.icSearchSmall.name)
                         .renderingMode(.template)
@@ -62,7 +37,6 @@ struct SearchBar: View {
 }
 
 // MARK: -  Custom Placeholder
-
 extension View {
     func placeholder<Content: View>(
         when shouldShow: Bool,
@@ -76,7 +50,6 @@ extension View {
 }
 
 // MARK: -  Dismiss Keyboard
-
 extension UIApplication {
     func dismissKeyboard() {
         sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
