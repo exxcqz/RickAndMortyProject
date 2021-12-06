@@ -6,8 +6,8 @@
 struct CharactersState: Equatable {
     let navigationImage: String = Asset.Illustrations.characters.name
     let navigationTitle: String = L10n.Characters.title
-    var data: [CharacterModel] = []
-    var filteredData: [CharacterModel] = []
+    var data: [Character] = []
+    var filteredData: [Character] = []
     var grid: [Int] = []
     var searchRequest: String = ""
 }

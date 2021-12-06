@@ -6,7 +6,7 @@
 import SwiftUI
 
 struct CharacterCard: View {
-    let data: CharacterModel
+    let data: Character
 
     var body: some View {
         ZStack {

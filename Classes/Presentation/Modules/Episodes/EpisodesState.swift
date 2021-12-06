@@ -6,8 +6,8 @@
 struct EpisodesState: Equatable {
     let navigationImage: String = Asset.Illustrations.episodes.name
     let navigationTitle: String = L10n.Episodes.title
-    var data: [EpisodeModel] = []
-    var filteredData: [EpisodeModel] = []
+    var data: [Episode] = []
+    var filteredData: [Episode] = []
     var seasonsNumberArray: [Int] = []
     var filteredSeasonsNumberArray: [Int] = []
     var selectedSeasonIndex: Int = 0

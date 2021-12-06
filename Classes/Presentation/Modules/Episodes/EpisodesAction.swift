@@ -6,6 +6,6 @@
 enum EpisodesAction: Equatable {
     case onAppear
     case seasonSelected(Int)
-    case episodeCardSelected(EpisodeModel)
+    case episodeCardSelected(Episode)
     case searchFor(String)
 }

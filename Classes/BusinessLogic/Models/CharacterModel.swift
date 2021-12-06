@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct CharacterModel: Decodable, Equatable {
+struct Character: Decodable, Equatable {
     let id: Int
     let name: String
     let status: String
@@ -25,8 +25,7 @@ struct CharacterLocation: Decodable, Equatable {
     let url: String
 }
 
-// MARK: -  dummyModel of Character (Image is dummy too)
-let dummyCharacterModel = CharacterModel(
+let dummyCharacterModel = Character(
     id: 1,
     name: "Rick Sanchez",
     status: "Alive",
@@ -50,4 +49,4 @@ let dummyCharacterModel = CharacterModel(
     created: "2017-11-04T18:48:46.250Z"
 )
 
-let dummyCharactersArray: [CharacterModel] = Array(repeating: dummyCharacterModel, count: 9)
+let dummyCharactersArray: [Character] = Array(repeating: dummyCharacterModel, count: 9)

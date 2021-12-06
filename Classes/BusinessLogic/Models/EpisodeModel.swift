@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct EpisodeModel: Decodable, Equatable {
+struct Episode: Decodable, Equatable {
     let id: Int
     let name: String
     let date: String
@@ -39,9 +39,8 @@ struct EpisodeModel: Decodable, Equatable {
     }
 }
 
-// MARK: -  Array of dummyModel of Episode
-let dummyEpisodesArray: [EpisodeModel] = [
-    EpisodeModel(
+let dummyEpisodesArray: [Episode] = [
+    Episode(
         id: 11,
         name: "Ricksy Business",
         date: "April 14, 2014",
@@ -50,7 +49,7 @@ let dummyEpisodesArray: [EpisodeModel] = [
         url: "https://rickandmortyapi.com/api/episode/11",
         created: "2017-11-10T12:56:34.850Z"
     ),
-    EpisodeModel(
+    Episode(
         id: 1,
         name: "Pilot",
         date: "December 2, 2013",
@@ -59,7 +58,7 @@ let dummyEpisodesArray: [EpisodeModel] = [
         url: "https://rickandmortyapi.com/api/episode/1",
         created: "2017-11-10T12:56:33.798Z"
     ),
-    EpisodeModel(
+    Episode(
         id: 39,
         name: "The Vat of Acid Episode",
         date: "May 17, 2020",
@@ -68,7 +67,7 @@ let dummyEpisodesArray: [EpisodeModel] = [
         url: "https://rickandmortyapi.com/api/episode/39",
         created: "2020-08-06T05:51:07.419Z"
     ),
-    EpisodeModel(
+    Episode(
         id: 45,
         name: "Rickdependence Spray",
         date: "July 11, 2021",

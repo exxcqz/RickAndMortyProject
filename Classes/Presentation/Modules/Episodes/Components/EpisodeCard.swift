@@ -6,7 +6,7 @@
 import SwiftUI
 
 struct EpisodeCard: View {
-    let data: EpisodeModel
+    let data: Episode
     var episodeCodeReadable: String {
         guard let episode = data.convertedEpisodeCode?.episodeNumber,
               let season = data.convertedEpisodeCode?.seasonNumber else {
