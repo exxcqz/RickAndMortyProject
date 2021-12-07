@@ -8,6 +8,7 @@ import SwiftUI
 
 struct CharacterDetailsView: View {
     let store: Store<DetailsState, DetailsAction>
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -15,15 +16,28 @@ struct CharacterDetailsView: View {
                 Color(Asset.Colors.blackBG.name)
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .center, spacing: 0) {
+                        HStack(spacing: 0) {
+                            Button(
+                                action: {
+                                    self.presentationMode.wrappedValue.dismiss()
+                                }, label: {
+                                    Image(Asset.Icons.icBack.name)
+                                }
+                            )
+                                .padding(.leading, 33)
+                                .padding(.top, 66)
+                            Spacer()
+                        }
+                        .frame(height: 92)
                         DetailsHeaderComponent(
-                            image: viewStore.character.image,
-                            name: viewStore.character.name,
-                            status: viewStore.character.status
-                        )
+                            image: viewStore.characters[0].image,
+                            name: viewStore.characters[0].name,
+                            status: viewStore.characters[0].status
+                        ).padding(.top, 16)
                         DetailsInfoComponent(
-                            species: viewStore.character.species,
-                            type: viewStore.character.type,
-                            gender: viewStore.character.gender
+                            species: viewStore.characters[0].species,
+                            type: viewStore.characters[0].type,
+                            gender: viewStore.characters[0].gender
                         ).padding(.top, 24)
                         HStack {
                             Text("Origin")
@@ -47,32 +61,8 @@ struct CharacterDetailsView: View {
                         .padding(.leading, 24)
                         VStack(spacing: 16) {
                             ForEach(viewStore.episodes, id: \.id) { episode in
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 16)
-                                        .foregroundColor(Color(Asset.Colors.blackCard.name))
-                                        .frame(width: Layout.scaleFactorW * 327, height: 86)
-                                    VStack(spacing: 16) {
-                                        HStack {
-                                            Text(episode.name)
-                                                .font(Font.appFontSemibold(ofSize: 17))
-                                                .frame(height: 22)
-                                                .foregroundColor(.white)
-                                            Spacer()
-                                        }
-                                        HStack {
-                                            Text(episode.convertedEpisodeCode)
-                                                .font(Font.appFontMedium(ofSize: 13))
-                                                .frame(height: 18)
-                                                .foregroundColor(Color(Asset.Colors.primary.name))
-                                            Spacer()
-                                            Text(episode.date)
-                                                .font(Font.appFontMedium(ofSize: 12))
-                                                .frame(height: 16)
-                                                .foregroundColor(Color(Asset.Colors.grayDark.name))
-                                        }
-                                    }
-                                    .padding(.horizontal, 39.25)
-                                }
+                                EpisodeCard(episode: episode)
+                                    .padding(.horizontal, 24)
                             }
                         }
                         .padding(.top, 16)
@@ -81,11 +71,12 @@ struct CharacterDetailsView: View {
                 }
             }
             .edgesIgnoringSafeArea(.all)
-            .navigationBarBackButtonHidden(true)
-            .navigationBarItems(leading: Image(Asset.Icons.icBack.name))
+            .navigationBarHidden(true)
         }
     }
 }
+
+// MARK: -  Check for empty value
 
 extension String {
 

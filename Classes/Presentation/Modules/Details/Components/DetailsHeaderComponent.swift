@@ -16,7 +16,6 @@ struct DetailsHeaderComponent: View {
                 .resizable()
                 .cornerRadius(16)
                 .frame(width: 148, height: 148)
-                .padding(.top, 108)
             Text(name)
                 .font(Font.appFontBold(ofSize: 22))
                 .foregroundColor(.white)

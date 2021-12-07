@@ -12,7 +12,18 @@ struct DetailsScreen: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
-                DetailsHelloComponent()
+                switch viewStore.selectedDetails {
+                case .character:
+                    CharacterDetailsView(store: Store(
+                        initialState: DetailsState(),
+                        reducer: detailsReducer,
+                        environment: DetailsEnvironment()
+                    ))
+                case .location:
+                    DetailsHelloComponent()
+                case .episode:
+                    DetailsHelloComponent()
+                }
             }
         }
     }

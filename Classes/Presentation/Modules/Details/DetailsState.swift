@@ -3,9 +3,11 @@
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
+import SwiftUI
+
 struct DetailsState: Equatable {
     var selectedDetails: Details = .character
-    var character: CharacterModel = dummyCharactersArray[0]
+    var characters: [Character] = dummyCharactersArray
     var location: Location = listLocations[0]
     var episodes: [Episode] = dummyEpisodesArray
 }
