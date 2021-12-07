@@ -52,7 +52,7 @@ let locationCardModel = Location(
     id: 1,
     name: "Testicle Monster Dimension",
     type: .cluster,
-    dimension: "1",
+    dimension: "C-137",
     residents: ["1"],
     url: "1",
     created: "1"

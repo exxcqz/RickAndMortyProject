@@ -1,12 +1,12 @@
 //
-//  Created by Nikita Gavrikov on 05.12.2021
+//  Created by Nikita Gavrikov on 07.12.2021
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
 import ComposableArchitecture
 import SwiftUI
 
-struct CharacterDetailsView: View {
+struct DetailsCharacterComponent: View {
     let store: Store<DetailsState, DetailsAction>
     @Environment(\.presentationMode) var presentationMode
 

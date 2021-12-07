@@ -14,13 +14,17 @@ struct DetailsScreen: View {
             VStack {
                 switch viewStore.selectedDetails {
                 case .character:
-                    CharacterDetailsView(store: Store(
+                    DetailsCharacterComponent(store: Store(
                         initialState: DetailsState(),
                         reducer: detailsReducer,
                         environment: DetailsEnvironment()
                     ))
                 case .location:
-                    DetailsHelloComponent()
+                    DetailsLocationComponent(store: Store(
+                        initialState: DetailsState(),
+                        reducer: detailsReducer,
+                        environment: DetailsEnvironment()
+                    ))
                 case .episode:
                     DetailsHelloComponent()
                 }
