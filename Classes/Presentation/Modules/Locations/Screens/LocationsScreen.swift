@@ -31,11 +31,13 @@ struct LocationsScreen: View {
                             VStack(spacing: 16) {
                                 ForEach(viewStore.state.locationsData, id: \.id) { card in
                                     NavigationLink {
-                                        DetailsScreen(store: Store(
-                                            initialState: DetailsState(selectedDetails: .location),
-                                            reducer: detailsReducer,
-                                            environment: DetailsEnvironment()
-                                        ))
+                                        DetailsScreen(
+                                            store: Store(
+                                                initialState: DetailsState(selectedDetails: .location),
+                                                reducer: detailsReducer,
+                                                environment: DetailsEnvironment()
+                                            )
+                                        )
                                     } label: {
                                         LocationsCardComponent(locationDetail: card)
                                     }

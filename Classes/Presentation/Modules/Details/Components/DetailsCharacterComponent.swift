@@ -8,7 +8,6 @@ import SwiftUI
 
 struct DetailsCharacterComponent: View {
     let store: Store<DetailsState, DetailsAction>
-    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -16,24 +15,11 @@ struct DetailsCharacterComponent: View {
                 Color(Asset.Colors.blackBG.name)
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .center, spacing: 0) {
-                        HStack(spacing: 0) {
-                            Button(
-                                action: {
-                                    self.presentationMode.wrappedValue.dismiss()
-                                }, label: {
-                                    Image(Asset.Icons.icBack.name)
-                                }
-                            )
-                                .padding(.leading, 33)
-                                .padding(.top, 66)
-                            Spacer()
-                        }
-                        .frame(height: 92)
                         DetailsHeaderComponent(
                             image: viewStore.characters[0].image,
                             name: viewStore.characters[0].name,
                             status: viewStore.characters[0].status
-                        ).padding(.top, 16)
+                        ).padding(.top, 108)
                         DetailsInfoComponent(
                             species: viewStore.characters[0].species,
                             type: viewStore.characters[0].type,
@@ -70,8 +56,11 @@ struct DetailsCharacterComponent: View {
                     }
                 }
             }
-            .edgesIgnoringSafeArea(.all)
             .navigationBarHidden(true)
+            .overlay(
+                DetailsNavigationBarComponent()
+            )
+            .edgesIgnoringSafeArea(.all)
         }
     }
 }

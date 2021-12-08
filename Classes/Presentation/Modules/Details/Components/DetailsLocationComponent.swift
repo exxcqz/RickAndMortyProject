@@ -8,7 +8,6 @@ import SwiftUI
 
 struct DetailsLocationComponent: View {
     let store: Store<DetailsState, DetailsAction>
-    @Environment(\.presentationMode) var presentationMode
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
 
     var body: some View {
@@ -17,19 +16,6 @@ struct DetailsLocationComponent: View {
                 Color(Asset.Colors.blackBG.name)
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .center, spacing: 0) {
-                        HStack(spacing: 0) {
-                            Button(
-                                action: {
-                                    self.presentationMode.wrappedValue.dismiss()
-                                }, label: {
-                                    Image(Asset.Icons.icBack.name)
-                                }
-                            )
-                                .padding(.leading, 33)
-                                .padding(.top, 66)
-                            Spacer()
-                        }
-                        .frame(height: 92)
                         VStack(spacing: 0) {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 16)
@@ -45,7 +31,7 @@ struct DetailsLocationComponent: View {
                                 .frame(height: 25)
                                 .padding(.top, 24)
                         }
-                        .padding(.top, 16)
+                        .padding(.top, 108)
 
                         VStack(spacing: 16) {
                             HStack {
@@ -119,8 +105,11 @@ struct DetailsLocationComponent: View {
                     }
                 }
             }
-            .edgesIgnoringSafeArea(.all)
             .navigationBarHidden(true)
+            .overlay(
+                DetailsNavigationBarComponent()
+            )
+            .edgesIgnoringSafeArea(.all)
         }
     }
 }
