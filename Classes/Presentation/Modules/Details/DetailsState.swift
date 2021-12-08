@@ -10,6 +10,7 @@ struct DetailsState: Equatable {
     var characters: [Character] = dummyCharactersArray
     var location: Location = listLocations[0]
     var episodes: [Episode] = dummyEpisodesArray
+    var episode: Episode = dummyEpisodesArray[1]
 }
 
 enum Details: Int, Hashable, CaseIterable {

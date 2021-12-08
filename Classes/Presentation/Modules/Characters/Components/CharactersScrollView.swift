@@ -19,9 +19,7 @@ struct CharactersScrollView: View {
                                 ForEach(row...row + 1, id: \.self) { column in
                                     VStack {
                                         if column != viewStore.data.count {
-                                            NavigationLink(destination: DetailsHelloComponent()) {
-                                                CharacterCard(сharacter: viewStore.data[column])
-                                            }
+                                            CharacterCard(сharacter: viewStore.data[column])
                                         }
                                     }
                                 }

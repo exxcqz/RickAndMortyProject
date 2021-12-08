@@ -25,7 +25,13 @@ struct EpisodesScrollView: View {
                             if let (_, seasonNumber) = episode.convertedEpisodeCode {
                                 if seasonTitle == seasonNumber {
                                     HStack(spacing: Layout.scaleFactorW * 16) {
-                                        NavigationLink(destination: DetailsHelloComponent()) {
+                                        NavigationLink {
+                                            DetailsEpisodeComponent(store: Store(
+                                                initialState: DetailsState(selectedDetails: .episode, episode: episode),
+                                                reducer: detailsReducer,
+                                                environment: DetailsEnvironment()
+                                            ))
+                                        } label: {
                                             EpisodeCard(episode: episode)
                                         }
                                     }

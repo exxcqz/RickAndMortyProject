@@ -102,7 +102,15 @@ struct DetailsLocationComponent: View {
 
                         LazyVGrid(columns: columns, spacing: 16) {
                             ForEach(0...8, id: \.self) { character in
-                                CharacterCard(сharacter: viewStore.characters[character])
+                                NavigationLink {
+                                    DetailsScreen(store: Store(
+                                        initialState: DetailsState(selectedDetails: .character),
+                                        reducer: detailsReducer,
+                                        environment: DetailsEnvironment()
+                                    ))
+                                } label: {
+                                    CharacterCard(сharacter: viewStore.characters[character])
+                                }
                             }
                         }
                         .padding(.horizontal, 24)

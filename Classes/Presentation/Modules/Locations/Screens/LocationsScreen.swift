@@ -32,7 +32,7 @@ struct LocationsScreen: View {
                                 ForEach(viewStore.state.locationsData, id: \.id) { card in
                                     NavigationLink {
                                         DetailsScreen(store: Store(
-                                            initialState: DetailsState(selectedDetails: .character),
+                                            initialState: DetailsState(selectedDetails: .location),
                                             reducer: detailsReducer,
                                             environment: DetailsEnvironment()
                                         ))

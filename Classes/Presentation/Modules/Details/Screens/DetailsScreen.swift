@@ -26,7 +26,11 @@ struct DetailsScreen: View {
                         environment: DetailsEnvironment()
                     ))
                 case .episode:
-                    DetailsHelloComponent()
+                    DetailsEpisodeComponent(store: Store(
+                        initialState: DetailsState(),
+                        reducer: detailsReducer,
+                        environment: DetailsEnvironment()
+                    ))
                 }
             }
         }
