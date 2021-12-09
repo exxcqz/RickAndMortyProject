@@ -15,16 +15,22 @@ struct DetailsCharacterComponent: View {
                 Color(Asset.Colors.blackBG.name)
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .center, spacing: 0) {
+
                         DetailsHeaderComponent(
-                            image: viewStore.characters[0].image,
-                            name: viewStore.characters[0].name,
-                            status: viewStore.characters[0].status
+                            currentDetails: viewStore.selectedDetails,
+                            episode: viewStore.episode,
+                            character: viewStore.character,
+                            location: viewStore.location
                         ).padding(.top, 108)
+
                         DetailsInfoComponent(
-                            species: viewStore.characters[0].species,
-                            type: viewStore.characters[0].type,
-                            gender: viewStore.characters[0].gender
+                            currentDetails: viewStore.selectedDetails,
+                            episode: viewStore.episode,
+                            character: viewStore.character,
+                            location: viewStore.location
                         ).padding(.top, 24)
+
+                        if viewStore.selectedDetails == .character {
                         HStack {
                             Text("Origin")
                                 .font(Font.appFontSemibold(ofSize: 17))
@@ -36,21 +42,32 @@ struct DetailsCharacterComponent: View {
                         .padding(.leading, 24)
                         LocationsCardComponent(locationDetail: viewStore.location)
                             .padding(.top, 16)
-                        HStack {
-                            Text("Episodes")
-                                .font(Font.appFontSemibold(ofSize: 17))
-                                .foregroundColor(.white)
-                                .frame(height: 22)
-                            Spacer()
                         }
-                        .padding(.top, 24)
-                        .padding(.leading, 24)
-                        VStack(spacing: 16) {
-                            ForEach(viewStore.episodes, id: \.id) { episode in
-                                EpisodeCard(episode: episode)
-                                    .padding(.horizontal, 24)
-                            }
-                        }
+
+//                        HStack {
+//                            Text("Episodes")
+//                                .font(Font.appFontSemibold(ofSize: 17))
+//                                .foregroundColor(.white)
+//                                .frame(height: 22)
+//                            Spacer()
+//                        }
+//                        .padding(.top, 24)
+//                        .padding(.leading, 24)
+//                        VStack(spacing: 16) {
+//                            ForEach(viewStore.episodes, id: \.id) { episode in
+//                                EpisodeCard(episode: episode)
+//                                    .padding(.horizontal, 24)
+//                            }
+//                        }
+                        
+                        DetailsScrollComponent(
+                            store: Store(
+                                initialState: DetailsState(selectedDetails: .location),
+                                reducer: detailsReducer,
+                                environment: DetailsEnvironment()
+                            ),
+                            currentDetails: viewStore.selectedDetails
+                        )
                         .padding(.top, 16)
                         .padding(.bottom, 16)
                     }

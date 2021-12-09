@@ -26,7 +26,7 @@ struct EpisodesScrollView: View {
                                 if seasonTitle == seasonNumber {
                                     HStack(spacing: Layout.scaleFactorW * 16) {
                                         NavigationLink {
-                                            DetailsEpisodeComponent(store: Store(
+                                            DetailsScreen(store: Store(
                                                 initialState: DetailsState(selectedDetails: .episode, episode: episode),
                                                 reducer: detailsReducer,
                                                 environment: DetailsEnvironment()

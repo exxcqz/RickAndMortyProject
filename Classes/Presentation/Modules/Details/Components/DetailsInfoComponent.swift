@@ -6,9 +6,10 @@
 import SwiftUI
 
 struct DetailsInfoComponent: View {
-    let species: String
-    let type: String
-    let gender: String
+    let currentDetails: Details
+    let episode: Episode
+    let character: Character
+    let location: Location
 
     var body: some View {
         VStack(spacing: 16) {
@@ -22,40 +23,42 @@ struct DetailsInfoComponent: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 16)
                     .foregroundColor(Color(Asset.Colors.blackCard.name))
-                    .frame(width: Layout.scaleFactorW * 327, height: 124)
+                    .frame(width: Layout.scaleFactorW * 327, height: getHeight)
                 VStack(spacing: 16) {
                     HStack {
-                        Text("Species:")
+                        Text(getTitleInfo.firstTitle)
                             .font(Font.appFontMedium(ofSize: 16))
                             .foregroundColor(Color(Asset.Colors.grayNormal.name))
                             .frame(height: 20)
                         Spacer()
-                        Text(species)
+                        Text(getValue.firstValue)
                             .font(Font.appFontMedium(ofSize: 16))
                             .foregroundColor(.white)
                             .frame(height: 20)
                     }
                     HStack {
-                        Text("Type:")
+                        Text(getTitleInfo.secndTitle)
                             .font(Font.appFontMedium(ofSize: 16))
                             .foregroundColor(Color(Asset.Colors.grayNormal.name))
                             .frame(height: 20)
                         Spacer()
-                        Text(type.checkEmpty)
+                        Text(getValue.secondValue)
                             .font(Font.appFontMedium(ofSize: 16))
                             .foregroundColor(.white)
                             .frame(height: 20)
                     }
-                    HStack {
-                        Text("Gender:")
-                            .font(Font.appFontMedium(ofSize: 16))
-                            .foregroundColor(Color(Asset.Colors.grayNormal.name))
-                            .frame(height: 20)
-                        Spacer()
-                        Text(gender)
-                            .font(Font.appFontMedium(ofSize: 16))
-                            .foregroundColor(.white)
-                            .frame(height: 20)
+                    if !getTitleInfo.threeTitle.isEmpty {
+                        HStack {
+                            Text(getTitleInfo.threeTitle)
+                                .font(Font.appFontMedium(ofSize: 16))
+                                .foregroundColor(Color(Asset.Colors.grayNormal.name))
+                                .frame(height: 20)
+                            Spacer()
+                            Text(getValue.threeValue)
+                                .font(Font.appFontMedium(ofSize: 16))
+                                .foregroundColor(.white)
+                                .frame(height: 20)
+                        }
                     }
                 }
                 .padding(.horizontal, 16)
@@ -63,5 +66,41 @@ struct DetailsInfoComponent: View {
             }
         }
         .padding(.horizontal, 24)
+    }
+}
+
+extension DetailsInfoComponent {
+
+    var getHeight: CGFloat {
+        switch currentDetails {
+        case .character:
+            return 124
+        case .location:
+            return 96
+        case .episode:
+            return 136
+        }
+    }
+
+    var getTitleInfo: (firstTitle: String, secndTitle: String, threeTitle: String) {
+        switch currentDetails {
+        case .character:
+            return ("Species:", "Type:", "Gender:")
+        case .location:
+            return ("Type:", "Dimension:", "")
+        case .episode:
+            return ("Episode:", "Season:", "Air date:")
+        }
+    }
+
+    var getValue: (firstValue: String, secondValue: String, threeValue: String) {
+        switch currentDetails {
+        case .character:
+            return (character.species, character.type.checkEmpty, character.gender)
+        case .location:
+            return (location.type.rawValue, location.dimension, "")
+        case .episode:
+            return (episode.episodeCode, episode.episodeCode, episode.date)
+        }
     }
 }

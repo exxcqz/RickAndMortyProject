@@ -7,10 +7,12 @@ import SwiftUI
 
 struct DetailsState: Equatable {
     var selectedDetails: Details = .character
-    var characters: [Character] = dummyCharactersArray
+    var character: Character = dummyCharactersArray[0]
     var location: Location = listLocations[0]
+    var episode: Episode = dummyEpisodesArray[0]
+    var characters: [Character] = dummyCharactersArray
+    var locations: [Location] = listLocations
     var episodes: [Episode] = dummyEpisodesArray
-    var episode: Episode = dummyEpisodesArray[1]
 }
 
 enum Details: Int, Hashable, CaseIterable {

@@ -7,7 +7,7 @@ import SwiftUI
 
 struct DetailsNavigationBarComponent: View {
     @Environment(\.presentationMode) var presentationMode
-    
+
     var body: some View {
         ZStack {
             Color(Asset.Colors.blackBG.name)
@@ -17,6 +17,9 @@ struct DetailsNavigationBarComponent: View {
                         self.presentationMode.wrappedValue.dismiss()
                     }, label: {
                         Image(Asset.Icons.icBack.name)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24, height: 24)
                     }
                 )
                     .padding(.leading, 33)
@@ -25,7 +28,7 @@ struct DetailsNavigationBarComponent: View {
                 Spacer()
             }
         }
-            .frame(height: 92)
-            .frame(maxHeight: .infinity, alignment: .top)
+        .frame(height: 92)
+        .frame(maxHeight: .infinity, alignment: .top)
     }
 }

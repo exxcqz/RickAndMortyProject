@@ -11,28 +11,54 @@ struct DetailsScreen: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            VStack {
-                switch viewStore.selectedDetails {
-                case .character:
-                    DetailsCharacterComponent(store: Store(
-                        initialState: DetailsState(),
-                        reducer: detailsReducer,
-                        environment: DetailsEnvironment()
-                    ))
-                case .location:
-                    DetailsLocationComponent(store: Store(
-                        initialState: DetailsState(),
-                        reducer: detailsReducer,
-                        environment: DetailsEnvironment()
-                    ))
-                case .episode:
-                    DetailsEpisodeComponent(store: Store(
-                        initialState: DetailsState(),
-                        reducer: detailsReducer,
-                        environment: DetailsEnvironment()
-                    ))
+            ZStack {
+                Color(Asset.Colors.blackBG.name)
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(alignment: .center, spacing: 0) {
+                        DetailsHeaderComponent(
+                            currentDetails: viewStore.selectedDetails,
+                            episode: viewStore.episode,
+                            character: viewStore.character,
+                            location: viewStore.location
+                        ).padding(.top, 108)
+
+                        DetailsInfoComponent(
+                            currentDetails: viewStore.selectedDetails,
+                            episode: viewStore.episode,
+                            character: viewStore.character,
+                            location: viewStore.location
+                        ).padding(.top, 24)
+
+                        if viewStore.selectedDetails == .character {
+                        HStack {
+                            Text("Origin")
+                                .font(Font.appFontSemibold(ofSize: 17))
+                                .foregroundColor(.white)
+                                .frame(height: 22)
+                            Spacer()
+                        }
+                        .padding(.top, 24)
+                        .padding(.leading, 24)
+                        LocationsCardComponent(locationDetail: viewStore.location)
+                            .padding(.top, 16)
+                        }
+
+                        DetailsScrollComponent(
+                            store: Store(
+                                initialState: DetailsState(selectedDetails: .location),
+                                reducer: detailsReducer,
+                                environment: DetailsEnvironment()
+                            ),
+                            currentDetails: viewStore.selectedDetails
+                        )
+                    }
                 }
             }
+            .navigationBarHidden(true)
+            .overlay(
+                DetailsNavigationBarComponent()
+            )
+            .edgesIgnoringSafeArea(.all)
         }
     }
 }
