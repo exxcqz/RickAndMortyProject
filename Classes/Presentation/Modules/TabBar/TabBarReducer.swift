@@ -22,6 +22,11 @@ let tabBarReducer: Reducer<TabBarState, TabBarAction, TabBarEnvironment> = .comb
     },
 
     charactersReducer.pullback(state: \.characters, action: /TabBarAction.characters) { _ in CharactersEnvironment() },
-    locationsReducer.pullback(state: \.locations, action: /TabBarAction.locations) { _ in LocationsEnvironment() },
+    locationsReducer.pullback(state: \.locations, action: /TabBarAction.locations) { _ in
+        LocationsEnvironment(
+            apiService: ServiceContainer().apiServices,
+            mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+        )
+    },
     episodesReducer.pullback(state: \.episodes, action: /TabBarAction.episodes) { _ in EpisodesEnvironment() }
 )

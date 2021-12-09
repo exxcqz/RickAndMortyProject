@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-struct Location: Decodable, Equatable {
+struct Location: Codable, Equatable {
     let id: Int
     let name: String
     let type: LocationType
@@ -15,7 +15,7 @@ struct Location: Decodable, Equatable {
     let url: String
     let created: String
 
-    enum LocationType: String, Decodable {
+    enum LocationType: String, Codable {
         case planet = "Planet"
         case cluster = "Cluster"
         case spaceStation = "Space station"

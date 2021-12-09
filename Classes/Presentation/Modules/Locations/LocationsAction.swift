@@ -6,5 +6,6 @@
 enum LocationsAction: Equatable {
     case updateLocationsData
     case didOpenLocationDetails(Location)
+    case dataLoaded(Result<GeneralRequest<Location>, NetworkError>)
     case searchInputChanged(String)
 }

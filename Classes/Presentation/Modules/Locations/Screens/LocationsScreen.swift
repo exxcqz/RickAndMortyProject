@@ -58,7 +58,10 @@ struct LocationsScreen_Previews: PreviewProvider {
             store: Store(
                 initialState: LocationsState(),
                 reducer: locationsReducer,
-                environment: LocationsEnvironment()
+                environment: LocationsEnvironment(
+                    apiService: ServiceContainer().apiServices,
+                    mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+                )
             )
         )
     }

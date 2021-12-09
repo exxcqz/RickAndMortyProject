@@ -26,6 +26,7 @@ private final class PersistentServiceContainer: HasPersistentServices {
 
 final class ServiceContainer: HasServices {
 
+    lazy var apiServices: ApiServiceProtocol = ApiService()
     /// lazy var keychainService: KeychainServiceProtocol = {
     ///     return KeychainService()
     /// }()
