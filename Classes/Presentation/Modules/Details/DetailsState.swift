@@ -7,11 +7,11 @@ import SwiftUI
 
 struct DetailsState: Equatable {
     var selectedDetails: Details = .character
-    var character: Character = dummyCharactersArray[0]
-    var location: Location = listLocations[0]
+    var character: Character = characterData[0]
+    var location: Location = locationData[0]
     var episode: Episode = dummyEpisodesArray[0]
-    var characters: [Character] = dummyCharactersArray
-    var locations: [Location] = listLocations
+    var characters: [Character] = characterData
+    var locations: [Location] = locationData
     var episodes: [Episode] = dummyEpisodesArray
 }
 

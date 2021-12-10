@@ -6,43 +6,45 @@
 import SwiftUI
 
 struct DetailsHeaderComponent: View {
-    let currentDetails: Details
-    let episode: Episode
-    let character: Character
-    let location: Location
+    var currentDetails: Details
+    var episode: Episode
+    var character: Character
+    var location: Location
 
     var body: some View {
         VStack(spacing: 0) {
             ZStack {
                 RoundedRectangle(cornerRadius: 16)
                     .foregroundColor(Color(Asset.Colors.blackCard.name))
-                    .frame(width: 148, height: 148)
+                    .frame(width: Layout.scaleFactorW * 148, height: Layout.scaleFactorW * 148)
                 switch currentDetails {
                 case .character:
                     Image(character.image)
                         .resizable()
+                        .scaledToFit()
                         .cornerRadius(16)
-                        .frame(width: 148, height: 148)
+                        .frame(width: Layout.scaleFactorW * 148, height: Layout.scaleFactorW * 148)
                 case .location:
                     Image(uiImage: location.type.icon)
                         .resizable()
-                        .frame(width: 48, height: 48)
+                        .scaledToFit()
+                        .frame(width: Layout.scaleFactorW * 48, height: Layout.scaleFactorW * 48)
                 case .episode:
                     Image(uiImage: Asset.TabBarIcons.icEpisodesNotActive.image)
                         .resizable()
+                        .scaledToFit()
                         .foregroundColor(.white)
-                        .frame(width: 48, height: 48)
+                        .frame(width: Layout.scaleFactorW * 48, height: Layout.scaleFactorW * 48)
                 }
             }
-            Text(getName)
-                .font(Font.appFontBold(ofSize: 22))
+            Text(name)
+                .font(Font.appFontBold(ofSize: Layout.scaleFactorW * 22))
                 .foregroundColor(.white)
                 .frame(height: 25)
                 .padding(.top, 24)
-
-            if !getStatus.isEmpty {
-                Text(getStatus)
-                    .font(Font.appFontMedium(ofSize: 16))
+            if !status.isEmpty {
+                Text(status)
+                    .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
                     .foregroundColor(Color(Asset.Colors.primary.name))
                     .frame(height: 20)
                     .padding(.top, 8)
@@ -51,9 +53,11 @@ struct DetailsHeaderComponent: View {
     }
 }
 
+// MARK: -  Get values for Details Header
+
 extension DetailsHeaderComponent {
 
-    var getName: String {
+    var name: String {
         switch currentDetails {
         case .character:
             return character.name
@@ -64,7 +68,7 @@ extension DetailsHeaderComponent {
         }
     }
 
-    var getStatus: String {
+    var status: String {
         switch currentDetails {
         case .character:
             return character.status

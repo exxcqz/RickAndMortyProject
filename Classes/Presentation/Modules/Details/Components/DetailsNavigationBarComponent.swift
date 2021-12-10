@@ -19,16 +19,16 @@ struct DetailsNavigationBarComponent: View {
                         Image(Asset.Icons.icBack.name)
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 24, height: 24)
+                            .frame(width: Layout.scaleFactorW * 24, height: Layout.scaleFactorW * 24)
                     }
                 )
-                    .padding(.leading, 33)
-                    .padding(.top, 66)
+                    .padding(.leading, Layout.scaleFactorW * 33)
+                    .padding(.top, Layout.scaleFactorH * 66)
                     .padding(.bottom, 8)
                 Spacer()
             }
         }
-        .frame(height: 92)
+        .frame(height: Layout.scaleFactorH * 92)
         .frame(maxHeight: .infinity, alignment: .top)
     }
 }

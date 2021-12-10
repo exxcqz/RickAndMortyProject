@@ -14,8 +14,8 @@ struct DetailsInfoComponent: View {
     var body: some View {
         VStack(spacing: 16) {
             HStack {
-                Text("Info")
-                    .font(Font.appFontSemibold(ofSize: 17))
+                Text(L10n.Details.Info.title)
+                    .font(Font.appFontSemibold(ofSize: Layout.scaleFactorW * 17))
                     .foregroundColor(.white)
                     .frame(height: 22)
                 Spacer()
@@ -23,55 +23,57 @@ struct DetailsInfoComponent: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 16)
                     .foregroundColor(Color(Asset.Colors.blackCard.name))
-                    .frame(width: Layout.scaleFactorW * 327, height: getHeight)
+                    .frame(width: Layout.scaleFactorW * 327, height: Layout.scaleFactorW * height)
                 VStack(spacing: 16) {
                     HStack {
-                        Text(getTitleInfo.firstTitle)
-                            .font(Font.appFontMedium(ofSize: 16))
+                        Text(titleInfo.firstTitle)
+                            .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
                             .foregroundColor(Color(Asset.Colors.grayNormal.name))
                             .frame(height: 20)
                         Spacer()
-                        Text(getValue.firstValue)
-                            .font(Font.appFontMedium(ofSize: 16))
+                        Text(infoValue.firstValue)
+                            .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
                             .foregroundColor(.white)
                             .frame(height: 20)
                     }
                     HStack {
-                        Text(getTitleInfo.secndTitle)
-                            .font(Font.appFontMedium(ofSize: 16))
+                        Text(titleInfo.secndTitle)
+                            .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
                             .foregroundColor(Color(Asset.Colors.grayNormal.name))
                             .frame(height: 20)
                         Spacer()
-                        Text(getValue.secondValue)
-                            .font(Font.appFontMedium(ofSize: 16))
+                        Text(infoValue.secondValue)
+                            .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
                             .foregroundColor(.white)
                             .frame(height: 20)
                     }
-                    if !getTitleInfo.threeTitle.isEmpty {
+                    if !titleInfo.threeTitle.isEmpty {
                         HStack {
-                            Text(getTitleInfo.threeTitle)
+                            Text(titleInfo.threeTitle)
                                 .font(Font.appFontMedium(ofSize: 16))
                                 .foregroundColor(Color(Asset.Colors.grayNormal.name))
                                 .frame(height: 20)
                             Spacer()
-                            Text(getValue.threeValue)
+                            Text(infoValue.threeValue)
                                 .font(Font.appFontMedium(ofSize: 16))
                                 .foregroundColor(.white)
                                 .frame(height: 20)
                         }
                     }
                 }
-                .padding(.horizontal, 16)
+                .padding(.horizontal, Layout.scaleFactorW * 16)
                 .padding(.vertical, 16)
             }
         }
-        .padding(.horizontal, 24)
+        .padding(.horizontal, Layout.scaleFactorW * 24)
     }
 }
 
+// MARK: -  Get values for Details Info
+
 extension DetailsInfoComponent {
 
-    var getHeight: CGFloat {
+    var height: CGFloat {
         switch currentDetails {
         case .character:
             return 124
@@ -82,18 +84,18 @@ extension DetailsInfoComponent {
         }
     }
 
-    var getTitleInfo: (firstTitle: String, secndTitle: String, threeTitle: String) {
+    var titleInfo: (firstTitle: String, secndTitle: String, threeTitle: String) {
         switch currentDetails {
         case .character:
-            return ("Species:", "Type:", "Gender:")
+            return (L10n.Details.Info.species, L10n.Details.Info.type, L10n.Details.Info.gender)
         case .location:
-            return ("Type:", "Dimension:", "")
+            return (L10n.Details.Info.type, L10n.Details.Info.dimension, "")
         case .episode:
-            return ("Episode:", "Season:", "Air date:")
+            return (L10n.Details.Info.episode, L10n.Details.Info.season, L10n.Details.Info.airDate)
         }
     }
 
-    var getValue: (firstValue: String, secondValue: String, threeValue: String) {
+    var infoValue: (firstValue: String, secondValue: String, threeValue: String) {
         switch currentDetails {
         case .character:
             return (character.species, character.type.checkEmpty, character.gender)

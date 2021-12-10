@@ -9,6 +9,10 @@ let detailsReducer = Reducer<DetailsState, DetailsAction, DetailsEnvironment> { 
     switch action {
     case .selectedDetailsChange(let details):
         state.selectedDetails = details
+    case .updateStateCharacter(let character):
+        state.character = character
+    case .updateStateEpisode(let episode):
+        state.episode = episode
     }
     return .none
 }

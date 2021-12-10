@@ -33,7 +33,7 @@ struct LocationsScreen: View {
                                     NavigationLink {
                                         DetailsScreen(
                                             store: Store(
-                                                initialState: DetailsState(selectedDetails: .location),
+                                                initialState: DetailsState(selectedDetails: .location, location: card),
                                                 reducer: detailsReducer,
                                                 environment: DetailsEnvironment()
                                             )

@@ -21,5 +21,20 @@
 "filters.action.apply" = "Apply";
 "filters.all" = "All";
 
+// Details
+"details.character.origin" = "Origin";
+"details.info.title" = "Info";
+"details.info.species" = "Species:";
+"details.info.type" = "Type:";
+"details.info.gender" = "Gender:";
+"details.info.dimension" = "Dimension:";
+"details.info.episode" = "Episode:";
+"details.info.season" = "Season:";
+"details.info.air_date" = "Air Date:";
+"details.character.scroll_title" = "Episodes";
+"details.location.scroll_title" = "Residents";
+"details.episode.scroll_title" = "Characters";
+
+
 // Placeholder
 "placeholder.search" = "Search";

@@ -5,4 +5,6 @@
 
 enum DetailsAction: Equatable {
     case selectedDetailsChange(Details)
+    case updateStateCharacter(Character)
+    case updateStateEpisode(Episode)
 }
