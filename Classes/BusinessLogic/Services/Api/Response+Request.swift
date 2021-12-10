@@ -1,24 +1,27 @@
 //
-//  Created by Александр Васильевич on 07.12.2021
+//  Created by Alexander Loshakov on 07.12.2021
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
 import Foundation
-
 import Combine
 import ComposableArchitecture
-import Foundation
 import Networking
 
 func makeRequest(_ endpoint: @escaping () -> Endpoint) -> URLRequest {
+    var request = URLRequest(url: endpoint().url)
 
-    var request = URLRequest(url: endpoint().url) // Endpoint.url = baseURL + path (определяется в фреймворке в расширении для Endpoint)
-    request.method = endpoint().method // // какой HTTPMethod используем
+    request.method = endpoint().method
     request.headers = endpoint().headers.httpHeaders
-    //    request.httpBody = requestBodyFrom(params: endpoint().parameters)
+//    request.httpBody = requestBodyFrom(params: endpoint().parameters)
     print("request: \(request)")
 
     var components = URLComponents(url: endpoint().url, resolvingAgainstBaseURL: true)
+    if let params = endpoint().parameters {
+        let queryItems = params.map { parameter in
+            URLQueryItem(name: parameter.key, value: parameter.value as? String)
+        }
+    }
     let queryItems = endpoint().parameters!.map { parameter in
         URLQueryItem(name: parameter.key, value: parameter.value as? String)
     }
@@ -26,6 +29,7 @@ func makeRequest(_ endpoint: @escaping () -> Endpoint) -> URLRequest {
     var testRequest = URLRequest(url: components!.url!)
     testRequest.method = endpoint().method
     testRequest.headers = endpoint().headers.httpHeaders
+    testRequest.cachePolicy = .reloadRevalidatingCacheData
     print("testRequest: \(testRequest)") // https://rickandmortyapi.com/api/location?page=2
 
     return testRequest

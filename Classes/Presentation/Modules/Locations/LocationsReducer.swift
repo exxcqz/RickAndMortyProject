@@ -24,7 +24,7 @@ let locationsReducer = Reducer<LocationsState, LocationsAction, LocationsEnviron
         case .success(let locations):
             print("число локаций: \(locations.results.count)")
             locations.results.enumerated().forEach { (index, location) in
-                print("#\(index + 1): \(location.name)")
+                print("#\(index + 1): id\(location.id), \(location.name) (with type \(location.type.rawValue))")
             }
             state.locationsData = locations.results
         case .failure(let error):

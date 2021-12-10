@@ -1,5 +1,5 @@
 //
-//  Created by Александр Васильевич on 07.12.2021
+//  Created by Alexander Loshakov on 07.12.2021
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
@@ -10,6 +10,9 @@ enum ApiEndpoint: Endpoint {
     case fetchCharacters(_ currentPage: Int)
     case fetchEpisodes(_ currentPage: Int)
     case fetchLocations(_ currentPage: Int)
+    case fetchSingleCharacter(_ withId: Int)
+    case fetchSingleLocation(_ withId: Int)
+    case fetchSingleEpisode(_ withId: Int)
 
     // Endpoint.url = baseURL + path (определяется в фреймворке в расширении для Endpoint)
     // baseURL задается в AppConfiguration (в нашем случае - https://rickandmortyapi.com/)
@@ -19,11 +22,17 @@ enum ApiEndpoint: Endpoint {
     var path: String {
         switch self {
         case .fetchCharacters:
-            return "api/character"
+            return "api/character/"
+        case .fetchSingleCharacter(let id):
+            return "api/character/\(id)"
         case .fetchLocations:
-            return "api/location"
+            return "api/location/"
+        case .fetchSingleLocation(let id):
+            return "api/location/\(id)"
         case .fetchEpisodes:
-            return "api/episode"
+            return "api/episode/"
+        case .fetchSingleEpisode(let id):
+            return "api/episode/\(id)"
         }
     }
 
@@ -44,12 +53,14 @@ enum ApiEndpoint: Endpoint {
     // параметры для запроса (в нашем случае - какую страницу подгрузить)
     var parameters: Parameters? {
         switch self {
-        case .fetchLocations(let currentPage):
+        case let .fetchLocations(currentPage):
             return ["page": "\(currentPage)"] // какую страницу открыть сейчас?
         case .fetchCharacters(let currentPage):
             return ["page": currentPage] // какую страницу открыть сейчас?
         case .fetchEpisodes(let currentPage):
             return ["page": currentPage] // какую страницу открыть сейчас?
+        default:
+            return nil
         }
     }
 
