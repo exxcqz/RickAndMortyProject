@@ -28,9 +28,14 @@ struct CharactersScreen: View {
                                     }
                                 )
                             )
-                            CharactersScrollView(store: store)
-                                .padding(.vertical, Layout.scaleFactorH * 16)
-                                .zIndex(0)
+                            if viewStore.state.data.isEmpty {
+                                ProgressView()
+                                    .padding(.top, Layout.scaleFactorH * 150)
+                            } else {
+                                CharactersScrollView(store: store)
+                                    .padding(.vertical, Layout.scaleFactorH * 16)
+                                    .zIndex(0)
+                            }
                         }
                     }
                 }
@@ -50,7 +55,10 @@ struct CharactersScreen_Previews: PreviewProvider {
             store: Store(
                 initialState: CharactersState(),
                 reducer: charactersReducer,
-                environment: CharactersEnvironment()
+                environment: CharactersEnvironment(
+                    apiService: ServiceContainer().apiServices,
+                    mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+                )
             )
         )
     }

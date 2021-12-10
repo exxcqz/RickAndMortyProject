@@ -11,10 +11,18 @@ protocol HasApiService {
 }
 
 protocol ApiServiceProtocol: AnyObject {
-    func fetchCharacters(currentPage: Int) -> Effect<GeneralRequest<Character>, NetworkError>
+    func fetchAllCharacters(currentPage: Int) -> Effect<GeneralRequest<Character>, NetworkError>
+    func fetchFilteredCharacters(currentPage: Int, filterParam: [String], filterValue: [String]) -> Effect<GeneralRequest<Character>, NetworkError>
     func fetchSingleCharacter(withId: Int) -> Effect<Character, NetworkError>
-    func fetchLocations(currentPage: Int) -> Effect<GeneralRequest<Location>, NetworkError>
+    func fetchMultipleCharacters(withIds: [Int]) -> Effect<[Character], NetworkError>
+
+    func fetchAllLocations(currentPage: Int) -> Effect<GeneralRequest<Location>, NetworkError>
+    func fetchFilteredLocations(currentPage: Int, filterParam: [String], filterValue: [String]) -> Effect<GeneralRequest<Location>, NetworkError>
     func fetchSingleLocation(withId: Int) -> Effect<Location, NetworkError>
-    func fetchEpisodes(currentPage: Int) -> Effect<GeneralRequest<Episode>, NetworkError>
+    func fetchMultipleLocations(withIds: [Int]) -> Effect<[Location], NetworkError>
+
+    func fetchAllEpisodes(currentPage: Int) -> Effect<GeneralRequest<Episode>, NetworkError>
+    func fetchFilteredEpisodes(seasonNumber: Int) -> Effect<GeneralRequest<Episode>, NetworkError>
     func fetchSingleEpisode(withId: Int) -> Effect<Episode, NetworkError>
+    func fetchMultipleEpisodes(withIds: [Int]) -> Effect<[Episode], NetworkError>
 }

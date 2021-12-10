@@ -28,23 +28,34 @@ struct LocationsScreen: View {
                                     }
                                 )
                             )
-                            VStack(spacing: 16) {
-                                ForEach(viewStore.state.locationsData, id: \.id) { card in
-                                    NavigationLink {
-                                        DetailsHelloComponent()
-                                    } label: {
-                                        LocationsCardComponent(locationDetail: card)
+                            if viewStore.state.data.isEmpty {
+                                ProgressView()
+                                    .padding(.top, Layout.scaleFactorH * 150)
+                            } else {
+                                LazyVStack(spacing: 16) {
+                                    ForEach(viewStore.state.data, id: \.id) { card in
+                                        NavigationLink {
+                                            DetailsHelloComponent()
+                                        } label: {
+                                            LocationsCardComponent(locationDetail: card)
+                                        }
+                                    }
+                                    if viewStore.currentPageLoading < viewStore.totalPages {
+                                        ProgressView()
+                                            .onAppear {
+                                                viewStore.send(.fetchAnotherPage)
+                                            }
                                     }
                                 }
+                                .padding(.vertical, Layout.scaleFactorH * 16)
+                                .zIndex(0)
                             }
-                            .padding(.vertical, Layout.scaleFactorH * 16)
-                            .zIndex(0)
                         }
                     }
                 }
                 .edgesIgnoringSafeArea(.all)
                 .onAppear {
-                    viewStore.send(.updateLocationsData)
+                    viewStore.send(.onAppear)
                 }
             }
             .navigationBarHidden(true)

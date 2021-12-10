@@ -7,12 +7,20 @@ import Foundation
 import Networking
 
 enum ApiEndpoint: Endpoint {
-    case fetchCharacters(_ currentPage: Int)
-    case fetchEpisodes(_ currentPage: Int)
-    case fetchLocations(_ currentPage: Int)
+    case fetchAllCharacters(_ currentPage: Int)
+    case fetchFilteredCharacters(_ currentPage: Int, _ filterParam: [String], _ filterValue: [String])
     case fetchSingleCharacter(_ withId: Int)
+    case fetchMultipleCharacters(_ withIds: [Int])
+
+    case fetchAllLocations(_ currentPage: Int)
+    case fetchFilteredLocations(_ currentPage: Int, _ filterParam: [String], _ filterValue: [String])
     case fetchSingleLocation(_ withId: Int)
+    case fetchMultipleLocations(_ withIds: [Int])
+
+    case fetchAllEpisodes(_ currentPage: Int)
+    case fetchFilteredEpisodes(_ seasonNumber: Int)
     case fetchSingleEpisode(_ withId: Int)
+    case fetchMultipleEpisodes(_ withIds: [Int])
 
     // Endpoint.url = baseURL + path (определяется в фреймворке в расширении для Endpoint)
     // baseURL задается в AppConfiguration (в нашем случае - https://rickandmortyapi.com/)
@@ -21,18 +29,32 @@ enum ApiEndpoint: Endpoint {
     // path - часть пути, указывающая, какой ресурс мы хотим получить
     var path: String {
         switch self {
-        case .fetchCharacters:
+        case .fetchAllCharacters:
+            return "api/character/"
+        case .fetchFilteredCharacters:
             return "api/character/"
         case .fetchSingleCharacter(let id):
             return "api/character/\(id)"
-        case .fetchLocations:
+        case .fetchMultipleCharacters(let ids):
+            return "api/character/\(ids)"
+
+        case .fetchAllLocations:
+            return "api/location/"
+        case .fetchFilteredLocations:
             return "api/location/"
         case .fetchSingleLocation(let id):
             return "api/location/\(id)"
-        case .fetchEpisodes:
+        case .fetchMultipleLocations(let ids):
+            return "api/character/\(ids)"
+
+        case .fetchAllEpisodes:
+            return "api/episode/"
+        case .fetchFilteredEpisodes:
             return "api/episode/"
         case .fetchSingleEpisode(let id):
             return "api/episode/\(id)"
+        case .fetchMultipleEpisodes(let ids):
+            return "api/character/\(ids)"
         }
     }
 
@@ -53,12 +75,28 @@ enum ApiEndpoint: Endpoint {
     // параметры для запроса (в нашем случае - какую страницу подгрузить)
     var parameters: Parameters? {
         switch self {
-        case let .fetchLocations(currentPage):
+        case let .fetchAllLocations(currentPage):
             return ["page": "\(currentPage)"] // какую страницу открыть сейчас?
-        case .fetchCharacters(let currentPage):
-            return ["page": currentPage] // какую страницу открыть сейчас?
-        case .fetchEpisodes(let currentPage):
-            return ["page": currentPage] // какую страницу открыть сейчас?
+        case let .fetchFilteredLocations(currentPage, filterParam, filterValue):
+            var resultDict = ["page": "\(currentPage)"]
+            filterParam.enumerated().forEach { (index, value) in
+                resultDict[value] = filterValue[index]
+            }
+            return resultDict
+
+        case .fetchAllCharacters(let currentPage):
+            return ["page": "\(currentPage)"] // какую страницу открыть сейчас?
+        case let .fetchFilteredCharacters(currentPage, filterParam, filterValue):
+            var resultDict = ["page": "\(currentPage)"]
+            filterParam.enumerated().forEach { (index, value) in
+                resultDict[value] = filterValue[index]
+            }
+            return resultDict
+
+        case .fetchAllEpisodes(let currentPage):
+            return ["page": "\(currentPage)"] // какую страницу открыть сейчас?
+        case let .fetchFilteredEpisodes(seasonNumber):
+            return ["episode": "S0\(seasonNumber)"]
         default:
             return nil
         }

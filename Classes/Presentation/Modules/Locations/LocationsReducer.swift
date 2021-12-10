@@ -8,13 +8,21 @@ import SwiftUI
 
 let locationsReducer = Reducer<LocationsState, LocationsAction, LocationsEnvironment> { state, action, environment in
     switch action {
-    case .updateLocationsData:
-//        state.locationsData = listLocations
-        return environment.apiService.fetchLocations(currentPage: 2)
+    case .onAppear:
+        if state.data.isEmpty {
+            //        environment.apiService.fetchFilteredLocations(currentPage: 1, filterParam: ["dimension"], filterValue: ["Dimension C-137"])
+            return environment.apiService.fetchAllLocations(currentPage: state.currentPageLoading)
+                .receive(on: environment.mainQueue)
+                .catchToEffect()
+                .map(LocationsAction.dataLoaded)
+        }
+    case .fetchAnotherPage:
+        state.currentPageLoading += 1
+        return environment.apiService.fetchAllLocations(currentPage: state.currentPageLoading)
             .receive(on: environment.mainQueue)
             .catchToEffect()
             .map(LocationsAction.dataLoaded)
-    case .didOpenLocationDetails(let location):
+    case .locationCardSelected(let location):
         print("Hello \(location.name)")
     case .searchInputChanged(let request):
         state.searchRequest = request
@@ -23,10 +31,11 @@ let locationsReducer = Reducer<LocationsState, LocationsAction, LocationsEnviron
         switch result {
         case .success(let locations):
             print("число локаций: \(locations.results.count)")
-            locations.results.enumerated().forEach { (index, location) in
-                print("#\(index + 1): id\(location.id), \(location.name) (with type \(location.type.rawValue))")
+            locations.results.forEach { location in
+                print("id #\(location.id), \(location.name) (with type \(location.type.rawValue))")
             }
-            state.locationsData = locations.results
+            state.totalPages = locations.info.pages
+            state.data += locations.results
         case .failure(let error):
             print(error.localizedDescription)
         }

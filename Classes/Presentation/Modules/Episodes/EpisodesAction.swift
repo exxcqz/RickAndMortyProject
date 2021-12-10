@@ -5,7 +5,10 @@
 
 enum EpisodesAction: Equatable {
     case onAppear
-    case seasonSelected(Int)
+    case fetchAnotherPage
+    case seasonSelected(Int) // filter
     case episodeCardSelected(Episode)
+    case dataLoaded(Result<GeneralRequest<Episode>, NetworkError>)
+    case filteredDataLoaded(Result<GeneralRequest<Episode>, NetworkError>)
     case searchInputChanged(String)
 }

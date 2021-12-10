@@ -13,7 +13,7 @@ struct CharactersScrollView: View {
         WithViewStore(store) { viewStore in
             VStack {
                 if !viewStore.grid.isEmpty {
-                    VStack(spacing : Layout.scaleFactorW * 16) {
+                    LazyVStack(spacing : Layout.scaleFactorW * 16) {
                         ForEach(viewStore.grid, id: \.self) { row in
                             HStack(spacing: Layout.scaleFactorW * 16) {
                                 ForEach(row...row + 1, id: \.self) { column in
@@ -29,6 +29,12 @@ struct CharactersScrollView: View {
                                     Spacer(minLength: 0)
                                 }
                             }
+                        }
+                        if viewStore.currentPageLoading < viewStore.totalPages {
+                            ProgressView()
+                                .onAppear {
+                                    viewStore.send(.fetchAnotherPage)
+                                }
                         }
                     }
                     .padding(.horizontal, Layout.scaleFactorW * 23)

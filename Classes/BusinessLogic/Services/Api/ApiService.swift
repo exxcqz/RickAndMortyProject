@@ -8,10 +8,17 @@ import ComposableArchitecture
 import Networking
 
 final class ApiService: ApiServiceProtocol {
-
-    func fetchCharacters(currentPage: Int) -> Effect<GeneralRequest<Character>, NetworkError> {
+    // MARK: -  Characters methods
+    func fetchAllCharacters(currentPage: Int) -> Effect<GeneralRequest<Character>, NetworkError> {
         let request = makeRequest {
-            ApiEndpoint.fetchLocations(currentPage)
+            ApiEndpoint.fetchAllCharacters(currentPage)
+        }
+        return requestWithEffect(request)
+    }
+
+    func fetchFilteredCharacters(currentPage: Int, filterParam: [String], filterValue: [String]) -> Effect<GeneralRequest<Character>, NetworkError> {
+        let request = makeRequest {
+            ApiEndpoint.fetchFilteredCharacters(currentPage, filterParam, filterValue)
         }
         return requestWithEffect(request)
     }
@@ -23,9 +30,24 @@ final class ApiService: ApiServiceProtocol {
         return requestWithEffect(request)
     }
 
-    func fetchLocations(currentPage: Int) -> Effect<GeneralRequest<Location>, NetworkError> {
+    func fetchMultipleCharacters(withIds: [Int]) -> Effect<[Character], NetworkError> {
         let request = makeRequest {
-            ApiEndpoint.fetchLocations(currentPage)
+            ApiEndpoint.fetchMultipleCharacters(withIds)
+        }
+        return requestWithEffect(request)
+    }
+
+    // MARK: -  Locations methods
+    func fetchAllLocations(currentPage: Int) -> Effect<GeneralRequest<Location>, NetworkError> {
+        let request = makeRequest {
+            ApiEndpoint.fetchAllLocations(currentPage)
+        }
+        return requestWithEffect(request)
+    }
+
+    func fetchFilteredLocations(currentPage: Int, filterParam: [String], filterValue: [String]) -> Effect<GeneralRequest<Location>, NetworkError> {
+        let request = makeRequest {
+            ApiEndpoint.fetchFilteredLocations(currentPage, filterParam, filterValue)
         }
         return requestWithEffect(request)
     }
@@ -37,9 +59,24 @@ final class ApiService: ApiServiceProtocol {
         return requestWithEffect(request)
     }
 
-    func fetchEpisodes(currentPage: Int) -> Effect<GeneralRequest<Episode>, NetworkError> {
+    func fetchMultipleLocations(withIds: [Int]) -> Effect<[Location], NetworkError> {
         let request = makeRequest {
-            ApiEndpoint.fetchLocations(currentPage)
+            ApiEndpoint.fetchMultipleLocations(withIds)
+        }
+        return requestWithEffect(request)
+    }
+
+    // MARK: -  Episodes methods
+    func fetchAllEpisodes(currentPage: Int) -> Effect<GeneralRequest<Episode>, NetworkError> {
+        let request = makeRequest {
+            ApiEndpoint.fetchAllEpisodes(currentPage)
+        }
+        return requestWithEffect(request)
+    }
+
+    func fetchFilteredEpisodes(seasonNumber: Int) -> Effect<GeneralRequest<Episode>, NetworkError> {
+        let request = makeRequest {
+            ApiEndpoint.fetchFilteredEpisodes(seasonNumber)
         }
         return requestWithEffect(request)
     }
@@ -47,6 +84,13 @@ final class ApiService: ApiServiceProtocol {
     func fetchSingleEpisode(withId: Int) -> Effect<Episode, NetworkError> {
         let request = makeRequest {
             ApiEndpoint.fetchSingleEpisode(withId)
+        }
+        return requestWithEffect(request)
+    }
+
+    func fetchMultipleEpisodes(withIds: [Int]) -> Effect<[Episode], NetworkError> {
+        let request = makeRequest {
+            ApiEndpoint.fetchMultipleEpisodes(withIds)
         }
         return requestWithEffect(request)
     }
