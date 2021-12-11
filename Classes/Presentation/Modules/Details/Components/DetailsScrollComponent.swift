@@ -9,6 +9,9 @@ import SwiftUI
 struct DetailsScrollComponent: View {
     let store: Store<DetailsState, DetailsAction>
     let currentDetails: Details
+    let characters: [Character]
+    let locations: [Location]
+    let episodes: [Episode]
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -22,7 +25,7 @@ struct DetailsScrollComponent: View {
             .padding(.top, 24)
             .padding(.leading, Layout.scaleFactorW * 24)
             LazyVGrid(columns: columns, spacing: 16) {
-                ForEach(0...3, id: \.self) { index in
+                ForEach(0..<countData, id: \.self) { index in
                     NavigationLink {
                         DetailsScreen(
                             store: Store(
@@ -85,6 +88,15 @@ extension DetailsScrollComponent {
             return .episode
         case .location, .episode:
             return .character
+        }
+    }
+
+    var countData: Int {
+        switch currentDetails {
+        case .character:
+            return episodes.count
+        case .location, .episode:
+            return characters.count
         }
     }
 }

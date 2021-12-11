@@ -33,11 +33,14 @@ struct DetailsScreen: View {
                         )
                         DetailsScrollComponent(
                             store: Store(
-                                initialState: DetailsState(selectedDetails: .location),
+                                initialState: DetailsState(),
                                 reducer: detailsReducer,
                                 environment: DetailsEnvironment()
                             ),
-                            currentDetails: viewStore.selectedDetails
+                            currentDetails: viewStore.selectedDetails,
+                            characters: viewStore.characters,
+                            locations: viewStore.locations,
+                            episodes: viewStore.episodes
                         )
                     }
                 }
