@@ -6,6 +6,6 @@
 import ComposableArchitecture
 
 struct LocationsEnvironment {
-    var apiService: ApiServiceProtocol
+    var apiService: LocationsServiceProtocol
     var mainQueue: AnySchedulerOf<DispatchQueue>
 }

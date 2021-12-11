@@ -53,7 +53,7 @@ struct EpisodesScrollView_Previews: PreviewProvider {
                 initialState: EpisodesState(),
                 reducer: episodesReducer,
                 environment: EpisodesEnvironment(
-                    apiService: ServiceContainer().apiServices,
+                    apiService: ServiceContainer().episodesService,
                     mainQueue: DispatchQueue.main.eraseToAnyScheduler()
                 )
             )
