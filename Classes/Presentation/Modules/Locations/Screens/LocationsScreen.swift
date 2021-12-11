@@ -40,7 +40,7 @@ struct LocationsScreen: View {
                                             LocationsCardComponent(locationDetail: card)
                                         }
                                     }
-                                    if viewStore.currentPageLoading < viewStore.totalPages {
+                                    if viewStore.currentPageLoading < viewStore.totalPagesForFilter && !viewStore.isFiltering {
                                         ProgressView()
                                             .onAppear {
                                                 viewStore.send(.fetchAnotherPage)

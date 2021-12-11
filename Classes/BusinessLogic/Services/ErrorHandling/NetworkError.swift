@@ -10,8 +10,10 @@ enum NetworkError: Equatable, Error {
     var string: String { return String(reflecting: self) }
 
     static func == (lhs: NetworkError, rhs: NetworkError) -> Bool {
-        guard type(of: lhs) == type(of: rhs) else { return false } // проверка на равенство типов ошибок
-        return lhs.string == rhs.string // проверка на равенство сообщений ошибок
+        guard type(of: lhs) == type(of: rhs) else {
+            return false
+        }
+        return lhs.string == rhs.string
     }
 
     case unexpected(_ error: Error)

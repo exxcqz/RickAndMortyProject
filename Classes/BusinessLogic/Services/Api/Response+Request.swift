@@ -13,11 +13,12 @@ func makeRequest(_ endpoint: @escaping () -> Endpoint) -> URLRequest {
     request.method = endpoint().method
     request.headers = endpoint().headers.httpHeaders
     print("request: \(request)")
-
-    guard var components = URLComponents(url: endpoint().url, resolvingAgainstBaseURL: true) else {
+    guard let params = endpoint().parameters else {
         return request
     }
-    guard let params = endpoint().parameters else {
+
+    var requestWithParams: URLRequest
+    guard var components = URLComponents(url: endpoint().url, resolvingAgainstBaseURL: true) else {
         return request
     }
     let queryItems = params.map { parameter in
@@ -27,13 +28,13 @@ func makeRequest(_ endpoint: @escaping () -> Endpoint) -> URLRequest {
     guard let url = components.url else {
         return request
     }
-    var testRequest = URLRequest(url: url)
-    testRequest.method = endpoint().method
-    testRequest.headers = endpoint().headers.httpHeaders
-    testRequest.cachePolicy = .reloadRevalidatingCacheData
-    print("testRequest: \(testRequest)")
+    requestWithParams = URLRequest(url: url)
+    requestWithParams.method = endpoint().method
+    requestWithParams.headers = endpoint().headers.httpHeaders
+    requestWithParams.cachePolicy = .reloadRevalidatingCacheData
+    print("requestWithParams: \(requestWithParams)")
 
-    return testRequest
+    return requestWithParams
 }
 
 func requestWithEffect<T: Codable>(_ request: URLRequest) -> Effect<T, NetworkError> {
@@ -59,7 +60,9 @@ func requestWithEffect<T: Codable>(_ request: URLRequest) -> Effect<T, NetworkEr
             return try JSONDecoder().decode(T.self, from: response.data)
         }
         // Convert Error to NetworkError
-        .mapError { NetworkError.map($0) }
+        .mapError {
+            NetworkError.map($0)
+        }
         .eraseToAnyPublisher()
         .eraseToEffect()
 }

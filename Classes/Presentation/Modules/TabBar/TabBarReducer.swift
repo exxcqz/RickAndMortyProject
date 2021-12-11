@@ -27,12 +27,14 @@ let tabBarReducer: Reducer<TabBarState, TabBarAction, TabBarEnvironment> = .comb
             mainQueue: DispatchQueue.main.eraseToAnyScheduler()
         )
     },
+
     locationsReducer.pullback(state: \.locations, action: /TabBarAction.locations) { _ in
         LocationsEnvironment(
             apiService: ServiceContainer().apiServices,
             mainQueue: DispatchQueue.main.eraseToAnyScheduler()
         )
     },
+    
     episodesReducer.pullback(state: \.episodes, action: /TabBarAction.episodes) { _ in
         EpisodesEnvironment(
             apiService: ServiceContainer().apiServices,

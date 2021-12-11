@@ -9,6 +9,7 @@ import Networking
 
 final class ApiService: ApiServiceProtocol {
     // MARK: -  Characters methods
+
     func fetchAllCharacters(currentPage: Int) -> Effect<GeneralRequest<Character>, NetworkError> {
         let request = makeRequest {
             ApiEndpoint.fetchAllCharacters(currentPage)
@@ -38,6 +39,7 @@ final class ApiService: ApiServiceProtocol {
     }
 
     // MARK: -  Locations methods
+
     func fetchAllLocations(currentPage: Int) -> Effect<GeneralRequest<Location>, NetworkError> {
         let request = makeRequest {
             ApiEndpoint.fetchAllLocations(currentPage)
@@ -67,6 +69,7 @@ final class ApiService: ApiServiceProtocol {
     }
 
     // MARK: -  Episodes methods
+    
     func fetchAllEpisodes(currentPage: Int) -> Effect<GeneralRequest<Episode>, NetworkError> {
         let request = makeRequest {
             ApiEndpoint.fetchAllEpisodes(currentPage)

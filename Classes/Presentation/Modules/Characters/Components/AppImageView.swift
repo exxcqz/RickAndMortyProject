@@ -8,11 +8,11 @@ import Nuke
 
 struct AppImageView: View {
     let urlString: String
+    @StateObject private var image = FetchImage()
+
     var url: URL? {
         URL(string: urlString)
     }
-
-    @StateObject private var image = FetchImage()
 
     var body: some View {
         ZStack {

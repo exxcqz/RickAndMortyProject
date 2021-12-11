@@ -23,11 +23,13 @@ let charactersReducer = Reducer<CharactersState, CharactersAction, CharactersEnv
     case .dataLoaded(let result):
         switch result {
         case .success(let characters):
-//            characters.results.enumerated().forEach { (index, character) in
-//                print("#\(index + 1): id\(character.id), \(character.name) (with type \(character.type))")
-//            }
+            characters.results.forEach { character in
+                print("id #\(character.id), \(character.name) (with gender \(character.gender))")
+            }
             state.totalPages = characters.info.pages
+            state.totalPagesForFilter = state.totalPages
             state.data += characters.results
+            state.filteredData = state.data
             state.grid.removeAll()
             print("number of characters: \(state.data.count)")
             for row in stride(from: 0, to: state.data.count, by: 2) where row != state.data.count {

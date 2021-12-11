@@ -22,11 +22,8 @@ enum ApiEndpoint: Endpoint {
     case fetchSingleEpisode(_ withId: Int)
     case fetchMultipleEpisodes(_ withIds: [Int])
 
-    // Endpoint.url = baseURL + path (определяется в фреймворке в расширении для Endpoint)
-    // baseURL задается в AppConfiguration (в нашем случае - https://rickandmortyapi.com/)
     var baseURL: URL { return AppConfiguration.serverURL }
 
-    // path - часть пути, указывающая, какой ресурс мы хотим получить
     var path: String {
         switch self {
         case .fetchAllCharacters:
@@ -58,7 +55,6 @@ enum ApiEndpoint: Endpoint {
         }
     }
 
-    // какой HTTPMethod используем (в нашем случае только GET-запросы, потому что мы ничего не обновляем, только получаем)
     var method: HTTPMethod {
         switch self {
         default:
@@ -66,35 +62,24 @@ enum ApiEndpoint: Endpoint {
         }
     }
 
-    // headers (заголовки) - Content-Type, Медиатипы, "расширение файлов"
-    // Когда мы передаем данные, мы должны сообщить или запросить, какой тип хотим получить в ответ.
     var headers: [RequestHeader] {
         return [RequestHeaders.contentType("application/json")]
     }
 
-    // параметры для запроса (в нашем случае - какую страницу подгрузить)
     var parameters: Parameters? {
         switch self {
         case let .fetchAllLocations(currentPage):
-            return ["page": "\(currentPage)"] // какую страницу открыть сейчас?
+            return ["page": "\(currentPage)"]
         case let .fetchFilteredLocations(currentPage, filterParam, filterValue):
-            var resultDict = ["page": "\(currentPage)"]
-            filterParam.enumerated().forEach { (index, value) in
-                resultDict[value] = filterValue[index]
-            }
-            return resultDict
+            return convertFilterParams(currentPage, filterParam, filterValue)
 
         case .fetchAllCharacters(let currentPage):
-            return ["page": "\(currentPage)"] // какую страницу открыть сейчас?
+            return ["page": "\(currentPage)"]
         case let .fetchFilteredCharacters(currentPage, filterParam, filterValue):
-            var resultDict = ["page": "\(currentPage)"]
-            filterParam.enumerated().forEach { (index, value) in
-                resultDict[value] = filterValue[index]
-            }
-            return resultDict
+            return convertFilterParams(currentPage, filterParam, filterValue)
 
         case .fetchAllEpisodes(let currentPage):
-            return ["page": "\(currentPage)"] // какую страницу открыть сейчас?
+            return ["page": "\(currentPage)"]
         case let .fetchFilteredEpisodes(seasonNumber):
             return ["episode": "S0\(seasonNumber)"]
         default:
@@ -102,12 +87,18 @@ enum ApiEndpoint: Endpoint {
         }
     }
 
-    // для get запросов - URLEncoding, для остальных - JSONEncoding
+    func convertFilterParams(_ currentPage: Int, _ filterParam: [String], _ filterValue: [String]) -> [String: Any] {
+        var resultDict = ["page": "\(currentPage)"]
+        filterParam.enumerated().forEach { (index, value) in
+            resultDict[value] = filterValue[index]
+        }
+        return resultDict
+    }
+
     var parameterEncoding: ParameterEncoding {
         return URLEncoding.default
     }
 
-    // тип авторизации (api-ключ), в нашем случае без ключа, поэтому .none
     var authorizationType: AuthorizationType {
         .none
     }

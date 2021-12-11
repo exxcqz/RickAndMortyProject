@@ -28,15 +28,14 @@ let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment
                     state.seasonsTitles.append("\(L10n.Episodes.SeasonCode.season) \(index)")
                 }
             }
-            episodes.results.enumerated().forEach { (index, episode) in
-                print("#\(index + 1): id\(episode.id), \(episode.name) with code \(episode.episodeCode)")
+            episodes.results.forEach { episode in
+                print("id #\(episode.id), \(episode.name) (with code \(episode.episodeCode))")
             }
             episodes.results.forEach { episode in
                 guard let (_, seasonNumber) = episode.convertedEpisodeCode else {
                     return
                 }
                 state.seasonsSet.insert(seasonNumber)
-//                print("seasonNumber: \(seasonNumber)")
             }
             state.totalPages = episodes.info.pages
             state.totalPagesForFilter = state.totalPages
@@ -51,9 +50,9 @@ let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment
     case .filteredDataLoaded(let result):
         switch result {
         case .success(let filteredEpisodes):
-//            filteredEpisodes.results.enumerated().forEach { (index, episode) in
-//                print("#\(index + 1): id\(episode.id), \(episode.name)")
-//            }
+            filteredEpisodes.results.enumerated().forEach { (index, episode) in
+                print("#\(index + 1): id\(episode.id), \(episode.name)")
+            }
             state.filteredData = filteredEpisodes.results
             state.totalPagesForFilter = filteredEpisodes.info.pages
             print("number of filtered episodes: \(state.filteredData.count)")
@@ -62,7 +61,6 @@ let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment
             print(error.localizedDescription)
         }
     case .seasonSelected(let index):
-        print("state.selectedSeasonIndex = \(state.selectedSeasonIndex) -> \(index)")
         state.selectedSeasonIndex = index
         state.isFiltering = true
         print("Filter: \(state.seasonsTitles[state.selectedSeasonIndex])")
