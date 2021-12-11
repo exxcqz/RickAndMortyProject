@@ -17,8 +17,7 @@ struct CharacterCard: View {
                 )
                 .foregroundColor(Color(Asset.Colors.blackCard.name))
             VStack(spacing: 0) {
-                Image(Asset.Illustrations.dummyCharacterIllustration.name)
-                    .resizable()
+                AppImageView(urlString: сharacter.image)
                     .cornerRadius(10)
                     .frame(
                         width: Layout.scaleFactorW * 140,

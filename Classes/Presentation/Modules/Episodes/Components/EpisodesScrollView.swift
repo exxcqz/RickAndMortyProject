@@ -33,7 +33,7 @@ struct EpisodesScrollView: View {
                             }
                         }
                     }
-                    if viewStore.currentPageLoading < viewStore.totalPagesForFilter {
+                    if viewStore.currentPageLoading < viewStore.totalPagesForFilter && !viewStore.isFiltering {
                         ProgressView()
                             .onAppear {
                                 viewStore.send(.fetchAnotherPage)

@@ -40,7 +40,7 @@ let dummyCharacterModel = Character(
         name: "Earth",
         url: "https://rickandmortyapi.com/api/location/20"
     ),
-    image: Asset.Illustrations.dummyCharacterIllustration.name,
+    image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
     episode: [
         "https://rickandmortyapi.com/api/episode/1",
         "https://rickandmortyapi.com/api/episode/2"

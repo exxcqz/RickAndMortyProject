@@ -13,6 +13,7 @@ struct EpisodesState: Equatable {
     var currentPageLoading: Int = 1
     var totalPages: Int = 0
     var totalPagesForFilter: Int = 0
+    var isFiltering: Bool = false
 
     var seasonsSet = Set<Int>() // заголовки для All
     var filteredSeasonsNumberArray: [Int] = []

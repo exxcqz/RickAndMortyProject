@@ -9,9 +9,6 @@ let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment
     switch action {
     case .onAppear:
         if state.data.isEmpty {
-            state.seasonsNumberArray.forEach { index in
-                state.seasonsTitles.append("\(L10n.Episodes.SeasonCode.season) \(index)")
-            }
             return environment.apiService.fetchAllEpisodes(currentPage: state.currentPageLoading)
                 .receive(on: environment.mainQueue)
                 .catchToEffect()
@@ -26,6 +23,11 @@ let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment
     case .dataLoaded(let result):
         switch result {
         case .success(let episodes):
+            if state.data.isEmpty {
+                state.seasonsNumberArray.forEach { index in
+                    state.seasonsTitles.append("\(L10n.Episodes.SeasonCode.season) \(index)")
+                }
+            }
             episodes.results.enumerated().forEach { (index, episode) in
                 print("#\(index + 1): id\(episode.id), \(episode.name) with code \(episode.episodeCode)")
             }
@@ -41,7 +43,7 @@ let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment
             state.data += episodes.results
             state.filteredData = state.data
             state.filteredSeasonsNumberArray = state.seasonsSet.sorted()
-            print("number of seasons: \(state.seasonsNumberArray.count)")
+            print("number of loaded seasons: \(state.filteredSeasonsNumberArray.count)")
             print("number of episodes: \(state.data.count)")
         case .failure(let error):
             print(error.localizedDescription)
@@ -55,17 +57,20 @@ let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment
             state.filteredData = filteredEpisodes.results
             state.totalPagesForFilter = filteredEpisodes.info.pages
             print("number of filtered episodes: \(state.filteredData.count)")
+            state.isFiltering = false
         case .failure(let error):
             print(error.localizedDescription)
         }
     case .seasonSelected(let index):
         print("state.selectedSeasonIndex = \(state.selectedSeasonIndex) -> \(index)")
         state.selectedSeasonIndex = index
+        state.isFiltering = true
         print("Filter: \(state.seasonsTitles[state.selectedSeasonIndex])")
         if index == 0 {
             state.totalPagesForFilter = state.totalPages
             state.filteredData = state.data
             state.filteredSeasonsNumberArray = state.seasonsSet.sorted()
+            state.isFiltering = false
         } else {
             state.filteredSeasonsNumberArray = [state.seasonsNumberArray[index - 1]]
             return environment.apiService.fetchFilteredEpisodes(seasonNumber: index)
