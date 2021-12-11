@@ -26,35 +26,35 @@ struct DetailsInfoComponent: View {
                     .frame(width: Layout.scaleFactorW * 327, height: Layout.scaleFactorW * height)
                 VStack(spacing: 16) {
                     HStack {
-                        Text(titleInfo.firstTitle)
+                        Text(titleInfo[0])
                             .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
                             .foregroundColor(Color(Asset.Colors.grayNormal.name))
                             .frame(height: 20)
                         Spacer()
-                        Text(infoValue.firstValue)
+                        Text(infoValue[0])
                             .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
                             .foregroundColor(.white)
                             .frame(height: 20)
                     }
                     HStack {
-                        Text(titleInfo.secndTitle)
+                        Text(titleInfo[1])
                             .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
                             .foregroundColor(Color(Asset.Colors.grayNormal.name))
                             .frame(height: 20)
                         Spacer()
-                        Text(infoValue.secondValue)
+                        Text(infoValue[1])
                             .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
                             .foregroundColor(.white)
                             .frame(height: 20)
                     }
-                    if !titleInfo.threeTitle.isEmpty {
+                    if !titleInfo[2].isEmpty {
                         HStack {
-                            Text(titleInfo.threeTitle)
+                            Text(titleInfo[2])
                                 .font(Font.appFontMedium(ofSize: 16))
                                 .foregroundColor(Color(Asset.Colors.grayNormal.name))
                                 .frame(height: 20)
                             Spacer()
-                            Text(infoValue.threeValue)
+                            Text(infoValue[2])
                                 .font(Font.appFontMedium(ofSize: 16))
                                 .foregroundColor(.white)
                                 .frame(height: 20)
@@ -84,25 +84,33 @@ extension DetailsInfoComponent {
         }
     }
 
-    var titleInfo: (firstTitle: String, secndTitle: String, threeTitle: String) {
+    var titleInfo: [String] {
         switch currentDetails {
         case .character:
-            return (L10n.Details.Info.species, L10n.Details.Info.type, L10n.Details.Info.gender)
+            return [L10n.Details.Info.species, L10n.Details.Info.type, L10n.Details.Info.gender]
         case .location:
-            return (L10n.Details.Info.type, L10n.Details.Info.dimension, "")
+            return [L10n.Details.Info.type, L10n.Details.Info.dimension, ""]
         case .episode:
-            return (L10n.Details.Info.episode, L10n.Details.Info.season, L10n.Details.Info.airDate)
+            return [L10n.Details.Info.episode, L10n.Details.Info.season, L10n.Details.Info.airDate]
         }
     }
 
-    var infoValue: (firstValue: String, secondValue: String, threeValue: String) {
+    var infoValue: [String] {
         switch currentDetails {
         case .character:
-            return (character.species, character.type.checkEmpty, character.gender)
+            return [character.species, character.type.checkEmpty, character.gender]
         case .location:
-            return (location.type.rawValue, location.dimension, "")
+            return [location.type.rawValue, location.dimension, ""]
         case .episode:
-            return (episode.episodeCode, episode.episodeCode, episode.date)
+            return [episodeCodeReadable.episode, episodeCodeReadable.season, episode.date]
         }
+    }
+
+    var episodeCodeReadable: (episode: String, season: String) {
+        guard let episodeNumber = episode.convertedEpisodeCode?.episodeNumber,
+              let seasonNumber = episode.convertedEpisodeCode?.seasonNumber else {
+            return (L10n.Episodes.SeasonCode.unknown, L10n.Episodes.SeasonCode.unknown)
+        }
+        return ("\(episodeNumber)", "\(seasonNumber)")
     }
 }

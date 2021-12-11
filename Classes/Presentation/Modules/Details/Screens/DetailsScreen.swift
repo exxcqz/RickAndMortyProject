@@ -51,18 +51,6 @@ struct DetailsScreen: View {
     }
 }
 
-// MARK: -  Check for empty value
-
-extension String {
-
-    var checkEmpty: String {
-        if self.isEmpty {
-            return "None"
-        }
-        return self
-    }
-}
-
 struct DetailsScreen_Previews: PreviewProvider {
     static var previews: some View {
         DetailsScreen(

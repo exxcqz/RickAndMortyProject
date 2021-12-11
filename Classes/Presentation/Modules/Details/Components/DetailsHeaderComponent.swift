@@ -77,3 +77,15 @@ extension DetailsHeaderComponent {
         }
     }
 }
+
+// MARK: -  Check for empty value
+
+extension String {
+
+    var checkEmpty: String {
+        if self.isEmpty {
+            return "None"
+        }
+        return self
+    }
+}
