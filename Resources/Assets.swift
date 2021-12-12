@@ -43,6 +43,7 @@ internal enum Asset {
     internal static let icSearch = ImageAsset(name: "Icons/icSearch")
     internal static let icSearchSmall = ImageAsset(name: "Icons/icSearchSmall")
     internal static let icSpaceStation = ImageAsset(name: "Icons/icSpaceStation")
+    internal static let icStar = ImageAsset(name: "Icons/icStar")
     internal static let icTV = ImageAsset(name: "Icons/icTV")
   }
   internal enum Illustrations {

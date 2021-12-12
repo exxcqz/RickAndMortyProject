@@ -5,6 +5,8 @@
 
 enum CharactersAction: Equatable {
     case onAppear
+    case fetchAnotherPage
     case characterCardSelected(Character)
+    case dataLoaded(Result<GeneralRequest<Character>, NetworkError>)
     case searchInputChanged(String)
 }

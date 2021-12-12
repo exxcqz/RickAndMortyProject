@@ -3,4 +3,9 @@
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
-struct LocationsEnvironment {}
+import ComposableArchitecture
+
+struct LocationsEnvironment {
+    var apiService: LocationsServiceProtocol
+    var mainQueue: AnySchedulerOf<DispatchQueue>
+}

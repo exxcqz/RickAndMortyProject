@@ -8,9 +8,15 @@ struct EpisodesState: Equatable {
     let navigationTitle: String = L10n.Episodes.title
     var data: [Episode] = []
     var filteredData: [Episode] = []
-    var seasonsNumberArray: [Int] = []
-    var filteredSeasonsNumberArray: [Int] = []
+    var currentPageLoading: Int = 1
+    var totalPages: Int = 0
+    var totalPagesForFilter: Int = 0
+    var isFiltering: Bool = false
+    var filterParameters: FetchingParameters = FetchingParameters()
+    var searchRequest: String = ""
+    var seasonsSet = Set<Int>()
     var selectedSeasonIndex: Int = 0
     var seasonsTitles: [String] = [L10n.Filters.all]
-    var searchRequest: String = ""
+    var seasonsNumberArray: [Int] = [1, 2, 3, 4, 5]
+    var filteredSeasonsNumberArray: [Int] = []
 }

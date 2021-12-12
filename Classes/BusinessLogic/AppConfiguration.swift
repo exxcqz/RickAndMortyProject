@@ -12,7 +12,7 @@ enum AppConfiguration {
         static let terms = "terms/"
     }
 
-    private static let devServerURL = URL(string: "<#https://api.example.com/#>")!
+    private static let devServerURL = URL(string: "https://rickandmortyapi.com/")!
     private static let prodServerURL = URL(string: "<#https://api.example.com/#>")!
 
     #if DEBUG_DEVELOPMENT

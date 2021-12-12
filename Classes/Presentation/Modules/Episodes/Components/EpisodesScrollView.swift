@@ -12,7 +12,7 @@ struct EpisodesScrollView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             if !viewStore.filteredData.isEmpty {
-                VStack(spacing : Layout.scaleFactorW * 16) {
+                LazyVStack(spacing : Layout.scaleFactorW * 16) {
                     ForEach(viewStore.state.filteredSeasonsNumberArray, id: \.self) { seasonTitle in
                         HStack {
                             Text("Season \(seasonTitle)")
@@ -41,6 +41,12 @@ struct EpisodesScrollView: View {
                             }
                         }
                     }
+                    if viewStore.currentPageLoading < viewStore.totalPagesForFilter && !viewStore.isFiltering {
+                        ProgressView()
+                            .onAppear {
+                                viewStore.send(.fetchAnotherPage)
+                            }
+                    }
                 }
                 .padding(.horizontal, Layout.scaleFactorW * 23)
             }
@@ -54,7 +60,10 @@ struct EpisodesScrollView_Previews: PreviewProvider {
             store: Store(
                 initialState: EpisodesState(),
                 reducer: episodesReducer,
-                environment: EpisodesEnvironment()
+                environment: EpisodesEnvironment(
+                    apiService: ServiceContainer().episodesService,
+                    mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+                )
             )
         )
     }

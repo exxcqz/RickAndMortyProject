@@ -3,4 +3,9 @@
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
-struct EpisodesEnvironment {}
+import ComposableArchitecture
+
+struct EpisodesEnvironment {
+    var apiService: EpisodesServiceProtocol
+    var mainQueue: AnySchedulerOf<DispatchQueue>
+}

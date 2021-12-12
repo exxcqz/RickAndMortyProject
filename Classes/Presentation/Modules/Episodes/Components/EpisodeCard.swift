@@ -27,10 +27,11 @@ struct EpisodeCard: View {
                         .font(Font.appFontSemibold(ofSize: Layout.scaleFactorW * 17))
                         .foregroundColor(.white)
                         .kerning(-0.41)
+                        .frame(height: Layout.scaleFactorW * 22)
                     Spacer()
                 }
                 .padding(.top, Layout.scaleFactorW * 16)
-                .padding(.leading, Layout.scaleFactorW * 15.25)
+                .padding(.horizontal, Layout.scaleFactorW * 15.25)
                 .padding(.bottom, Layout.scaleFactorW * 16)
                 HStack {
                     Text(episodeCodeReadable)

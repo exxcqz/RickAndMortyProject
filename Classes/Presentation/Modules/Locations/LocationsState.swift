@@ -6,6 +6,12 @@
 struct LocationsState: Equatable {
     let navigationImage: String = Asset.Illustrations.locations.name
     let navigationTitle: String = L10n.Locations.title
-    var locationsData: [Location] = []
+    var data: [Location] = []
+    var filteredData: [Location] = []
+    var currentPageLoading: Int = 1
+    var totalPages: Int = 0
+    var totalPagesForFilter: Int = 0
+    var isFiltering: Bool = false
+    var filterParameters: FetchingParameters = FetchingParameters()
     var searchRequest: String = ""
 }

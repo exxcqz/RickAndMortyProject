@@ -6,18 +6,30 @@
 import SwiftUI
 
 struct FilterButton: View {
+    @State var isActive: Bool = false
+
     var body: some View {
         Button(
-            action: {},
+            action: {
+                isActive.toggle()
+            },
             label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 16)
                         .frame(width: Layout.scaleFactorW * 52, height: Layout.scaleFactorW * 52)
-                        .foregroundColor(Color(Asset.Colors.blackCard.name))
+                        .foregroundColor(
+                            isActive
+                            ? Color(Asset.Colors.primary.name)
+                            : Color(Asset.Colors.blackCard.name)
+                        )
                     Image(Asset.Icons.icFilter.name)
                         .resizable()
                         .renderingMode(.template)
-                        .foregroundColor(Color(Asset.Colors.grayDark.name))
+                        .foregroundColor(
+                            isActive
+                            ? .white
+                            : Color(Asset.Colors.grayDark.name)
+                        )
                         .scaledToFit()
                         .frame(width: Layout.scaleFactorW * 24, height: Layout.scaleFactorW * 24)
                 }

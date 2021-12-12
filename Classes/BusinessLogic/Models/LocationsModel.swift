@@ -6,24 +6,66 @@
 import Foundation
 import UIKit
 
-struct Location: Decodable, Equatable {
+struct Location: Codable, Equatable {
     let id: Int
     let name: String
     let type: LocationType
-    let dimension: String
+    let dimension: LocationDimension
     let residents: [String]
     let url: String
     let created: String
 
-    enum LocationType: String, Decodable {
-        case planet = "Planet"
+    enum LocationType: String, Codable, Equatable {
+        case acidPlant = "Acid Plant"
+        case arcade = "Arcade"
+        case artGenWorld = "Artificially generated world"
+        case asteroid = "Asteroid"
+        case base = "Base"
+        case box = "Box"
         case cluster = "Cluster"
-        case spaceStation = "Space station"
-        case microverse = "Microverse"
-        case tvType = "TV"
-        case resort = "Resort"
-        case fantasyTown = "Fantasy town"
+        case consciousness = "Consciousness"
+        case convention = "Convention"
+        case country = "Country"
+        case customs = "Customs"
+        case daycare = "Daycare"
+        case deathStar = "Death Star"
+        case diegesis = "Diegesis"
+        case dimension = "Dimension"
         case dream = "Dream"
+        case dwarfPlanet = "Dwarf planet (Celestial Dwarf)"
+        case elementalRings = "Elemental Rings"
+        case fantasyTown = "Fantasy town"
+        case game = "Game"
+        case hell = "Hell"
+        case human = "Human"
+        case liquid = "Liquid"
+        case machine = "Machine"
+        case memory = "Memory"
+        case menagerie = "Menagerie"
+        case microverse = "Microverse"
+        case miniverse = "Miniverse"
+        case mount = "Mount"
+        case nightmare = "Nightmare"
+        case nonDiegeticAltReality = "Non-Diegetic Alternative Reality"
+        case planet = "Planet"
+        case policeDepartment = "Police Department"
+        case quadrant = "Quadrant"
+        case quasar = "Quasar"
+        case reality = "Reality"
+        case resort = "Resort"
+        case spa = "Spa"
+        case space = "Space"
+        case spaceStation = "Space station"
+        case spacecraft = "Spacecraft"
+        case tvType = "TV"
+        case teenyverse = "Teenyverse"
+        case woods = "Woods"
+        case empty = ""
+        case unknown = "unknown"
+
+        public init(from decoder: Decoder) throws {
+            self = try LocationType(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .unknown
+        }
 
         var icon: UIImage {
             switch self {
@@ -43,252 +85,61 @@ struct Location: Decodable, Equatable {
                 return Asset.Icons.icFantasyTown.image
             case .dream:
                 return Asset.Icons.icDream.image
+            default:
+                return Asset.Icons.icStar.image
             }
+        }
+    }
+
+    enum LocationDimension: String, Codable, Equatable {
+        case chair = "Chair Dimension"
+        case cromulon = "Cromulon Dimension"
+        case cronenberg = "Cronenberg Dimension"
+        case d5126 = "Dimension 5-126"
+        case c137 = "Dimension C-137"
+        case c35 = "Dimension C-35"
+        case c500a = "Dimension C-500A"
+        case d99 = "Dimension D-99"
+        case d716 = "Dimension D716"
+        case d716b = "Dimension D716-B"
+        case d716c = "Dimension D716-C"
+        case j22 = "Dimension J-22"
+        case j19 = "Dimension J19ζ7"
+        case k22 = "Dimension K-22"
+        case k83 = "Dimension K-83"
+        case stoltzMask = "Eric Stoltz Mask Dimension"
+        case ricksTarget = "Evil Rick's Target Dimension"
+        case fantasy = "Fantasy Dimension"
+        case fascist = "Fascist Dimension"
+        case shrimp = "Fascist Shrimp Dimension"
+        case teddyBear = "Fascist Teddy Bear Dimension"
+        case spiders = "Giant Telepathic Spiders Dimension"
+        case magic = "Magic Dimension"
+        case merged = "Merged Dimension"
+        case phone = "Phone Dimension"
+        case pizza = "Pizza Dimension"
+        case postApocalyptic = "Post-Apocalyptic Dimension"
+        case replacement = "Replacement Dimension"
+        case testicleMonster = "Testicle Monster Dimension"
+        case tusk = "Tusk Dimension"
+        case wasp = "Wasp Dimension"
+        case unknown = "unknown"
+        case empty = ""
+
+        public init(from decoder: Decoder) throws {
+            self = try LocationDimension(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .unknown
         }
     }
 }
 
 let locationCardModel = Location(
     id: 1,
-    name: "Testicle Monster Dimension",
+    name: "Earth (Replacement Dimension)",
     type: .cluster,
-    dimension: "C-137",
+    dimension: Location.LocationDimension.c137,
     residents: ["1"],
     url: "1",
     created: "1"
 )
 
 let listLocations: [Location] = Array(repeating: locationCardModel, count: 20)
-
-let locationData = [
-    Location(
-        id: 1,
-        name: "hey",
-        type: .microverse,
-        dimension: "C-137",
-        residents: ["1"],
-        url: "1",
-        created: "1"
-    ),
-    Location(
-        id: 2,
-        name: "Testicle Monster Dimension",
-        type: .cluster,
-        dimension: "C-13qqq7",
-        residents: ["1"],
-        url: "1",
-        created: "1"
-    ),
-    Location(
-        id: 3,
-        name: "Planet",
-        type: .fantasyTown,
-        dimension: "C-aa137",
-        residents: ["1"],
-        url: "1",
-        created: "1"
-    ),
-    Location(
-        id: 4,
-        name: "Kek",
-        type: .planet,
-        dimension: "C-1111212137",
-        residents: ["1"],
-        url: "1",
-        created: "1"
-    ),
-    Location(
-        id: 5,
-        name: "safsffsa",
-        type: .dream,
-        dimension: "keee",
-        residents: ["1"],
-        url: "1",
-        created: "1"
-    )]
-
-let characterData = [
-    Character(
-        id: 1,
-        name: "RKee",
-        status: "Aaaalive",
-        species: "Hqquman",
-        type: "",
-        gender: "Maaale",
-        origin: CharacterLocation(
-            name: "Earth",
-            url: "https://rickandmortyapi.com/api/location/1"
-        ),
-        location: CharacterLocation(
-            name: "Earth",
-            url: "https://rickandmortyapi.com/api/location/20"
-        ),
-        image: Asset.Illustrations.dummyCharacterIllustration.name,
-        episode: [
-            "https://rickandmortyapi.com/api/episode/1",
-            "https://rickandmortyapi.com/api/episode/2"
-        ],
-        url: "https://rickandmortyapi.com/api/character/1",
-        created: "2017-11-04T18:48:46.250Z"
-    ),
-    Character(
-        id: 2,
-        name: "Riqqck Sanchez",
-        status: "Aliaave",
-        species: "Humxxan",
-        type: "",
-        gender: "Male",
-        origin: CharacterLocation(
-            name: "Earth",
-            url: "https://rickandmortyapi.com/api/location/1"
-        ),
-        location: CharacterLocation(
-            name: "Earth",
-            url: "https://rickandmortyapi.com/api/location/20"
-        ),
-        image: Asset.Illustrations.dummyCharacterIllustration.name,
-        episode: [
-            "https://rickandmortyapi.com/api/episode/1",
-            "https://rickandmortyapi.com/api/episode/2"
-        ],
-        url: "https://rickandmortyapi.com/api/character/1",
-        created: "2017-11-04T18:48:46.250Z"
-    ),
-    Character(
-        id: 3,
-        name: "Riczzk Sancaahez",
-        status: "Aliaaave",
-        species: "Humaggn",
-        type: "",
-        gender: "Maggle",
-        origin: CharacterLocation(
-            name: "Earth",
-            url: "https://rickandmortyapi.com/api/location/1"
-        ),
-        location: CharacterLocation(
-            name: "Earth",
-            url: "https://rickandmortyapi.com/api/location/20"
-        ),
-        image: Asset.Illustrations.dummyCharacterIllustration.name,
-        episode: [
-            "https://rickandmortyapi.com/api/episode/1",
-            "https://rickandmortyapi.com/api/episode/2"
-        ],
-        url: "https://rickandmortyapi.com/api/character/1",
-        created: "2017-11-04T18:48:46.250Z"
-    ),
-    Character(
-        id: 4,
-        name: "Ricaaak Sanaaachez",
-        status: "Ali111ve",
-        species: "Hu22man",
-        type: "",
-        gender: "Male",
-        origin: CharacterLocation(
-            name: "Earth",
-            url: "https://rickandmortyapi.com/api/location/1"
-        ),
-        location: CharacterLocation(
-            name: "Earth",
-            url: "https://rickandmortyapi.com/api/location/20"
-        ),
-        image: Asset.Illustrations.dummyCharacterIllustration.name,
-        episode: [
-            "https://rickandmortyapi.com/api/episode/1",
-            "https://rickandmortyapi.com/api/episode/2"
-        ],
-        url: "https://rickandmortyapi.com/api/character/1",
-        created: "2017-11-04T18:48:46.250Z"
-    ),
-    Character(
-        id: 5,
-        name: "R11ick San333chez",
-        status: "Aliaave",
-        species: "Huaman",
-        type: "",
-        gender: "Male",
-        origin: CharacterLocation(
-            name: "Earth",
-            url: "https://rickandmortyapi.com/api/location/1"
-        ),
-        location: CharacterLocation(
-            name: "Earth",
-            url: "https://rickandmortyapi.com/api/location/20"
-        ),
-        image: Asset.Illustrations.dummyCharacterIllustration.name,
-        episode: [
-            "https://rickandmortyapi.com/api/episode/1",
-            "https://rickandmortyapi.com/api/episode/2"
-        ],
-        url: "https://rickandmortyapi.com/api/character/1",
-        created: "2017-11-04T18:48:46.250Z"
-    ),
-    Character(
-        id: 6,
-        name: "Rick Saaddanchez",
-        status: "Aliveda",
-        species: "Human",
-        type: "",
-        gender: "Male",
-        origin: CharacterLocation(
-            name: "Earth",
-            url: "https://rickandmortyapi.com/api/location/1"
-        ),
-        location: CharacterLocation(
-            name: "Earth",
-            url: "https://rickandmortyapi.com/api/location/20"
-        ),
-        image: Asset.Illustrations.dummyCharacterIllustration.name,
-        episode: [
-            "https://rickandmortyapi.com/api/episode/1",
-            "https://rickandmortyapi.com/api/episode/2"
-        ],
-        url: "https://rickandmortyapi.com/api/character/1",
-        created: "2017-11-04T18:48:46.250Z"
-    ),
-    Character(
-        id: 7,
-        name: "Rickdada Sanchez",
-        status: "daaaa",
-        species: "Humaaaan",
-        type: "",
-        gender: "Malaae",
-        origin: CharacterLocation(
-            name: "Earth",
-            url: "https://rickandmortyapi.com/api/location/1"
-        ),
-        location: CharacterLocation(
-            name: "Earth",
-            url: "https://rickandmortyapi.com/api/location/20"
-        ),
-        image: Asset.Illustrations.dummyCharacterIllustration.name,
-        episode: [
-            "https://rickandmortyapi.com/api/episode/1",
-            "https://rickandmortyapi.com/api/episode/2"
-        ],
-        url: "https://rickandmortyapi.com/api/character/1",
-        created: "2017-11-04T18:48:46.250Z"
-    ),
-    Character(
-        id: 8,
-        name: "Rick Saaaanchez",
-        status: "aaa",
-        species: "Human",
-        type: "",
-        gender: "Male",
-        origin: CharacterLocation(
-            name: "Earth",
-            url: "https://rickandmortyapi.com/api/location/1"
-        ),
-        location: CharacterLocation(
-            name: "Earth",
-            url: "https://rickandmortyapi.com/api/location/20"
-        ),
-        image: Asset.Illustrations.dummyCharacterIllustration.name,
-        episode: [
-            "https://rickandmortyapi.com/api/episode/1",
-            "https://rickandmortyapi.com/api/episode/2"
-        ],
-        url: "https://rickandmortyapi.com/api/character/1",
-        created: "2017-11-04T18:48:46.250Z"
-    )]
