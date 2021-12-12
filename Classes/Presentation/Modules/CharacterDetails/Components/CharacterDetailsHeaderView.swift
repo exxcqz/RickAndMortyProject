@@ -10,9 +10,7 @@ struct CharacterDetailsHeaderView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            Image(character.image)
-                .resizable()
-                .scaledToFit()
+            AppImageView(urlString: character.image)
                 .cornerRadius(16)
                 .frame(width: Layout.scaleFactorW * 148, height: Layout.scaleFactorW * 148)
             Text(character.name)

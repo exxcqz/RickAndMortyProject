@@ -3,6 +3,9 @@
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
-struct LocationDetailsEnvironment {
+import ComposableArchitecture
 
+struct LocationDetailsEnvironment {
+    var apiService: CharactersServiceProtocol
+    var mainQueue: AnySchedulerOf<DispatchQueue>
 }

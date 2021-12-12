@@ -24,7 +24,10 @@ struct CharacterDetailsOriginView: View {
                 store: Store(
                     initialState: LocationDetailsState(location: location),
                     reducer: locationDetailsReducer,
-                    environment: LocationDetailsEnvironment()
+                    environment: LocationDetailsEnvironment(
+                        apiService: ServiceContainer().charactersService,
+                        mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+                    )
                 )
             )
         } label: {

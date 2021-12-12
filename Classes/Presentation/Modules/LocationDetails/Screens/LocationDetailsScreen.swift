@@ -55,6 +55,9 @@ struct LocationDetailsScreen: View {
                 DetailsNavigationBarComponent()
             )
             .edgesIgnoringSafeArea(.all)
+            .onAppear {
+                viewStore.send(.onAppear)
+            }
         }
     }
 }
@@ -65,7 +68,10 @@ struct LocationDetailsScreen_Previews: PreviewProvider {
             store: Store(
                 initialState: LocationDetailsState(),
                 reducer: locationDetailsReducer,
-                environment: LocationDetailsEnvironment()
+                environment: LocationDetailsEnvironment(
+                    apiService: ServiceContainer().charactersService,
+                    mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+                )
             )
         )
     }

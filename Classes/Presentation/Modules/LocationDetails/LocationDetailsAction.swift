@@ -4,5 +4,6 @@
 //
 
 enum LocationDetailsAction: Equatable {
-
+    case onAppear
+    case dataLoaded(Result<[Character], NetworkError>)
 }

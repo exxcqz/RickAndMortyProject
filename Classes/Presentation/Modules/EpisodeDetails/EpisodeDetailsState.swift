@@ -6,4 +6,6 @@
 struct EpisodeDetailsState: Equatable {
     var episode: Episode = dummyEpisodesArray[0]
     var characters: [Character] = dummyCharactersArray
+    var currentPageLoading: Int = 1
+    var totalPages: Int = 0
 }
