@@ -82,7 +82,7 @@ extension DetailsHeaderComponent {
 
 extension String {
 
-    var checkEmpty: String {
+    var checkEmpty1: String {
         if self.isEmpty {
             return "None"
         }
