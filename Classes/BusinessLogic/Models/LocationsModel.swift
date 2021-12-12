@@ -10,7 +10,7 @@ struct Location: Codable, Equatable {
     let id: Int
     let name: String
     let type: LocationType
-    let dimension: String
+    let dimension: LocationDimension
     let residents: [String]
     let url: String
     let created: String
@@ -62,10 +62,9 @@ struct Location: Codable, Equatable {
         case woods = "Woods"
         case empty = ""
         case unknown = "unknown"
-        case other = "some other type"
 
         public init(from decoder: Decoder) throws {
-            self = try LocationType(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .other
+            self = try LocationType(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .unknown
         }
 
         var icon: UIImage {
@@ -91,13 +90,53 @@ struct Location: Codable, Equatable {
             }
         }
     }
+
+    enum LocationDimension: String, Codable, Equatable {
+        case chair = "Chair Dimension"
+        case cromulon = "Cromulon Dimension"
+        case cronenberg = "Cronenberg Dimension"
+        case d5126 = "Dimension 5-126"
+        case c137 = "Dimension C-137"
+        case c35 = "Dimension C-35"
+        case c500a = "Dimension C-500A"
+        case d99 = "Dimension D-99"
+        case d716 = "Dimension D716"
+        case d716b = "Dimension D716-B"
+        case d716c = "Dimension D716-C"
+        case j22 = "Dimension J-22"
+        case j19 = "Dimension J19ζ7"
+        case k22 = "Dimension K-22"
+        case k83 = "Dimension K-83"
+        case stoltzMask = "Eric Stoltz Mask Dimension"
+        case ricksTarget = "Evil Rick's Target Dimension"
+        case fantasy = "Fantasy Dimension"
+        case fascist = "Fascist Dimension"
+        case shrimp = "Fascist Shrimp Dimension"
+        case teddyBear = "Fascist Teddy Bear Dimension"
+        case spiders = "Giant Telepathic Spiders Dimension"
+        case magic = "Magic Dimension"
+        case merged = "Merged Dimension"
+        case phone = "Phone Dimension"
+        case pizza = "Pizza Dimension"
+        case postApocalyptic = "Post-Apocalyptic Dimension"
+        case replacement = "Replacement Dimension"
+        case testicleMonster = "Testicle Monster Dimension"
+        case tusk = "Tusk Dimension"
+        case wasp = "Wasp Dimension"
+        case unknown = "unknown"
+        case empty = ""
+
+        public init(from decoder: Decoder) throws {
+            self = try LocationDimension(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .unknown
+        }
+    }
 }
 
 let locationCardModel = Location(
     id: 1,
     name: "Earth (Replacement Dimension)",
     type: .cluster,
-    dimension: "1",
+    dimension: Location.LocationDimension.c137,
     residents: ["1"],
     url: "1",
     created: "1"
