@@ -4,6 +4,6 @@
 //
 
 struct LocationDetailsState: Equatable {
-    var location: Location = locationData[0]
-    var characters: [Character] = characterData
+    var location: Location = listLocations[0]
+    var characters: [Character] = dummyCharactersArray
 }

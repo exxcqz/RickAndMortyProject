@@ -4,7 +4,7 @@
 //
 
 struct CharacterDetailsState: Equatable {
-    var character: Character = characterData[0]
-    var location: Location = locationData[0]
+    var character: Character = dummyCharactersArray[0]
+    var location: Location = listLocations[0]
     var episodes: [Episode] = dummyEpisodesArray
 }

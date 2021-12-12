@@ -35,7 +35,13 @@ struct LocationsScreen: View {
                                 LazyVStack(spacing: 16) {
                                     ForEach(viewStore.state.data, id: \.id) { card in
                                         NavigationLink {
-                                            DetailsHelloComponent()
+                                            LocationDetailsScreen(
+                                                store: Store(
+                                                    initialState: LocationDetailsState(location: card),
+                                                    reducer: locationDetailsReducer,
+                                                    environment: LocationDetailsEnvironment()
+                                                )
+                                            )
                                         } label: {
                                             LocationsCardComponent(locationDetail: card)
                                         }

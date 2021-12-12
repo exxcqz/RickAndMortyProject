@@ -39,7 +39,7 @@ struct LocationDetailsInfoView: View {
                             .foregroundColor(Color(Asset.Colors.grayNormal.name))
                             .frame(height: 20)
                         Spacer()
-                        Text(location.dimension)
+                        Text(location.dimension.rawValue)
                             .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
                             .foregroundColor(.white)
                             .frame(height: 20)
