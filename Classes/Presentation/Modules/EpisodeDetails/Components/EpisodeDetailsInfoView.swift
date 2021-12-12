@@ -71,8 +71,8 @@ extension EpisodeDetailsInfoView {
     var episodeCodeReadable: (episode: String, season: String) {
         guard let episodeNumber = episode.convertedEpisodeCode?.episodeNumber,
               let seasonNumber = episode.convertedEpisodeCode?.seasonNumber else {
-            return (L10n.Episodes.SeasonCode.unknown, L10n.Episodes.SeasonCode.unknown)
-        }
+                  return (L10n.Episodes.SeasonCode.unknown, L10n.Episodes.SeasonCode.unknown)
+              }
         return ("\(episodeNumber)", "\(seasonNumber)")
     }
 }

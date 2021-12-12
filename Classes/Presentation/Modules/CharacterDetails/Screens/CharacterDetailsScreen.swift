@@ -31,17 +31,17 @@ struct CharacterDetailsScreen: View {
                         .padding(.top, 24)
                         .padding(.leading, Layout.scaleFactorW * 24)
                         LazyVGrid(columns: columns, spacing: 16) {
-                            ForEach(0..<viewStore.episodes.count, id: \.self) { index in
+                            ForEach(viewStore.episodes, id: \.id) { episode in
                                 NavigationLink {
                                     EpisodeDetailsScreen(
                                         store: Store(
-                                            initialState: EpisodeDetailsState(episode: viewStore.episodes[index]),
+                                            initialState: EpisodeDetailsState(episode: episode),
                                             reducer: episodeDetailsReducer,
                                             environment: EpisodeDetailsEnvironment()
                                         )
                                     )
                                 } label: {
-                                    EpisodeCard(episode: viewStore.episodes[index])
+                                    EpisodeCard(episode: episode)
                                 }
                             }
                             .padding(.horizontal, Layout.scaleFactorW * 24)

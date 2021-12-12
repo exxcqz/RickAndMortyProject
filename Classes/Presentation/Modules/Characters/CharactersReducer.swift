@@ -8,7 +8,7 @@ import ComposableArchitecture
 let charactersReducer = Reducer<CharactersState, CharactersAction, CharactersEnvironment> { state, action, environment in
     switch action {
     case .onAppear:
-        state.data = dummyCharactersArray
+        state.data = characterData
         state.grid.removeAll()
         print("number of characters: \(state.data.count)")
         for row in stride(from: 0, to: state.data.count, by: 2) where row != state.data.count {

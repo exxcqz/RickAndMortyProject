@@ -30,17 +30,17 @@ struct EpisodeDetailsScreen: View {
                         .padding(.top, 24)
                         .padding(.leading, Layout.scaleFactorW * 24)
                         LazyVGrid(columns: columns, spacing: 16) {
-                            ForEach(0..<viewStore.characters.count, id: \.self) { index in
+                            ForEach(viewStore.characters, id: \.id) { character in
                                 NavigationLink {
                                     CharacterDetailsScreen(
                                         store: Store(
-                                            initialState: CharacterDetailsState(character: viewStore.characters[index]),
+                                            initialState: CharacterDetailsState(character: character),
                                             reducer: characterDetailsReducer,
                                             environment: CharacterDetailsEnvironment()
                                         )
                                     )
                                 } label: {
-                                    CharacterCard(сharacter: viewStore.characters[index])
+                                    CharacterCard(сharacter: character)
                                 }
                             }
                         }
