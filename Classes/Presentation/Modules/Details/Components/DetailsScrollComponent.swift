@@ -10,7 +10,6 @@ struct DetailsScrollComponent: View {
     let store: Store<DetailsState, DetailsAction>
     let currentDetails: Details
     let characters: [Character]
-    let locations: [Location]
     let episodes: [Episode]
 
     var body: some View {
@@ -36,8 +35,12 @@ struct DetailsScrollComponent: View {
                         ).onAppear {
                             switch currentDetails {
                             case .character:
+                                print(viewStore.episodes[index].name)
+                                print(viewStore.episode.name)
                                 viewStore.send(.updateStateEpisode(viewStore.episodes[index]))
                             case .location, .episode:
+                                print(viewStore.characters[index].name)
+                                print(viewStore.character.name)
                                 viewStore.send(.updateStateCharacter(viewStore.characters[index]))
                             }
                         }

@@ -39,7 +39,6 @@ struct DetailsScreen: View {
                             ),
                             currentDetails: viewStore.selectedDetails,
                             characters: viewStore.characters,
-                            locations: viewStore.locations,
                             episodes: viewStore.episodes
                         )
                     }

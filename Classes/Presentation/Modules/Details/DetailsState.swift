@@ -11,7 +11,6 @@ struct DetailsState: Equatable {
     var location: Location = locationData[0]
     var episode: Episode = dummyEpisodesArray[0]
     var characters: [Character] = characterData
-    var locations: [Location] = locationData
     var episodes: [Episode] = dummyEpisodesArray
 }
 

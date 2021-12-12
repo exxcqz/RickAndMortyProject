@@ -9,7 +9,7 @@ import SwiftUI
 let locationsReducer = Reducer<LocationsState, LocationsAction, LocationsEnvironment> { state, action, environment in
     switch action {
     case .updateLocationsData:
-        state.locationsData = listLocations
+        state.locationsData = locationData
     case .didOpenLocationDetails(let location):
         print("Hello \(location.name)")
     case .searchInputChanged(let request):
