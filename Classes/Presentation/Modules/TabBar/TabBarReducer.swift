@@ -34,7 +34,7 @@ let tabBarReducer: Reducer<TabBarState, TabBarAction, TabBarEnvironment> = .comb
             mainQueue: DispatchQueue.main.eraseToAnyScheduler()
         )
     },
-    
+
     episodesReducer.pullback(state: \.episodes, action: /TabBarAction.episodes) { _ in
         EpisodesEnvironment(
             apiService: ServiceContainer().episodesService,
