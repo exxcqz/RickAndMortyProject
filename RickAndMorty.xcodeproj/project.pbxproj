@@ -35,6 +35,8 @@
 		11D3F7922765EECB00444192 /* CharacterDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D3F7912765EECB00444192 /* CharacterDetailsHeaderView.swift */; };
 		11D3F7942765F01800444192 /* CharacterDetailsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D3F7932765F01800444192 /* CharacterDetailsInfoView.swift */; };
 		11D3F79A2765F30700444192 /* CharacterDetailsOriginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D3F7992765F30700444192 /* CharacterDetailsOriginView.swift */; };
+		11D3F79C2765F6A400444192 /* LocationDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D3F79B2765F6A400444192 /* LocationDetailsHeaderView.swift */; };
+		11D3F79E2765F9C700444192 /* LocationDetailsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D3F79D2765F9C700444192 /* LocationDetailsInfoView.swift */; };
 		11E3398C2746790E00D3B145 /* Gilroy-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11E339892746790D00D3B145 /* Gilroy-Bold.ttf */; };
 		11E3398D2746790E00D3B145 /* Gilroy-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11E3398A2746790E00D3B145 /* Gilroy-Medium.ttf */; };
 		11E3398E2746790E00D3B145 /* Gilroy-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11E3398B2746790E00D3B145 /* Gilroy-SemiBold.ttf */; };
@@ -63,7 +65,6 @@
 		6D6D7EA221F743FA000FFA4D /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6D7EA121F743F9000FFA4D /* Services.swift */; };
 		7691C16922E64501B108CF13 /* DetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B45AD7C37777F8F486DF783 /* DetailsScreen.swift */; };
 		770EF151B4A57F191845EC70 /* TabBarReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D696FA8E0CBB2B4F3874516 /* TabBarReducer.swift */; };
-		7939F827742293F01935CE4F /* LocationDetailsHelloComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A495AB1376F6A5ED459351 /* LocationDetailsHelloComponent.swift */; };
 		87A019A5D32B2AC449FD79B0 /* TabBarAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740ED4B41741423AEA6699B9 /* TabBarAction.swift */; };
 		8ADD5F0A2BB72EF68E8B47F2 /* TabBarState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A624C70F9B836C187021D071 /* TabBarState.swift */; };
 		96851AE03DC39C8E37DBD4DB /* SplashState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E079240CF34C0E4448E06A60 /* SplashState.swift */; };
@@ -140,6 +141,8 @@
 		11D3F7912765EECB00444192 /* CharacterDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsHeaderView.swift; sourceTree = "<group>"; };
 		11D3F7932765F01800444192 /* CharacterDetailsInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsInfoView.swift; sourceTree = "<group>"; };
 		11D3F7992765F30700444192 /* CharacterDetailsOriginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsOriginView.swift; sourceTree = "<group>"; };
+		11D3F79B2765F6A400444192 /* LocationDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsHeaderView.swift; sourceTree = "<group>"; };
+		11D3F79D2765F9C700444192 /* LocationDetailsInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsInfoView.swift; sourceTree = "<group>"; };
 		11E339892746790D00D3B145 /* Gilroy-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Bold.ttf"; sourceTree = "<group>"; };
 		11E3398A2746790E00D3B145 /* Gilroy-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Medium.ttf"; sourceTree = "<group>"; };
 		11E3398B2746790E00D3B145 /* Gilroy-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -173,7 +176,6 @@
 		81EB3DB1D9FCAECB1BA57956 /* SplashScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		86DC89AA63C519F339EBA263 /* FilterReducer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FilterReducer.swift; sourceTree = "<group>"; };
 		8D696FA8E0CBB2B4F3874516 /* TabBarReducer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TabBarReducer.swift; sourceTree = "<group>"; };
-		93A495AB1376F6A5ED459351 /* LocationDetailsHelloComponent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationDetailsHelloComponent.swift; sourceTree = "<group>"; };
 		99EE56FF0126DD3453057974 /* CharacterDetailsState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CharacterDetailsState.swift; sourceTree = "<group>"; };
 		9E36118A52122D74AB1FDDB0 /* EpisodesState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EpisodesState.swift; sourceTree = "<group>"; };
 		A624C70F9B836C187021D071 /* TabBarState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TabBarState.swift; sourceTree = "<group>"; };
@@ -434,7 +436,8 @@
 		4A6CA1AF3FB6D67528B53C7D /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				93A495AB1376F6A5ED459351 /* LocationDetailsHelloComponent.swift */,
+				11D3F79B2765F6A400444192 /* LocationDetailsHeaderView.swift */,
+				11D3F79D2765F9C700444192 /* LocationDetailsInfoView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -799,6 +802,7 @@
 				C3CC72982752B8BA007FFC54 /* CharacterCard.swift in Sources */,
 				11A06B5B275E0EA20022869B /* DetailsHeaderComponent.swift in Sources */,
 				FBA90FB626DE2F040092A824 /* SceneDelegate.swift in Sources */,
+				11D3F79C2765F6A400444192 /* LocationDetailsHeaderView.swift in Sources */,
 				C3834B4C274BA0A10091D5CB /* AnimationViewComponent.swift in Sources */,
 				C4CF98403AF3388D9071EE84 /* SplashScreen.swift in Sources */,
 				96851AE03DC39C8E37DBD4DB /* SplashState.swift in Sources */,
@@ -832,6 +836,7 @@
 				FC410A3D2B126E033C643145 /* FilterHelloComponent.swift in Sources */,
 				11A839F5275A50DB0015BD55 /* StickyHeaderComponent.swift in Sources */,
 				C314B9602750EE5800C7E28F /* CharacterModel.swift in Sources */,
+				11D3F79E2765F9C700444192 /* LocationDetailsInfoView.swift in Sources */,
 				0F2A99AF57F8FAF272D3A536 /* FilterState.swift in Sources */,
 				C3CC729A2752B96E007FFC54 /* SearchBar.swift in Sources */,
 				C38028A1275D270A00E470BC /* GeneralRequest.swift in Sources */,
@@ -865,7 +870,6 @@
 				5C1D205AAB496CD171268F6D /* CharacterDetailsEnvironment.swift in Sources */,
 				2F66FB28926DD50F2EB908D2 /* CharacterDetailsReducer.swift in Sources */,
 				9A81E75615DBCC5917BD8643 /* LocationDetailsScreen.swift in Sources */,
-				7939F827742293F01935CE4F /* LocationDetailsHelloComponent.swift in Sources */,
 				FC87372D69EC6AA5159C8314 /* LocationDetailsState.swift in Sources */,
 				0EE568E16B82E3E2FA8C6F0A /* LocationDetailsAction.swift in Sources */,
 				1DA66065ECBB8A5BB95D0E91 /* LocationDetailsEnvironment.swift in Sources */,

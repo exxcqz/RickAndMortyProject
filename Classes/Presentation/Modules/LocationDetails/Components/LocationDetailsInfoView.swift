@@ -5,8 +5,8 @@
 
 import SwiftUI
 
-struct CharacterDetailsInfoView: View {
-    var character: Character
+struct LocationDetailsInfoView: View {
+    var location: Location
 
     var body: some View {
         VStack(spacing: 16) {
@@ -20,38 +20,27 @@ struct CharacterDetailsInfoView: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 16)
                     .foregroundColor(Color(Asset.Colors.blackCard.name))
-                    .frame(width: Layout.scaleFactorW * 327, height: Layout.scaleFactorW * 124)
+                    .frame(width: Layout.scaleFactorW * 327, height: Layout.scaleFactorW * 96)
                 VStack(spacing: 16) {
-                    HStack {
-                        Text(L10n.Details.Info.species)
-                            .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
-                            .foregroundColor(Color(Asset.Colors.grayNormal.name))
-                            .frame(height: 20)
-                        Spacer()
-                        Text(character.species)
-                            .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
-                            .foregroundColor(.white)
-                            .frame(height: 20)
-                    }
                     HStack {
                         Text(L10n.Details.Info.type)
                             .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
                             .foregroundColor(Color(Asset.Colors.grayNormal.name))
                             .frame(height: 20)
                         Spacer()
-                        Text(character.type.checkEmpty)
+                        Text(location.type.rawValue)
                             .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
                             .foregroundColor(.white)
                             .frame(height: 20)
                     }
                     HStack {
-                        Text(L10n.Details.Info.gender)
-                            .font(Font.appFontMedium(ofSize: 16))
+                        Text(L10n.Details.Info.dimension)
+                            .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
                             .foregroundColor(Color(Asset.Colors.grayNormal.name))
                             .frame(height: 20)
                         Spacer()
-                        Text(character.gender)
-                            .font(Font.appFontMedium(ofSize: 16))
+                        Text(location.dimension)
+                            .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
                             .foregroundColor(.white)
                             .frame(height: 20)
                     }
@@ -61,17 +50,5 @@ struct CharacterDetailsInfoView: View {
             }
         }
         .padding(.horizontal, Layout.scaleFactorW * 24)
-    }
-}
-
-// MARK: -  Check for empty value
-
-extension String {
-
-    var checkEmpty: String {
-        if self.isEmpty {
-            return "None"
-        }
-        return self
     }
 }

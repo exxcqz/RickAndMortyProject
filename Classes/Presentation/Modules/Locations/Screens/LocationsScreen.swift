@@ -38,11 +38,11 @@ struct LocationsScreen: View {
 //                                                environment: DetailsEnvironment()
 //                                            )
 //                                        )
-                                        CharacterDetailsScreen(
+                                        LocationDetailsScreen(
                                             store: Store(
-                                                initialState: CharacterDetailsState(),
-                                                reducer: characterDetailsReducer,
-                                                environment: CharacterDetailsEnvironment()
+                                                initialState: LocationDetailsState(location: card),
+                                                reducer: locationDetailsReducer,
+                                                environment: LocationDetailsEnvironment()
                                             )
                                         )
                                     } label: {
