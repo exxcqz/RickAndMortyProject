@@ -7,7 +7,6 @@ import ComposableArchitecture
 import SwiftUI
 
 struct CharacterDetailsOriginView: View {
-    var character: Character
     var location: Location
 
     var body: some View {
@@ -21,11 +20,11 @@ struct CharacterDetailsOriginView: View {
         .padding(.top, 24)
         .padding(.leading, Layout.scaleFactorW * 24)
         NavigationLink {
-            DetailsScreen(
+            LocationDetailsScreen(
                 store: Store(
-                    initialState: DetailsState(selectedDetails: .location),
-                    reducer: detailsReducer,
-                    environment: DetailsEnvironment()
+                    initialState: LocationDetailsState(location: location),
+                    reducer: locationDetailsReducer,
+                    environment: LocationDetailsEnvironment()
                 )
             )
         } label: {

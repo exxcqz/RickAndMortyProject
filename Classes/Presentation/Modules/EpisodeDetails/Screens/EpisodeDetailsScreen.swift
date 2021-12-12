@@ -8,12 +8,53 @@ import SwiftUI
 
 struct EpisodeDetailsScreen: View {
     let store: Store<EpisodeDetailsState, EpisodeDetailsAction>
+    let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            VStack {
-                EpisodeDetailsHelloComponent()
+            ZStack {
+                Color(Asset.Colors.blackBG.name)
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(alignment: .center, spacing: 0) {
+                        EpisodeDetailsHeaderView(episode: viewStore.episode)
+                            .padding(.top, Layout.scaleFactorH * 108)
+                        EpisodeDetailsInfoView(episode: viewStore.episode)
+                            .padding(.top, 24)
+                        HStack {
+                            Text(L10n.Details.Episode.scrollTitle)
+                                .font(Font.appFontSemibold(ofSize: Layout.scaleFactorW * 17))
+                                .foregroundColor(.white)
+                                .frame(height: 22)
+                            Spacer()
+                        }
+                        .padding(.top, 24)
+                        .padding(.leading, Layout.scaleFactorW * 24)
+                        LazyVGrid(columns: columns, spacing: 16) {
+                            ForEach(0..<viewStore.characters.count, id: \.self) { index in
+                                NavigationLink {
+                                    CharacterDetailsScreen(
+                                        store: Store(
+                                            initialState: CharacterDetailsState(character: viewStore.characters[index]),
+                                            reducer: characterDetailsReducer,
+                                            environment: CharacterDetailsEnvironment()
+                                        )
+                                    )
+                                } label: {
+                                    CharacterCard(сharacter: viewStore.characters[index])
+                                }
+                            }
+                        }
+                        .padding(.horizontal, Layout.scaleFactorW * 24)
+                        .padding(.top, 16)
+                        .padding(.bottom, 16)
+                    }
+                }
             }
+            .navigationBarHidden(true)
+            .overlay(
+                DetailsNavigationBarComponent()
+            )
+            .edgesIgnoringSafeArea(.all)
         }
     }
 }

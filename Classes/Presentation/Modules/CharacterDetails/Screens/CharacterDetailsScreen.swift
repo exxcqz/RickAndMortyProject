@@ -20,10 +20,7 @@ struct CharacterDetailsScreen: View {
                             .padding(.top, Layout.scaleFactorH * 108)
                         CharacterDetailsInfoView(character: viewStore.character)
                             .padding(.top, 24)
-                        CharacterDetailsOriginView(
-                            character: viewStore.character,
-                            location: viewStore.location
-                        )
+                        CharacterDetailsOriginView(location: viewStore.location)
                         HStack {
                             Text(L10n.Details.Character.scrollTitle)
                                 .font(Font.appFontSemibold(ofSize: Layout.scaleFactorW * 17))
@@ -36,11 +33,11 @@ struct CharacterDetailsScreen: View {
                         LazyVGrid(columns: columns, spacing: 16) {
                             ForEach(0..<viewStore.episodes.count, id: \.self) { index in
                                 NavigationLink {
-                                    DetailsScreen(
+                                    EpisodeDetailsScreen(
                                         store: Store(
-                                            initialState: DetailsState(selectedDetails: .episode),
-                                            reducer: detailsReducer,
-                                            environment: DetailsEnvironment()
+                                            initialState: EpisodeDetailsState(episode: viewStore.episodes[index]),
+                                            reducer: episodeDetailsReducer,
+                                            environment: EpisodeDetailsEnvironment()
                                         )
                                     )
                                 } label: {
