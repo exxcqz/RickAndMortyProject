@@ -11,7 +11,6 @@ protocol HasEpisodesService {
 }
 
 protocol EpisodesServiceProtocol: AnyObject {
-    func fetchAllEpisodes(currentPage: Int) -> Effect<GeneralRequest<Episode>, NetworkError>
-    func fetchFilteredEpisodes(seasonNumber: Int) -> Effect<GeneralRequest<Episode>, NetworkError>
+    func fetchEpisodes(withParameters: FetchingParameters) -> Effect<GeneralRequest<Episode>, NetworkError>
     func fetchMultipleEpisodes(withIds: [Int]) -> Effect<[Episode], NetworkError>
 }

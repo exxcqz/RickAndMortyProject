@@ -11,7 +11,6 @@ protocol HasLocationsService {
 }
 
 protocol LocationsServiceProtocol: AnyObject {
-    func fetchAllLocations(currentPage: Int) -> Effect<GeneralRequest<Location>, NetworkError>
-    func fetchFilteredLocations(currentPage: Int, filterParam: [String], filterValue: [String]) -> Effect<GeneralRequest<Location>, NetworkError>
+    func fetchLocations(withParameters: FetchingParameters) -> Effect<GeneralRequest<Location>, NetworkError>
     func fetchMultipleLocations(withIds: [Int]) -> Effect<[Location], NetworkError>
 }

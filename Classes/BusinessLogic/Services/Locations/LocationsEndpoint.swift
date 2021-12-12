@@ -7,8 +7,7 @@ import Foundation
 import Networking
 
 enum LocationsEndpoint: Endpoint {
-    case fetchAllLocations(_ currentPage: Int)
-    case fetchFilteredLocations(_ currentPage: Int, _ filterParam: [String], _ filterValue: [String])
+    case fetchLocations(_ withParameters: FetchingParameters)
     case fetchMultipleLocations(_ withIds: [Int])
 
     var baseURL: URL {
@@ -17,9 +16,7 @@ enum LocationsEndpoint: Endpoint {
 
     var path: String {
         switch self {
-        case .fetchAllLocations:
-            return "api/location/"
-        case .fetchFilteredLocations:
+        case .fetchLocations:
             return "api/location/"
         case .fetchMultipleLocations(let ids):
             return "api/character/\(ids)"
@@ -36,21 +33,11 @@ enum LocationsEndpoint: Endpoint {
 
     var parameters: Parameters? {
         switch self {
-        case let .fetchAllLocations(currentPage):
-            return ["page": "\(currentPage)"]
-        case let .fetchFilteredLocations(currentPage, filterParam, filterValue):
-            return convertFilterParams(currentPage, filterParam, filterValue)
+        case let .fetchLocations(parameters):
+            return parameters.convertToDict()
         default:
             return nil
         }
-    }
-
-    func convertFilterParams(_ currentPage: Int, _ filterParam: [String], _ filterValue: [String]) -> [String: Any] {
-        var resultDict = ["page": "\(currentPage)"]
-        filterParam.enumerated().forEach { (index, value) in
-            resultDict[value] = filterValue[index]
-        }
-        return resultDict
     }
 
     var parameterEncoding: ParameterEncoding {

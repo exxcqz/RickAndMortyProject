@@ -7,8 +7,7 @@ import Foundation
 import Networking
 
 enum CharactersEndpoint: Endpoint {
-    case fetchAllCharacters(_ currentPage: Int)
-    case fetchFilteredCharacters(_ currentPage: Int, _ filterParam: [String], _ filterValue: [String])
+    case fetchCharacters(_ withParameters: FetchingParameters)
     case fetchMultipleCharacters(_ withIds: [Int])
 
     var baseURL: URL {
@@ -17,9 +16,7 @@ enum CharactersEndpoint: Endpoint {
 
     var path: String {
         switch self {
-        case .fetchAllCharacters:
-            return "api/character/"
-        case .fetchFilteredCharacters:
+        case .fetchCharacters:
             return "api/character/"
         case .fetchMultipleCharacters(let ids):
             return "api/character/\(ids)"
@@ -36,25 +33,15 @@ enum CharactersEndpoint: Endpoint {
 
     var parameters: Parameters? {
         switch self {
-        case let .fetchAllCharacters(currentPage):
-            return ["page": "\(currentPage)"]
-        case let .fetchFilteredCharacters(currentPage, filterParam, filterValue):
-            return convertFilterParams(currentPage, filterParam, filterValue)
+        case let .fetchCharacters(parameters):
+            return parameters.convertToDict()
         default:
             return nil
         }
     }
 
-    func convertFilterParams(_ currentPage: Int, _ filterParam: [String], _ filterValue: [String]) -> [String: Any] {
-        var resultDict = ["page": "\(currentPage)"]
-        filterParam.enumerated().forEach { (index, value) in
-            resultDict[value] = filterValue[index]
-        }
-        return resultDict
-    }
-
     var parameterEncoding: ParameterEncoding {
-        return URLEncoding.default
+        return URLEncoding.queryString
     }
 
     var authorizationType: AuthorizationType {

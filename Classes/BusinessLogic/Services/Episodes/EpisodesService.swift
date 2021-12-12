@@ -8,16 +8,9 @@ import ComposableArchitecture
 import Networking
 
 final class EpisodesService: EpisodesServiceProtocol {
-    func fetchAllEpisodes(currentPage: Int) -> Effect<GeneralRequest<Episode>, NetworkError> {
+    func fetchEpisodes(withParameters: FetchingParameters) -> Effect<GeneralRequest<Episode>, NetworkError> {
         let request = makeRequest {
-            EpisodesEndpoint.fetchAllEpisodes(currentPage)
-        }
-        return requestWithEffect(request)
-    }
-
-    func fetchFilteredEpisodes(seasonNumber: Int) -> Effect<GeneralRequest<Episode>, NetworkError> {
-        let request = makeRequest {
-            EpisodesEndpoint.fetchFilteredEpisodes(seasonNumber)
+            EpisodesEndpoint.fetchEpisodes(withParameters)
         }
         return requestWithEffect(request)
     }

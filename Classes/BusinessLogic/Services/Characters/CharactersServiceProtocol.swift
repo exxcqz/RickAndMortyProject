@@ -11,7 +11,6 @@ protocol HasCharactersService {
 }
 
 protocol CharactersServiceProtocol: AnyObject {
-    func fetchAllCharacters(currentPage: Int) -> Effect<GeneralRequest<Character>, NetworkError>
-    func fetchFilteredCharacters(currentPage: Int, filterParam: [String], filterValue: [String]) -> Effect<GeneralRequest<Character>, NetworkError>
+    func fetchCharacters(withParameters: FetchingParameters) -> Effect<GeneralRequest<Character>, NetworkError>
     func fetchMultipleCharacters(withIds: [Int]) -> Effect<[Character], NetworkError>
 }

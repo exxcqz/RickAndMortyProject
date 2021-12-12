@@ -9,14 +9,17 @@ let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment
     switch action {
     case .onAppear:
         if state.data.isEmpty {
-            return environment.apiService.fetchAllEpisodes(currentPage: state.currentPageLoading)
+            state.currentPageLoading = 1
+            state.filterParameters.page = state.currentPageLoading
+            return environment.apiService.fetchEpisodes(withParameters: state.filterParameters)
                 .receive(on: environment.mainQueue)
                 .catchToEffect()
                 .map(EpisodesAction.dataLoaded)
         }
     case .fetchAnotherPage:
         state.currentPageLoading += 1
-        return environment.apiService.fetchAllEpisodes(currentPage: state.currentPageLoading)
+        state.filterParameters.page = state.currentPageLoading
+        return environment.apiService.fetchEpisodes(withParameters: state.filterParameters)
             .receive(on: environment.mainQueue)
             .catchToEffect()
             .map(EpisodesAction.dataLoaded)
@@ -65,13 +68,15 @@ let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment
         state.isFiltering = true
         print("Filter: \(state.seasonsTitles[state.selectedSeasonIndex])")
         if index == 0 {
+            state.filterParameters.episode = nil
             state.totalPagesForFilter = state.totalPages
             state.filteredData = state.data
             state.filteredSeasonsNumberArray = state.seasonsSet.sorted()
             state.isFiltering = false
         } else {
             state.filteredSeasonsNumberArray = [state.seasonsNumberArray[index - 1]]
-            return environment.apiService.fetchFilteredEpisodes(seasonNumber: index)
+            state.filterParameters.episode = index
+            return environment.apiService.fetchEpisodes(withParameters: state.filterParameters)
                 .receive(on: environment.mainQueue)
                 .catchToEffect()
                 .map(EpisodesAction.filteredDataLoaded)

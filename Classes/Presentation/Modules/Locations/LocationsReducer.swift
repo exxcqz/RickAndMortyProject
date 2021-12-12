@@ -9,14 +9,17 @@ let locationsReducer = Reducer<LocationsState, LocationsAction, LocationsEnviron
     switch action {
     case .onAppear:
         if state.data.isEmpty {
-            return environment.apiService.fetchAllLocations(currentPage: state.currentPageLoading)
+            state.currentPageLoading = 1
+            state.filterParameters.page = state.currentPageLoading
+            return environment.apiService.fetchLocations(withParameters: state.filterParameters)
                 .receive(on: environment.mainQueue)
                 .catchToEffect()
                 .map(LocationsAction.dataLoaded)
         }
     case .fetchAnotherPage:
         state.currentPageLoading += 1
-        return environment.apiService.fetchAllLocations(currentPage: state.currentPageLoading)
+        state.filterParameters.page = state.currentPageLoading
+        return environment.apiService.fetchLocations(withParameters: state.filterParameters)
             .receive(on: environment.mainQueue)
             .catchToEffect()
             .map(LocationsAction.dataLoaded)

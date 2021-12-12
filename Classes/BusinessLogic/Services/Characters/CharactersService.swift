@@ -8,20 +8,12 @@ import ComposableArchitecture
 import Networking
 
 final class CharactersService: CharactersServiceProtocol {
-    func fetchAllCharacters(currentPage: Int) -> Effect<GeneralRequest<Character>, NetworkError> {
+    func fetchCharacters(withParameters: FetchingParameters) -> Effect<GeneralRequest<Character>, NetworkError> {
         let request = makeRequest {
-            CharactersEndpoint.fetchAllCharacters(currentPage)
+            CharactersEndpoint.fetchCharacters(withParameters)
         }
         return requestWithEffect(request)
     }
-
-    func fetchFilteredCharacters(currentPage: Int, filterParam: [String], filterValue: [String]) -> Effect<GeneralRequest<Character>, NetworkError> {
-        let request = makeRequest {
-            CharactersEndpoint.fetchFilteredCharacters(currentPage, filterParam, filterValue)
-        }
-        return requestWithEffect(request)
-    }
-
     func fetchMultipleCharacters(withIds: [Int]) -> Effect<[Character], NetworkError> {
         let request = makeRequest {
             CharactersEndpoint.fetchMultipleCharacters(withIds)

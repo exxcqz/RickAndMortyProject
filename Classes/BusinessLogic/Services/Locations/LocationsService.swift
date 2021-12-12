@@ -8,16 +8,9 @@ import ComposableArchitecture
 import Networking
 
 final class LocationsService: LocationsServiceProtocol {
-    func fetchAllLocations(currentPage: Int) -> Effect<GeneralRequest<Location>, NetworkError> {
+    func fetchLocations(withParameters: FetchingParameters) -> Effect<GeneralRequest<Location>, NetworkError> {
         let request = makeRequest {
-            LocationsEndpoint.fetchAllLocations(currentPage)
-        }
-        return requestWithEffect(request)
-    }
-
-    func fetchFilteredLocations(currentPage: Int, filterParam: [String], filterValue: [String]) -> Effect<GeneralRequest<Location>, NetworkError> {
-        let request = makeRequest {
-            LocationsEndpoint.fetchFilteredLocations(currentPage, filterParam, filterValue)
+            LocationsEndpoint.fetchLocations(withParameters)
         }
         return requestWithEffect(request)
     }
