@@ -4,5 +4,6 @@
 //
 
 enum EpisodeDetailsAction: Equatable {
-
+    case onAppear
+    case dataLoaded(Result<[Character], NetworkError>)
 }

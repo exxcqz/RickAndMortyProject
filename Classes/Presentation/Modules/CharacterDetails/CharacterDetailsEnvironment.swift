@@ -3,6 +3,9 @@
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
-struct CharacterDetailsEnvironment {
+import ComposableArchitecture
 
+struct CharacterDetailsEnvironment {
+    var apiService: EpisodesServiceProtocol
+    var mainQueue: AnySchedulerOf<DispatchQueue>
 }

@@ -19,7 +19,7 @@ enum EpisodesEndpoint: Endpoint {
         case .fetchEpisodes:
             return "api/episode/"
         case .fetchMultipleEpisodes(let ids):
-            return "api/character/\(ids)"
+            return "api/episode/\(ids)"
         }
     }
 

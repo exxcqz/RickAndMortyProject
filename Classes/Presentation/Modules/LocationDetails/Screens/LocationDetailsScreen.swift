@@ -36,7 +36,10 @@ struct LocationDetailsScreen: View {
                                         store: Store(
                                             initialState: CharacterDetailsState(character: character),
                                             reducer: characterDetailsReducer,
-                                            environment: CharacterDetailsEnvironment()
+                                            environment: CharacterDetailsEnvironment(
+                                                apiService: ServiceContainer().episodesService,
+                                                mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+                                            )
                                         )
                                     )
                                 } label: {

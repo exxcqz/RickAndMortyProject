@@ -37,7 +37,10 @@ struct CharacterDetailsScreen: View {
                                         store: Store(
                                             initialState: EpisodeDetailsState(episode: episode),
                                             reducer: episodeDetailsReducer,
-                                            environment: EpisodeDetailsEnvironment()
+                                            environment: EpisodeDetailsEnvironment(
+                                                apiService: ServiceContainer().charactersService,
+                                                mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+                                            )
                                         )
                                     )
                                 } label: {
@@ -56,6 +59,9 @@ struct CharacterDetailsScreen: View {
                 DetailsNavigationBarComponent()
             )
             .edgesIgnoringSafeArea(.all)
+            .onAppear {
+                viewStore.send(.onAppear)
+            }
         }
     }
 }
@@ -66,7 +72,10 @@ struct CharacterDetailsScreen_Previews: PreviewProvider {
             store: Store(
                 initialState: CharacterDetailsState(),
                 reducer: characterDetailsReducer,
-                environment: CharacterDetailsEnvironment()
+                environment: CharacterDetailsEnvironment(
+                    apiService: ServiceContainer().episodesService,
+                    mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+                )
             )
         )
     }

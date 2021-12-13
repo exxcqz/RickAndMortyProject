@@ -30,7 +30,10 @@ struct EpisodesScrollView: View {
                                                 store: Store(
                                                     initialState: EpisodeDetailsState(episode: episode),
                                                     reducer: episodeDetailsReducer,
-                                                    environment: EpisodeDetailsEnvironment()
+                                                    environment: EpisodeDetailsEnvironment(
+                                                        apiService: ServiceContainer().charactersService,
+                                                        mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+                                                    )
                                                 )
                                             )
                                         } label: {
