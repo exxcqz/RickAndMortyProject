@@ -9,7 +9,6 @@ let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment
     switch action {
     case .onAppear:
         if state.data.isEmpty {
-            state.currentPageLoading = 1
             state.filterParameters.page = state.currentPageLoading
             return environment.apiService.fetchEpisodes(withParameters: state.filterParameters)
                 .receive(on: environment.mainQueue)
@@ -18,6 +17,7 @@ let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment
         }
     case .fetchAnotherPage:
         state.currentPageLoading += 1
+        state.currentPageForAll += 1
         state.filterParameters.page = state.currentPageLoading
         return environment.apiService.fetchEpisodes(withParameters: state.filterParameters)
             .receive(on: environment.mainQueue)
@@ -68,12 +68,16 @@ let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment
         state.isFiltering = true
         print("Filter: \(state.seasonsTitles[state.selectedSeasonIndex])")
         if index == 0 {
+            state.currentPageLoading = state.currentPageForAll
+            state.filterParameters.page = state.currentPageLoading
             state.filterParameters.episode = nil
             state.totalPagesForFilter = state.totalPages
             state.filteredData = state.data
             state.filteredSeasonsNumberArray = state.seasonsSet.sorted()
             state.isFiltering = false
         } else {
+            state.currentPageLoading = 1
+            state.filterParameters.page = state.currentPageLoading
             state.filteredSeasonsNumberArray = [state.seasonsNumberArray[index - 1]]
             state.filterParameters.episode = index
             return environment.apiService.fetchEpisodes(withParameters: state.filterParameters)

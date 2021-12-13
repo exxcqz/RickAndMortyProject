@@ -9,6 +9,7 @@ struct EpisodesState: Equatable {
     var data: [Episode] = []
     var filteredData: [Episode] = []
     var currentPageLoading: Int = 1
+    var currentPageForAll: Int = 1
     var totalPages: Int = 0
     var totalPagesForFilter: Int = 0
     var isFiltering: Bool = false
