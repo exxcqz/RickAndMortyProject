@@ -1,5 +1,5 @@
 //
-//  Created by Александр Васильевич on 13.12.2021
+//  Created by Alexander Loshakov on 13.12.2021
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
@@ -8,12 +8,22 @@ import SwiftUI
 
 struct FilterValue: View {
     @State var value: String
-    @State var isActive: Bool = false
+    @State var currentIndex: Int = 0
+    @Binding var selectedIndex: Int
+    @Binding var countOfSelected: Int
 
     var body: some View {
         Button(
             action: {
-                self.isActive.toggle()
+                if selectedIndex != currentIndex {
+                    if selectedIndex == -1 {
+                        countOfSelected += 1
+                    }
+                    selectedIndex = currentIndex
+                } else {
+                    selectedIndex = -1
+                    countOfSelected -= 1
+                }
             },
             label: {
                 ZStack {
@@ -23,12 +33,12 @@ struct FilterValue: View {
                         .padding(.horizontal, Layout.scaleFactorW * 16)
                         .padding(.vertical, Layout.scaleFactorH * 4)
                         .foregroundColor(
-                            isActive
+                            selectedIndex == currentIndex
                             ? Color(.white)
                             : Color(Asset.Colors.grayNormal.name)
                         )
                         .background(
-                            isActive
+                            selectedIndex == currentIndex
                             ? Color(Asset.Colors.primary.name)
                             : Color(hex: 0x1C2031) // поменять цвет
                         )
@@ -40,8 +50,8 @@ struct FilterValue: View {
     }
 }
 
-struct FilterValue_Previews: PreviewProvider {
-    static var previews: some View {
-        FilterValue(value: "Alive")
-    }
-}
+//struct FilterValue_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FilterValue(value: "Alive")
+//    }
+//}

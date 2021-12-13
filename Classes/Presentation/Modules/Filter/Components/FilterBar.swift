@@ -1,5 +1,5 @@
 //
-//  Created by Александр Васильевич on 13.12.2021
+//  Created by Alexander Loshakov on 13.12.2021
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
@@ -7,7 +7,8 @@ import Foundation
 import SwiftUI
 
 struct FilterBar: View {
-    //    @Binding var resetAll: Bool
+    @Binding var resetAll: Bool
+    @Binding var countOfSelected: Int
 
     var body: some View {
         ZStack {
@@ -37,7 +38,8 @@ struct FilterBar: View {
                 Spacer()
                 Button(
                     action: {
-
+                        resetAll.toggle()
+                        countOfSelected = 0
                     }, label: {
                         Text(L10n.Filters.Action.resetAll)
                             .font(Font.appFontSemibold(ofSize: Layout.scaleFactorW * 17))
@@ -53,8 +55,8 @@ struct FilterBar: View {
     }
 }
 
-struct FilterBar_Previews: PreviewProvider {
-    static var previews: some View {
-        FilterBar()
-    }
-}
+//struct FilterBar_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FilterBar()
+//    }
+//}

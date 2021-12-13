@@ -4,5 +4,8 @@
 //
 
 enum FilterAction: Equatable {
-
+    case onAppear(type: FilterState.FilterType)
+    case parameterSeleced(type: FilterState.FilterType, key: String, value: String)
+    case resetAll
+    case applyFilter
 }

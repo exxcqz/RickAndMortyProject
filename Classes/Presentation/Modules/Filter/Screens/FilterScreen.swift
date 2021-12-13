@@ -7,36 +7,18 @@ import ComposableArchitecture
 import SwiftUI
 
 struct FilterScreen: View {
-//    @Binding var resetAll: Bool
     let store: Store<FilterState, FilterAction>
-    @State var filterType: FilterType = FilterType.locations
-
-    enum FilterType: CaseIterable {
-        case characters
-        case locations
-    }
-
-    enum CharacterFilter: String, CaseIterable {
-        case status = "Status"
-        case species = "Species"
-        case type = "Type"
-        case gender = "Gender"
-    }
-
-    enum LocationsFilter: String, CaseIterable {
-        case type = "Type"
-        case dimension = "Dimension"
-    }
+    @State var resetAll: Bool = false
+    @State var countOfSelected: Int = 0
 
     var body: some View {
         WithViewStore(store) { viewStore in
             ZStack {
                 VStack(spacing: 0) {
-                    FilterBar()
-
+                    FilterBar(resetAll: $resetAll, countOfSelected: $countOfSelected)
                     ScrollView(.vertical, showsIndicators: false) {
                         VStack(spacing: 8) {
-                            switch self.filterType {
+                            switch viewStore.filterType {
                             case .characters:
                                 generateCharactersFilter()
                             case .locations:
@@ -46,11 +28,8 @@ struct FilterScreen: View {
                         .padding(.horizontal, Layout.scaleFactorW * 16)
                         .padding(.top, Layout.scaleFactorH * 16)
                         .padding(.bottom, Layout.scaleFactorH * 16)
-                    }
-                    .background(Color(Asset.Colors.blackCard.name))
-
-                    FilterApplyButton()
-
+                    }.background(Color(Asset.Colors.blackCard.name))
+                    FilterApplyButton(store: store, countOfSelected: $countOfSelected) // параметр сделать в сторе
                 }
                 .edgesIgnoringSafeArea(.bottom)
             }
@@ -59,17 +38,17 @@ struct FilterScreen: View {
     }
 
     func generateCharactersFilter() -> some View {
-        return ForEach(CharacterFilter.allCases, id: \.self) { value in
+        return ForEach(FilterState.CharacterFilter.allCases, id: \.self) { value in
             VStack(spacing: 8) {
                 switch value {
                 case .status:
                     FilterKey(name: value.rawValue)
                     let values: [String] = Character.CharacterStatus.allCases.map { $0.rawValue }
-                    FilterValuesSection(parameters: values)
+                    FilterValuesSection(parameters: values, resetAll: $resetAll, countOfSelected: $countOfSelected)
                 case .species:
                     FilterKey(name: value.rawValue)
                     let values: [String] = Character.CharacterSpecies.allCases.map { $0.rawValue }
-                    FilterValuesSection(parameters: values)
+                    FilterValuesSection(parameters: values, resetAll: $resetAll, countOfSelected: $countOfSelected)
                 case .type:
                     FilterKey(name: value.rawValue)
                     let values: [String] = Character.CharacterType.allCases.filter {
@@ -78,18 +57,18 @@ struct FilterScreen: View {
                         $0.rawValue
                     }
 
-                    FilterValuesSection(parameters: values)
+                    FilterValuesSection(parameters: values, resetAll: $resetAll, countOfSelected: $countOfSelected)
                 case .gender:
                     FilterKey(name: value.rawValue)
                     let values: [String] = Character.CharacterGender.allCases.map { $0.rawValue }
-                    FilterValuesSection(parameters: values)
+                    FilterValuesSection(parameters: values, resetAll: $resetAll, countOfSelected: $countOfSelected)
                 }
             }
         }
     }
 
     func generateLocationsFilter() -> some View {
-        return ForEach(LocationsFilter.allCases, id: \.self) { value in
+        return ForEach(FilterState.LocationsFilter.allCases, id: \.self) { value in
             VStack(spacing: 8) {
                 switch value {
                 case .type:
@@ -99,7 +78,7 @@ struct FilterScreen: View {
                     }.map {
                         $0.rawValue
                     }
-                    FilterValuesSection(parameters: values)
+                    FilterValuesSection(parameters: values, resetAll: $resetAll, countOfSelected: $countOfSelected)
                 case .dimension:
                     FilterKey(name: value.rawValue)
                     let values: [String] = Location.LocationDimension.allCases.filter {
@@ -107,8 +86,7 @@ struct FilterScreen: View {
                     }.map {
                         $0.rawValue
                     }
-
-                    FilterValuesSection(parameters: values)
+                    FilterValuesSection(parameters: values, resetAll: $resetAll, countOfSelected: $countOfSelected)
                 }
             }
         }

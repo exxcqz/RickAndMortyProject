@@ -1,5 +1,5 @@
 //
-//  Created by Александр Васильевич on 13.12.2021
+//  Created by Alexander Loshakov on 13.12.2021
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
@@ -8,6 +8,10 @@ import SwiftUI
 
 struct FilterValuesSection: View {
     var parameters: [String]
+    @State var currentIndex: Int = 0
+    @State var selectedIndex: Int = -1
+    @Binding var resetAll: Bool
+    @Binding var countOfSelected: Int
 
     @State private var totalHeight = CGFloat.zero
 
@@ -25,9 +29,13 @@ struct FilterValuesSection: View {
         var height = CGFloat.zero
 
         return ZStack(alignment: .topLeading) {
-            ForEach(self.parameters, id: \.self) { tag in
-                FilterValue(value: tag)
-                    .frame(height: Layout.scaleFactorH * 28)
+            ForEach(0..<self.parameters.count, id: \.self) { index in
+                FilterValue(
+                    value: parameters[index],
+                    currentIndex: index,
+                    selectedIndex: $selectedIndex,
+                    countOfSelected: $countOfSelected // КОДСТАЙЛ
+                ).frame(height: Layout.scaleFactorH * 28)
                     .padding([.horizontal, .vertical], 8)
                     .alignmentGuide(.leading, computeValue: { value in
                         if abs(width - value.width) > geo.size.width {
@@ -35,7 +43,7 @@ struct FilterValuesSection: View {
                             height -= value.height
                         }
                         let result = width
-                        if tag == self.parameters.last! {
+                        if parameters[index] == self.parameters.last! {
                             width = 0
                         } else {
                             width -= value.width
@@ -44,11 +52,14 @@ struct FilterValuesSection: View {
                     })
                     .alignmentGuide(.top, computeValue: { _ in
                         let result = height
-                        if tag == self.parameters.last! {
+                        if parameters[index] == self.parameters.last! {
                             height = 0
                         }
                         return result
                     })
+            }
+            .onChange(of: resetAll) { _ in
+                selectedIndex = -1
             }
         }
         .background(viewHeightReader($totalHeight))
@@ -65,19 +76,22 @@ struct FilterValuesSection: View {
     }
 }
 
-struct FilterValuesSection_Previews: PreviewProvider {
-    static var previews: some View {
-        FilterValuesSection(
-            parameters: [
-                "Planet",
-                "Cluster",
-                "Space station",
-                "Microverse",
-                "TV",
-                "Resort",
-                "Fantasy town",
-                "Dream"
-            ]
-        )
-    }
-}
+//struct FilterValuesSection_Previews: PreviewProvider {
+//    @State var hideAll: Bool = false
+//
+//    static var previews: some View {
+//        FilterValuesSection(
+//            hideAll: $hideAll,
+//            parameters: [
+//                "Planet",
+//                "Cluster",
+//                "Space station",
+//                "Microverse",
+//                "TV",
+//                "Resort",
+//                "Fantasy town",
+//                "Dream"
+//            ]
+//        )
+//    }
+//}
