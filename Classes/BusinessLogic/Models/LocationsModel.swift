@@ -14,6 +14,7 @@ struct Location: Codable, Equatable {
     let residents: [String]
     let url: String
     let created: String
+    var residentsModels: [Character]
 
     enum LocationType: String, Codable, Equatable {
         case acidPlant = "Acid Plant"
@@ -139,7 +140,8 @@ let locationCardModel = Location(
     dimension: Location.LocationDimension.c137,
     residents: ["1"],
     url: "1",
-    created: "1"
+    created: "1",
+    residentsModels: []
 )
 
 let listLocations: [Location] = Array(repeating: locationCardModel, count: 20)

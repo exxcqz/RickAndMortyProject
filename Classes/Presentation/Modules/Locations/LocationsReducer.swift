@@ -35,6 +35,7 @@ let locationsReducer = Reducer<LocationsState, LocationsAction, LocationsEnviron
             state.data += locations.results
             state.filteredData = state.data
         case .failure(let error):
+            print(error)
             print(error.localizedDescription)
         }
     case .locationCardSelected(let location):
