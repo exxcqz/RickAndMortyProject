@@ -8,95 +8,110 @@ import SwiftUI
 
 struct FilterScreen: View {
     let store: Store<FilterState, FilterAction>
-    @State var resetAll: Bool = false
-    @State var countOfSelected: Int = 0
-    @State var filterParamsDict: [String: String?] = [:]
 
     var body: some View {
         WithViewStore(store) { viewStore in
+            let resetAll = viewStore.binding(
+                get: {
+                    $0.resetAll
+                },
+                send: FilterAction.resetAll
+            )
+            let countOfSelected = viewStore.binding(
+                get: {
+                    $0.countOfSelected
+                },
+                send: FilterAction.countOfSelectedChanged
+            )
+            let filterParamsDict = viewStore.binding(
+                get: {
+                    $0.tempFilterParams
+                },
+                send: FilterAction.filterParamsChanged
+            )
             ZStack {
                 VStack(spacing: 0) {
-                    FilterBar(resetAll: $resetAll, countOfSelected: $countOfSelected)
+                    FilterBar(resetAll: resetAll, countOfSelected: countOfSelected)
                     ScrollView(.vertical, showsIndicators: false) {
                         VStack(spacing: 8) {
                             switch viewStore.filterType {
                             case .characters:
-                                generateCharactersFilter()
+                                generateCharactersFilter(resetAll: resetAll, countOfSelected: countOfSelected, filterParamsDict: filterParamsDict)
                             case .locations:
-                                generateLocationsFilter()
+                                generateLocationsFilter(resetAll: resetAll, countOfSelected: countOfSelected, filterParamsDict: filterParamsDict)
                             }
                         }
                         .padding(.horizontal, Layout.scaleFactorW * 16)
                         .padding(.top, Layout.scaleFactorH * 16)
                         .padding(.bottom, Layout.scaleFactorH * 16)
                     }.background(Color(Asset.Colors.blackCard.name))
-                    FilterApplyButton(store: store, countOfSelected: $countOfSelected) // параметр сделать в сторе
+                    FilterApplyButton(store: store)
                 }
                 .edgesIgnoringSafeArea(.bottom)
+            }
+            .onAppear {
+                viewStore.send(.onAppear)
             }
         }
     }
 
-    func generateCharactersFilter() -> some View {
+    func generateCharactersFilter(resetAll: Binding<Bool>, countOfSelected: Binding<Int>, filterParamsDict: Binding<[String: String]>) -> some View {
         return ForEach(FilterState.CharacterFilter.allCases, id: \.self) { value in
             VStack(spacing: 8) {
+                FilterKey(name: value.rawValue)
                 switch value {
                 case .status:
-                    FilterKey(name: value.rawValue)
                     let values: [String] = Character.CharacterStatus.allCases.map {
                         $0.rawValue.capitalized
                     }
                     FilterValuesSection(
-                        filterType: value.rawValue,
+                        filterKey: value.rawValue,
                         parameters: values,
-                        resetAll: $resetAll,
-                        countOfSelected: $countOfSelected,
-                        filterParamsDict: $filterParamsDict
+                        resetAll: resetAll,
+                        countOfSelected: countOfSelected,
+                        filterParamsDict: filterParamsDict
                     )
                 case .species:
-                    FilterKey(name: value.rawValue)
                     let values: [String] = Character.CharacterSpecies.allCases.map {
                         $0.rawValue.capitalized
                     }
                     FilterValuesSection(
-                        filterType: value.rawValue,
+                        filterKey: value.rawValue,
                         parameters: values,
-                        resetAll: $resetAll,
-                        countOfSelected: $countOfSelected,
-                        filterParamsDict: $filterParamsDict
+                        resetAll: resetAll,
+                        countOfSelected: countOfSelected,
+                        filterParamsDict: filterParamsDict
                     )
                 case .type:
-                    FilterKey(name: value.rawValue)
                     let values: [String] = Character.CharacterType.allCases.filter {
                         $0 != .noType
                     }.map {
                         $0.rawValue.capitalized
                     }
                     FilterValuesSection(
-                        filterType: value.rawValue,
+                        filterKey: value.rawValue,
                         parameters: values,
-                        resetAll: $resetAll,
-                        countOfSelected: $countOfSelected,
-                        filterParamsDict: $filterParamsDict
+                        resetAll: resetAll,
+                        countOfSelected: countOfSelected,
+                        filterParamsDict: filterParamsDict
                     )
                 case .gender:
-                    FilterKey(name: value.rawValue)
                     let values: [String] = Character.CharacterGender.allCases.map {
                         $0.rawValue.capitalized
                     }
                     FilterValuesSection(
-                        filterType: value.rawValue,
+                        filterKey: value.rawValue,
                         parameters: values,
-                        resetAll: $resetAll,
-                        countOfSelected: $countOfSelected,
-                        filterParamsDict: $filterParamsDict
+                        resetAll: resetAll,
+                        countOfSelected: countOfSelected,
+                        filterParamsDict: filterParamsDict
                     )
                 }
             }
         }
     }
 
-    func generateLocationsFilter() -> some View {
+    func generateLocationsFilter(resetAll: Binding<Bool>, countOfSelected: Binding<Int>, filterParamsDict: Binding<[String: String]>) -> some View {
         return ForEach(FilterState.LocationsFilter.allCases, id: \.self) { value in
             VStack(spacing: 8) {
                 switch value {
@@ -108,11 +123,11 @@ struct FilterScreen: View {
                         $0.rawValue.capitalized
                     }
                     FilterValuesSection(
-                        filterType: value.rawValue,
+                        filterKey: value.rawValue,
                         parameters: values,
-                        resetAll: $resetAll,
-                        countOfSelected: $countOfSelected,
-                        filterParamsDict: $filterParamsDict
+                        resetAll: resetAll,
+                        countOfSelected: countOfSelected,
+                        filterParamsDict: filterParamsDict
                     )
                 case .dimension:
                     FilterKey(name: value.rawValue)
@@ -122,11 +137,11 @@ struct FilterScreen: View {
                         $0.rawValue.capitalized
                     }
                     FilterValuesSection(
-                        filterType: value.rawValue,
+                        filterKey: value.rawValue,
                         parameters: values,
-                        resetAll: $resetAll,
-                        countOfSelected: $countOfSelected,
-                        filterParamsDict: $filterParamsDict
+                        resetAll: resetAll,
+                        countOfSelected: countOfSelected,
+                        filterParamsDict: filterParamsDict
                     )
                 }
             }

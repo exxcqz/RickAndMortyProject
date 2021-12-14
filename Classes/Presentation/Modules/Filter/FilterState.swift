@@ -6,6 +6,9 @@
 struct FilterState: Equatable {
     var filterType: FilterType = FilterType.locations
     var countOfSelected: Int = 0
+    var resetAll: Bool = false
+    var tempFilterParams: [String: String] = [:]
+    var appliedParams: [String: String] = [:]
 
     enum FilterType: CaseIterable {
         case characters

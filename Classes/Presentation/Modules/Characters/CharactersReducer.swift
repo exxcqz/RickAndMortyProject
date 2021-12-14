@@ -5,48 +5,70 @@
 
 import ComposableArchitecture
 
-let charactersReducer = Reducer<CharactersState, CharactersAction, CharactersEnvironment> { state, action, environment in
-    switch action {
-    case .onAppear:
-        if state.data.isEmpty {
-            state.currentPageLoading = 1
+let charactersReducer: Reducer<CharactersState, CharactersAction, CharactersEnvironment> = .combine(
+    .init { state, action, environment in
+        switch action {
+        case .onAppear:
+            if state.data.isEmpty {
+                state.currentPageLoading = 1
+                state.filterParameters.page = state.currentPageLoading
+                return environment.apiService.fetchCharacters(withParameters: state.filterParameters)
+                    .receive(on: environment.mainQueue)
+                    .catchToEffect()
+                    .map(CharactersAction.dataLoaded)
+            }
+        case .fetchAnotherPage:
+            state.currentPageLoading += 1
             state.filterParameters.page = state.currentPageLoading
             return environment.apiService.fetchCharacters(withParameters: state.filterParameters)
                 .receive(on: environment.mainQueue)
                 .catchToEffect()
                 .map(CharactersAction.dataLoaded)
-        }
-    case .fetchAnotherPage:
-        state.currentPageLoading += 1
-        state.filterParameters.page = state.currentPageLoading
-        return environment.apiService.fetchCharacters(withParameters: state.filterParameters)
-            .receive(on: environment.mainQueue)
-            .catchToEffect()
-            .map(CharactersAction.dataLoaded)
-    case .dataLoaded(let result):
-        switch result {
-        case .success(let characters):
-            characters.results.forEach { character in
-                print("id #\(character.id), \(character.name) (with gender \(character.gender))")
+        case .dataLoaded(let result):
+            switch result {
+            case .success(let characters):
+                characters.results.forEach { character in
+                    print("id #\(character.id), \(character.name) (with gender \(character.gender))")
+                }
+                state.totalPages = characters.info.pages
+                state.totalPagesForFilter = state.totalPages
+                state.data += characters.results
+                state.filteredData = state.data
+                state.grid.removeAll()
+                print("number of characters: \(state.data.count)")
+                for row in stride(from: 0, to: state.data.count, by: 2) where row != state.data.count {
+                    state.grid.append(row)
+                }
+                print("number of rows for grid: \(state.grid.count)")
+            case .failure(let error):
+                print(error.localizedDescription)
             }
-            state.totalPages = characters.info.pages
-            state.totalPagesForFilter = state.totalPages
-            state.data += characters.results
-            state.filteredData = state.data
-            state.grid.removeAll()
-            print("number of characters: \(state.data.count)")
-            for row in stride(from: 0, to: state.data.count, by: 2) where row != state.data.count {
-                state.grid.append(row)
+        case .characterCardSelected(let character):
+            print("character \(character.name) selected")
+        case .searchInputChanged(let request):
+            state.searchRequest = request
+            print("searching character: \(state.searchRequest)")
+        case .filterSelected(let action):
+            switch action {
+            case .applyFilter:
+                print("фильтрую персонажей")
+                state.isFilterPresented = false
+                state.isFilterButtonActive = false
+            case .onDisappear:
+                print("не фильтрую персонажей, просто закрываю")
+                state.isFilterPresented = false
+                state.isFilterButtonActive = false
+            default:
+                break
             }
-            print("number of rows for grid: \(state.grid.count)")
-        case .failure(let error):
-            print(error.localizedDescription)
+        case .filterButtonTapped:
+            state.isFilterButtonActive = true
+            state.isFilterPresented = true
         }
-    case .characterCardSelected(let character):
-        print("character \(character.name) selected")
-    case .searchInputChanged(let request):
-        state.searchRequest = request
-        print("searching character: \(state.searchRequest)")
+        return .none
+    },
+
+    filterReducer.pullback(state: \.filter, action: /CharactersAction.filterSelected) { _ in
+        FilterEnvironment()
     }
-    return .none
-}
+)

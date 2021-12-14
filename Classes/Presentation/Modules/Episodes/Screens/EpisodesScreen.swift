@@ -8,6 +8,7 @@ import SwiftUI
 
 struct EpisodesScreen: View {
     let store: Store<EpisodesState, EpisodesAction>
+    @State var isFilterButtonActive: Bool = false
 
     var body: some View {
         NavigationView {
@@ -26,7 +27,8 @@ struct EpisodesScreen: View {
                                     }, send: {
                                         EpisodesAction.searchInputChanged($0)
                                     }
-                                )
+                                ),
+                                isFilterButtonActive: $isFilterButtonActive
                             )
                             AppSegmentedControl(store: store)
                                 .padding(.top, Layout.scaleFactorH * 16)

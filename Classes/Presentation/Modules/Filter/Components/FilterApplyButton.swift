@@ -8,7 +8,6 @@ import SwiftUI
 
 struct FilterApplyButton: View {
     let store: Store<FilterState, FilterAction>
-    @Binding var countOfSelected: Int
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -21,7 +20,7 @@ struct FilterApplyButton: View {
                     .foregroundColor(Color(Asset.Colors.blackCard.name))
                 Button(
                     action: {
-                        // действие в редьюсер: передать словарь параметров на экран и выполнить запрос
+                        viewStore.send(FilterAction.applyFilter)
                     },
                     label: {
                         ZStack {
@@ -31,7 +30,7 @@ struct FilterApplyButton: View {
                                     height: Layout.scaleFactorH * 54
                                 )
                                 .foregroundColor(
-                                    countOfSelected > 0
+                                    viewStore.countOfSelected > 0
                                     ? Color(Asset.Colors.primary.name)
                                     : Color(.white).opacity(0.1)
                                 )
@@ -40,7 +39,7 @@ struct FilterApplyButton: View {
                                 .foregroundColor(.white)
                         }
                     }
-                ).disabled(countOfSelected == 0)
+                ).disabled(viewStore.countOfSelected == 0)
             }
         }
     }

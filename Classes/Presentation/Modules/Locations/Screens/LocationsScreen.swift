@@ -8,6 +8,7 @@ import SwiftUI
 
 struct LocationsScreen: View {
     let store: Store<LocationsState, LocationsAction>
+    @State var isFilterButtonActive: Bool = false // в стейте
 
     var body: some View {
         NavigationView {
@@ -26,7 +27,8 @@ struct LocationsScreen: View {
                                     }, send: {
                                         LocationsAction.searchInputChanged($0)
                                     }
-                                )
+                                ),
+                                isFilterButtonActive: $isFilterButtonActive
                             )
                             if viewStore.state.data.isEmpty {
                                 ProgressView()

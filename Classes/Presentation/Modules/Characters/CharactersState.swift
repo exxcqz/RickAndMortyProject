@@ -13,6 +13,12 @@ struct CharactersState: Equatable {
     var totalPages: Int = 0
     var totalPagesForFilter: Int = 0
     var isFiltering: Bool = false
+
+    var isFilterButtonActive: Bool = false
+    var isFilterPresented: Bool = false
+
     var filterParameters: FetchingParameters = FetchingParameters()
     var searchRequest: String = ""
+
+    var filter = FilterState(filterType: .characters)
 }

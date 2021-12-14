@@ -7,13 +7,13 @@ import Foundation
 import SwiftUI
 
 struct FilterValuesSection: View {
-    @State var filterType: String
-    var parameters: [String]
+    @State var filterKey: String
+    @State var parameters: [String]
     @State var currentIndex: Int = 0
     @State var selectedIndex: Int = -1
     @Binding var resetAll: Bool
     @Binding var countOfSelected: Int
-    @Binding var filterParamsDict: [String: String?]
+    @Binding var filterParamsDict: [String: String]
 
     @State private var totalHeight = CGFloat.zero
 
@@ -64,11 +64,7 @@ struct FilterValuesSection: View {
                 selectedIndex = -1
             }
             .onChange(of: selectedIndex) { newValue in
-                if newValue != -1 {
-                    filterParamsDict[filterType] = parameters[newValue]
-                } else {
-                    filterParamsDict[filterType] = nil
-                }
+                filterParamsDict[filterKey] = newValue != -1 ? parameters[newValue] : nil
             }
         }
         .background(viewHeightReader($totalHeight))

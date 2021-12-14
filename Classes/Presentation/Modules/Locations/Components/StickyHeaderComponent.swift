@@ -12,6 +12,7 @@ struct StickyHeaderComponent: View {
     let heightForHide = Layout.scaleFactorH * 170
     var isFilterHidden: Bool = false
     @Binding var searchRequest: String
+    @Binding var isFilterButtonActive: Bool
 
     var body: some View {
         GeometryReader { geo in
@@ -28,7 +29,7 @@ struct StickyHeaderComponent: View {
                         NavigationTitleComponent(title: navigationTitle)
                     }
                     if self.isFilterHidden {
-                        SearchAndFilter(searchRequest: $searchRequest)
+                        SearchAndFilter(searchRequest: $searchRequest, isFilterButtonActive: $isFilterButtonActive)
                     } else {
                         VStack {
                             SearchBar(searchRequest: $searchRequest)
