@@ -9,14 +9,13 @@ let episodeDetailsReducer = Reducer<EpisodeDetailsState, EpisodeDetailsAction, E
     switch action {
     case .onAppear:
         if state.characters.isEmpty {
-            state.currentPageLoading = 1
-            state.filterParameters.page = state.currentPageLoading
             state.episode.characters.forEach { character in
-                var id = character.components(separatedBy: "ter/")
-                guard let index = Int(id[1]) else {
+                let urlCharacter = URL(string: character)
+                let lastPath = urlCharacter?.lastPathComponent
+                guard let idString = lastPath, let id = Int(idString) else {
                     return
                 }
-                state.indicies.append(index)
+                state.indicies.append(id)
             }
             return environment.apiService.fetchMultipleCharacters(withIds: state.indicies)
                 .receive(on: environment.mainQueue)
@@ -26,9 +25,6 @@ let episodeDetailsReducer = Reducer<EpisodeDetailsState, EpisodeDetailsAction, E
     case .dataLoaded(let result):
         switch result {
         case .success(let characters):
-            characters.forEach { character in
-                print("id #\(character.id), \(character.name) (with gender \(character.gender))")
-            }
             state.characters += characters
             print("number of characters: \(state.characters.count)")
         case .failure(let error):

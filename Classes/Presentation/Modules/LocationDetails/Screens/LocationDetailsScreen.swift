@@ -20,36 +20,38 @@ struct LocationDetailsScreen: View {
                             .padding(.top, Layout.scaleFactorH * 108)
                         LocationDetailsInfoView(location: viewStore.location)
                             .padding(.top, 24)
-                        HStack {
-                            Text(L10n.Details.Location.scrollTitle)
-                                .font(Font.appFontSemibold(ofSize: Layout.scaleFactorW * 17))
-                                .foregroundColor(.white)
-                                .frame(height: 22)
-                            Spacer()
-                        }
-                        .padding(.top, 24)
-                        .padding(.leading, Layout.scaleFactorW * 24)
-                        LazyVGrid(columns: columns, spacing: 16) {
-                            ForEach(viewStore.characters, id: \.id) { character in
-                                NavigationLink {
-                                    CharacterDetailsScreen(
-                                        store: Store(
-                                            initialState: CharacterDetailsState(character: character),
-                                            reducer: characterDetailsReducer,
-                                            environment: CharacterDetailsEnvironment(
-                                                apiService: ServiceContainer().episodesService,
-                                                mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+                        if !viewStore.residents.isEmpty {
+                            HStack {
+                                Text(L10n.Details.Location.scrollTitle)
+                                    .font(Font.appFontSemibold(ofSize: Layout.scaleFactorW * 17))
+                                    .foregroundColor(.white)
+                                    .frame(height: 22)
+                                Spacer()
+                            }
+                            .padding(.top, 24)
+                            .padding(.leading, Layout.scaleFactorW * 24)
+                            LazyVGrid(columns: columns, spacing: 16) {
+                                ForEach(viewStore.residents, id: \.id) { resident in
+                                    NavigationLink {
+                                        CharacterDetailsScreen(
+                                            store: Store(
+                                                initialState: CharacterDetailsState(character: resident),
+                                                reducer: characterDetailsReducer,
+                                                environment: CharacterDetailsEnvironment(
+                                                    apiService: ServiceContainer().episodesService,
+                                                    mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+                                                )
                                             )
                                         )
-                                    )
-                                } label: {
-                                    CharacterCard(сharacter: character)
+                                    } label: {
+                                        CharacterCard(сharacter: resident)
+                                    }
                                 }
                             }
+                            .padding(.horizontal, Layout.scaleFactorW * 24)
+                            .padding(.top, 16)
+                            .padding(.bottom, 16)
                         }
-                        .padding(.horizontal, Layout.scaleFactorW * 24)
-                        .padding(.top, 16)
-                        .padding(.bottom, 16)
                     }
                 }
             }

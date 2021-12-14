@@ -10,12 +10,12 @@ let characterDetailsReducer = Reducer<CharacterDetailsState, CharacterDetailsAct
     case .onAppear:
         if state.episodes.isEmpty {
             state.character.episode.forEach { episode in
-                var id = episode.components(separatedBy: "episode/")
-                guard let index = Int(id[1]) else {
+                let urlEpisode = URL(string: episode)
+                let lastPath = urlEpisode?.lastPathComponent
+                guard let idString = lastPath, let id = Int(idString) else {
                     return
                 }
-                print(index)
-                state.indicies.append(index)
+                state.indicies.append(id)
             }
             return environment.apiService.fetchMultipleEpisodes(withIds: state.indicies)
                 .receive(on: environment.mainQueue)
@@ -25,9 +25,6 @@ let characterDetailsReducer = Reducer<CharacterDetailsState, CharacterDetailsAct
     case .dataLoaded(let result):
         switch result {
         case .success(let episodes):
-            episodes.forEach { episode in
-                print("id #\(episode.id), \(episode.name)")
-            }
             state.episodes += episodes
             print("number of episodes: \(state.episodes.count)")
         case .failure(let error):

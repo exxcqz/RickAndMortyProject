@@ -8,15 +8,14 @@ import ComposableArchitecture
 let locationDetailsReducer = Reducer<LocationDetailsState, LocationDetailsAction, LocationDetailsEnvironment> { state, action, environment in
     switch action {
     case .onAppear:
-        if state.characters.isEmpty {
-            state.currentPageLoading = 1
-            state.filterParameters.page = state.currentPageLoading
+        if state.residents.isEmpty {
             state.location.residents.forEach { resident in
-                var id = resident.components(separatedBy: "ter/")
-                guard let index = Int(id[1]) else {
+                let urlResident = URL(string: resident)
+                let lastPath = urlResident?.lastPathComponent
+                guard let idString = lastPath, let id = Int(idString) else {
                     return
                 }
-                state.indicies.append(index)
+                state.indicies.append(id)
             }
             return environment.apiService.fetchMultipleCharacters(withIds: state.indicies)
                 .receive(on: environment.mainQueue)
@@ -25,12 +24,9 @@ let locationDetailsReducer = Reducer<LocationDetailsState, LocationDetailsAction
         }
     case .dataLoaded(let result):
         switch result {
-        case .success(let characters):
-            characters.forEach { character in
-                print("id #\(character.id), \(character.name) (with gender \(character.gender))")
-            }
-            state.characters += characters
-            print("number of characters: \(state.characters.count)")
+        case .success(let residents):
+            state.residents += residents
+            print("number of residents: \(state.residents.count)")
         case .failure(let error):
             print(error.localizedDescription)
         }
