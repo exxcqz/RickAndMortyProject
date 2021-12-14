@@ -21,6 +21,7 @@ struct CharactersScrollView: View {
                                 reducer: characterDetailsReducer,
                                 environment: CharacterDetailsEnvironment(
                                     apiService: ServiceContainer().episodesService,
+                                    apiServiceLocation: ServiceContainer().locationsService,
                                     mainQueue: DispatchQueue.main.eraseToAnyScheduler()
                                 )
                             )

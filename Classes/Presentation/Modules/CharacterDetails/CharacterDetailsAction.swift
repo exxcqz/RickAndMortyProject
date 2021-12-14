@@ -5,5 +5,7 @@
 
 enum CharacterDetailsAction: Equatable {
     case onAppear
+    case onAppearOrigin
     case dataLoaded(Result<[Episode], NetworkError>)
+    case dataLoadedOrigin(Result<[Location], NetworkError>)
 }

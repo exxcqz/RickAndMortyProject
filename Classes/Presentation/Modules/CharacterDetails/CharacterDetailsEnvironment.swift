@@ -7,5 +7,6 @@ import ComposableArchitecture
 
 struct CharacterDetailsEnvironment {
     var apiService: EpisodesServiceProtocol
+    var apiServiceLocation: LocationsServiceProtocol
     var mainQueue: AnySchedulerOf<DispatchQueue>
 }

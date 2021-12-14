@@ -20,7 +20,9 @@ struct CharacterDetailsScreen: View {
                             .padding(.top, Layout.scaleFactorH * 108)
                         CharacterDetailsInfoView(character: viewStore.character)
                             .padding(.top, 24)
-                        CharacterDetailsOriginView(location: viewStore.location)
+                        if !viewStore.location.isEmpty {
+                            CharacterDetailsOriginView(location: viewStore.location[0])
+                        }
                         if !viewStore.episodes.isEmpty {
                             HStack {
                                 Text(L10n.Details.Character.scrollTitle)
@@ -63,6 +65,7 @@ struct CharacterDetailsScreen: View {
             .edgesIgnoringSafeArea(.all)
             .onAppear {
                 viewStore.send(.onAppear)
+                viewStore.send(.onAppearOrigin)
             }
         }
     }
@@ -76,6 +79,7 @@ struct CharacterDetailsScreen_Previews: PreviewProvider {
                 reducer: characterDetailsReducer,
                 environment: CharacterDetailsEnvironment(
                     apiService: ServiceContainer().episodesService,
+                    apiServiceLocation: ServiceContainer().locationsService,
                     mainQueue: DispatchQueue.main.eraseToAnyScheduler()
                 )
             )
