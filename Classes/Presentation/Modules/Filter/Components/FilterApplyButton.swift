@@ -45,16 +45,3 @@ struct FilterApplyButton: View {
         }
     }
 }
-
-//struct FilterApplyButton_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FilterApplyButton(
-//            store: Store(
-//                initialState: FilterState(),
-//                reducer: filterReducer,
-//                environment: FilterEnvironment()
-//            ),
-//            countOfSelected: <#Binding<Int>#>
-//        )
-//    }
-//}

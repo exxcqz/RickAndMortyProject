@@ -54,9 +54,3 @@ struct FilterBar: View {
         }
     }
 }
-
-//struct FilterBar_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FilterBar()
-//    }
-//}

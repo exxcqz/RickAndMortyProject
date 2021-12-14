@@ -10,6 +10,7 @@ struct FilterScreen: View {
     let store: Store<FilterState, FilterAction>
     @State var resetAll: Bool = false
     @State var countOfSelected: Int = 0
+    @State var filterParamsDict: [String: String?] = [:]
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -33,7 +34,6 @@ struct FilterScreen: View {
                 }
                 .edgesIgnoringSafeArea(.bottom)
             }
-
         }
     }
 
@@ -43,25 +43,54 @@ struct FilterScreen: View {
                 switch value {
                 case .status:
                     FilterKey(name: value.rawValue)
-                    let values: [String] = Character.CharacterStatus.allCases.map { $0.rawValue }
-                    FilterValuesSection(parameters: values, resetAll: $resetAll, countOfSelected: $countOfSelected)
+                    let values: [String] = Character.CharacterStatus.allCases.map {
+                        $0.rawValue.capitalized
+                    }
+                    FilterValuesSection(
+                        filterType: value.rawValue,
+                        parameters: values,
+                        resetAll: $resetAll,
+                        countOfSelected: $countOfSelected,
+                        filterParamsDict: $filterParamsDict
+                    )
                 case .species:
                     FilterKey(name: value.rawValue)
-                    let values: [String] = Character.CharacterSpecies.allCases.map { $0.rawValue }
-                    FilterValuesSection(parameters: values, resetAll: $resetAll, countOfSelected: $countOfSelected)
+                    let values: [String] = Character.CharacterSpecies.allCases.map {
+                        $0.rawValue.capitalized
+                    }
+                    FilterValuesSection(
+                        filterType: value.rawValue,
+                        parameters: values,
+                        resetAll: $resetAll,
+                        countOfSelected: $countOfSelected,
+                        filterParamsDict: $filterParamsDict
+                    )
                 case .type:
                     FilterKey(name: value.rawValue)
                     let values: [String] = Character.CharacterType.allCases.filter {
                         $0 != .noType
                     }.map {
-                        $0.rawValue
+                        $0.rawValue.capitalized
                     }
-
-                    FilterValuesSection(parameters: values, resetAll: $resetAll, countOfSelected: $countOfSelected)
+                    FilterValuesSection(
+                        filterType: value.rawValue,
+                        parameters: values,
+                        resetAll: $resetAll,
+                        countOfSelected: $countOfSelected,
+                        filterParamsDict: $filterParamsDict
+                    )
                 case .gender:
                     FilterKey(name: value.rawValue)
-                    let values: [String] = Character.CharacterGender.allCases.map { $0.rawValue }
-                    FilterValuesSection(parameters: values, resetAll: $resetAll, countOfSelected: $countOfSelected)
+                    let values: [String] = Character.CharacterGender.allCases.map {
+                        $0.rawValue.capitalized
+                    }
+                    FilterValuesSection(
+                        filterType: value.rawValue,
+                        parameters: values,
+                        resetAll: $resetAll,
+                        countOfSelected: $countOfSelected,
+                        filterParamsDict: $filterParamsDict
+                    )
                 }
             }
         }
@@ -76,17 +105,29 @@ struct FilterScreen: View {
                     let values: [String] = Location.LocationType.allCases.filter {
                         $0 != .noType
                     }.map {
-                        $0.rawValue
+                        $0.rawValue.capitalized
                     }
-                    FilterValuesSection(parameters: values, resetAll: $resetAll, countOfSelected: $countOfSelected)
+                    FilterValuesSection(
+                        filterType: value.rawValue,
+                        parameters: values,
+                        resetAll: $resetAll,
+                        countOfSelected: $countOfSelected,
+                        filterParamsDict: $filterParamsDict
+                    )
                 case .dimension:
                     FilterKey(name: value.rawValue)
                     let values: [String] = Location.LocationDimension.allCases.filter {
                         $0 != .noDimension
                     }.map {
-                        $0.rawValue
+                        $0.rawValue.capitalized
                     }
-                    FilterValuesSection(parameters: values, resetAll: $resetAll, countOfSelected: $countOfSelected)
+                    FilterValuesSection(
+                        filterType: value.rawValue,
+                        parameters: values,
+                        resetAll: $resetAll,
+                        countOfSelected: $countOfSelected,
+                        filterParamsDict: $filterParamsDict
+                    )
                 }
             }
         }
