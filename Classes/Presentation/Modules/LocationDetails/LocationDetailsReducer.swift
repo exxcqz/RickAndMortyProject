@@ -11,10 +11,9 @@ let locationDetailsReducer = Reducer<LocationDetailsState, LocationDetailsAction
         if state.residents.isEmpty {
             state.location.residents.forEach { resident in
                 let urlResident = URL(string: resident)
-                let lastPath = urlResident?.lastPathComponent
-                guard let idString = lastPath, let id = Int(idString) else {
-                    return
-                }
+                let lastPathID = urlResident?.lastPathComponent
+                guard let lastPathID = lastPathID,
+                      let id = Int(lastPathID) else { return }
                 state.indicies.append(id)
             }
             return environment.apiService.fetchMultipleCharacters(withIds: state.indicies)

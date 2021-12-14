@@ -11,10 +11,9 @@ let characterDetailsReducer = Reducer<CharacterDetailsState, CharacterDetailsAct
         if state.episodes.isEmpty {
             state.character.episode.forEach { episode in
                 let urlEpisode = URL(string: episode)
-                let lastPath = urlEpisode?.lastPathComponent
-                guard let idString = lastPath, let id = Int(idString) else {
-                    return
-                }
+                let lastPathID = urlEpisode?.lastPathComponent
+                guard let lastPathID = lastPathID,
+                      let id = Int(lastPathID) else { return }
                 state.indicies.append(id)
             }
             return environment.apiService.fetchMultipleEpisodes(withIds: state.indicies)
@@ -24,10 +23,9 @@ let characterDetailsReducer = Reducer<CharacterDetailsState, CharacterDetailsAct
         }
     case .onAppearOrigin:
         let urlEpisode = URL(string: state.character.origin.url)
-        let lastPath = urlEpisode?.lastPathComponent
-        guard let idString = lastPath, let id = Int(idString) else {
-            break
-        }
+        let lastPathID = urlEpisode?.lastPathComponent
+        guard let lastPathID = lastPathID,
+              let id = Int(lastPathID) else { break }
         state.idLocation.append(id)
         return environment.apiServiceLocation.fetchMultipleLocations(withIds: state.idLocation)
             .receive(on: environment.mainQueue)

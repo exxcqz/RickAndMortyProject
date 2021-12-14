@@ -11,10 +11,9 @@ let episodeDetailsReducer = Reducer<EpisodeDetailsState, EpisodeDetailsAction, E
         if state.characters.isEmpty {
             state.episode.characters.forEach { character in
                 let urlCharacter = URL(string: character)
-                let lastPath = urlCharacter?.lastPathComponent
-                guard let idString = lastPath, let id = Int(idString) else {
-                    return
-                }
+                let lastPathID = urlCharacter?.lastPathComponent
+                guard let lastPathID = lastPathID,
+                      let id = Int(lastPathID) else { return }
                 state.indicies.append(id)
             }
             return environment.apiService.fetchMultipleCharacters(withIds: state.indicies)
