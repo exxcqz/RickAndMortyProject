@@ -10,7 +10,7 @@ struct Episode: Codable, Equatable {
     let name: String
     let date: String
     let episodeCode: String
-    let characterURLs: [String]
+    let characterURLs: [URL]
     let url: String
     let created: String
     var characters: [Character] = []
@@ -41,11 +41,11 @@ struct Episode: Codable, Equatable {
 
     var charactersIDs: [Int] {
         var returnedIDs: [Int] = []
-        characterURLs.forEach { urlPath in
-            let url = URL(string: urlPath)
-            let lastPathID = url?.lastPathComponent
-            guard let lastPathID = lastPathID,
-                  let id = Int(lastPathID) else { return }
+        characterURLs.forEach { url in
+            let id = url.lastPathComponent
+            guard let id = Int(id) else {
+                return
+            }
             returnedIDs.append(id)
         }
         return returnedIDs

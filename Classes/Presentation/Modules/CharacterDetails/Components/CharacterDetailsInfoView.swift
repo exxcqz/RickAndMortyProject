@@ -20,7 +20,7 @@ struct CharacterDetailsInfoView: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 16)
                     .foregroundColor(Color(Asset.Colors.blackCard.name))
-                    .frame(width: Layout.scaleFactorW * 327, height: Layout.scaleFactorW * 124)
+                    .frame(width: Layout.scaleFactorW * 327, height: 124)
                 VStack(spacing: 16) {
                     HStack {
                         Text(L10n.Details.Info.species)

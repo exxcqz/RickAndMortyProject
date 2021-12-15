@@ -11,7 +11,7 @@ struct Location: Codable, Equatable {
     let name: String
     let type: LocationType
     let dimension: LocationDimension
-    let residentURLs: [String]
+    let residentURLs: [URL]
     let url: String
     let created: String
     var residents: [Character] = []
@@ -104,11 +104,11 @@ struct Location: Codable, Equatable {
 
     var residentsIDs: [Int] {
         var returnedIDs: [Int] = []
-        residentURLs.forEach { urlPath in
-            let url = URL(string: urlPath)
-            let lastPathID = url?.lastPathComponent
-            guard let lastPathID = lastPathID,
-                  let id = Int(lastPathID) else { return }
+        residentURLs.forEach { url in
+            let id = url.lastPathComponent
+            guard let id = Int(id) else {
+                return
+            }
             returnedIDs.append(id)
         }
         return returnedIDs
@@ -160,7 +160,7 @@ let locationCardModel = Location(
     name: "Earth (Replacement Dimension)",
     type: .cluster,
     dimension: Location.LocationDimension.c137,
-    residentURLs: ["1"],
+    residentURLs: [],
     url: "1",
     created: "1",
     residents: []

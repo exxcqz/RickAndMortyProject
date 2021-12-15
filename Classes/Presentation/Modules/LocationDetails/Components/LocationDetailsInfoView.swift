@@ -20,7 +20,7 @@ struct LocationDetailsInfoView: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 16)
                     .foregroundColor(Color(Asset.Colors.blackCard.name))
-                    .frame(width: Layout.scaleFactorW * 327, height: Layout.scaleFactorW * 96)
+                    .frame(width: Layout.scaleFactorW * 327, height: 96)
                 VStack(spacing: 16) {
                     HStack {
                         Text(L10n.Details.Info.type)

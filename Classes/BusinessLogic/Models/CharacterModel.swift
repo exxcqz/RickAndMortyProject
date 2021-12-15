@@ -15,7 +15,7 @@ struct Character: Codable, Equatable {
     let origin: CharacterLocation
     let location: CharacterLocation
     let image: String
-    let episodeURLs: [String]
+    let episodeURLs: [URL]
     let url: String
     let created: String
     var originLocation: [Location] = []
@@ -233,11 +233,11 @@ struct Character: Codable, Equatable {
 
     var episodesIDs: [Int] {
         var returnedIDs: [Int] = []
-        episodeURLs.forEach { urlPath in
-            let url = URL(string: urlPath)
-            let lastPathID = url?.lastPathComponent
-            guard let lastPathID = lastPathID,
-                  let id = Int(lastPathID) else { return }
+        episodeURLs.forEach { url in
+            let id = url.lastPathComponent
+            guard let id = Int(id) else {
+                return
+            }
             returnedIDs.append(id)
         }
         return returnedIDs
@@ -246,16 +246,11 @@ struct Character: Codable, Equatable {
 
 struct CharacterLocation: Codable, Equatable {
     let name: String
-    let originURL: String
-
-    enum CodingKeys: String, CodingKey {
-        case name
-        case originURL = "url"
-    }
+    let url: String
 
     var originID: [Int] {
         var returnedIDs: [Int] = []
-        let url = URL(string: originURL)
+        let url = URL(string: url)
         let lastPathID = url?.lastPathComponent
         guard let lastPathID = lastPathID,
               let id = Int(lastPathID) else {
@@ -275,22 +270,18 @@ let dummyCharacterModel = Character(
     gender: "Male",
     origin: CharacterLocation(
         name: "Earth",
-        originURL: "https://rickandmortyapi.com/api/location/1"
+        url: "https://rickandmortyapi.com/api/location/20"
     ),
     location: CharacterLocation(
         name: "Earth",
-        originURL: "https://rickandmortyapi.com/api/location/20"
+        url: "https://rickandmortyapi.com/api/location/20"
     ),
     image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-    episodeURLs: [
-        "https://rickandmortyapi.com/api/episode/1",
-        "https://rickandmortyapi.com/api/episode/2"
-    ],
+    episodeURLs: [],
     url: "https://rickandmortyapi.com/api/character/1",
     created: "2017-11-04T18:48:46.250Z",
     originLocation: [],
     episodes: []
-
 )
 
 let dummyCharactersArray: [Character] = Array(repeating: dummyCharacterModel, count: 9)

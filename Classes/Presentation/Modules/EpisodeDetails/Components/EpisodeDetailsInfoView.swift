@@ -20,7 +20,7 @@ struct EpisodeDetailsInfoView: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 16)
                     .foregroundColor(Color(Asset.Colors.blackCard.name))
-                    .frame(width: Layout.scaleFactorW * 327, height: Layout.scaleFactorW * 136)
+                    .frame(width: Layout.scaleFactorW * 327, height: 136)
                 VStack(spacing: 16) {
                     HStack {
                         Text(L10n.Details.Info.episode)
