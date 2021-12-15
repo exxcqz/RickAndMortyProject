@@ -39,8 +39,7 @@ struct AppSegmentedControl: View {
                                 .foregroundColor(Color(Asset.Colors.blackCard.name))
                         )
                     }
-                    Spacer()
-                        .frame(width: Layout.scaleFactorW * 8)
+                    Spacer().frame(width: Layout.scaleFactorW * 8)
                 }
             }
             .padding(.leading, Layout.scaleFactorW * 24)

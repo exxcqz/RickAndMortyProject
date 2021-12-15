@@ -6,17 +6,10 @@
 struct EpisodesState: Equatable {
     let navigationImage: String = Asset.Illustrations.episodes.name
     let navigationTitle: String = L10n.Episodes.title
+    let seasonsNumberArray: [Int] = [1, 2, 3, 4, 5]
     var data: [Episode] = []
-    var filteredData: [Episode] = []
-    var currentPageLoading: Int = 1
-    var currentPageForAll: Int = 1
-    var totalPages: Int = 0
-    var totalPagesForFilter: Int = 0
     var filterParameters: FetchingParameters = FetchingParameters()
-    var searchRequest: String = ""
     var seasonsSet = Set<Int>()
     var selectedSeasonIndex: Int = 0
-    var seasonsTitles: [String] = [L10n.Filters.all]
-    var seasonsNumberArray: [Int] = [1, 2, 3, 4, 5]
-    var filteredSeasonsNumberArray: [Int] = []
+    var seasonsTitles: [String] = []
 }
