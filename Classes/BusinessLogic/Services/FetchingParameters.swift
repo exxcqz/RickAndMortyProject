@@ -8,13 +8,14 @@ import Foundation
 struct FetchingParameters: Equatable {
     // MARK: - Common params
     var page: Int = 1
+    var totalPages: Int = 0
     var type: String?
     var name: String?
 
     // MARK: - Character
-    var status: String? // Alive, Dead, Unknown
+    var status: String?
     var species: String?
-    var gender: String? // Female, Male, Genderless, Unknown
+    var gender: String?
 
     // MARK: - Locations
     var dimension: String?

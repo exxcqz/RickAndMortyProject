@@ -34,7 +34,7 @@ struct CharactersScreen: View {
                 )
                 let searchRequest = viewStore.binding(
                     get: {
-                        $0.searchRequest
+                        $0.filterParameters.name ?? ""
                     }, send: {
                         CharactersAction.searchInputChanged($0)
                     }
@@ -50,9 +50,9 @@ struct CharactersScreen: View {
                                 searchRequest: searchRequest,
                                 isFilterButtonActive: isFilterButtonActive
                             )
-                            if viewStore.state.data.isEmpty {
+                            if viewStore.data.isEmpty {
                                 ProgressView()
-                                    .padding(.top, Layout.scaleFactorH * 150)
+                                    .padding(.top, Layout.scaleFactorH * 150) // поменять на середину скрола
                             } else {
                                 CharactersScrollView(store: store)
                                     .padding(.vertical, Layout.scaleFactorH * 16)

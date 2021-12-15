@@ -389,8 +389,6 @@
 			isa = PBXGroup;
 			children = (
 				C37763C827675666008308B9 /* FilterApplyButton.swift */,
-				C37763D2276758CD008308B9 /* Color+HEX.swift */,
-				C37763D42767592F008308B9 /* View+RoundedCorner.swift */,
 				C37763CC27675743008308B9 /* FilterValue.swift */,
 				C37763D027675759008308B9 /* FilterValuesSection.swift */,
 				C37763CE27675750008308B9 /* FilterKey.swift */,
@@ -479,6 +477,7 @@
 			isa = PBXGroup;
 			children = (
 				C10EC2BC740B255A6CAEE9B1 /* Screens */,
+				C36BDF4A276A0F3A006BA2E2 /* Extensions */,
 				367654F98F0D1DDB69F89526 /* Components */,
 				1912B6F08E19ECCF5FEB624C /* FilterState.swift */,
 				1DDFFE7BAA47863677FA4F33 /* FilterAction.swift */,
@@ -507,6 +506,15 @@
 				0FF20F6970EBC600C5051EE4 /* LocationsReducer.swift */,
 			);
 			path = Locations;
+			sourceTree = "<group>";
+		};
+		C36BDF4A276A0F3A006BA2E2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C37763D2276758CD008308B9 /* Color+HEX.swift */,
+				C37763D42767592F008308B9 /* View+RoundedCorner.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		C37763AA275FC1DE008308B9 /* ErrorHandling */ = {

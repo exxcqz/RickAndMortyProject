@@ -10,16 +10,13 @@ let charactersReducer: Reducer<CharactersState, CharactersAction, CharactersEnvi
         switch action {
         case .onAppear:
             if state.data.isEmpty {
-                state.currentPageLoading = 1
-                state.filterParameters.page = state.currentPageLoading
                 return environment.apiService.fetchCharacters(withParameters: state.filterParameters)
                     .receive(on: environment.mainQueue)
                     .catchToEffect()
                     .map(CharactersAction.dataLoaded)
             }
-        case .fetchAnotherPage:
-            state.currentPageLoading += 1
-            state.filterParameters.page = state.currentPageLoading
+        case .fetchNextPage:
+            state.filterParameters.page += 1
             return environment.apiService.fetchCharacters(withParameters: state.filterParameters)
                 .receive(on: environment.mainQueue)
                 .catchToEffect()
@@ -27,27 +24,27 @@ let charactersReducer: Reducer<CharactersState, CharactersAction, CharactersEnvi
         case .dataLoaded(let result):
             switch result {
             case .success(let characters):
-                characters.results.forEach { character in
-                    print("id #\(character.id), \(character.name) (with gender \(character.gender))")
-                }
-                state.totalPages = characters.info.pages
-                state.totalPagesForFilter = state.totalPages
+//                characters.results.forEach { character in
+//                    print("id #\(character.id), \(character.name) (with gender \(character.gender))")
+//                }
+                state.filterParameters.totalPages = characters.info.pages
                 state.data += characters.results
-                state.filteredData = state.data
-                state.grid.removeAll()
                 print("number of characters: \(state.data.count)")
-                for row in stride(from: 0, to: state.data.count, by: 2) where row != state.data.count {
-                    state.grid.append(row)
-                }
-                print("number of rows for grid: \(state.grid.count)")
             case .failure(let error):
                 print(error.localizedDescription)
             }
         case .characterCardSelected(let character):
             print("character \(character.name) selected")
         case .searchInputChanged(let request):
-            state.searchRequest = request
-            print("searching character: \(state.searchRequest)")
+            print("searching character: \(request)")
+            state.filterParameters.name = request.isEmpty ? nil : request
+            state.filterParameters.page = 1
+            state.filterParameters.totalPages = 0
+            state.data.removeAll()
+            return environment.apiService.fetchCharacters(withParameters: state.filterParameters)
+                .receive(on: environment.mainQueue)
+                .catchToEffect()
+                .map(CharactersAction.dataLoaded)
         case .filterSelected(let action):
             switch action {
             case .applyFilter:

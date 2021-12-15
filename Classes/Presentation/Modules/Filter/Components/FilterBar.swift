@@ -13,10 +13,6 @@ struct FilterBar: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .cornerRadius(
-                    Layout.scaleFactorW * 12,
-                    corners: [.topLeft, .topRight]
-                )
                 .frame(
                     width: Layout.scaleFactorW * 375,
                     height: Layout.scaleFactorH * 68
@@ -40,6 +36,7 @@ struct FilterBar: View {
                     action: {
                         resetAll.toggle()
                         countOfSelected = 0
+                        // очистить модельку параметров
                     }, label: {
                         Text(L10n.Filters.Action.resetAll)
                             .font(Font.appFontSemibold(ofSize: Layout.scaleFactorW * 17))
