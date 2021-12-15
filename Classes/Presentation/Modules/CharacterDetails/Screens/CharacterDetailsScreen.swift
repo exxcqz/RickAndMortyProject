@@ -20,10 +20,10 @@ struct CharacterDetailsScreen: View {
                             .padding(.top, Layout.scaleFactorH * 108)
                         CharacterDetailsInfoView(character: viewStore.character)
                             .padding(.top, 24)
-                        if !viewStore.location.isEmpty {
-                            CharacterDetailsOriginView(location: viewStore.location[0])
+                        if !viewStore.character.originLocation.isEmpty {
+                            CharacterDetailsOriginView(location: viewStore.character.originLocation[0])
                         }
-                        if !viewStore.episodes.isEmpty {
+                        if !viewStore.character.episodes.isEmpty {
                             HStack {
                                 Text(L10n.Details.Character.scrollTitle)
                                     .font(Font.appFontSemibold(ofSize: Layout.scaleFactorW * 17))
@@ -34,7 +34,7 @@ struct CharacterDetailsScreen: View {
                             .padding(.top, 24)
                             .padding(.leading, Layout.scaleFactorW * 24)
                             LazyVGrid(columns: columns, spacing: 16) {
-                                ForEach(viewStore.episodes, id: \.id) { episode in
+                                ForEach(viewStore.character.episodes, id: \.id) { episode in
                                     NavigationLink {
                                         EpisodeDetailsScreen(
                                             store: Store(

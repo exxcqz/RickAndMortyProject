@@ -15,9 +15,26 @@ struct Character: Codable, Equatable {
     let origin: CharacterLocation
     let location: CharacterLocation
     let image: String
-    let episode: [String]
+    let episodeURLs: [String]
     let url: String
     let created: String
+    var originLocation: [Location] = []
+    var episodes: [Episode] = []
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case status
+        case species
+        case type
+        case gender
+        case origin
+        case location
+        case image
+        case episodeURLs = "episode"
+        case url
+        case created
+    }
 
     enum CharacterSpecies: String, Codable, Equatable {
         case alien = "Alien"
@@ -213,11 +230,40 @@ struct Character: Codable, Equatable {
             self = try CharacterType(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .unknown
         }
     }
+
+    var episodesIDs: [Int] {
+        var returnedIDs: [Int] = []
+        episodeURLs.forEach { urlPath in
+            let url = URL(string: urlPath)
+            let lastPathID = url?.lastPathComponent
+            guard let lastPathID = lastPathID,
+                  let id = Int(lastPathID) else { return }
+            returnedIDs.append(id)
+        }
+        return returnedIDs
+    }
 }
 
 struct CharacterLocation: Codable, Equatable {
     let name: String
-    let url: String
+    let originURL: String
+
+    enum CodingKeys: String, CodingKey {
+        case name
+        case originURL = "url"
+    }
+
+    var originID: [Int] {
+        var returnedIDs: [Int] = []
+        let url = URL(string: originURL)
+        let lastPathID = url?.lastPathComponent
+        guard let lastPathID = lastPathID,
+              let id = Int(lastPathID) else {
+                  return returnedIDs
+              }
+        returnedIDs.append(id)
+        return returnedIDs
+    }
 }
 
 let dummyCharacterModel = Character(
@@ -229,19 +275,22 @@ let dummyCharacterModel = Character(
     gender: "Male",
     origin: CharacterLocation(
         name: "Earth",
-        url: "https://rickandmortyapi.com/api/location/1"
+        originURL: "https://rickandmortyapi.com/api/location/1"
     ),
     location: CharacterLocation(
         name: "Earth",
-        url: "https://rickandmortyapi.com/api/location/20"
+        originURL: "https://rickandmortyapi.com/api/location/20"
     ),
     image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-    episode: [
+    episodeURLs: [
         "https://rickandmortyapi.com/api/episode/1",
         "https://rickandmortyapi.com/api/episode/2"
     ],
     url: "https://rickandmortyapi.com/api/character/1",
-    created: "2017-11-04T18:48:46.250Z"
+    created: "2017-11-04T18:48:46.250Z",
+    originLocation: [],
+    episodes: []
+
 )
 
 let dummyCharactersArray: [Character] = Array(repeating: dummyCharacterModel, count: 9)

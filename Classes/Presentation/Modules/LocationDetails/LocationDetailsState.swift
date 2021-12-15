@@ -5,6 +5,4 @@
 
 struct LocationDetailsState: Equatable {
     var location: Location = listLocations[0]
-    var residents: [Character] = []
-    var indicies: [Int] = []
 }

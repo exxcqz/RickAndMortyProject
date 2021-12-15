@@ -5,6 +5,4 @@
 
 struct EpisodeDetailsState: Equatable {
     var episode: Episode = dummyEpisodesArray[0]
-    var characters: [Character] = []
-    var indicies: [Int] = []
 }

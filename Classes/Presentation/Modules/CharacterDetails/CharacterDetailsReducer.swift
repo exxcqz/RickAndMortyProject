@@ -8,42 +8,30 @@ import ComposableArchitecture
 let characterDetailsReducer = Reducer<CharacterDetailsState, CharacterDetailsAction, CharacterDetailsEnvironment> { state, action, environment in
     switch action {
     case .onAppear:
-        if state.episodes.isEmpty {
-            state.character.episode.forEach { episode in
-                let urlEpisode = URL(string: episode)
-                let lastPathID = urlEpisode?.lastPathComponent
-                guard let lastPathID = lastPathID,
-                      let id = Int(lastPathID) else { return }
-                state.indicies.append(id)
-            }
-            return environment.apiService.fetchMultipleEpisodes(withIds: state.indicies)
+        if state.character.episodes.isEmpty {
+            return environment.apiService.fetchMultipleEpisodes(withIds: state.character.episodesIDs)
                 .receive(on: environment.mainQueue)
                 .catchToEffect()
                 .map(CharacterDetailsAction.dataLoaded)
         }
     case .onAppearOrigin:
-        let urlEpisode = URL(string: state.character.origin.url)
-        let lastPathID = urlEpisode?.lastPathComponent
-        guard let lastPathID = lastPathID,
-              let id = Int(lastPathID) else { break }
-        state.idLocation.append(id)
-        return environment.apiServiceLocation.fetchMultipleLocations(withIds: state.idLocation)
+        return environment.apiServiceLocation.fetchMultipleLocations(withIds: state.character.origin.originID)
             .receive(on: environment.mainQueue)
             .catchToEffect()
             .map(CharacterDetailsAction.dataLoadedOrigin)
     case .dataLoaded(let result):
         switch result {
         case .success(let episodes):
-            state.episodes += episodes
-            print("number of episodes: \(state.episodes.count)")
+            state.character.episodes += episodes
+            print("number of episodes: \(state.character.episodes.count)")
         case .failure(let error):
             print(error.localizedDescription)
         }
     case .dataLoadedOrigin(let result):
         switch result {
         case .success(let location):
-            state.location += location
-            print("count of location: \(state.location.count)")
+            state.character.originLocation += location
+            print("count of location: \(state.character.originLocation.count)")
         case .failure(let error):
             print(error.localizedDescription)
         }

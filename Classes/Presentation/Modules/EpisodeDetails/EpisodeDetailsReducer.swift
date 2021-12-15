@@ -8,15 +8,8 @@ import ComposableArchitecture
 let episodeDetailsReducer = Reducer<EpisodeDetailsState, EpisodeDetailsAction, EpisodeDetailsEnvironment> { state, action, environment in
     switch action {
     case .onAppear:
-        if state.characters.isEmpty {
-            state.episode.characters.forEach { character in
-                let urlCharacter = URL(string: character)
-                let lastPathID = urlCharacter?.lastPathComponent
-                guard let lastPathID = lastPathID,
-                      let id = Int(lastPathID) else { return }
-                state.indicies.append(id)
-            }
-            return environment.apiService.fetchMultipleCharacters(withIds: state.indicies)
+        if state.episode.characters.isEmpty {
+            return environment.apiService.fetchMultipleCharacters(withIds: state.episode.charactersIDs)
                 .receive(on: environment.mainQueue)
                 .catchToEffect()
                 .map(EpisodeDetailsAction.dataLoaded)
@@ -24,8 +17,8 @@ let episodeDetailsReducer = Reducer<EpisodeDetailsState, EpisodeDetailsAction, E
     case .dataLoaded(let result):
         switch result {
         case .success(let characters):
-            state.characters += characters
-            print("number of characters: \(state.characters.count)")
+            state.episode.characters += characters
+            print("number of characters: \(state.episode.characters.count)")
         case .failure(let error):
             print(error.localizedDescription)
         }

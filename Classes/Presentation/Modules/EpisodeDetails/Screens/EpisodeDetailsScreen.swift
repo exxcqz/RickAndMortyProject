@@ -20,7 +20,7 @@ struct EpisodeDetailsScreen: View {
                             .padding(.top, Layout.scaleFactorH * 108)
                         EpisodeDetailsInfoView(episode: viewStore.episode)
                             .padding(.top, 24)
-                        if !viewStore.characters.isEmpty {
+                        if !viewStore.episode.characters.isEmpty {
                             HStack {
                                 Text(L10n.Details.Episode.scrollTitle)
                                     .font(Font.appFontSemibold(ofSize: Layout.scaleFactorW * 17))
@@ -31,7 +31,7 @@ struct EpisodeDetailsScreen: View {
                             .padding(.top, 24)
                             .padding(.leading, Layout.scaleFactorW * 24)
                             LazyVGrid(columns: columns, spacing: 16) {
-                                ForEach(viewStore.characters, id: \.id) { character in
+                                ForEach(viewStore.episode.characters, id: \.id) { character in
                                     NavigationLink {
                                         CharacterDetailsScreen(
                                             store: Store(

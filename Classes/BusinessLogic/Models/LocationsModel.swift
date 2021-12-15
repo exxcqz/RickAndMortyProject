@@ -11,10 +11,20 @@ struct Location: Codable, Equatable {
     let name: String
     let type: LocationType
     let dimension: LocationDimension
-    let residents: [String]
+    let residentURLs: [String]
     let url: String
     let created: String
-    var residentsModels: [Character]
+    var residents: [Character] = []
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case type
+        case dimension
+        case residentURLs = "residents"
+        case url
+        case created
+    }
 
     enum LocationType: String, Codable, Equatable {
         case acidPlant = "Acid Plant"
@@ -92,6 +102,18 @@ struct Location: Codable, Equatable {
         }
     }
 
+    var residentsIDs: [Int] {
+        var returnedIDs: [Int] = []
+        residentURLs.forEach { urlPath in
+            let url = URL(string: urlPath)
+            let lastPathID = url?.lastPathComponent
+            guard let lastPathID = lastPathID,
+                  let id = Int(lastPathID) else { return }
+            returnedIDs.append(id)
+        }
+        return returnedIDs
+    }
+
     enum LocationDimension: String, Codable, Equatable {
         case chair = "Chair Dimension"
         case cromulon = "Cromulon Dimension"
@@ -138,10 +160,10 @@ let locationCardModel = Location(
     name: "Earth (Replacement Dimension)",
     type: .cluster,
     dimension: Location.LocationDimension.c137,
-    residents: ["1"],
+    residentURLs: ["1"],
     url: "1",
     created: "1",
-    residentsModels: []
+    residents: []
 )
 
 let listLocations: [Location] = Array(repeating: locationCardModel, count: 20)

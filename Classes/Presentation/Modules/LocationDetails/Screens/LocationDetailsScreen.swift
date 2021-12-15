@@ -20,7 +20,7 @@ struct LocationDetailsScreen: View {
                             .padding(.top, Layout.scaleFactorH * 108)
                         LocationDetailsInfoView(location: viewStore.location)
                             .padding(.top, 24)
-                        if !viewStore.residents.isEmpty {
+                        if !viewStore.location.residents.isEmpty {
                             HStack {
                                 Text(L10n.Details.Location.scrollTitle)
                                     .font(Font.appFontSemibold(ofSize: Layout.scaleFactorW * 17))
@@ -31,7 +31,7 @@ struct LocationDetailsScreen: View {
                             .padding(.top, 24)
                             .padding(.leading, Layout.scaleFactorW * 24)
                             LazyVGrid(columns: columns, spacing: 16) {
-                                ForEach(viewStore.residents, id: \.id) { resident in
+                                ForEach(viewStore.location.residents, id: \.id) { resident in
                                     NavigationLink {
                                         CharacterDetailsScreen(
                                             store: Store(
