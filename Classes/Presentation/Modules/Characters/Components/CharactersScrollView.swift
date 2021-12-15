@@ -33,7 +33,7 @@ struct CharactersScrollView: View {
                         if viewStore.currentPageLoading < viewStore.totalPagesForFilter && !viewStore.isFiltering {
                             ProgressView()
                                 .onAppear {
-                                    viewStore.send(.fetchAnotherPage)
+                                    viewStore.send(.fetchNextPage)
                                 }
                         }
                     }

@@ -6,6 +6,6 @@
 import ComposableArchitecture
 
 struct EpisodesEnvironment {
-    var apiService: ApiServiceProtocol
+    var apiService: EpisodesServiceProtocol
     var mainQueue: AnySchedulerOf<DispatchQueue>
 }

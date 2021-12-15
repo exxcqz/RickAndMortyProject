@@ -17,7 +17,7 @@ struct CharacterCard: View {
                 )
                 .foregroundColor(Color(Asset.Colors.blackCard.name))
             VStack(spacing: 0) {
-                AppImageView(urlString: сharacter.image)
+                AppImageView(url: URL(string: сharacter.image))
                     .cornerRadius(10)
                     .frame(
                         width: Layout.scaleFactorW * 140,

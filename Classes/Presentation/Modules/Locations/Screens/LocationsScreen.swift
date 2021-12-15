@@ -43,7 +43,7 @@ struct LocationsScreen: View {
                                     if viewStore.currentPageLoading < viewStore.totalPagesForFilter && !viewStore.isFiltering {
                                         ProgressView()
                                             .onAppear {
-                                                viewStore.send(.fetchAnotherPage)
+                                                viewStore.send(.fetchNextPage)
                                             }
                                     }
                                 }
@@ -70,7 +70,7 @@ struct LocationsScreen_Previews: PreviewProvider {
                 initialState: LocationsState(),
                 reducer: locationsReducer,
                 environment: LocationsEnvironment(
-                    apiService: ServiceContainer().apiServices,
+                    apiService: ServiceContainer().locationsService,
                     mainQueue: DispatchQueue.main.eraseToAnyScheduler()
                 )
             )

@@ -6,6 +6,6 @@
 import ComposableArchitecture
 
 struct CharactersEnvironment {
-    var apiService: ApiServiceProtocol
+    var apiService: CharactersServiceProtocol
     var mainQueue: AnySchedulerOf<DispatchQueue>
 }

@@ -5,7 +5,7 @@
 
 enum EpisodesAction: Equatable {
     case onAppear
-    case fetchAnotherPage
+    case fetchNextPage
     case seasonSelected(Int)
     case episodeCardSelected(Episode)
     case dataLoaded(Result<GeneralRequest<Episode>, NetworkError>)

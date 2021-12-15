@@ -5,7 +5,7 @@
 
 enum LocationsAction: Equatable {
     case onAppear
-    case fetchAnotherPage
+    case fetchNextPage
     case locationCardSelected(Location)
     case dataLoaded(Result<GeneralRequest<Location>, NetworkError>)
     case searchInputChanged(String)

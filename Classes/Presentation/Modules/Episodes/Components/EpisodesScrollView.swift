@@ -36,7 +36,7 @@ struct EpisodesScrollView: View {
                     if viewStore.currentPageLoading < viewStore.totalPagesForFilter && !viewStore.isFiltering {
                         ProgressView()
                             .onAppear {
-                                viewStore.send(.fetchAnotherPage)
+                                viewStore.send(.fetchNextPage)
                             }
                     }
                 }
@@ -53,7 +53,7 @@ struct EpisodesScrollView_Previews: PreviewProvider {
                 initialState: EpisodesState(),
                 reducer: episodesReducer,
                 environment: EpisodesEnvironment(
-                    apiService: ServiceContainer().apiServices,
+                    apiService: ServiceContainer().episodesService,
                     mainQueue: DispatchQueue.main.eraseToAnyScheduler()
                 )
             )

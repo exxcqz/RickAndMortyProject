@@ -56,7 +56,7 @@ struct CharactersScreen_Previews: PreviewProvider {
                 initialState: CharactersState(),
                 reducer: charactersReducer,
                 environment: CharactersEnvironment(
-                    apiService: ServiceContainer().apiServices,
+                    apiService: ServiceContainer().charactersService,
                     mainQueue: DispatchQueue.main.eraseToAnyScheduler()
                 )
             )

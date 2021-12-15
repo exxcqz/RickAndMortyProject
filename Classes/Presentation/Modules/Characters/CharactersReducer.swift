@@ -9,14 +9,17 @@ let charactersReducer = Reducer<CharactersState, CharactersAction, CharactersEnv
     switch action {
     case .onAppear:
         if state.data.isEmpty {
-            return environment.apiService.fetchAllCharacters(currentPage: state.currentPageLoading)
+            state.currentPageLoading = 1
+            state.filterParameters.page = state.currentPageLoading
+            return environment.apiService.fetchCharacters(withParameters: state.filterParameters)
                 .receive(on: environment.mainQueue)
                 .catchToEffect()
                 .map(CharactersAction.dataLoaded)
         }
-    case .fetchAnotherPage:
+    case .fetchNextPage:
         state.currentPageLoading += 1
-        return environment.apiService.fetchAllCharacters(currentPage: state.currentPageLoading)
+        state.filterParameters.page = state.currentPageLoading
+        return environment.apiService.fetchCharacters(withParameters: state.filterParameters)
             .receive(on: environment.mainQueue)
             .catchToEffect()
             .map(CharactersAction.dataLoaded)

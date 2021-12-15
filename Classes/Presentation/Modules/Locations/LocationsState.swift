@@ -12,5 +12,6 @@ struct LocationsState: Equatable {
     var totalPages: Int = 0
     var totalPagesForFilter: Int = 0
     var isFiltering: Bool = false
+    var filterParameters: FetchingParameters = FetchingParameters()
     var searchRequest: String = ""
 }
