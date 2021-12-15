@@ -26,23 +26,23 @@ struct LocationDetailsInfoView: View {
                         Text(L10n.Details.Info.type)
                             .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
                             .foregroundColor(Color(Asset.Colors.grayNormal.name))
-                            .frame(height: 20)
+                            .frame(height: 24)
                         Spacer()
                         Text(location.type.rawValue)
                             .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
                             .foregroundColor(.white)
-                            .frame(height: 20)
+                            .frame(height: 24)
                     }
                     HStack {
                         Text(L10n.Details.Info.dimension)
                             .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
                             .foregroundColor(Color(Asset.Colors.grayNormal.name))
-                            .frame(height: 20)
+                            .frame(height: 24)
                         Spacer()
                         Text(location.dimension.rawValue)
                             .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
                             .foregroundColor(.white)
-                            .frame(height: 20)
+                            .frame(height: 24)
                     }
                 }
                 .padding(.horizontal, Layout.scaleFactorW * 16)
