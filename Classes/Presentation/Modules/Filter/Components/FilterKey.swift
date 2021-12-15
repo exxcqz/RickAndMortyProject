@@ -22,9 +22,3 @@ struct FilterKey: View {
         .padding(.vertical, Layout.scaleFactorH * 8)
     }
 }
-
-struct FilterKey_Previews: PreviewProvider {
-    static var previews: some View {
-        FilterKey(name: "Status")
-    }
-}

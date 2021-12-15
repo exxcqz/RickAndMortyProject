@@ -59,13 +59,11 @@ let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment
             state.filteredData = filteredEpisodes.results
             state.totalPagesForFilter = filteredEpisodes.info.pages
             print("number of filtered episodes: \(state.filteredData.count)")
-            state.isFiltering = false
         case .failure(let error):
             print(error.localizedDescription)
         }
     case .seasonSelected(let index):
         state.selectedSeasonIndex = index
-        state.isFiltering = true
         print("Filter: \(state.seasonsTitles[state.selectedSeasonIndex])")
         if index == 0 {
             state.currentPageLoading = state.currentPageForAll
@@ -74,7 +72,6 @@ let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment
             state.totalPagesForFilter = state.totalPages
             state.filteredData = state.data
             state.filteredSeasonsNumberArray = state.seasonsSet.sorted()
-            state.isFiltering = false
         } else {
             state.currentPageLoading = 1
             state.filterParameters.page = state.currentPageLoading

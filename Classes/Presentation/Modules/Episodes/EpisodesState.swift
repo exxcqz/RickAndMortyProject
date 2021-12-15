@@ -12,7 +12,6 @@ struct EpisodesState: Equatable {
     var currentPageForAll: Int = 1
     var totalPages: Int = 0
     var totalPagesForFilter: Int = 0
-    var isFiltering: Bool = false
     var filterParameters: FetchingParameters = FetchingParameters()
     var searchRequest: String = ""
     var seasonsSet = Set<Int>()

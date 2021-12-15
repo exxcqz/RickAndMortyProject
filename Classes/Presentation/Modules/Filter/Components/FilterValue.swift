@@ -49,9 +49,3 @@ struct FilterValue: View {
         )
     }
 }
-
-//struct FilterValue_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FilterValue(value: "Alive")
-//    }
-//}

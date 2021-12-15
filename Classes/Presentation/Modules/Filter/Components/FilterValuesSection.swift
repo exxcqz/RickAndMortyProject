@@ -36,7 +36,7 @@ struct FilterValuesSection: View {
                     value: parameters[index],
                     currentIndex: index,
                     selectedIndex: $selectedIndex,
-                    countOfSelected: $countOfSelected // КОДСТАЙЛ
+                    countOfSelected: $countOfSelected
                 ).frame(height: Layout.scaleFactorH * 28)
                     .padding([.horizontal, .vertical], 8)
                     .alignmentGuide(.leading, computeValue: { value in
@@ -80,23 +80,3 @@ struct FilterValuesSection: View {
         }
     }
 }
-
-//struct FilterValuesSection_Previews: PreviewProvider {
-//    @State var hideAll: Bool = false
-//
-//    static var previews: some View {
-//        FilterValuesSection(
-//            hideAll: $hideAll,
-//            parameters: [
-//                "Planet",
-//                "Cluster",
-//                "Space station",
-//                "Microverse",
-//                "TV",
-//                "Resort",
-//                "Fantasy town",
-//                "Dream"
-//            ]
-//        )
-//    }
-//}
