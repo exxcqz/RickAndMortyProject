@@ -517,10 +517,30 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		C37763AA275FC1DE008308B9 /* ErrorHandling */ = {
+		C3162A452769E9E10074E089 /* Locations */ = {
+			isa = PBXGroup;
+			children = (
+				C3162A532769EA560074E089 /* LocationsEndpoint.swift */,
+				C3162A552769EA650074E089 /* LocationsService.swift */,
+				C3162A572769EA710074E089 /* LocationsServiceProtocol.swift */,
+			);
+			path = Locations;
+			sourceTree = "<group>";
+		};
+		C3162A462769E9EF0074E089 /* Characters */ = {
 			isa = PBXGroup;
 			children = (
 				C377639E275FAD2D008308B9 /* NetworkError.swift */,
+				C3162A472769EA1E0074E089 /* CharactersEndpoint.swift */,
+				C3162A492769EA270074E089 /* CharactersService.swift */,
+				C3162A4B2769EA310074E089 /* CharactersServiceProtocol.swift */,
+			);
+			path = Characters;
+			sourceTree = "<group>";
+		};
+		C37763AA275FC1DE008308B9 /* ErrorHandling */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = ErrorHandling;
 			sourceTree = "<group>";
@@ -748,6 +768,7 @@
 				C37763BF27650157008308B9 /* LocationsService.swift in Sources */,
 				C3D08F4F2101B9B600FDC15E /* Assets.swift in Sources */,
 				063834571F6F62AC0057A831 /* ContentView.swift in Sources */,
+				C3162A502769EA450074E089 /* EpisodesService.swift in Sources */,
 				6D3A04222170BE06007B6860 /* AppConfiguration.swift in Sources */,
 				C37763D127675759008308B9 /* FilterValuesSection.swift in Sources */,
 				6D6D7EA221F743FA000FFA4D /* Services.swift in Sources */,
@@ -767,6 +788,7 @@
 				BBDAAEBD960BB8B03FE8E97A /* SplashAction.swift in Sources */,
 				64808336B7AE91E821BF6209 /* SplashEnvironment.swift in Sources */,
 				262BD36939303769150CE34C /* SplashReducer.swift in Sources */,
+				C3162A4C2769EA310074E089 /* CharactersServiceProtocol.swift in Sources */,
 				3DFC6CA04971F19856C938A3 /* CharactersScreen.swift in Sources */,
 				29EF2A173A69D16743392A6D /* CharactersState.swift in Sources */,
 				269CB387AD00A3636F08151D /* CharactersAction.swift in Sources */,
@@ -774,6 +796,7 @@
 				30848E27393247257E14DC82 /* CharactersReducer.swift in Sources */,
 				1148D5C2274FD1200047E20E /* TabBarItem.swift in Sources */,
 				63FA1F903922012978134029 /* LocationsScreen.swift in Sources */,
+				C3162A412769E92F0074E089 /* FetchingParameters.swift in Sources */,
 				C9AE9C6699DE4AA3BEBF08E7 /* LocationsState.swift in Sources */,
 				C37763CF27675750008308B9 /* FilterKey.swift in Sources */,
 				28BE4E6F1D94586798FF337B /* LocationsAction.swift in Sources */,
@@ -782,13 +805,18 @@
 				3615AC9C579EC0230E764F13 /* LocationsReducer.swift in Sources */,
 				B25C9473FBAEBE9D308E0E82 /* EpisodesScreen.swift in Sources */,
 				07DFC1475C222ADB1D7A10D3 /* EpisodesScrollView.swift in Sources */,
+				C3162A562769EA650074E089 /* LocationsService.swift in Sources */,
 				C3CC72A22752BA5A007FFC54 /* CharactersScrollView.swift in Sources */,
 				1148D5D6275399110047E20E /* LocationsCardComponent.swift in Sources */,
+				C3162A582769EA720074E089 /* LocationsServiceProtocol.swift in Sources */,
+				C3162A4A2769EA270074E089 /* CharactersService.swift in Sources */,
+				C3162A522769EA4E0074E089 /* EpisodesServiceProtocol.swift in Sources */,
 				D79E209D216EBA0921E4A8F9 /* EpisodesState.swift in Sources */,
 				C37763BC2765014A008308B9 /* EpisodesServiceProtocol.swift in Sources */,
 				6924F43613AA64A3243A0943 /* EpisodesAction.swift in Sources */,
 				C5C57802B327ACF6B57BDD00 /* EpisodesEnvironment.swift in Sources */,
 				CE51A265C028CBD3DF18B1CB /* EpisodesReducer.swift in Sources */,
+				C3162A542769EA560074E089 /* LocationsEndpoint.swift in Sources */,
 				0633A3E109287294157807EC /* FilterScreen.swift in Sources */,
 				11A839F5275A50DB0015BD55 /* StickyHeaderComponent.swift in Sources */,
 				C314B9602750EE5800C7E28F /* CharacterModel.swift in Sources */,
@@ -814,6 +842,7 @@
 				C37763CD27675743008308B9 /* FilterValue.swift in Sources */,
 				FC54F5AFF55A2AA11F55B6D3 /* DetailsEnvironment.swift in Sources */,
 				C3D0641F275A5860003E9148 /* AppSegmentedControl.swift in Sources */,
+				C3162A482769EA1E0074E089 /* CharactersEndpoint.swift in Sources */,
 				3801234611FB3C11FD62C21B /* DetailsReducer.swift in Sources */,
 				4CDD47B0812EA9DC7B675069 /* TabBarScreen.swift in Sources */,
 				8ADD5F0A2BB72EF68E8B47F2 /* TabBarState.swift in Sources */,

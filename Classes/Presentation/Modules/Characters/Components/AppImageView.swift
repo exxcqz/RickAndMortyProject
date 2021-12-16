@@ -7,12 +7,8 @@ import SwiftUI
 import Nuke
 
 struct AppImageView: View {
-    let urlString: String
+    let url: URL?
     @StateObject private var image = FetchImage()
-
-    var url: URL? {
-        URL(string: urlString)
-    }
 
     var body: some View {
         ZStack {
