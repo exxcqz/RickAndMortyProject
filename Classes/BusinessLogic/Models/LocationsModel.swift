@@ -16,6 +16,10 @@ struct Location: Codable, Equatable {
     let created: String
     var residents: [Character] = []
 
+    var residentsIDs: [Int] {
+        return residentURLs.compactMap { Int($0.lastPathComponent) }
+    }
+
     enum CodingKeys: String, CodingKey {
         case id
         case name
@@ -102,18 +106,6 @@ struct Location: Codable, Equatable {
         }
     }
 
-    var residentsIDs: [Int] {
-        var returnedIDs: [Int] = []
-        residentURLs.forEach { url in
-            let id = url.lastPathComponent
-            guard let id = Int(id) else {
-                return
-            }
-            returnedIDs.append(id)
-        }
-        return returnedIDs
-    }
-
     enum LocationDimension: String, Codable, Equatable {
         case chair = "Chair Dimension"
         case cromulon = "Cromulon Dimension"
@@ -165,5 +157,3 @@ let locationCardModel = Location(
     created: "1",
     residents: []
 )
-
-let listLocations: [Location] = Array(repeating: locationCardModel, count: 20)

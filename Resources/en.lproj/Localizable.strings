@@ -24,6 +24,7 @@
 // Details
 "details.character.origin" = "Origin";
 "details.info.title" = "Info";
+"details.info.none" = "None";
 "details.info.species" = "Species:";
 "details.info.type" = "Type:";
 "details.info.gender" = "Gender:";
@@ -34,7 +35,6 @@
 "details.character.scroll_title" = "Episodes";
 "details.location.scroll_title" = "Residents";
 "details.episode.scroll_title" = "Characters";
-
 
 // Placeholder
 "placeholder.search" = "Search";

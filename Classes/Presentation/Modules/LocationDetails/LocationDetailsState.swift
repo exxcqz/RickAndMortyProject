@@ -4,5 +4,5 @@
 //
 
 struct LocationDetailsState: Equatable {
-    var location: Location = listLocations[0]
+    var location: Location = locationCardModel
 }

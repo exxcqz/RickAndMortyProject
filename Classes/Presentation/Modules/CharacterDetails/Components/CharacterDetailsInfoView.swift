@@ -39,7 +39,7 @@ struct CharacterDetailsInfoView: View {
                             .foregroundColor(Color(Asset.Colors.grayNormal.name))
                             .frame(height: 20)
                         Spacer()
-                        Text(character.type.rawValue.checkEmpty)
+                        Text(character.type.rawValue.isEmpty ? L10n.Details.Info.none : character.type.rawValue)
                             .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
                             .foregroundColor(.white)
                             .frame(height: 20)
@@ -61,17 +61,5 @@ struct CharacterDetailsInfoView: View {
             }
         }
         .padding(.horizontal, Layout.scaleFactorW * 24)
-    }
-}
-
-// MARK: -  Check for empty value
-
-extension String {
-
-    var checkEmpty: String {
-        if self.isEmpty {
-            return "None"
-        }
-        return self
     }
 }

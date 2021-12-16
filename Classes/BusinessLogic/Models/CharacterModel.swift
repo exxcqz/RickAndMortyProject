@@ -21,6 +21,10 @@ struct Character: Codable, Equatable {
     var originLocation: [Location] = []
     var episodes: [Episode] = []
 
+    var episodesIDs: [Int] {
+        return episodeURLs.compactMap { Int($0.lastPathComponent) }
+    }
+
     enum CodingKeys: String, CodingKey {
         case id
         case name
@@ -230,18 +234,6 @@ struct Character: Codable, Equatable {
             self = try CharacterType(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .unknown
         }
     }
-
-    var episodesIDs: [Int] {
-        var returnedIDs: [Int] = []
-        episodeURLs.forEach { url in
-            let id = url.lastPathComponent
-            guard let id = Int(id) else {
-                return
-            }
-            returnedIDs.append(id)
-        }
-        return returnedIDs
-    }
 }
 
 struct CharacterLocation: Codable, Equatable {
@@ -283,5 +275,3 @@ let dummyCharacterModel = Character(
     originLocation: [],
     episodes: []
 )
-
-let dummyCharactersArray: [Character] = Array(repeating: dummyCharacterModel, count: 9)

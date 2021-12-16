@@ -36,6 +36,8 @@ internal enum L10n {
       internal static let episode = L10n.tr("Localizable", "details.info.episode")
       /// Gender:
       internal static let gender = L10n.tr("Localizable", "details.info.gender")
+      /// None
+      internal static let `none` = L10n.tr("Localizable", "details.info.none")
       /// Season:
       internal static let season = L10n.tr("Localizable", "details.info.season")
       /// Species:

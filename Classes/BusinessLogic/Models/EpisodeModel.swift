@@ -40,15 +40,7 @@ struct Episode: Codable, Equatable {
     }
 
     var charactersIDs: [Int] {
-        var returnedIDs: [Int] = []
-        characterURLs.forEach { url in
-            let id = url.lastPathComponent
-            guard let id = Int(id) else {
-                return
-            }
-            returnedIDs.append(id)
-        }
-        return returnedIDs
+        return characterURLs.compactMap { Int($0.lastPathComponent) }
     }
 }
 
