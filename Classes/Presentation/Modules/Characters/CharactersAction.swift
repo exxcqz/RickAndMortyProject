@@ -9,4 +9,5 @@ enum CharactersAction: Equatable {
     case characterCardSelected(Character)
     case dataLoaded(Result<GeneralRequest<Character>, NetworkError>)
     case searchInputChanged(String)
+    case details(CharacterDetailsAction)
 }

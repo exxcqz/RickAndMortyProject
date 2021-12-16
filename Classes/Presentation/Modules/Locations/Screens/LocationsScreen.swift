@@ -66,9 +66,10 @@ struct LocationsScreen: View {
     }
 }
 
-// MARK: -  Getting store of filter
+// MARK: -  Getting store of LocationDetails
 
 extension LocationsScreen {
+
     private var locationDetailsStore: Store<LocationDetailsState, LocationDetailsAction> {
         return store.scope(
             state: {

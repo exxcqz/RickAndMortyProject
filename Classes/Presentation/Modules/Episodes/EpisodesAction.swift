@@ -11,4 +11,5 @@ enum EpisodesAction: Equatable {
     case dataLoaded(Result<GeneralRequest<Episode>, NetworkError>)
     case filteredDataLoaded(Result<GeneralRequest<Episode>, NetworkError>)
     case searchInputChanged(String)
+    case details(EpisodeDetailsAction)
 }
