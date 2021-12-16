@@ -10,5 +10,5 @@ struct LocationsState: Equatable {
     var isFilterButtonActive: Bool = false
     var isFilterPresented: Bool = false
     var filterParameters: FetchingParameters = FetchingParameters()
-    var filter = FilterState(filterType: .locations)
+    var filter: FilterState = FilterState(filterType: .locations)
 }

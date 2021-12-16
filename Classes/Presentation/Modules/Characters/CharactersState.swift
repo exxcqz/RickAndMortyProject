@@ -10,5 +10,5 @@ struct CharactersState: Equatable {
     var isFilterButtonActive: Bool = false
     var isFilterPresented: Bool = false
     var filterParameters: FetchingParameters = FetchingParameters()
-    var filter = FilterState(filterType: .characters)
+    var filter: FilterState = FilterState(filterType: .characters)
 }

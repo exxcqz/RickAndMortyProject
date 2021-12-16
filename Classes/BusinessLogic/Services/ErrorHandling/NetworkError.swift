@@ -5,7 +5,6 @@
 
 import Foundation
 
-/// Lists possible errors when making requests to the server
 enum NetworkError: Equatable, Error {
     var string: String { return String(reflecting: self) }
 
@@ -22,7 +21,6 @@ enum NetworkError: Equatable, Error {
     case statusCode(Int)
     case nonHTTPResponse
 
-    /// Convert Error to NetworkError
     static func map(_ error: Error) -> NetworkError {
         switch error {
         case let decodingError as DecodingError:

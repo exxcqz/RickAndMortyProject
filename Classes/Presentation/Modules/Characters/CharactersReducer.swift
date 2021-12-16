@@ -66,6 +66,9 @@ let charactersReducer: Reducer<CharactersState, CharactersAction, CharactersEnvi
         case .filterButtonTapped:
             state.isFilterButtonActive = true
             state.isFilterPresented = true
+            state.filterParameters.page = 1
+            state.filterParameters.totalPages = 0
+            state.filter.filterParameters = state.filterParameters
         }
         return .none
     },

@@ -19,7 +19,7 @@ enum LocationsEndpoint: Endpoint {
         case .fetchLocations:
             return "api/location/"
         case let .fetchMultipleLocations(ids):
-            return "api/character/\(ids)"
+            return "api/location/\(ids)"
         }
     }
 

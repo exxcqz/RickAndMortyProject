@@ -66,29 +66,14 @@ let locationsReducer: Reducer<LocationsState, LocationsAction, LocationsEnvironm
         case .filterButtonTapped:
             state.isFilterButtonActive = true
             state.isFilterPresented = true
+            state.filterParameters.page = 1
+            state.filterParameters.totalPages = 0
+            state.filter.filterParameters = state.filterParameters
         }
         return .none
     },
-    
+
     filterReducer.pullback(state: \.filter, action: /LocationsAction.filter) { _ in
         FilterEnvironment()
     }
 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

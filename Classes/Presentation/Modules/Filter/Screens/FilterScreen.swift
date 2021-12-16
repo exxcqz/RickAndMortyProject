@@ -35,7 +35,6 @@ struct FilterScreen: View {
                 },
                 send: FilterAction.indicesOfLocationsChanged
             )
-
             ZStack {
                 VStack(spacing: 0) {
                     FilterBar(countOfSelected: countOfSelected)
@@ -45,13 +44,13 @@ struct FilterScreen: View {
                             case .characters:
                                 generateCharactersFilter(
                                     countOfSelected: countOfSelected,
-                                    filterParameters: filterParameters,
+                                    filter: filterParameters,
                                     indices: indicesOfCharactersFilter
                                 )
                             case .locations:
                                 generateLocationsFilter(
                                     countOfSelected: countOfSelected,
-                                    filterParameters: filterParameters,
+                                    filter: filterParameters,
                                     indices: indicesOfLocationsFilter
                                 )
                             }
@@ -70,7 +69,7 @@ struct FilterScreen: View {
         }
     }
 
-    func generateCharactersFilter(countOfSelected: Binding<Int>, filterParameters: Binding<FetchingParameters>, indices: Binding<[Int?]>) -> some View {
+    func generateCharactersFilter(countOfSelected: Binding<Int>, filter: Binding<FetchingParameters>, indices: Binding<[Int?]>) -> some View {
         return ForEach(FilterState.CharactersFilter.allCases, id: \.self) { key in
             VStack(spacing: 8) {
                 FilterKey(name: key.value)
@@ -84,7 +83,7 @@ struct FilterScreen: View {
                         parameters: values,
                         selectedIndex: indices[0],
                         countOfSelected: countOfSelected,
-                        filterParameters: filterParameters
+                        filterParameters: filter
                     )
                 case .species:
                     let values: [String] = Character.CharacterSpecies.allCases.map {
@@ -95,7 +94,7 @@ struct FilterScreen: View {
                         parameters: values,
                         selectedIndex: indices[1],
                         countOfSelected: countOfSelected,
-                        filterParameters: filterParameters
+                        filterParameters: filter
                     )
                 case .type:
                     let values: [String] = Character.CharacterType.allCases.filter {
@@ -108,7 +107,7 @@ struct FilterScreen: View {
                         parameters: values,
                         selectedIndex: indices[2],
                         countOfSelected: countOfSelected,
-                        filterParameters: filterParameters
+                        filterParameters: filter
                     )
                 case .gender:
                     let values: [String] = Character.CharacterGender.allCases.map {
@@ -119,14 +118,14 @@ struct FilterScreen: View {
                         parameters: values,
                         selectedIndex: indices[3],
                         countOfSelected: countOfSelected,
-                        filterParameters: filterParameters
+                        filterParameters: filter
                     )
                 }
             }
         }
     }
 
-    func generateLocationsFilter(countOfSelected: Binding<Int>, filterParameters: Binding<FetchingParameters>, indices: Binding<[Int?]>) -> some View {
+    func generateLocationsFilter(countOfSelected: Binding<Int>, filter: Binding<FetchingParameters>, indices: Binding<[Int?]>) -> some View {
         return ForEach(FilterState.LocationsFilter.allCases, id: \.self) { key in
             VStack(spacing: 8) {
                 switch key {
@@ -142,7 +141,7 @@ struct FilterScreen: View {
                         parameters: values,
                         selectedIndex: indices[0],
                         countOfSelected: countOfSelected,
-                        filterParameters: filterParameters
+                        filterParameters: filter
                     )
                 case .dimension:
                     FilterKey(name: key.value)
@@ -156,7 +155,7 @@ struct FilterScreen: View {
                         parameters: values,
                         selectedIndex: indices[1],
                         countOfSelected: countOfSelected,
-                        filterParameters: filterParameters
+                        filterParameters: filter
                     )
                 }
             }

@@ -7,9 +7,9 @@ import Foundation
 import SwiftUI
 
 struct FilterValuesSection: View {
-    @State var filterKey: Any // по какому ключу фильтруем
-    @State var parameters: [String]  // values для секции фильтра
-    @Binding var selectedIndex: Int? // какой сейчас выделен индекс
+    @State var filterKey: Any
+    @State var parameters: [String]
+    @Binding var selectedIndex: Int?
     @Binding var countOfSelected: Int
     @Binding var filterParameters: FetchingParameters
     @State private var totalHeight = CGFloat.zero
@@ -66,20 +66,23 @@ struct FilterValuesSection: View {
                 }
             }.onChange(of: selectedIndex) { newValue in
                 if let newValue = newValue {
-                    if let filterKey = filterKey as? FilterState.CharactersFilter {
-                        setParameterOfCharacters(filter: filterKey, value: parameters[newValue])
-                    } else if let filterKey = filterKey as? FilterState.LocationsFilter {
-                        setParameterOfLocations(filter: filterKey, value: parameters[newValue])
-                    }
+                    setParameters(filter: filterKey, value: parameters[newValue])
                 } else {
-                    if let filterKey = filterKey as? FilterState.CharactersFilter {
-                        setParameterOfCharacters(filter: filterKey, value: nil)
-                    } else if let filterKey = filterKey as? FilterState.LocationsFilter {
-                        setParameterOfLocations(filter: filterKey, value: nil)
-                    }
+                    setParameters(filter: filterKey, value: nil)
                 }
             }
         }.background(viewHeightReader($totalHeight))
+    }
+
+    private func setParameters(filter: Any, value: String?) {
+        switch filter {
+        case let filter as FilterState.CharactersFilter:
+            setParameterOfCharacters(filter: filter, value: value)
+        case let filter as FilterState.LocationsFilter:
+            setParameterOfLocations(filter: filter, value: value)
+        default:
+            break
+        }
     }
 
     private func setParameterOfCharacters(filter: FilterState.CharactersFilter, value: String?) {

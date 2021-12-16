@@ -31,7 +31,8 @@ struct LocationsScreen: View {
                 let searchRequest = viewStore.binding(
                     get: {
                         $0.filterParameters.name ?? ""
-                    }, send: {
+                    },
+                    send: {
                         LocationsAction.searchInputChanged($0)
                     }
                 )

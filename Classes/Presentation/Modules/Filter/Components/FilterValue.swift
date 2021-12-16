@@ -9,7 +9,7 @@ import SwiftUI
 struct FilterValue: View {
     @State var value: String
     @State var currentIndex: Int = 0
-    @Binding var selectedIndex: Int? // запомнить его (в стейте сделать массив запомненных индексов)
+    @Binding var selectedIndex: Int?
     @Binding var countOfSelected: Int
 
     var body: some View {
