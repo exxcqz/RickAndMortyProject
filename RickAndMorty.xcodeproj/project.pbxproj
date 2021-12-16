@@ -419,6 +419,8 @@
 			isa = PBXGroup;
 			children = (
 				6D35B599216B646F00C72B29 /* Bundle+Info.swift */,
+				C36BDF4C276A443D006BA2E2 /* Color+HEX.swift */,
+				C36BDF4D276A443D006BA2E2 /* View+RoundedCorner.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -479,7 +481,6 @@
 			isa = PBXGroup;
 			children = (
 				C10EC2BC740B255A6CAEE9B1 /* Screens */,
-				C36BDF4A276A0F3A006BA2E2 /* Extensions */,
 				367654F98F0D1DDB69F89526 /* Components */,
 				1912B6F08E19ECCF5FEB624C /* FilterState.swift */,
 				1DDFFE7BAA47863677FA4F33 /* FilterAction.swift */,
@@ -508,15 +509,6 @@
 				0FF20F6970EBC600C5051EE4 /* LocationsReducer.swift */,
 			);
 			path = Locations;
-			sourceTree = "<group>";
-		};
-		C36BDF4A276A0F3A006BA2E2 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				C36BDF4C276A443D006BA2E2 /* Color+HEX.swift */,
-				C36BDF4D276A443D006BA2E2 /* View+RoundedCorner.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		C36BDF50276B4275006BA2E2 /* Recovered References */ = {
