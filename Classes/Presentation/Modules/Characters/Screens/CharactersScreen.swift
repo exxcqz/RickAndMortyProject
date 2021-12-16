@@ -17,11 +17,7 @@ struct CharactersScreen: View {
                         $0.isFilterPresented
                     },
                     send: { _ in
-                        if viewStore.filter.appliedParams.isEmpty {
-                            return CharactersAction.filterSelected(.onDisappear)
-                        } else {
-                            return CharactersAction.filterSelected(.applyFilter)
-                        }
+                        CharactersAction.filter(.onDisappear)
                     }
                 )
                 let isFilterButtonActive = viewStore.binding(
@@ -52,7 +48,7 @@ struct CharactersScreen: View {
                             )
                             if viewStore.data.isEmpty {
                                 ProgressView()
-                                    .padding(.top, Layout.scaleFactorH * 150) // поменять на середину скрола
+                                    .padding(.top, Layout.scaleFactorH * 150)
                             } else {
                                 CharactersScrollView(store: store)
                                     .padding(.vertical, Layout.scaleFactorH * 16)
@@ -68,11 +64,7 @@ struct CharactersScreen: View {
                 .sheet(
                     isPresented: isFilterPresented,
                     onDismiss: {
-                        if viewStore.filter.appliedParams.isEmpty {
-                            print("фильтр пустой!") // обновить filterdata (удалить все и сделать onAppear)
-                        } else {
-                            print("фильтруем: \(viewStore.filter.appliedParams)") // экшн в редьюсер
-                        }
+                        viewStore.send(.filterSettingsChanged)
                     },
                     content: {
                         FilterScreen(store: self.filterStore)
@@ -92,7 +84,7 @@ extension CharactersScreen {
             state: {
                 $0.filter
             },
-            action: CharactersAction.filterSelected
+            action: CharactersAction.filter
         )
     }
 }

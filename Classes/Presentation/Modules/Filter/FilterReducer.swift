@@ -8,19 +8,26 @@ import ComposableArchitecture
 let filterReducer = Reducer<FilterState, FilterAction, FilterEnvironment> { state, action, _ in
     switch action {
     case .onAppear:
-        state.countOfSelected = 0
-        state.tempFilterParams.removeAll()
-        state.appliedParams.removeAll()
-    case .resetAll:
-        state.resetAll.toggle()
+        state.appliedParameters = state.filterParameters
     case .countOfSelectedChanged(let newCount):
         state.countOfSelected = newCount
-    case .filterParamsChanged(let newDict):
-        state.tempFilterParams = newDict
+        if state.countOfSelected == 0 {
+            state.filterParameters = FetchingParameters(page: 1)
+        }
+    case .indicesOfCharactersChanged(let newArray):
+        state.indicesOfCharactersFilter = newArray
+    case .indicesOfLocationsChanged(let newArray):
+        state.indicesOfLocationsFilter = newArray
+    case .filterParametersChanged(let appliedParameters):
+        state.appliedParameters = appliedParameters
     case .applyFilter:
-        state.appliedParams = state.tempFilterParams
+        state.filterParameters = state.appliedParameters
     case .onDisappear:
-        state.appliedParams.removeAll()
+        if state.filterParameters != state.appliedParameters {
+            state.countOfSelected = 0
+            state.indicesOfCharactersFilter = Array(repeating: nil, count: FilterState.CharactersFilter.allCases.count)
+            state.indicesOfLocationsFilter = Array(repeating: nil, count: FilterState.LocationsFilter.allCases.count)
+        }
     }
     return .none
 }

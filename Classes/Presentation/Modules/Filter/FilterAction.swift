@@ -5,9 +5,10 @@
 
 enum FilterAction: Equatable {
     case onAppear
-    case resetAll
     case countOfSelectedChanged(Int)
-    case filterParamsChanged([String: String])
+    case indicesOfCharactersChanged([Int?])
+    case indicesOfLocationsChanged([Int?])
+    case filterParametersChanged(FetchingParameters)
     case applyFilter
     case onDisappear
 }

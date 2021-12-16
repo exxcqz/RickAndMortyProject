@@ -24,9 +24,9 @@ let charactersReducer: Reducer<CharactersState, CharactersAction, CharactersEnvi
         case .dataLoaded(let result):
             switch result {
             case .success(let characters):
-//                characters.results.forEach { character in
-//                    print("id #\(character.id), \(character.name) (with gender \(character.gender))")
-//                }
+                characters.results.forEach { character in
+                    print("id #\(character.id), \(character.name) (with gender \(character.gender))")
+                }
                 state.filterParameters.totalPages = characters.info.pages
                 state.data += characters.results
                 print("number of characters: \(state.data.count)")
@@ -45,14 +45,19 @@ let charactersReducer: Reducer<CharactersState, CharactersAction, CharactersEnvi
                 .receive(on: environment.mainQueue)
                 .catchToEffect()
                 .map(CharactersAction.dataLoaded)
-        case .filterSelected(let action):
+        case .filterSettingsChanged:
+            state.filterParameters = state.filter.filterParameters
+            state.data.removeAll()
+            return environment.apiService.fetchCharacters(withParameters: state.filterParameters)
+                .receive(on: environment.mainQueue)
+                .catchToEffect()
+                .map(CharactersAction.dataLoaded)
+        case .filter(let action):
             switch action {
             case .applyFilter:
-                print("фильтрую персонажей")
                 state.isFilterPresented = false
                 state.isFilterButtonActive = false
             case .onDisappear:
-                print("не фильтрую персонажей, просто закрываю")
                 state.isFilterPresented = false
                 state.isFilterButtonActive = false
             default:
@@ -65,7 +70,7 @@ let charactersReducer: Reducer<CharactersState, CharactersAction, CharactersEnvi
         return .none
     },
 
-    filterReducer.pullback(state: \.filter, action: /CharactersAction.filterSelected) { _ in
+    filterReducer.pullback(state: \.filter, action: /CharactersAction.filter) { _ in
         FilterEnvironment()
     }
 )

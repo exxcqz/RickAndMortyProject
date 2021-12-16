@@ -7,15 +7,17 @@ struct FilterState: Equatable {
     var filterType: FilterType = FilterType.locations
     var countOfSelected: Int = 0
     var resetAll: Bool = false
-    var tempFilterParams: [String: String] = [:]
-    var appliedParams: [String: String] = [:]
+    var indicesOfCharactersFilter: [Int?] = Array(repeating: nil, count: CharactersFilter.allCases.count)
+    var indicesOfLocationsFilter: [Int?] = Array(repeating: nil, count: LocationsFilter.allCases.count)
+    var filterParameters: FetchingParameters = FetchingParameters()
+    var appliedParameters: FetchingParameters = FetchingParameters()
 
     enum FilterType: CaseIterable {
         case characters
         case locations
     }
 
-    enum CharacterFilter: CaseIterable {
+    enum CharactersFilter: CaseIterable {
         case status
         case species
         case type

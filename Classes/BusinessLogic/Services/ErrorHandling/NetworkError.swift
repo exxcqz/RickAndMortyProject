@@ -16,10 +16,10 @@ enum NetworkError: Equatable, Error {
         return lhs.string == rhs.string
     }
 
-    case unexpected(_ error: Error)
-    case decoding(_ error: Error)
-    case network(_ error: Error)
-    case statusCode(_ statusCode: Int)
+    case unexpected(Error)
+    case decoding(Error)
+    case network(Error)
+    case statusCode(Int)
     case nonHTTPResponse
 
     /// Convert Error to NetworkError

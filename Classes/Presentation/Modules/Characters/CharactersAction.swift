@@ -10,5 +10,6 @@ enum CharactersAction: Equatable {
     case dataLoaded(Result<GeneralRequest<Character>, NetworkError>)
     case searchInputChanged(String)
     case filterButtonTapped
-    case filterSelected(FilterAction)
+    case filter(FilterAction)
+    case filterSettingsChanged
 }

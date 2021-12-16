@@ -7,7 +7,6 @@ import Foundation
 import SwiftUI
 
 struct FilterBar: View {
-    @Binding var resetAll: Bool
     @Binding var countOfSelected: Int
 
     var body: some View {
@@ -34,10 +33,9 @@ struct FilterBar: View {
                 Spacer()
                 Button(
                     action: {
-                        resetAll.toggle()
                         countOfSelected = 0
-                        // очистить модельку параметров
-                    }, label: {
+                    },
+                    label: {
                         Text(L10n.Filters.Action.resetAll)
                             .font(Font.appFontSemibold(ofSize: Layout.scaleFactorW * 17))
                             .foregroundColor(Color(.white).opacity(0.6))
