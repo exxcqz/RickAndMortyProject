@@ -35,16 +35,10 @@ struct LocationsScreen: View {
                                 LazyVStack(spacing: 16) {
                                     ForEach(viewStore.state.data, id: \.id) { card in
                                         NavigationLink {
-                                            LocationDetailsScreen(
-                                                store: Store(
-                                                    initialState: LocationDetailsState(location: card),
-                                                    reducer: locationDetailsReducer,
-                                                    environment: LocationDetailsEnvironment(
-                                                        apiService: ServiceContainer().charactersService,
-                                                        mainQueue: DispatchQueue.main.eraseToAnyScheduler()
-                                                    )
-                                                )
-                                            )
+                                            LocationDetailsScreen(store: locationDetailsStore)
+                                                .onAppear {
+                                                    viewStore.send(.locationCardSelected(card))
+                                                }
                                         } label: {
                                             LocationsCardComponent(locationDetail: card)
                                         }
@@ -69,6 +63,19 @@ struct LocationsScreen: View {
             }
             .navigationBarHidden(true)
         }
+    }
+}
+
+// MARK: -  Getting store of filter
+
+extension LocationsScreen {
+    private var locationDetailsStore: Store<LocationDetailsState, LocationDetailsAction> {
+        return store.scope(
+            state: {
+                $0.details
+            },
+            action: LocationsAction.details
+        )
     }
 }
 

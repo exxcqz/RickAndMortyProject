@@ -14,4 +14,5 @@ struct LocationsState: Equatable {
     var isFiltering: Bool = false
     var filterParameters: FetchingParameters = FetchingParameters()
     var searchRequest: String = ""
+    var details = LocationDetailsState()
 }

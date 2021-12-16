@@ -9,4 +9,5 @@ enum LocationsAction: Equatable {
     case locationCardSelected(Location)
     case dataLoaded(Result<GeneralRequest<Location>, NetworkError>)
     case searchInputChanged(String)
+    case details(LocationDetailsAction)
 }
