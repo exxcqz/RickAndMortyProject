@@ -9,5 +9,10 @@ struct CharactersState: Equatable {
     var data: [Character] = []
     var filteredData: [Character] = []
     var grid: [Int] = []
+    var currentPageLoading: Int = 1
+    var totalPages: Int = 0
+    var totalPagesForFilter: Int = 0
+    var isFiltering: Bool = false
+    var filterParameters: FetchingParameters = FetchingParameters()
     var searchRequest: String = ""
 }

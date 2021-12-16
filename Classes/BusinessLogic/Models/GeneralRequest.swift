@@ -5,12 +5,12 @@
 
 import Foundation
 
-struct GeneralRequest<T: Decodable>: Decodable {
+struct GeneralRequest<T: Codable & Equatable>: Codable, Equatable {
     let info: RequestInfo
     let results: [T]
 }
 
-struct RequestInfo: Decodable {
+struct RequestInfo: Codable, Equatable {
     let count: Int
     let pages: Int
     let next: String?

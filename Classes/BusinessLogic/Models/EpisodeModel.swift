@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct Episode: Decodable, Equatable {
+struct Episode: Codable, Equatable {
     let id: Int
     let name: String
     let date: String

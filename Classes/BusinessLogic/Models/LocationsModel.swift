@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-struct Location: Decodable, Equatable {
+struct Location: Codable, Equatable {
     let id: Int
     let name: String
     let type: LocationType
@@ -15,15 +15,58 @@ struct Location: Decodable, Equatable {
     let url: String
     let created: String
 
-    enum LocationType: String, Decodable {
-        case planet = "Planet"
+    enum LocationType: String, Codable, Equatable {
+        case reality = "Reality"
+        case spacecraft = "Spacecraft"
+        case country = "Country"
+        case teenyverse = "Teenyverse"
         case cluster = "Cluster"
-        case spaceStation = "Space station"
+        case woods = "Woods"
+        case space = "Space"
+        case customs = "Customs"
+        case dimension = "Dimension"
+        case base = "Base"
+        case consciousness = "Consciousness"
         case microverse = "Microverse"
+        case nonDiegeticAltReality = "Non-Diegetic Alternative Reality"
+        case arcade = "Arcade"
+        case policeDepartment = "Police Department"
+        case convention = "Convention"
         case tvType = "TV"
-        case resort = "Resort"
+        case miniverse = "Miniverse"
+        case deathStar = "Death Star"
+        case mount = "Mount"
+        case asteroid = "Asteroid"
         case fantasyTown = "Fantasy town"
+        case spa = "Spa"
+        case menagerie = "Menagerie"
+        case dwarfPlanet = "Dwarf planet (Celestial Dwarf)"
+        case liquid = "Liquid"
+        case artGenWorld = "Artificially generated world"
+        case spaceStation = "Space station"
+        case game = "Game"
+        case quadrant = "Quadrant"
+        case human = "Human"
+        case machine = "Machine"
+        case resort = "Resort"
+        case box = "Box"
+        case planet = "Planet"
         case dream = "Dream"
+        case hell = "Hell"
+        case memory = "Memory"
+        case daycare = "Daycare"
+        case nightmare = "Nightmare"
+        case elementalRings = "Elemental Rings"
+        case diegesis = "Diegesis"
+        case acidPlant = "Acid Plant"
+        case quasar = "Quasar"
+        case emptyType = ""
+        case unknown = "unknown"
+        case other = "some other type"
+
+        public init(from decoder: Decoder) throws {
+            self = try LocationType(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .other
+        }
 
         var icon: UIImage {
             switch self {
@@ -43,6 +86,8 @@ struct Location: Decodable, Equatable {
                 return Asset.Icons.icFantasyTown.image
             case .dream:
                 return Asset.Icons.icDream.image
+            default:
+                return Asset.Icons.icStar.image
             }
         }
     }
@@ -50,7 +95,7 @@ struct Location: Decodable, Equatable {
 
 let locationCardModel = Location(
     id: 1,
-    name: "Testicle Monster Dimension",
+    name: "Earth (Replacement Dimension)",
     type: .cluster,
     dimension: "1",
     residents: ["1"],

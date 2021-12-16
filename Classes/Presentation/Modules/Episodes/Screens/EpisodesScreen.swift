@@ -31,9 +31,14 @@ struct EpisodesScreen: View {
                             AppSegmentedControl(store: store)
                                 .padding(.top, Layout.scaleFactorH * 16)
                                 .padding(.bottom, Layout.scaleFactorH * 8)
-                            EpisodesScrollView(store: store)
-                                .padding(.vertical, Layout.scaleFactorH * 16)
-                                .zIndex(0)
+                            if viewStore.state.data.isEmpty {
+                                ProgressView()
+                                    .padding(.top, Layout.scaleFactorH * 150)
+                            } else {
+                                EpisodesScrollView(store: store)
+                                    .padding(.vertical, Layout.scaleFactorH * 16)
+                                    .zIndex(0)
+                            }
                         }
                     }
                 }
@@ -53,7 +58,10 @@ struct EpisodesScreen_Previews: PreviewProvider {
             store: Store(
                 initialState: EpisodesState(),
                 reducer: episodesReducer,
-                environment: EpisodesEnvironment()
+                environment: EpisodesEnvironment(
+                    apiService: ServiceContainer().episodesService,
+                    mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+                )
             )
         )
     }

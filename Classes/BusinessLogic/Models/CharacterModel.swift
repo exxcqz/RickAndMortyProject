@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct Character: Decodable, Equatable {
+struct Character: Codable, Equatable {
     let id: Int
     let name: String
     let status: String
@@ -20,7 +20,7 @@ struct Character: Decodable, Equatable {
     let created: String
 }
 
-struct CharacterLocation: Decodable, Equatable {
+struct CharacterLocation: Codable, Equatable {
     let name: String
     let url: String
 }
@@ -40,7 +40,7 @@ let dummyCharacterModel = Character(
         name: "Earth",
         url: "https://rickandmortyapi.com/api/location/20"
     ),
-    image: Asset.Illustrations.dummyCharacterIllustration.name,
+    image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
     episode: [
         "https://rickandmortyapi.com/api/episode/1",
         "https://rickandmortyapi.com/api/episode/2"

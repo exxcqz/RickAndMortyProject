@@ -13,7 +13,7 @@ struct LocationsCardComponent: View {
             RoundedRectangle(cornerRadius: 16)
                 .foregroundColor(Color(Asset.Colors.blackCard.name))
                 .frame(width: Layout.scaleFactorW * 327, height: 80, alignment: .center)
-            HStack {
+            HStack(spacing: 0) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundColor(Color(Asset.Colors.blackElements.name))
@@ -37,8 +37,15 @@ struct LocationsCardComponent: View {
                         .foregroundColor(Color(Asset.Colors.primary.name))
                         .padding(.top, 4)
                 }
+                .padding(.trailing, Layout.scaleFactorW * 32)
                 Spacer()
             }
         }
+    }
+}
+
+struct LocationsCardComponent_Previews: PreviewProvider {
+    static var previews: some View {
+        LocationsCardComponent(locationDetail: locationCardModel)
     }
 }
