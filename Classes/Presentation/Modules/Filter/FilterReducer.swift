@@ -12,7 +12,11 @@ let filterReducer = Reducer<FilterState, FilterAction, FilterEnvironment> { stat
     case .countOfSelectedChanged(let newCount):
         state.countOfSelected = newCount
         if state.countOfSelected == 0 {
-            state.filterParameters = FetchingParameters(page: 1)
+            if let name = state.filterParameters.name {
+                state.filterParameters = FetchingParameters(page: 1, name: name)
+            } else {
+                state.filterParameters = FetchingParameters(page: 1)
+            }
         }
     case .indicesOfCharactersChanged(let newArray):
         state.indicesOfCharactersFilter = newArray

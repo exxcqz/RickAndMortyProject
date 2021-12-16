@@ -38,6 +38,7 @@ let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment
             }
             state.filterParameters.totalPages = episodes.info.pages
             state.data += episodes.results
+            print("number of episodes: \(state.data.count)")
         case .failure(let error):
             print(error.localizedDescription)
         }

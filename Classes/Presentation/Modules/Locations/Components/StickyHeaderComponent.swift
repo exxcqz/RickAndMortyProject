@@ -27,6 +27,9 @@ struct StickyHeaderComponent: View {
                             NavigationImageComponent(image: navigationImage)
                         }
                         NavigationTitleComponent(title: navigationTitle)
+                    }.onTapGesture {
+                        dismissKeyboard()
+                        searchRequest = searchRequest
                     }
                     if self.isFilterHidden {
                         SearchAndFilter(searchRequest: $searchRequest, isFilterButtonActive: $isFilterButtonActive)

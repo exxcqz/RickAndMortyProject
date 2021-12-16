@@ -10,7 +10,9 @@ struct SearchBar: View {
 
     var body: some View {
         HStack {
-            TextField("", text: $searchRequest).placeholder(when: searchRequest.isEmpty) {
+            TextField("", text: $searchRequest, onCommit: {
+                searchRequest = searchRequest
+            }).placeholder(when: searchRequest.isEmpty) {
                 HStack {
                     Image(Asset.Icons.icSearchSmall.name)
                         .renderingMode(.template)
@@ -33,25 +35,5 @@ struct SearchBar: View {
             .accentColor(Color(Asset.Colors.primary.name))
             .cornerRadius(16)
         }
-    }
-}
-
-// MARK: -  Custom Placeholder
-extension View {
-    func placeholder<Content: View>(
-        when shouldShow: Bool,
-        alignment: Alignment = .center,
-        @ViewBuilder placeholder: () -> Content) -> some View {
-            ZStack(alignment: alignment) {
-                placeholder().opacity(shouldShow ? 1 : 0)
-                self
-            }
-        }
-}
-
-// MARK: -  Dismiss Keyboard
-extension UIApplication {
-    func dismissKeyboard() {
-        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }

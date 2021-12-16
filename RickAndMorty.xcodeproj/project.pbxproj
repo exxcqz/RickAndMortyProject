@@ -57,6 +57,8 @@
 		C2B44C98ECF957607503E83F /* DetailsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE4910767C080EAF1651BD /* DetailsState.swift */; };
 		C314B9602750EE5800C7E28F /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C314B95F2750EE5700C7E28F /* CharacterModel.swift */; };
 		C3540F75276B44BB002C2E3E /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36BDF52276B432E006BA2E2 /* NetworkError.swift */; };
+		C3540F77276B5165002C2E3E /* View+DismissKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3540F76276B5165002C2E3E /* View+DismissKeyboard.swift */; };
+		C3540F79276B51A6002C2E3E /* View+CustomPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3540F78276B51A6002C2E3E /* View+CustomPlaceholder.swift */; };
 		C36BDF4E276A443E006BA2E2 /* Color+HEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36BDF4C276A443D006BA2E2 /* Color+HEX.swift */; };
 		C36BDF4F276A443E006BA2E2 /* View+RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36BDF4D276A443D006BA2E2 /* View+RoundedCorner.swift */; };
 		C36C4DB9274E1745004AC7BB /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = C36C4DB8274E1744004AC7BB /* loading.json */; };
@@ -159,6 +161,8 @@
 		B41BCD25DE71D6F96D83024D /* CharactersReducer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CharactersReducer.swift; sourceTree = "<group>"; };
 		B973621A468EC297D2962353 /* TabBarEnvironment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TabBarEnvironment.swift; sourceTree = "<group>"; };
 		C314B95F2750EE5700C7E28F /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
+		C3540F76276B5165002C2E3E /* View+DismissKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+DismissKeyboard.swift"; sourceTree = "<group>"; };
+		C3540F78276B51A6002C2E3E /* View+CustomPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+CustomPlaceholder.swift"; sourceTree = "<group>"; };
 		C36BDF4C276A443D006BA2E2 /* Color+HEX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+HEX.swift"; sourceTree = "<group>"; };
 		C36BDF4D276A443D006BA2E2 /* View+RoundedCorner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+RoundedCorner.swift"; sourceTree = "<group>"; };
 		C36BDF52276B432E006BA2E2 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
@@ -419,6 +423,8 @@
 			isa = PBXGroup;
 			children = (
 				6D35B599216B646F00C72B29 /* Bundle+Info.swift */,
+				C3540F78276B51A6002C2E3E /* View+CustomPlaceholder.swift */,
+				C3540F76276B5165002C2E3E /* View+DismissKeyboard.swift */,
 				C36BDF4C276A443D006BA2E2 /* Color+HEX.swift */,
 				C36BDF4D276A443D006BA2E2 /* View+RoundedCorner.swift */,
 			);
@@ -755,6 +761,7 @@
 				6D6D7EA221F743FA000FFA4D /* Services.swift in Sources */,
 				6D35B59A216B647100C72B29 /* Bundle+Info.swift in Sources */,
 				11E339982746891500D3B145 /* Fonts.swift in Sources */,
+				C3540F79276B51A6002C2E3E /* View+CustomPlaceholder.swift in Sources */,
 				C36BDF4E276A443E006BA2E2 /* Color+HEX.swift in Sources */,
 				C3D0641B275A34C8003E9148 /* EpisodeCard.swift in Sources */,
 				C37763C92767566D008308B9 /* FilterApplyButton.swift in Sources */,
@@ -778,6 +785,7 @@
 				1148D5C2274FD1200047E20E /* TabBarItem.swift in Sources */,
 				63FA1F903922012978134029 /* LocationsScreen.swift in Sources */,
 				C9AE9C6699DE4AA3BEBF08E7 /* LocationsState.swift in Sources */,
+				C3540F77276B5165002C2E3E /* View+DismissKeyboard.swift in Sources */,
 				C37763CF27675750008308B9 /* FilterKey.swift in Sources */,
 				28BE4E6F1D94586798FF337B /* LocationsAction.swift in Sources */,
 				CF6948EA9EA86232E5A1ABEB /* LocationsEnvironment.swift in Sources */,
