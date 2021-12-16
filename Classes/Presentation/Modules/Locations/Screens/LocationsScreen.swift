@@ -52,7 +52,7 @@ struct LocationsScreen: View {
                                     .font(Font.appFontSemibold(ofSize: Layout.scaleFactorW * 17))
                                     .foregroundColor(.white)
                                     .kerning(-0.41)
-                                    .padding(.bottom, Layout.scaleFactorH * 150)
+                                    .padding(.top, Layout.scaleFactorH * 150)
                             } else {
                                 if viewStore.data.isEmpty {
                                     ProgressView()
