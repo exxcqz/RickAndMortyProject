@@ -38,9 +38,11 @@ let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment
             }
             state.filterParameters.totalPages = episodes.info.pages
             state.data += episodes.results
+            state.logInfo = nil
             print("number of episodes: \(state.data.count)")
         case .failure(let error):
             print(error.localizedDescription)
+            state.logInfo = error
         }
     case .seasonSelected(let index):
         state.selectedSeasonIndex = index
@@ -60,7 +62,8 @@ let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment
     case .episodeCardSelected(let episode):
         print("episode \(episode.name) selected")
     case .searchInputChanged(let request):
-        state.filterParameters.name = request.isEmpty ? nil : request
+        print("searching episode: \(request ?? "nil")")
+        state.filterParameters.name = request
         state.filterParameters.page = 1
         state.filterParameters.totalPages = 0
         state.data.removeAll()

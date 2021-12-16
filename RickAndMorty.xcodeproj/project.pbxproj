@@ -167,7 +167,6 @@
 		C36BDF4D276A443D006BA2E2 /* View+RoundedCorner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+RoundedCorner.swift"; sourceTree = "<group>"; };
 		C36BDF52276B432E006BA2E2 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		C36C4DB8274E1744004AC7BB /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
-		C377639E275FAD2D008308B9 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		C37763A0275FB19F008308B9 /* CharactersServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersServiceProtocol.swift; sourceTree = "<group>"; };
 		C37763A2275FB1D6008308B9 /* Nothing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nothing.swift; sourceTree = "<group>"; };
 		C37763A4275FB293008308B9 /* Response+Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Response+Request.swift"; sourceTree = "<group>"; };
@@ -232,7 +231,6 @@
 				060F08641E4D6C9200D9166F /* Resources */,
 				060F087B1E4D702C00D9166F /* RickAndMorty */,
 				060F08451E4D6B3900D9166F /* Products */,
-				C36BDF50276B4275006BA2E2 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -515,14 +513,6 @@
 				0FF20F6970EBC600C5051EE4 /* LocationsReducer.swift */,
 			);
 			path = Locations;
-			sourceTree = "<group>";
-		};
-		C36BDF50276B4275006BA2E2 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				C377639E275FAD2D008308B9 /* NetworkError.swift */,
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		C36BDF51276B432E006BA2E2 /* ErrorHandling */ = {

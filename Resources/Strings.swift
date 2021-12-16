@@ -63,6 +63,13 @@ internal enum L10n {
     internal static let title = L10n.tr("Localizable", "locations.title")
   }
 
+  internal enum Log {
+    /// Error! Please, check your internet connection!
+    internal static let error = L10n.tr("Localizable", "log.error")
+    /// Not found
+    internal static let notFound = L10n.tr("Localizable", "log.notFound")
+  }
+
   internal enum Placeholder {
     /// Search
     internal static let search = L10n.tr("Localizable", "placeholder.search")

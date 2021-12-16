@@ -43,7 +43,7 @@ enum CharactersEndpoint: Endpoint {
 
 extension CharactersEndpoint {
     var parameterEncoding: ParameterEncoding {
-        return URLEncoding.queryString
+        return URLEncoding.default
     }
 
     var authorizationType: AuthorizationType {

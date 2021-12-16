@@ -8,6 +8,6 @@ enum EpisodesAction: Equatable {
     case fetchNextPage
     case episodeCardSelected(Episode)
     case dataLoaded(Result<GeneralRequest<Episode>, NetworkError>)
-    case searchInputChanged(String)
+    case searchInputChanged(String?)
     case seasonSelected(Int)
 }

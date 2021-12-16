@@ -29,15 +29,17 @@ let charactersReducer: Reducer<CharactersState, CharactersAction, CharactersEnvi
                 }
                 state.filterParameters.totalPages = characters.info.pages
                 state.data += characters.results
+                state.logInfo = nil
                 print("number of characters: \(state.data.count)")
             case .failure(let error):
                 print(error.localizedDescription)
+                state.logInfo = error
             }
         case .characterCardSelected(let character):
             print("character \(character.name) selected")
         case .searchInputChanged(let request):
-            print("searching character: \(request)")
-            state.filterParameters.name = request.isEmpty ? nil : request
+            print("searching character: \(request ?? "nil")")
+            state.filterParameters.name = request
             state.filterParameters.page = 1
             state.filterParameters.totalPages = 0
             state.data.removeAll()

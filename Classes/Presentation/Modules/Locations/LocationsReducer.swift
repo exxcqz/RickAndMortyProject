@@ -29,15 +29,17 @@ let locationsReducer: Reducer<LocationsState, LocationsAction, LocationsEnvironm
                 }
                 state.filterParameters.totalPages = locations.info.pages
                 state.data += locations.results
+                state.logInfo = nil
                 print("number of locations: \(state.data.count)")
             case .failure(let error):
                 print(error.localizedDescription)
+                state.logInfo = error
             }
         case .locationCardSelected(let location):
             print("location \(location.name) selected")
         case .searchInputChanged(let request):
-            print("searching location: \(request)")
-            state.filterParameters.name = request.isEmpty ? nil : request
+            print("searching location: \(request ?? "nil")")
+            state.filterParameters.name = request
             state.filterParameters.page = 1
             state.filterParameters.totalPages = 0
             state.data.removeAll()

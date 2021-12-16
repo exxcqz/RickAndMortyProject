@@ -29,3 +29,8 @@
 
 // Placeholder
 "placeholder.search" = "Search";
+
+//Log Info
+"log.error" = "Error! Please, check your internet connection!";
+"log.notFound" = "Not found";
+

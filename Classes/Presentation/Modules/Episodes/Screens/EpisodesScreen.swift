@@ -15,7 +15,7 @@ struct EpisodesScreen: View {
             WithViewStore(store) { viewStore in
                 let searchRequest = viewStore.binding(
                     get: {
-                        $0.filterParameters.name ?? ""
+                        $0.filterParameters.name
                     }, send: {
                         EpisodesAction.searchInputChanged($0)
                     }
@@ -34,13 +34,21 @@ struct EpisodesScreen: View {
                             AppSegmentedControl(store: store)
                                 .padding(.top, Layout.scaleFactorH * 16)
                                 .padding(.bottom, Layout.scaleFactorH * 8)
-                            if viewStore.data.isEmpty {
-                                ProgressView()
-                                    .padding(.top, Layout.scaleFactorH * 150)
+                            if let logInfo = viewStore.logInfo {
+                                Text("\(logInfo.readableInfo)")
+                                    .font(Font.appFontSemibold(ofSize: Layout.scaleFactorW * 17))
+                                    .foregroundColor(.white)
+                                    .kerning(-0.41)
+                                    .padding(.bottom, Layout.scaleFactorH * 150)
                             } else {
-                                EpisodesScrollView(store: store)
-                                    .padding(.vertical, Layout.scaleFactorH * 16)
-                                    .zIndex(0)
+                                if viewStore.data.isEmpty {
+                                    ProgressView()
+                                        .padding(.top, Layout.scaleFactorH * 150)
+                                } else {
+                                    EpisodesScrollView(store: store)
+                                        .padding(.vertical, Layout.scaleFactorH * 16)
+                                        .zIndex(0)
+                                }
                             }
                         }
                     }

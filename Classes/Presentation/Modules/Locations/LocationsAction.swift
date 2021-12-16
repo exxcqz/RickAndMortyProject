@@ -8,7 +8,7 @@ enum LocationsAction: Equatable {
     case fetchNextPage
     case locationCardSelected(Location)
     case dataLoaded(Result<GeneralRequest<Location>, NetworkError>)
-    case searchInputChanged(String)
+    case searchInputChanged(String?)
     case filterButtonTapped
     case filter(FilterAction)
     case filterSettingsChanged

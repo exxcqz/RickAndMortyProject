@@ -6,7 +6,7 @@
 import SwiftUI
 
 struct SearchAndFilter: View {
-    @Binding var searchRequest: String
+    @Binding var searchRequest: String?
     @Binding var isFilterButtonActive: Bool
 
     var body: some View {

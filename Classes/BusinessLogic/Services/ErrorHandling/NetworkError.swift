@@ -8,6 +8,15 @@ import Foundation
 enum NetworkError: Equatable, Error {
     var string: String { return String(reflecting: self) }
 
+    var readableInfo: String {
+        switch self {
+        case let .statusCode(code) where code == 404:
+            return L10n.Log.notFound
+        default:
+            return L10n.Log.error
+        }
+    }
+
     static func == (lhs: NetworkError, rhs: NetworkError) -> Bool {
         guard type(of: lhs) == type(of: rhs) else {
             return false

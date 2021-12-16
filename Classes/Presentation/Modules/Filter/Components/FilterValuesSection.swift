@@ -8,7 +8,7 @@ import SwiftUI
 
 struct FilterValuesSection: View {
     @State var filterKey: Any
-    @State var parameters: [String]
+    @State var values: [String]
     @Binding var selectedIndex: Int?
     @Binding var countOfSelected: Int
     @Binding var filterParameters: FetchingParameters
@@ -28,37 +28,37 @@ struct FilterValuesSection: View {
         var height = CGFloat.zero
 
         return ZStack(alignment: .topLeading) {
-            ForEach(0..<self.parameters.count, id: \.self) { index in
+            ForEach(0..<self.values.count, id: \.self) { index in
                 FilterValue(
-                    value: parameters[index],
+                    value: values[index],
                     currentIndex: index,
                     selectedIndex: $selectedIndex,
                     countOfSelected: $countOfSelected
                 ).frame(height: Layout.scaleFactorH * 28)
                 .padding([.horizontal, .vertical], 8)
-                .alignmentGuide(.leading, computeValue: { value in
-                    if abs(width - value.width) > geo.size.width {
+                .alignmentGuide(.leading, computeValue: { viewDimensions in
+                    if abs(width - viewDimensions.width) > geo.size.width {
                         width = 0
-                        height -= value.height
+                        height -= viewDimensions.height
                     }
-                    let result = width
-                    if let last = self.parameters.last {
-                        if parameters[index] == last {
+                    let offset = width
+                    if let last = self.values.last {
+                        if values[index] == last {
                             width = 0
                         } else {
-                            width -= value.width
+                            width -= viewDimensions.width
                         }
                     }
-                    return result
+                    return offset
                 })
                 .alignmentGuide(.top, computeValue: { _ in
-                    let result = height
-                    if let last = self.parameters.last {
-                        if parameters[index] == last {
+                    let offset = height
+                    if let last = self.values.last {
+                        if values[index] == last {
                             height = 0
                         }
                     }
-                    return result
+                    return offset
                 })
             }.onChange(of: countOfSelected) { newCount in
                 if newCount == 0 {
@@ -66,7 +66,7 @@ struct FilterValuesSection: View {
                 }
             }.onChange(of: selectedIndex) { newValue in
                 if let newValue = newValue {
-                    setParameters(filter: filterKey, value: parameters[newValue])
+                    setParameters(filter: filterKey, value: values[newValue])
                 } else {
                     setParameters(filter: filterKey, value: nil)
                 }

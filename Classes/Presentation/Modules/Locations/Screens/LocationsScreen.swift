@@ -30,7 +30,7 @@ struct LocationsScreen: View {
                 )
                 let searchRequest = viewStore.binding(
                     get: {
-                        $0.filterParameters.name ?? ""
+                        $0.filterParameters.name
                     },
                     send: {
                         LocationsAction.searchInputChanged($0)
@@ -47,26 +47,34 @@ struct LocationsScreen: View {
                                 searchRequest: searchRequest,
                                 isFilterButtonActive: isFilterButtonActive
                             )
-                            if viewStore.data.isEmpty {
-                                ProgressView()
-                                    .padding(.top, Layout.scaleFactorH * 150)
+                            if let logInfo = viewStore.logInfo {
+                                Text("\(logInfo.readableInfo)")
+                                    .font(Font.appFontSemibold(ofSize: Layout.scaleFactorW * 17))
+                                    .foregroundColor(.white)
+                                    .kerning(-0.41)
+                                    .padding(.bottom, Layout.scaleFactorH * 150)
                             } else {
-                                LazyVStack(spacing: 16) {
-                                    ForEach(viewStore.state.data, id: \.id) { card in
-                                        NavigationLink {
-                                            DetailsHelloComponent()
-                                        } label: {
-                                            LocationsCardComponent(locationDetail: card)
+                                if viewStore.data.isEmpty {
+                                    ProgressView()
+                                        .padding(.top, Layout.scaleFactorH * 150)
+                                } else {
+                                    LazyVStack(spacing: 16) {
+                                        ForEach(viewStore.state.data, id: \.id) { card in
+                                            NavigationLink {
+                                                DetailsHelloComponent()
+                                            } label: {
+                                                LocationsCardComponent(locationDetail: card)
+                                            }
+                                        }
+                                        if viewStore.filterParameters.page < viewStore.filterParameters.totalPages {
+                                            ProgressView().onAppear {
+                                                viewStore.send(.fetchNextPage)
+                                            }
                                         }
                                     }
-                                    if viewStore.filterParameters.page < viewStore.filterParameters.totalPages {
-                                        ProgressView().onAppear {
-                                            viewStore.send(.fetchNextPage)
-                                        }
-                                    }
+                                    .padding(.vertical, Layout.scaleFactorH * 16)
+                                    .zIndex(0)
                                 }
-                                .padding(.vertical, Layout.scaleFactorH * 16)
-                                .zIndex(0)
                             }
                         }
                     }

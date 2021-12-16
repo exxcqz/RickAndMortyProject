@@ -11,7 +11,7 @@ struct StickyHeaderComponent: View {
     let navigationTitle: String
     let heightForHide = Layout.scaleFactorH * 170
     var isFilterHidden: Bool = false
-    @Binding var searchRequest: String
+    @Binding var searchRequest: String?
     @Binding var isFilterButtonActive: Bool
 
     var body: some View {
@@ -29,7 +29,6 @@ struct StickyHeaderComponent: View {
                         NavigationTitleComponent(title: navigationTitle)
                     }.onTapGesture {
                         dismissKeyboard()
-                        searchRequest = searchRequest
                     }
                     if self.isFilterHidden {
                         SearchAndFilter(searchRequest: $searchRequest, isFilterButtonActive: $isFilterButtonActive)

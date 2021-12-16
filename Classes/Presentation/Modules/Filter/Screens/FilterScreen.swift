@@ -80,7 +80,7 @@ struct FilterScreen: View {
                     }
                     FilterValuesSection(
                         filterKey: key,
-                        parameters: values,
+                        values: values,
                         selectedIndex: indices[0],
                         countOfSelected: countOfSelected,
                         filterParameters: filter
@@ -91,7 +91,7 @@ struct FilterScreen: View {
                     }
                     FilterValuesSection(
                         filterKey: key,
-                        parameters: values,
+                        values: values,
                         selectedIndex: indices[1],
                         countOfSelected: countOfSelected,
                         filterParameters: filter
@@ -104,7 +104,7 @@ struct FilterScreen: View {
                     }
                     FilterValuesSection(
                         filterKey: key,
-                        parameters: values,
+                        values: values,
                         selectedIndex: indices[2],
                         countOfSelected: countOfSelected,
                         filterParameters: filter
@@ -115,7 +115,7 @@ struct FilterScreen: View {
                     }
                     FilterValuesSection(
                         filterKey: key,
-                        parameters: values,
+                        values: values,
                         selectedIndex: indices[3],
                         countOfSelected: countOfSelected,
                         filterParameters: filter
@@ -138,7 +138,7 @@ struct FilterScreen: View {
                     }
                     FilterValuesSection(
                         filterKey: key,
-                        parameters: values,
+                        values: values,
                         selectedIndex: indices[0],
                         countOfSelected: countOfSelected,
                         filterParameters: filter
@@ -152,7 +152,7 @@ struct FilterScreen: View {
                     }
                     FilterValuesSection(
                         filterKey: key,
-                        parameters: values,
+                        values: values,
                         selectedIndex: indices[1],
                         countOfSelected: countOfSelected,
                         filterParameters: filter
