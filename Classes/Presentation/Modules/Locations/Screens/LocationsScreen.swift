@@ -8,11 +8,33 @@ import SwiftUI
 
 struct LocationsScreen: View {
     let store: Store<LocationsState, LocationsAction>
-    @State var isFilterButtonActive: Bool = false // в стейте
 
     var body: some View {
         NavigationView {
             WithViewStore(store) { viewStore in
+                let isFilterPresented = viewStore.binding(
+                    get: {
+                        $0.isFilterPresented
+                    },
+                    send: { _ in
+                        LocationsAction.filter(.onDisappear)
+                    }
+                )
+                let isFilterButtonActive = viewStore.binding(
+                    get: {
+                        $0.isFilterButtonActive
+                    },
+                    send: { _ in
+                        LocationsAction.filterButtonTapped
+                    }
+                )
+                let searchRequest = viewStore.binding(
+                    get: {
+                        $0.filterParameters.name ?? ""
+                    }, send: {
+                        LocationsAction.searchInputChanged($0)
+                    }
+                )
                 ZStack {
                     Color(Asset.Colors.blackBG.name)
                     ScrollView(.vertical, showsIndicators: false) {
@@ -21,16 +43,10 @@ struct LocationsScreen: View {
                                 navigationImage: viewStore.state.navigationImage,
                                 navigationTitle: viewStore.state.navigationTitle,
                                 isFilterHidden: true,
-                                searchRequest: viewStore.binding(
-                                    get: {
-                                        $0.searchRequest
-                                    }, send: {
-                                        LocationsAction.searchInputChanged($0)
-                                    }
-                                ),
-                                isFilterButtonActive: $isFilterButtonActive
+                                searchRequest: searchRequest,
+                                isFilterButtonActive: isFilterButtonActive
                             )
-                            if viewStore.state.data.isEmpty {
+                            if viewStore.data.isEmpty {
                                 ProgressView()
                                     .padding(.top, Layout.scaleFactorH * 150)
                             } else {
@@ -42,11 +58,10 @@ struct LocationsScreen: View {
                                             LocationsCardComponent(locationDetail: card)
                                         }
                                     }
-                                    if viewStore.currentPageLoading < viewStore.totalPagesForFilter && !viewStore.isFiltering {
-                                        ProgressView()
-                                            .onAppear {
-                                                viewStore.send(.fetchAnotherPage)
-                                            }
+                                    if viewStore.filterParameters.page < viewStore.filterParameters.totalPages {
+                                        ProgressView().onAppear {
+                                            viewStore.send(.fetchNextPage)
+                                        }
                                     }
                                 }
                                 .padding(.vertical, Layout.scaleFactorH * 16)
@@ -59,9 +74,31 @@ struct LocationsScreen: View {
                 .onAppear {
                     viewStore.send(.onAppear)
                 }
+                .sheet(
+                    isPresented: isFilterPresented,
+                    onDismiss: {
+                        viewStore.send(.filterSettingsChanged)
+                    },
+                    content: {
+                        FilterScreen(store: self.filterStore)
+                    }
+                )
             }
             .navigationBarHidden(true)
         }
+    }
+}
+
+// MARK: -  Getting store of filter
+
+extension LocationsScreen {
+    private var filterStore: Store<FilterState, FilterAction> {
+        return store.scope(
+            state: {
+                $0.filter
+            },
+            action: LocationsAction.filter
+        )
     }
 }
 
