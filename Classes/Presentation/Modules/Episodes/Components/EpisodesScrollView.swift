@@ -33,9 +33,11 @@ struct EpisodesScrollView: View {
                     }
                 }
                 if viewStore.filterParameters.page < viewStore.filterParameters.totalPages && !viewStore.data.isEmpty {
-                    ProgressView().onAppear {
-                        viewStore.send(.fetchNextPage)
-                    }
+                    ProgressView()
+                        .frame(width: Layout.scaleFactorW * 100, height: Layout.scaleFactorW * 100)
+                        .onAppear {
+                            viewStore.send(.fetchNextPage)
+                        }
                 }
             }
             .padding(.horizontal, Layout.scaleFactorW * 23)

@@ -40,7 +40,7 @@ struct FilterValue: View {
                         .background(
                             selectedIndex == currentIndex
                             ? Color(Asset.Colors.primary.name)
-                            : Color(hex: 0x1C2031) // поменять цвет
+                            : Color(Asset.Colors.blackFilterBG.name)
                         )
                         .cornerRadius(Layout.scaleFactorW * 22)
                         .frame(height: Layout.scaleFactorH * 20)

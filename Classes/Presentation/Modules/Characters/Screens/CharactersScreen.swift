@@ -31,7 +31,8 @@ struct CharactersScreen: View {
                 let searchRequest = viewStore.binding(
                     get: {
                         $0.filterParameters.name
-                    }, send: {
+                    },
+                    send: {
                         CharactersAction.searchInputChanged($0)
                     }
                 )
@@ -62,7 +63,7 @@ struct CharactersScreen: View {
                                         .zIndex(0)
                                 }
                             }
-                        }
+                        }.keyboardResponsive()
                     }
                 }
                 .edgesIgnoringSafeArea(.all)

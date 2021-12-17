@@ -50,7 +50,7 @@ struct EpisodesScreen: View {
                                         .zIndex(0)
                                 }
                             }
-                        }
+                        }.keyboardResponsive()
                     }
                 }
                 .edgesIgnoringSafeArea(.all)

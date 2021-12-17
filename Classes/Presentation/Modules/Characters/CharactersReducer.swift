@@ -48,6 +48,13 @@ let charactersReducer: Reducer<CharactersState, CharactersAction, CharactersEnvi
                 .catchToEffect()
                 .map(CharactersAction.dataLoaded)
         case .filterSettingsChanged:
+            let appliedFilters = state.filter.filterParameters
+            switch (appliedFilters.status, appliedFilters.type, appliedFilters.gender, appliedFilters.species) {
+            case (nil, nil, nil, nil):
+                state.isFilterButtonActive = false
+            default:
+                state.isFilterButtonActive = true
+            }
             state.filterParameters = state.filter.filterParameters
             state.data.removeAll()
             return environment.apiService.fetchCharacters(withParameters: state.filterParameters)
@@ -56,17 +63,12 @@ let charactersReducer: Reducer<CharactersState, CharactersAction, CharactersEnvi
                 .map(CharactersAction.dataLoaded)
         case .filter(let action):
             switch action {
-            case .applyFilter:
+            case .applyFilter, .onDisappear:
                 state.isFilterPresented = false
-                state.isFilterButtonActive = false
-            case .onDisappear:
-                state.isFilterPresented = false
-                state.isFilterButtonActive = false
             default:
                 break
             }
         case .filterButtonTapped:
-            state.isFilterButtonActive = true
             state.isFilterPresented = true
             state.filterParameters.page = 1
             state.filterParameters.totalPages = 0

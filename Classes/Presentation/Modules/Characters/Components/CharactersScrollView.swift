@@ -8,7 +8,7 @@ import SwiftUI
 
 struct CharactersScrollView: View {
     let store: Store<CharactersState, CharactersAction>
-    let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
+    let columns: [GridItem] = Array(repeating: .init(.adaptive(minimum: Layout.scaleFactorW * 156)), count: 1)
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -18,13 +18,16 @@ struct CharactersScrollView: View {
                         CharacterCard(сharacter: character)
                     }
                     if viewStore.filterParameters.page < viewStore.filterParameters.totalPages {
-                        ProgressView().onAppear {
-                            viewStore.send(.fetchNextPage)
-                        }
+                        ProgressView()
+                            .frame(width: Layout.scaleFactorW * 100, height: Layout.scaleFactorW * 100)
+                            .padding(.leading, Layout.scaleFactorW * 163)
+                            .onAppear {
+                                viewStore.send(.fetchNextPage)
+                            }
                     }
                 }
-                .padding(.horizontal, Layout.scaleFactorW * 23)
             }
+            .padding(.horizontal, Layout.scaleFactorW * 23)
         }
     }
 }

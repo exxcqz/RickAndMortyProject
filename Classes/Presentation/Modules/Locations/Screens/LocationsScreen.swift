@@ -67,16 +67,18 @@ struct LocationsScreen: View {
                                             }
                                         }
                                         if viewStore.filterParameters.page < viewStore.filterParameters.totalPages {
-                                            ProgressView().onAppear {
-                                                viewStore.send(.fetchNextPage)
-                                            }
+                                            ProgressView()
+                                                .frame(width: Layout.scaleFactorW * 100, height: Layout.scaleFactorW * 100)
+                                                .onAppear {
+                                                    viewStore.send(.fetchNextPage)
+                                                }
                                         }
                                     }
                                     .padding(.vertical, Layout.scaleFactorH * 16)
                                     .zIndex(0)
                                 }
                             }
-                        }
+                        }.keyboardResponsive()
                     }
                 }
                 .edgesIgnoringSafeArea(.all)
