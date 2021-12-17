@@ -75,7 +75,7 @@ struct CharacterDetailsScreen_Previews: PreviewProvider {
     static var previews: some View {
         CharacterDetailsScreen(
             store: Store(
-                initialState: CharacterDetailsState(),
+                initialState: CharacterDetailsState(character: Character()),
                 reducer: characterDetailsReducer,
                 environment: CharacterDetailsEnvironment(
                     apiService: ServiceContainer().episodesService,

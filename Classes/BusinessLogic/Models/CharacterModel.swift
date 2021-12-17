@@ -6,24 +6,6 @@
 import Foundation
 
 struct Character: Codable, Equatable {
-    let id: Int
-    let name: String
-    let status: String
-    let species: CharacterSpecies
-    let type: CharacterType
-    let gender: String
-    let origin: CharacterLocation
-    let location: CharacterLocation
-    let image: String
-    let episodeURLs: [URL]
-    let url: String
-    let created: String
-    var originLocation: [Location] = []
-    var episodes: [Episode] = []
-
-    var episodesIDs: [Int] {
-        return episodeURLs.compactMap { Int($0.lastPathComponent) }
-    }
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -234,14 +216,48 @@ struct Character: Codable, Equatable {
             self = try CharacterType(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .unknown
         }
     }
+
+    let id: Int
+    let name: String
+    let status: String
+    let species: CharacterSpecies
+    let type: CharacterType
+    let gender: String
+    let origin: CharacterLocation
+    let location: CharacterLocation
+    let image: String
+    let episodeURLs: [URL]
+    let url: String
+    let created: String
+    var originLocation: [Location] = []
+    var episodes: [Episode] = []
+
+    var episodesIDs: [Int] {
+        return episodeURLs.compactMap { Int($0.lastPathComponent) }
+    }
+
+    init() {
+        id = 0
+        name = ""
+        status = ""
+        species = .unknown
+        type = .unknown
+        gender = ""
+        origin = CharacterLocation()
+        location = CharacterLocation()
+        image = ""
+        episodeURLs = []
+        url = ""
+        created = ""
+    }
 }
 
 struct CharacterLocation: Codable, Equatable {
     let name: String
-    let locationURL: URL
+    let locationURL: URL?
 
     var originID: [Int] {
-        guard let id = Int(locationURL.lastPathComponent) else {
+        guard let id = Int(locationURL?.lastPathComponent ?? "") else {
             return []
         }
         return [id]
@@ -251,27 +267,15 @@ struct CharacterLocation: Codable, Equatable {
         case name
         case locationURL = "url"
     }
-}
 
-let dummyCharacterModel = Character(
-    id: 1,
-    name: "Rick Sanchez",
-    status: "Alive",
-    species: Character.CharacterSpecies.human,
-    type: Character.CharacterType.emptyType,
-    gender: "Male",
-    origin: CharacterLocation(
-        name: "Earth",
-        locationURL: URL(string: "https://rickandmortyapi.com/api/location/1")!
-    ),
-    location: CharacterLocation(
-        name: "Earth",
-        locationURL: URL(string: "https://rickandmortyapi.com/api/location/1")!
-    ),
-    image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-    episodeURLs: [],
-    url: "https://rickandmortyapi.com/api/character/1",
-    created: "2017-11-04T18:48:46.250Z",
-    originLocation: [],
-    episodes: []
-)
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        name = try container.decode(String.self, forKey: .name)
+        locationURL = try? container.decodeIfPresent(URL.self, forKey: .locationURL)
+    }
+
+    init() {
+        name = ""
+        locationURL = nil
+    }
+}

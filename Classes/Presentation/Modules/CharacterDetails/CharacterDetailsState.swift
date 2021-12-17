@@ -4,5 +4,5 @@
 //
 
 struct CharacterDetailsState: Equatable {
-    var character: Character = dummyCharacterModel
+    var character: Character
 }

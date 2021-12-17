@@ -15,5 +15,5 @@ struct CharactersState: Equatable {
     var isFiltering: Bool = false
     var filterParameters: FetchingParameters = FetchingParameters()
     var searchRequest: String = ""
-    var details = CharacterDetailsState()
+    var details = CharacterDetailsState(character: Character())
 }
