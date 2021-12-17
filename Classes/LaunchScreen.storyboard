@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Illustrations/SplashIllustrations/splashPortal" translatesAutoresizingMaskIntoConstraints="NO" id="Yqz-OZ-izK">
+                                <rect key="frame" x="138" y="324" width="140" height="228"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Illustrations/SplashIllustrations/splashStars" translatesAutoresizingMaskIntoConstraints="NO" id="8SA-6D-EG1">
+                                <rect key="frame" x="36" y="142" width="383" height="784"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Illustrations/SplashIllustrations/splashTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Tyq-uJ-5W9">
+                                <rect key="frame" x="118" y="164" width="178" height="124"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ydW-EH-3Vy"/>
+                        <color key="backgroundColor" name="Colors/blackBG"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Yqz-OZ-izK" secondAttribute="trailing" constant="116" id="0Zx-AP-ZDs"/>
+                            <constraint firstItem="ydW-EH-3Vy" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="Tyq-uJ-5W9" secondAttribute="bottom" constant="574" id="DR3-YQ-DUG"/>
+                            <constraint firstItem="ydW-EH-3Vy" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="Yqz-OZ-izK" secondAttribute="bottom" constant="344" id="G1g-dz-kt0"/>
+                            <constraint firstItem="8SA-6D-EG1" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="16" id="IPq-qd-6Li"/>
+                            <constraint firstItem="ydW-EH-3Vy" firstAttribute="trailing" secondItem="Tyq-uJ-5W9" secondAttribute="trailing" constant="118" id="IS9-La-8rZ"/>
+                            <constraint firstItem="Tyq-uJ-5W9" firstAttribute="leading" secondItem="ydW-EH-3Vy" secondAttribute="leading" constant="118" id="L56-eM-yua"/>
+                            <constraint firstItem="8SA-6D-EG1" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="bottomMargin" constant="64" id="Ogq-7a-tYk"/>
+                            <constraint firstItem="Yqz-OZ-izK" firstAttribute="top" secondItem="Tyq-uJ-5W9" secondAttribute="bottom" constant="36" id="Rdz-ku-mAd"/>
+                            <constraint firstItem="Yqz-OZ-izK" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="118" id="U3c-ev-Iy9"/>
+                            <constraint firstItem="Tyq-uJ-5W9" firstAttribute="top" secondItem="ydW-EH-3Vy" secondAttribute="top" constant="120" id="YLj-QN-vUW"/>
+                            <constraint firstItem="8SA-6D-EG1" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="98" id="Zct-Ws-dBR"/>
+                            <constraint firstItem="8SA-6D-EG1" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" constant="25" id="r7X-6F-k0R"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Illustrations/SplashIllustrations/splashPortal" width="140" height="228"/>
+        <image name="Illustrations/SplashIllustrations/splashStars" width="334" height="650"/>
+        <image name="Illustrations/SplashIllustrations/splashTitle" width="140" height="40"/>
+        <namedColor name="Colors/blackBG">
+            <color red="0.015686274509803921" green="0.047058823529411764" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
