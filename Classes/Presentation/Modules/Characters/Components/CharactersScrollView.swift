@@ -15,10 +15,17 @@ struct CharactersScrollView: View {
             LazyVGrid(columns: columns, spacing: 16) {
                 ForEach(viewStore.data, id: \.id) { character in
                     NavigationLink {
-                        CharacterDetailsScreen(store: characterDetailsStore)
-                            .onAppear {
-                                viewStore.send(.characterCardSelected(character))
-                            }
+                        CharacterDetailsScreen(
+                            store: Store(
+                                initialState: CharacterDetailsState(character: character),
+                                reducer: characterDetailsReducer,
+                                environment: CharacterDetailsEnvironment(
+                                    apiService: ServiceContainer().episodesService,
+                                    apiServiceLocation: ServiceContainer().locationsService,
+                                    mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+                                )
+                            )
+                        )
                     } label: {
                         CharacterCard(сharacter: character)
                     }
@@ -32,19 +39,5 @@ struct CharactersScrollView: View {
             }
             .padding(.horizontal, Layout.scaleFactorW * 24)
         }
-    }
-}
-
-// MARK: -  Getting store of CharacterDetails
-
-extension CharactersScrollView {
-
-    private var characterDetailsStore: Store<CharacterDetailsState, CharacterDetailsAction> {
-        return store.scope(
-            state: {
-                $0.details
-            },
-            action: CharactersAction.details
-        )
     }
 }

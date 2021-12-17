@@ -26,10 +26,16 @@ struct EpisodesScrollView: View {
                                 if seasonTitle == seasonNumber {
                                     HStack(spacing: Layout.scaleFactorW * 16) {
                                         NavigationLink {
-                                            EpisodeDetailsScreen(store: episodeDetailsStore)
-                                                .onAppear {
-                                                    viewStore.send(.episodeCardSelected(episode))
-                                                }
+                                            EpisodeDetailsScreen(
+                                                store: Store(
+                                                    initialState: EpisodeDetailsState(episode: episode),
+                                                    reducer: episodeDetailsReducer,
+                                                    environment: EpisodeDetailsEnvironment(
+                                                        apiService: ServiceContainer().charactersService,
+                                                        mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+                                                    )
+                                                )
+                                            )
                                         } label: {
                                             EpisodeCard(episode: episode)
                                         }
@@ -48,20 +54,6 @@ struct EpisodesScrollView: View {
                 .padding(.horizontal, Layout.scaleFactorW * 23)
             }
         }
-    }
-}
-
-// MARK: -  Getting store of EpisodeDetails
-
-extension EpisodesScrollView {
-
-    private var episodeDetailsStore: Store<EpisodeDetailsState, EpisodeDetailsAction> {
-        return store.scope(
-            state: {
-                $0.details
-            },
-            action: EpisodesAction.details
-        )
     }
 }
 
