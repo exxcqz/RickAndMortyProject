@@ -19,5 +19,5 @@ struct EpisodesState: Equatable {
     var seasonsTitles: [String] = [L10n.Filters.all]
     var seasonsNumberArray: [Int] = [1, 2, 3, 4, 5]
     var filteredSeasonsNumberArray: [Int] = []
-    var details: EpisodeDetailsState = EpisodeDetailsState()
+    var details: EpisodeDetailsState = EpisodeDetailsState(episode: Episode())
 }

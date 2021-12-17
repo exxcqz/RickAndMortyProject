@@ -72,7 +72,7 @@ struct LocationDetailsScreen_Previews: PreviewProvider {
     static var previews: some View {
         LocationDetailsScreen(
             store: Store(
-                initialState: LocationDetailsState(),
+                initialState: LocationDetailsState(location: Location()),
                 reducer: locationDetailsReducer,
                 environment: LocationDetailsEnvironment(
                     apiService: ServiceContainer().charactersService,

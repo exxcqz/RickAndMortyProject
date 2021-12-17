@@ -20,6 +20,16 @@ struct Location: Codable, Equatable {
         return residentURLs.compactMap { Int($0.lastPathComponent) }
     }
 
+    init() {
+        id = 0
+        name = ""
+        type = .unknown
+        dimension = .unknown
+        residentURLs = []
+        url = ""
+        created = ""
+    }
+
     enum CodingKeys: String, CodingKey {
         case id
         case name
@@ -146,14 +156,3 @@ struct Location: Codable, Equatable {
         }
     }
 }
-
-let locationCardModel = Location(
-    id: 1,
-    name: "Earth (Replacement Dimension)",
-    type: .cluster,
-    dimension: Location.LocationDimension.c137,
-    residentURLs: [],
-    url: "1",
-    created: "1",
-    residents: []
-)

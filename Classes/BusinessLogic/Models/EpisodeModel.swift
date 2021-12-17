@@ -15,16 +15,6 @@ struct Episode: Codable, Equatable {
     let created: String
     var characters: [Character] = []
 
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case characterURLs = "characters"
-        case url
-        case created
-        case date = "air_date"
-        case episodeCode = "episode"
-    }
-
     var convertedEpisodeCode: (episodeNumber: Int, seasonNumber: Int)? {
         guard let indexOfSeasonCode = episodeCode.firstIndex(of: "S"),
               let indexOfEpisodeCode = episodeCode.firstIndex(of: "E") else {
@@ -42,17 +32,24 @@ struct Episode: Codable, Equatable {
     var charactersIDs: [Int] {
         return characterURLs.compactMap { Int($0.lastPathComponent) }
     }
-}
 
-let dummyEpisodesArray: [Episode] = [
-    Episode(
-        id: 11,
-        name: "Ricksy Business",
-        date: "April 14, 2014",
-        episodeCode: "S01E11",
-        characterURLs: [],
-        url: "https://rickandmortyapi.com/api/episode/11",
-        created: "2017-11-10T12:56:34.850Z",
-        characters: []
-    )
-]
+    init() {
+        id = 1
+        name = ""
+        date = ""
+        episodeCode = ""
+        characterURLs = []
+        url = ""
+        created = ""
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case characterURLs = "characters"
+        case url
+        case created
+        case date = "air_date"
+        case episodeCode = "episode"
+    }
+}

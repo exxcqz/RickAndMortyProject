@@ -6,6 +6,39 @@
 import Foundation
 
 struct Character: Codable, Equatable {
+    let id: Int
+    let name: String
+    let status: String
+    let species: CharacterSpecies
+    let type: CharacterType
+    let gender: String
+    let origin: CharacterLocation
+    let location: CharacterLocation
+    let image: String
+    let episodeURLs: [URL]
+    let url: String
+    let created: String
+    var originLocation: [Location] = []
+    var episodes: [Episode] = []
+
+    var episodesIDs: [Int] {
+        return episodeURLs.compactMap { Int($0.lastPathComponent) }
+    }
+
+    init() {
+        id = 0
+        name = ""
+        status = ""
+        species = .unknown
+        type = .unknown
+        gender = ""
+        origin = CharacterLocation()
+        location = CharacterLocation()
+        image = ""
+        episodeURLs = []
+        url = ""
+        created = ""
+    }
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -215,40 +248,6 @@ struct Character: Codable, Equatable {
         public init(from decoder: Decoder) throws {
             self = try CharacterType(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .unknown
         }
-    }
-
-    let id: Int
-    let name: String
-    let status: String
-    let species: CharacterSpecies
-    let type: CharacterType
-    let gender: String
-    let origin: CharacterLocation
-    let location: CharacterLocation
-    let image: String
-    let episodeURLs: [URL]
-    let url: String
-    let created: String
-    var originLocation: [Location] = []
-    var episodes: [Episode] = []
-
-    var episodesIDs: [Int] {
-        return episodeURLs.compactMap { Int($0.lastPathComponent) }
-    }
-
-    init() {
-        id = 0
-        name = ""
-        status = ""
-        species = .unknown
-        type = .unknown
-        gender = ""
-        origin = CharacterLocation()
-        location = CharacterLocation()
-        image = ""
-        episodeURLs = []
-        url = ""
-        created = ""
     }
 }
 

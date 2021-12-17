@@ -4,5 +4,5 @@
 //
 
 struct EpisodeDetailsState: Equatable {
-    var episode: Episode = dummyEpisodesArray[0]
+    var episode: Episode
 }

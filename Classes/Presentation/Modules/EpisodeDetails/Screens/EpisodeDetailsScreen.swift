@@ -72,7 +72,7 @@ struct EpisodeDetailsScreen_Previews: PreviewProvider {
     static var previews: some View {
         EpisodeDetailsScreen(
             store: Store(
-                initialState: EpisodeDetailsState(),
+                initialState: EpisodeDetailsState(episode: Episode()),
                 reducer: episodeDetailsReducer,
                 environment: EpisodeDetailsEnvironment(
                     apiService: ServiceContainer().charactersService,
