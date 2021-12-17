@@ -41,6 +41,7 @@ let charactersReducer = Reducer<CharactersState, CharactersAction, CharactersEnv
                 }
                 print("number of rows for grid: \(state.grid.count)")
             case .failure(let error):
+                print(error)
                 print(error.localizedDescription)
             }
         case .characterCardSelected(let character):

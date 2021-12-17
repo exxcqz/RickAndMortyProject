@@ -238,18 +238,18 @@ struct Character: Codable, Equatable {
 
 struct CharacterLocation: Codable, Equatable {
     let name: String
-    let url: String
+    let locationURL: URL
 
     var originID: [Int] {
-        var returnedIDs: [Int] = []
-        let url = URL(string: url)
-        let lastPathID = url?.lastPathComponent
-        guard let lastPathID = lastPathID,
-              let id = Int(lastPathID) else {
-                  return returnedIDs
-              }
-        returnedIDs.append(id)
-        return returnedIDs
+        guard let id = Int(locationURL.lastPathComponent) else {
+            return []
+        }
+        return [id]
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case name
+        case locationURL = "url"
     }
 }
 
@@ -262,11 +262,11 @@ let dummyCharacterModel = Character(
     gender: "Male",
     origin: CharacterLocation(
         name: "Earth",
-        url: "https://rickandmortyapi.com/api/location/20"
+        locationURL: URL(string: "https://rickandmortyapi.com/api/location/1")!
     ),
     location: CharacterLocation(
         name: "Earth",
-        url: "https://rickandmortyapi.com/api/location/20"
+        locationURL: URL(string: "https://rickandmortyapi.com/api/location/1")!
     ),
     image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
     episodeURLs: [],
