@@ -10,7 +10,7 @@ struct CharacterDetailsHeaderView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            AppImageView(urlString: character.image)
+            AppImageView(url: URL(string: character.image))
                 .cornerRadius(16)
                 .frame(width: Layout.scaleFactorW * 148, height: Layout.scaleFactorW * 148)
             Text(character.name)
@@ -18,7 +18,7 @@ struct CharacterDetailsHeaderView: View {
                 .foregroundColor(.white)
                 .frame(height: 25)
                 .padding(.top, 24)
-            Text(character.status)
+            Text(character.status.rawValue)
                 .font(Font.appFontMedium(ofSize: Layout.scaleFactorW * 16))
                 .foregroundColor(Color(Asset.Colors.primary.name))
                 .frame(height: 20)

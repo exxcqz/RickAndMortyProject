@@ -4,22 +4,22 @@
 //
 
 import ComposableArchitecture
-
-let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment> .combine(
+let episodesReducer: Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment> = .combine(
     .init { state, action, environment in
         switch action {
         case .onAppear:
             if state.data.isEmpty {
-                state.currentPageLoading = 1
-                state.filterParameters.page = state.currentPageLoading
+                state.seasonsTitles = [L10n.Filters.all]
+                state.seasonsNumberArray.forEach { index in
+                    state.seasonsTitles.append("\(L10n.Episodes.SeasonCode.season) \(index)")
+                }
                 return environment.apiService.fetchEpisodes(withParameters: state.filterParameters)
                     .receive(on: environment.mainQueue)
                     .catchToEffect()
                     .map(EpisodesAction.dataLoaded)
             }
-        case .fetchAnotherPage:
-            state.currentPageLoading += 1
-            state.filterParameters.page = state.currentPageLoading
+        case .fetchNextPage:
+            state.filterParameters.page += 1
             return environment.apiService.fetchEpisodes(withParameters: state.filterParameters)
                 .receive(on: environment.mainQueue)
                 .catchToEffect()
@@ -27,11 +27,6 @@ let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment
         case .dataLoaded(let result):
             switch result {
             case .success(let episodes):
-                if state.data.isEmpty {
-                    state.seasonsNumberArray.forEach { index in
-                        state.seasonsTitles.append("\(L10n.Episodes.SeasonCode.season) \(index)")
-                    }
-                }
                 episodes.results.forEach { episode in
                     print("id #\(episode.id), \(episode.name) (with code \(episode.episodeCode))")
                 }
@@ -41,59 +36,48 @@ let episodesReducer = Reducer<EpisodesState, EpisodesAction, EpisodesEnvironment
                     }
                     state.seasonsSet.insert(seasonNumber)
                 }
-                state.totalPages = episodes.info.pages
-                state.totalPagesForFilter = state.totalPages
+                state.filterParameters.totalPages = episodes.info.pages
                 state.data += episodes.results
-                state.filteredData = state.data
-                state.filteredSeasonsNumberArray = state.seasonsSet.sorted()
-                print("number of loaded seasons: \(state.filteredSeasonsNumberArray.count)")
+                state.logInfo = nil
                 print("number of episodes: \(state.data.count)")
             case .failure(let error):
                 print(error.localizedDescription)
-            }
-        case .filteredDataLoaded(let result):
-            switch result {
-            case .success(let filteredEpisodes):
-                filteredEpisodes.results.enumerated().forEach { (index, episode) in
-                    print("#\(index + 1): id\(episode.id), \(episode.name)")
-                }
-                state.filteredData = filteredEpisodes.results
-                state.totalPagesForFilter = filteredEpisodes.info.pages
-                print("number of filtered episodes: \(state.filteredData.count)")
-                state.isFiltering = false
-            case .failure(let error):
-                print(error.localizedDescription)
+                state.logInfo = error
             }
         case .seasonSelected(let index):
             state.selectedSeasonIndex = index
-            state.isFiltering = true
-            print("Filter: \(state.seasonsTitles[state.selectedSeasonIndex])")
+            state.filterParameters.page = 1
+            state.filterParameters.totalPages = 0
+            state.data.removeAll()
+            state.seasonsSet.removeAll()
             if index == 0 {
                 state.filterParameters.episode = nil
-                state.totalPagesForFilter = state.totalPages
-                state.filteredData = state.data
-                state.filteredSeasonsNumberArray = state.seasonsSet.sorted()
-                state.isFiltering = false
             } else {
-                state.filteredSeasonsNumberArray = [state.seasonsNumberArray[index - 1]]
                 state.filterParameters.episode = index
-                return environment.apiService.fetchEpisodes(withParameters: state.filterParameters)
-                    .receive(on: environment.mainQueue)
-                    .catchToEffect()
-                    .map(EpisodesAction.filteredDataLoaded)
             }
+            return environment.apiService.fetchEpisodes(withParameters: state.filterParameters)
+                .receive(on: environment.mainQueue)
+                .catchToEffect()
+                .map(EpisodesAction.dataLoaded)
         case .episodeCardSelected(let episode):
             state.details.episode = episode
             print("episode \(episode.name) selected")
         case .searchInputChanged(let request):
-            state.searchRequest = request
-            print("searching episode: \(state.searchRequest)")
+            print("searching episode: \(request ?? "nil")")
+            state.filterParameters.name = request
+            state.filterParameters.page = 1
+            state.filterParameters.totalPages = 0
+            state.data.removeAll()
+            state.seasonsSet.removeAll()
+            return environment.apiService.fetchEpisodes(withParameters: state.filterParameters)
+                .receive(on: environment.mainQueue)
+                .catchToEffect()
+                .map(EpisodesAction.dataLoaded)
         case .details(let episode):
             break
         }
         return .none
     },
-
     episodeDetailsReducer.pullback(state: \.details, action: /EpisodesAction.details) { _ in
         EpisodeDetailsEnvironment(
             apiService: ServiceContainer().charactersService,

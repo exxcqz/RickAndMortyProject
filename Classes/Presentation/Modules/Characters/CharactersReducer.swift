@@ -5,21 +5,18 @@
 
 import ComposableArchitecture
 
-let charactersReducer = Reducer<CharactersState, CharactersAction, CharactersEnvironment> .combine(
+let charactersReducer: Reducer<CharactersState, CharactersAction, CharactersEnvironment> = .combine(
     .init { state, action, environment in
         switch action {
         case .onAppear:
             if state.data.isEmpty {
-                state.currentPageLoading = 1
-                state.filterParameters.page = state.currentPageLoading
                 return environment.apiService.fetchCharacters(withParameters: state.filterParameters)
                     .receive(on: environment.mainQueue)
                     .catchToEffect()
                     .map(CharactersAction.dataLoaded)
             }
-        case .fetchAnotherPage:
-            state.currentPageLoading += 1
-            state.filterParameters.page = state.currentPageLoading
+        case .fetchNextPage:
+            state.filterParameters.page += 1
             return environment.apiService.fetchCharacters(withParameters: state.filterParameters)
                 .receive(on: environment.mainQueue)
                 .catchToEffect()
@@ -30,30 +27,61 @@ let charactersReducer = Reducer<CharactersState, CharactersAction, CharactersEnv
                 characters.results.forEach { character in
                     print("id #\(character.id), \(character.name) (with gender \(character.gender))")
                 }
-                state.totalPages = characters.info.pages
-                state.totalPagesForFilter = state.totalPages
+                state.filterParameters.totalPages = characters.info.pages
                 state.data += characters.results
-                state.filteredData = state.data
-                state.grid.removeAll()
+                state.logInfo = nil
                 print("number of characters: \(state.data.count)")
-                for row in stride(from: 0, to: state.data.count, by: 2) where row != state.data.count {
-                    state.grid.append(row)
-                }
-                print("number of rows for grid: \(state.grid.count)")
             case .failure(let error):
-                print(error)
                 print(error.localizedDescription)
+                state.logInfo = error
             }
         case .characterCardSelected(let character):
             state.details.character = character
             print("character \(character.name) selected")
         case .searchInputChanged(let request):
-            state.searchRequest = request
-            print("searching character: \(state.searchRequest)")
+            print("searching character: \(request ?? "nil")")
+            state.filterParameters.name = request
+            state.filterParameters.page = 1
+            state.filterParameters.totalPages = 0
+            state.data.removeAll()
+            return environment.apiService.fetchCharacters(withParameters: state.filterParameters)
+                .receive(on: environment.mainQueue)
+                .catchToEffect()
+                .map(CharactersAction.dataLoaded)
+        case .filterSettingsChanged:
+            let appliedFilters = state.filter.filterParameters
+            switch (appliedFilters.status, appliedFilters.type, appliedFilters.gender, appliedFilters.species) {
+            case (nil, nil, nil, nil):
+                state.isFilterButtonActive = false
+            default:
+                state.isFilterButtonActive = true
+            }
+            state.filterParameters = state.filter.filterParameters
+            state.data.removeAll()
+            return environment.apiService.fetchCharacters(withParameters: state.filterParameters)
+                .receive(on: environment.mainQueue)
+                .catchToEffect()
+                .map(CharactersAction.dataLoaded)
+        case .filter(let action):
+            switch action {
+            case .applyFilter, .onDisappear:
+                state.isFilterPresented = false
+            default:
+                break
+            }
+        case .filterButtonTapped:
+            state.isFilterPresented = true
+            state.filterParameters.page = 1
+            state.filterParameters.totalPages = 0
+            state.filter.filterParameters = state.filterParameters
         case .details(let character):
             break
         }
         return .none
+    },
+
+    filterReducer.pullback(state: \.filter, action: /CharactersAction.filter) { _ in
+        FilterEnvironment()
     },
 
     characterDetailsReducer.pullback(state: \.details, action: /CharactersAction.details) { _ in

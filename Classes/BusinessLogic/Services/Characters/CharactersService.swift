@@ -14,6 +14,7 @@ final class CharactersService: CharactersServiceProtocol {
         }
         return requestWithEffect(request)
     }
+
     func fetchMultipleCharacters(withIds: [Int]) -> Effect<[Character], NetworkError> {
         let request = makeRequest {
             CharactersEndpoint.fetchMultipleCharacters(withIds)

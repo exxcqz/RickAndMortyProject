@@ -50,7 +50,7 @@ struct CharacterDetailsInfoView: View {
                             .foregroundColor(Color(Asset.Colors.grayNormal.name))
                             .frame(height: 20)
                         Spacer()
-                        Text(character.gender)
+                        Text(character.gender.rawValue)
                             .font(Font.appFontMedium(ofSize: 16))
                             .foregroundColor(.white)
                             .frame(height: 20)

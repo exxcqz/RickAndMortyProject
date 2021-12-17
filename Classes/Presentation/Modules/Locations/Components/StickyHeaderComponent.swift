@@ -11,7 +11,8 @@ struct StickyHeaderComponent: View {
     let navigationTitle: String
     let heightForHide = Layout.scaleFactorH * 170
     var isFilterHidden: Bool = false
-    @Binding var searchRequest: String
+    @Binding var searchRequest: String?
+    @Binding var isFilterButtonActive: Bool
 
     var body: some View {
         GeometryReader { geo in
@@ -26,9 +27,11 @@ struct StickyHeaderComponent: View {
                             NavigationImageComponent(image: navigationImage)
                         }
                         NavigationTitleComponent(title: navigationTitle)
+                    }.onTapGesture {
+                        dismissKeyboard()
                     }
                     if self.isFilterHidden {
-                        SearchAndFilter(searchRequest: $searchRequest)
+                        SearchAndFilter(searchRequest: $searchRequest, isFilterButtonActive: $isFilterButtonActive)
                     } else {
                         VStack {
                             SearchBar(searchRequest: $searchRequest)

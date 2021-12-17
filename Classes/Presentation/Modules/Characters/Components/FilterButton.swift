@@ -6,7 +6,7 @@
 import SwiftUI
 
 struct FilterButton: View {
-    @State var isActive: Bool = false
+    @Binding var isActive: Bool
 
     var body: some View {
         Button(

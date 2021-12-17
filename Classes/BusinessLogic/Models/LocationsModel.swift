@@ -40,7 +40,7 @@ struct Location: Codable, Equatable {
         case created
     }
 
-    enum LocationType: String, Codable, Equatable {
+    enum LocationType: String, Codable, Equatable, CaseIterable {
         case acidPlant = "Acid Plant"
         case arcade = "Arcade"
         case artGenWorld = "Artificially generated world"
@@ -85,7 +85,7 @@ struct Location: Codable, Equatable {
         case tvType = "TV"
         case teenyverse = "Teenyverse"
         case woods = "Woods"
-        case empty = ""
+        case noType = ""
         case unknown = "unknown"
 
         public init(from decoder: Decoder) throws {
@@ -116,7 +116,7 @@ struct Location: Codable, Equatable {
         }
     }
 
-    enum LocationDimension: String, Codable, Equatable {
+    enum LocationDimension: String, Codable, Equatable, CaseIterable {
         case chair = "Chair Dimension"
         case cromulon = "Cromulon Dimension"
         case cronenberg = "Cronenberg Dimension"
@@ -148,8 +148,8 @@ struct Location: Codable, Equatable {
         case testicleMonster = "Testicle Monster Dimension"
         case tusk = "Tusk Dimension"
         case wasp = "Wasp Dimension"
+        case noDimension = ""
         case unknown = "unknown"
-        case empty = ""
 
         public init(from decoder: Decoder) throws {
             self = try LocationDimension(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .unknown

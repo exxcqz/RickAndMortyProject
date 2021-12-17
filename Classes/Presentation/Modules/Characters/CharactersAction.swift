@@ -5,9 +5,12 @@
 
 enum CharactersAction: Equatable {
     case onAppear
-    case fetchAnotherPage
+    case fetchNextPage
     case characterCardSelected(Character)
     case dataLoaded(Result<GeneralRequest<Character>, NetworkError>)
-    case searchInputChanged(String)
+    case searchInputChanged(String?)
+    case filterButtonTapped
+    case filter(FilterAction)
+    case filterSettingsChanged
     case details(CharacterDetailsAction)
 }

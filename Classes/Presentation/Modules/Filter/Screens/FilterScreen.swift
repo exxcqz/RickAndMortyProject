@@ -11,8 +11,153 @@ struct FilterScreen: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            VStack {
-                FilterHelloComponent()
+            let countOfSelected = viewStore.binding(
+                get: {
+                    $0.countOfSelected
+                },
+                send: FilterAction.countOfSelectedChanged
+            )
+            let filterParameters = viewStore.binding(
+                get: {
+                    $0.appliedParameters
+                },
+                send: FilterAction.filterParametersChanged
+            )
+            let indicesOfCharactersFilter = viewStore.binding(
+                get: {
+                    $0.indicesOfCharactersFilter
+                },
+                send: FilterAction.indicesOfCharactersChanged
+            )
+            let indicesOfLocationsFilter = viewStore.binding(
+                get: {
+                    $0.indicesOfLocationsFilter
+                },
+                send: FilterAction.indicesOfLocationsChanged
+            )
+            ZStack {
+                VStack(spacing: 0) {
+                    FilterBar(countOfSelected: countOfSelected)
+                    ScrollView(.vertical, showsIndicators: false) {
+                        VStack(spacing: 8) {
+                            switch viewStore.filterType {
+                            case .characters:
+                                generateCharactersFilter(
+                                    countOfSelected: countOfSelected,
+                                    filter: filterParameters,
+                                    indices: indicesOfCharactersFilter
+                                )
+                            case .locations:
+                                generateLocationsFilter(
+                                    countOfSelected: countOfSelected,
+                                    filter: filterParameters,
+                                    indices: indicesOfLocationsFilter
+                                )
+                            }
+                        }
+                        .padding(.horizontal, Layout.scaleFactorW * 16)
+                        .padding(.top, Layout.scaleFactorH * 16)
+                        .padding(.bottom, Layout.scaleFactorH * 16)
+                    }.background(Color(Asset.Colors.blackCard.name))
+                    FilterApplyButton(store: store)
+                }
+                .edgesIgnoringSafeArea(.bottom)
+            }
+            .onAppear {
+                viewStore.send(.onAppear)
+            }
+        }
+    }
+
+    func generateCharactersFilter(countOfSelected: Binding<Int>, filter: Binding<FetchingParameters>, indices: Binding<[Int?]>) -> some View {
+        return ForEach(FilterState.CharactersFilter.allCases, id: \.self) { key in
+            VStack(spacing: 8) {
+                FilterKey(name: key.value)
+                switch key {
+                case .status:
+                    let values: [String] = Character.CharacterStatus.allCases.map {
+                        $0.rawValue.capitalized
+                    }
+                    FilterValuesSection(
+                        filterKey: key,
+                        values: values,
+                        selectedIndex: indices[0],
+                        countOfSelected: countOfSelected,
+                        filterParameters: filter
+                    )
+                case .species:
+                    let values: [String] = Character.CharacterSpecies.allCases.map {
+                        $0.rawValue.capitalized
+                    }
+                    FilterValuesSection(
+                        filterKey: key,
+                        values: values,
+                        selectedIndex: indices[1],
+                        countOfSelected: countOfSelected,
+                        filterParameters: filter
+                    )
+                case .type:
+                    let values: [String] = Character.CharacterType.allCases.filter {
+                        $0 != .noType
+                    }.map {
+                        $0.rawValue.capitalized
+                    }
+                    FilterValuesSection(
+                        filterKey: key,
+                        values: values,
+                        selectedIndex: indices[2],
+                        countOfSelected: countOfSelected,
+                        filterParameters: filter
+                    )
+                case .gender:
+                    let values: [String] = Character.CharacterGender.allCases.map {
+                        $0.rawValue.capitalized
+                    }
+                    FilterValuesSection(
+                        filterKey: key,
+                        values: values,
+                        selectedIndex: indices[3],
+                        countOfSelected: countOfSelected,
+                        filterParameters: filter
+                    )
+                }
+            }
+        }
+    }
+
+    func generateLocationsFilter(countOfSelected: Binding<Int>, filter: Binding<FetchingParameters>, indices: Binding<[Int?]>) -> some View {
+        return ForEach(FilterState.LocationsFilter.allCases, id: \.self) { key in
+            VStack(spacing: 8) {
+                switch key {
+                case .type:
+                    FilterKey(name: key.value)
+                    let values: [String] = Location.LocationType.allCases.filter {
+                        $0 != .noType
+                    }.map {
+                        $0.rawValue.capitalized
+                    }
+                    FilterValuesSection(
+                        filterKey: key,
+                        values: values,
+                        selectedIndex: indices[0],
+                        countOfSelected: countOfSelected,
+                        filterParameters: filter
+                    )
+                case .dimension:
+                    FilterKey(name: key.value)
+                    let values: [String] = Location.LocationDimension.allCases.filter {
+                        $0 != .noDimension
+                    }.map {
+                        $0.rawValue.capitalized
+                    }
+                    FilterValuesSection(
+                        filterKey: key,
+                        values: values,
+                        selectedIndex: indices[1],
+                        countOfSelected: countOfSelected,
+                        filterParameters: filter
+                    )
+                }
             }
         }
     }

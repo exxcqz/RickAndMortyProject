@@ -8,10 +8,10 @@ import Foundation
 struct Character: Codable, Equatable {
     let id: Int
     let name: String
-    let status: String
+    let status: CharacterStatus
     let species: CharacterSpecies
     let type: CharacterType
-    let gender: String
+    let gender: CharacterGender
     let origin: CharacterLocation
     let location: CharacterLocation
     let image: String
@@ -28,10 +28,10 @@ struct Character: Codable, Equatable {
     init() {
         id = 0
         name = ""
-        status = ""
+        status = .unknown
         species = .unknown
         type = .unknown
-        gender = ""
+        gender = .unknown
         origin = CharacterLocation()
         location = CharacterLocation()
         image = ""
@@ -55,7 +55,13 @@ struct Character: Codable, Equatable {
         case created
     }
 
-    enum CharacterSpecies: String, Codable, Equatable {
+    enum CharacterStatus: String, Codable, Equatable, CaseIterable {
+        case alive = "Alive"
+        case dead = "Dead"
+        case unknown = "unknown"
+    }
+
+    enum CharacterSpecies: String, Codable, Equatable, CaseIterable {
         case alien = "Alien"
         case animal = "Animal"
         case cronenberg = "Cronenberg"
@@ -72,7 +78,14 @@ struct Character: Codable, Equatable {
         }
     }
 
-    enum CharacterType: String, Codable, Equatable {
+    enum CharacterGender: String, Codable, Equatable, CaseIterable {
+        case male = "Male"
+        case female = "Female"
+        case genderless = "Genderless"
+        case unknown = "unknown"
+    }
+
+    enum CharacterType: String, Codable, Equatable, CaseIterable {
         case alligator = "Alligator-Person"
         case alphabetrian = "Alphabetrian"
         case amoeba = "Amoeba-Person"
@@ -242,7 +255,7 @@ struct Character: Codable, Equatable {
         case zeus = "Zeus"
         case zigerion = "Zigerion"
         case zombodian = "Zombodian"
-        case emptyType = ""
+        case noType = ""
         case unknown = "unknown"
 
         public init(from decoder: Decoder) throws {

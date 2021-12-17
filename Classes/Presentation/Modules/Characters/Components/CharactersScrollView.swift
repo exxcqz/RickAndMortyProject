@@ -30,10 +30,10 @@ struct CharactersScrollView: View {
                         CharacterCard(сharacter: character)
                     }
                 }
-                if viewStore.currentPageLoading < viewStore.totalPagesForFilter && !viewStore.isFiltering {
+                if viewStore.filterParameters.page < viewStore.filterParameters.totalPages {
                     ProgressView()
                         .onAppear {
-                            viewStore.send(.fetchAnotherPage)
+                            viewStore.send(.fetchNextPage)
                         }
                 }
             }

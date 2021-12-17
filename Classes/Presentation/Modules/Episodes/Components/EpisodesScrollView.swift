@@ -11,63 +11,48 @@ struct EpisodesScrollView: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            if !viewStore.filteredData.isEmpty {
-                LazyVStack(spacing : Layout.scaleFactorW * 16) {
-                    ForEach(viewStore.state.filteredSeasonsNumberArray, id: \.self) { seasonTitle in
-                        HStack {
-                            Text("Season \(seasonTitle)")
-                                .foregroundColor(.white)
-                                .font(Font.appFontBold(ofSize: Layout.scaleFactorW * 20))
-                                .kerning(0.38)
-                            Spacer()
-                        }
-                        ForEach(viewStore.state.filteredData, id: \.id) { episode in
-                            if let (_, seasonNumber) = episode.convertedEpisodeCode {
-                                if seasonTitle == seasonNumber {
-                                    HStack(spacing: Layout.scaleFactorW * 16) {
-                                        NavigationLink {
-                                            EpisodeDetailsScreen(
-                                                store: Store(
-                                                    initialState: EpisodeDetailsState(episode: episode),
-                                                    reducer: episodeDetailsReducer,
-                                                    environment: EpisodeDetailsEnvironment(
-                                                        apiService: ServiceContainer().charactersService,
-                                                        mainQueue: DispatchQueue.main.eraseToAnyScheduler()
-                                                    )
+            LazyVStack(spacing : Layout.scaleFactorW * 16) {
+                ForEach(viewStore.seasonsSet.sorted(), id: \.self) { seasonTitleNumber in
+                    HStack {
+                        Text("\(L10n.Episodes.SeasonCode.season) \(seasonTitleNumber)")
+                            .foregroundColor(.white)
+                            .font(Font.appFontBold(ofSize: Layout.scaleFactorW * 20))
+                            .kerning(0.38)
+                        Spacer()
+                    }
+                    ForEach(viewStore.data, id: \.id) { episode in
+                        if let (_, seasonNumber) = episode.convertedEpisodeCode {
+                            if seasonTitleNumber == seasonNumber {
+                                HStack(spacing: Layout.scaleFactorW * 16) {
+                                    NavigationLink {
+                                        EpisodeDetailsScreen(
+                                            store: Store(
+                                                initialState: EpisodeDetailsState(episode: episode),
+                                                reducer: episodeDetailsReducer,
+                                                environment: EpisodeDetailsEnvironment(
+                                                    apiService: ServiceContainer().charactersService,
+                                                    mainQueue: DispatchQueue.main.eraseToAnyScheduler()
                                                 )
                                             )
-                                        } label: {
-                                            EpisodeCard(episode: episode)
-                                        }
+                                        )
+                                    } label: {
+                                        EpisodeCard(episode: episode)
                                     }
                                 }
                             }
                         }
                     }
-                    if viewStore.currentPageLoading < viewStore.totalPagesForFilter && !viewStore.isFiltering {
+                    if viewStore.filterParameters.page < viewStore.filterParameters.totalPages && !viewStore.data.isEmpty {
                         ProgressView()
+                            .frame(width: Layout.scaleFactorW * 100, height: Layout.scaleFactorW * 100)
                             .onAppear {
-                                viewStore.send(.fetchAnotherPage)
+                                viewStore.send(.fetchNextPage)
                             }
                     }
                 }
                 .padding(.horizontal, Layout.scaleFactorW * 23)
             }
-        }
-    }
-}
 
-struct EpisodesScrollView_Previews: PreviewProvider {
-    static var previews: some View {
-        EpisodesScrollView(
-            store: Store(
-                initialState: EpisodesState(),
-                reducer: episodesReducer,
-                environment: EpisodesEnvironment(
-                    apiService: ServiceContainer().episodesService,
-                    mainQueue: DispatchQueue.main.eraseToAnyScheduler()
-                )
-            )
-        )
+        }
     }
 }
