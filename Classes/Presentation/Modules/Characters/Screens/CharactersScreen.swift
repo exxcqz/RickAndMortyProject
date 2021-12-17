@@ -12,6 +12,30 @@ struct CharactersScreen: View {
     var body: some View {
         NavigationView {
             WithViewStore(store) { viewStore in
+                let isFilterPresented = viewStore.binding(
+                    get: {
+                        $0.isFilterPresented
+                    },
+                    send: { _ in
+                        CharactersAction.filter(.onDisappear)
+                    }
+                )
+                let isFilterButtonActive = viewStore.binding(
+                    get: {
+                        $0.isFilterButtonActive
+                    },
+                    send: { _ in
+                        CharactersAction.filterButtonTapped
+                    }
+                )
+                let searchRequest = viewStore.binding(
+                    get: {
+                        $0.filterParameters.name
+                    },
+                    send: {
+                        CharactersAction.searchInputChanged($0)
+                    }
+                )
                 ZStack {
                     Color(Asset.Colors.blackBG.color)
                     ScrollView(.vertical, showsIndicators: false) {
@@ -20,32 +44,57 @@ struct CharactersScreen: View {
                                 navigationImage: viewStore.state.navigationImage,
                                 navigationTitle: viewStore.state.navigationTitle,
                                 isFilterHidden: true,
-                                searchRequest: viewStore.binding(
-                                    get: {
-                                        $0.searchRequest
-                                    }, send: {
-                                        CharactersAction.searchInputChanged($0)
-                                    }
-                                )
+                                searchRequest: searchRequest,
+                                isFilterButtonActive: isFilterButtonActive
                             )
-                            if viewStore.state.data.isEmpty {
-                                ProgressView()
+                            if let logInfo = viewStore.logInfo {
+                                Text("\(logInfo.readableInfo)")
+                                    .font(Font.appFontSemibold(ofSize: Layout.scaleFactorW * 17))
+                                    .foregroundColor(.white)
+                                    .kerning(-0.41)
                                     .padding(.top, Layout.scaleFactorH * 150)
                             } else {
-                                CharactersScrollView(store: store)
-                                    .padding(.vertical, Layout.scaleFactorH * 16)
-                                    .zIndex(0)
+                                if viewStore.data.isEmpty {
+                                    ProgressView()
+                                        .padding(.top, Layout.scaleFactorH * 150)
+                                } else {
+                                    CharactersScrollView(store: store)
+                                        .padding(.vertical, Layout.scaleFactorH * 16)
+                                        .zIndex(0)
+                                }
                             }
-                        }
+                        }.keyboardResponsive()
                     }
                 }
                 .edgesIgnoringSafeArea(.all)
                 .onAppear {
                     viewStore.send(.onAppear)
                 }
+                .sheet(
+                    isPresented: isFilterPresented,
+                    onDismiss: {
+                        viewStore.send(.filterSettingsChanged)
+                    },
+                    content: {
+                        FilterScreen(store: self.filterStore)
+                    }
+                )
             }
             .navigationBarHidden(true)
         }
+    }
+}
+
+// MARK: -  Getting store of filter
+
+extension CharactersScreen {
+    private var filterStore: Store<FilterState, FilterAction> {
+        return store.scope(
+            state: {
+                $0.filter
+            },
+            action: CharactersAction.filter
+        )
     }
 }
 

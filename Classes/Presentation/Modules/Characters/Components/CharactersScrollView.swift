@@ -8,38 +8,26 @@ import SwiftUI
 
 struct CharactersScrollView: View {
     let store: Store<CharactersState, CharactersAction>
+    let columns: [GridItem] = Array(repeating: .init(.adaptive(minimum: Layout.scaleFactorW * 156)), count: 1)
 
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
-                if !viewStore.grid.isEmpty {
-                    LazyVStack(spacing : Layout.scaleFactorW * 16) {
-                        ForEach(viewStore.grid, id: \.self) { row in
-                            HStack(spacing: Layout.scaleFactorW * 16) {
-                                ForEach(row...row + 1, id: \.self) { column in
-                                    VStack {
-                                        if column != viewStore.data.count {
-                                            NavigationLink(destination: DetailsHelloComponent()) {
-                                                CharacterCard(сharacter: viewStore.data[column])
-                                            }
-                                        }
-                                    }
-                                }
-                                if row == viewStore.grid.last! && viewStore.data.count % 2 != 0 {
-                                    Spacer(minLength: 0)
-                                }
-                            }
-                        }
-                        if viewStore.currentPageLoading < viewStore.totalPagesForFilter && !viewStore.isFiltering {
-                            ProgressView()
-                                .onAppear {
-                                    viewStore.send(.fetchNextPage)
-                                }
-                        }
+                LazyVGrid(columns: columns, spacing: Layout.scaleFactorW * 16) {
+                    ForEach(viewStore.data, id: \.id) { character in
+                        CharacterCard(сharacter: character)
                     }
-                    .padding(.horizontal, Layout.scaleFactorW * 23)
+                    if viewStore.filterParameters.page < viewStore.filterParameters.totalPages {
+                        ProgressView()
+                            .frame(width: Layout.scaleFactorW * 100, height: Layout.scaleFactorW * 100)
+                            .padding(.leading, Layout.scaleFactorW * 163)
+                            .onAppear {
+                                viewStore.send(.fetchNextPage)
+                            }
+                    }
                 }
             }
+            .padding(.horizontal, Layout.scaleFactorW * 23)
         }
     }
 }

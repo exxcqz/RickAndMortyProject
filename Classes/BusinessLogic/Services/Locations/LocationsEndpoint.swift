@@ -7,8 +7,8 @@ import Foundation
 import Networking
 
 enum LocationsEndpoint: Endpoint {
-    case fetchLocations(_ withParameters: FetchingParameters)
-    case fetchMultipleLocations(_ withIds: [Int])
+    case fetchLocations(FetchingParameters)
+    case fetchMultipleLocations([Int])
 
     var baseURL: URL {
         return AppConfiguration.serverURL
@@ -18,8 +18,8 @@ enum LocationsEndpoint: Endpoint {
         switch self {
         case .fetchLocations:
             return "api/location/"
-        case .fetchMultipleLocations(let ids):
-            return "api/character/\(ids)"
+        case let .fetchMultipleLocations(ids):
+            return "api/location/\(ids)"
         }
     }
 
@@ -43,7 +43,7 @@ enum LocationsEndpoint: Endpoint {
 
 extension LocationsEndpoint {
     var parameterEncoding: ParameterEncoding {
-        return URLEncoding.queryString
+        return URLEncoding.default
     }
 
     var authorizationType: AuthorizationType {

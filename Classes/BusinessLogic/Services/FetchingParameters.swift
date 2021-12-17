@@ -6,22 +6,16 @@
 import Foundation
 
 struct FetchingParameters: Equatable {
-    // MARK: - Common params
     var page: Int = 1
+    var totalPages: Int = 0
     var type: String?
     var name: String?
-    
-    // MARK: - Character
-    var status: String? // Alive, Dead, Unknown
+    var status: String?
     var species: String?
-    var gender: String? // Female, Male, Genderless, Unknown
-    
-    // MARK: - Locations
+    var gender: String?
     var dimension: String?
-    
-    // MARK: - Episodes
     var episode: Int?
-    
+
     func convertToDict() -> [String: Any] {
         var filter = [String: Any]()
         filter["page"] = "\(self.page)"

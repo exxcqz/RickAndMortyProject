@@ -32,7 +32,7 @@ func makeRequest(_ endpoint: @escaping () -> Endpoint) -> URLRequest {
     requestWithParams.method = endpoint().method
     requestWithParams.headers = endpoint().headers.httpHeaders
     requestWithParams.cachePolicy = .reloadRevalidatingCacheData
-    print("requestWithParams: \(requestWithParams)")
+    print("request with parameters: \(requestWithParams)")
 
     return requestWithParams
 }

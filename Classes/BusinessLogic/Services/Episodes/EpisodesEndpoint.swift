@@ -7,8 +7,8 @@ import Foundation
 import Networking
 
 enum EpisodesEndpoint: Endpoint {
-    case fetchEpisodes(_ withParameters: FetchingParameters)
-    case fetchMultipleEpisodes(_ withIds: [Int])
+    case fetchEpisodes(FetchingParameters)
+    case fetchMultipleEpisodes([Int])
 
     var baseURL: URL {
         return AppConfiguration.serverURL
@@ -18,8 +18,8 @@ enum EpisodesEndpoint: Endpoint {
         switch self {
         case .fetchEpisodes:
             return "api/episode/"
-        case .fetchMultipleEpisodes(let ids):
-            return "api/character/\(ids)"
+        case let .fetchMultipleEpisodes(ids):
+            return "api/episode/\(ids)"
         }
     }
 
@@ -43,7 +43,7 @@ enum EpisodesEndpoint: Endpoint {
 
 extension EpisodesEndpoint {
     var parameterEncoding: ParameterEncoding {
-        return URLEncoding.queryString
+        return URLEncoding.default
     }
 
     var authorizationType: AuthorizationType {

@@ -7,8 +7,8 @@ import Foundation
 import Networking
 
 enum CharactersEndpoint: Endpoint {
-    case fetchCharacters(_ withParameters: FetchingParameters)
-    case fetchMultipleCharacters(_ withIds: [Int])
+    case fetchCharacters(FetchingParameters)
+    case fetchMultipleCharacters([Int])
 
     var baseURL: URL {
         return AppConfiguration.serverURL
@@ -18,7 +18,7 @@ enum CharactersEndpoint: Endpoint {
         switch self {
         case .fetchCharacters:
             return "api/character/"
-        case .fetchMultipleCharacters(let ids):
+        case let .fetchMultipleCharacters(ids):
             return "api/character/\(ids)"
         }
     }
@@ -43,7 +43,7 @@ enum CharactersEndpoint: Endpoint {
 
 extension CharactersEndpoint {
     var parameterEncoding: ParameterEncoding {
-        return URLEncoding.queryString
+        return URLEncoding.default
     }
 
     var authorizationType: AuthorizationType {

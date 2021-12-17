@@ -8,10 +8,18 @@ import SwiftUI
 
 struct EpisodesScreen: View {
     let store: Store<EpisodesState, EpisodesAction>
+    @State var isFilterButtonActive: Bool = false
 
     var body: some View {
         NavigationView {
             WithViewStore(store) { viewStore in
+                let searchRequest = viewStore.binding(
+                    get: {
+                        $0.filterParameters.name
+                    }, send: {
+                        EpisodesAction.searchInputChanged($0)
+                    }
+                )
                 ZStack {
                     Color(Asset.Colors.blackBG.color)
                     ScrollView(.vertical, showsIndicators: false) {
@@ -20,26 +28,29 @@ struct EpisodesScreen: View {
                                 navigationImage: viewStore.state.navigationImage,
                                 navigationTitle: viewStore.state.navigationTitle,
                                 isFilterHidden: false,
-                                searchRequest: viewStore.binding(
-                                    get: {
-                                        $0.searchRequest
-                                    }, send: {
-                                        EpisodesAction.searchInputChanged($0)
-                                    }
-                                )
+                                searchRequest: searchRequest,
+                                isFilterButtonActive: $isFilterButtonActive
                             )
                             AppSegmentedControl(store: store)
                                 .padding(.top, Layout.scaleFactorH * 16)
                                 .padding(.bottom, Layout.scaleFactorH * 8)
-                            if viewStore.state.data.isEmpty {
-                                ProgressView()
+                            if let logInfo = viewStore.logInfo {
+                                Text("\(logInfo.readableInfo)")
+                                    .font(Font.appFontSemibold(ofSize: Layout.scaleFactorW * 17))
+                                    .foregroundColor(.white)
+                                    .kerning(-0.41)
                                     .padding(.top, Layout.scaleFactorH * 150)
                             } else {
-                                EpisodesScrollView(store: store)
-                                    .padding(.vertical, Layout.scaleFactorH * 16)
-                                    .zIndex(0)
+                                if viewStore.data.isEmpty {
+                                    ProgressView()
+                                        .padding(.top, Layout.scaleFactorH * 150)
+                                } else {
+                                    EpisodesScrollView(store: store)
+                                        .padding(.vertical, Layout.scaleFactorH * 16)
+                                        .zIndex(0)
+                                }
                             }
-                        }
+                        }.keyboardResponsive()
                     }
                 }
                 .edgesIgnoringSafeArea(.all)

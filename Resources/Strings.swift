@@ -40,11 +40,34 @@ internal enum L10n {
       /// Reset all
       internal static let resetAll = L10n.tr("Localizable", "filters.action.reset_all")
     }
+    internal enum Characters {
+      /// Gender
+      internal static let gender = L10n.tr("Localizable", "filters.characters.gender")
+      /// Species
+      internal static let species = L10n.tr("Localizable", "filters.characters.species")
+      /// Status
+      internal static let status = L10n.tr("Localizable", "filters.characters.status")
+      /// Type
+      internal static let type = L10n.tr("Localizable", "filters.characters.type")
+    }
+    internal enum Locations {
+      /// Dimension
+      internal static let dimension = L10n.tr("Localizable", "filters.locations.dimension")
+      /// Type
+      internal static let type = L10n.tr("Localizable", "filters.locations.type")
+    }
   }
 
   internal enum Locations {
     /// Locations
     internal static let title = L10n.tr("Localizable", "locations.title")
+  }
+
+  internal enum Log {
+    /// Error! Please, check your internet connection!
+    internal static let error = L10n.tr("Localizable", "log.error")
+    /// Not found
+    internal static let notFound = L10n.tr("Localizable", "log.notFound")
   }
 
   internal enum Placeholder {

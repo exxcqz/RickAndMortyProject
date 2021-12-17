@@ -7,12 +7,9 @@ struct CharactersState: Equatable {
     let navigationImage: String = Asset.Illustrations.characters.name
     let navigationTitle: String = L10n.Characters.title
     var data: [Character] = []
-    var filteredData: [Character] = []
-    var grid: [Int] = []
-    var currentPageLoading: Int = 1
-    var totalPages: Int = 0
-    var totalPagesForFilter: Int = 0
-    var isFiltering: Bool = false
+    var isFilterButtonActive: Bool = false
+    var isFilterPresented: Bool = false
     var filterParameters: FetchingParameters = FetchingParameters()
-    var searchRequest: String = ""
+    var filter: FilterState = FilterState(filterType: .characters)
+    var logInfo: NetworkError?
 }

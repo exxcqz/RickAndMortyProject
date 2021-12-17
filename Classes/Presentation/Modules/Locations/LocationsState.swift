@@ -7,11 +7,9 @@ struct LocationsState: Equatable {
     let navigationImage: String = Asset.Illustrations.locations.name
     let navigationTitle: String = L10n.Locations.title
     var data: [Location] = []
-    var filteredData: [Location] = []
-    var currentPageLoading: Int = 1
-    var totalPages: Int = 0
-    var totalPagesForFilter: Int = 0
-    var isFiltering: Bool = false
+    var isFilterButtonActive: Bool = false
+    var isFilterPresented: Bool = false
     var filterParameters: FetchingParameters = FetchingParameters()
-    var searchRequest: String = ""
+    var filter: FilterState = FilterState(filterType: .locations)
+    var logInfo: NetworkError?
 }

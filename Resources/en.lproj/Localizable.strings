@@ -20,6 +20,17 @@
 "filters.action.reset_all" = "Reset all";
 "filters.action.apply" = "Apply";
 "filters.all" = "All";
+"filters.characters.status" = "Status";
+"filters.characters.species" = "Species";
+"filters.characters.type" = "Type";
+"filters.characters.gender" = "Gender";
+"filters.locations.type" = "Type";
+"filters.locations.dimension" = "Dimension";
 
 // Placeholder
 "placeholder.search" = "Search";
+
+//Log Info
+"log.error" = "Error! Please, check your internet connection!";
+"log.notFound" = "Not found";
+
