@@ -25,6 +25,7 @@
 		1148D5D6275399110047E20E /* LocationsCardComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1148D5D5275399110047E20E /* LocationsCardComponent.swift */; };
 		1148D5D82753A69E0047E20E /* LocationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1148D5D72753A69E0047E20E /* LocationsModel.swift */; };
 		11659BDE276111B8005493A2 /* DetailsNavigationBarComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11659BDD276111B7005493A2 /* DetailsNavigationBarComponent.swift */; };
+		116C367127A17F850031DFD3 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = 116C367027A17F850031DFD3 /* Networking */; };
 		11A839F5275A50DB0015BD55 /* StickyHeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A839F4275A50DB0015BD55 /* StickyHeaderComponent.swift */; };
 		11A839F7275A51C50015BD55 /* NavigationImageComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A839F6275A51C50015BD55 /* NavigationImageComponent.swift */; };
 		11A839F9275A52440015BD55 /* NavigationTitleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A839F8275A52440015BD55 /* NavigationTitleComponent.swift */; };
@@ -99,7 +100,6 @@
 		C38028A1275D270A00E470BC /* GeneralRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38028A0275D270A00E470BC /* GeneralRequest.swift */; };
 		C3834B4C274BA0A10091D5CB /* AnimationViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3834B4B274BA0A10091D5CB /* AnimationViewComponent.swift */; };
 		C3834B4F274BA0D90091D5CB /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C3834B4E274BA0D90091D5CB /* Lottie */; };
-		C39DC25927465DB80056C306 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = C39DC25827465DB80056C306 /* Networking */; };
 		C39DC25C27465DC40056C306 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = C39DC25B27465DC40056C306 /* Nuke */; };
 		C39DC25F27465DCF0056C306 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = C39DC25E27465DCF0056C306 /* ComposableArchitecture */; };
 		C3B7CB2D2759069600A44898 /* EpisodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B7CB2C2759069600A44898 /* EpisodeModel.swift */; };
@@ -123,7 +123,6 @@
 		E1E8E9E67881213FFFDBE643 /* EpisodeDetailsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569BB5EF733C1919FE1B2B12 /* EpisodeDetailsState.swift */; };
 		F5F0DFA0084F29921D0504F2 /* LocationDetailsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10EA427E6ABAAA5A4F897AA /* LocationDetailsReducer.swift */; };
 		FBA90FB626DE2F040092A824 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA90FB526DE2F040092A824 /* SceneDelegate.swift */; };
-		FC410A3D2B126E033C643145 /* FilterHelloComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3FA5537B496CE642491386 /* FilterHelloComponent.swift */; };
 		FC87372D69EC6AA5159C8314 /* LocationDetailsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BEFC06AE559F19C93B38D1 /* LocationDetailsState.swift */; };
 /* End PBXBuildFile section */
 
@@ -251,9 +250,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C39DC25927465DB80056C306 /* Networking in Frameworks */,
 				C39DC25C27465DC40056C306 /* Nuke in Frameworks */,
 				C39DC25F27465DCF0056C306 /* ComposableArchitecture in Frameworks */,
+				116C367127A17F850031DFD3 /* Networking in Frameworks */,
 				C3834B4F274BA0D90091D5CB /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -738,10 +737,10 @@
 			);
 			name = RickAndMorty;
 			packageProductDependencies = (
-				C39DC25827465DB80056C306 /* Networking */,
 				C39DC25B27465DC40056C306 /* Nuke */,
 				C39DC25E27465DCF0056C306 /* ComposableArchitecture */,
 				C3834B4E274BA0D90091D5CB /* Lottie */,
+				116C367027A17F850031DFD3 /* Networking */,
 			);
 			productName = RickAndMorty;
 			productReference = 060F08441E4D6B3900D9166F /* RickAndMorty.app */;
@@ -775,10 +774,10 @@
 			);
 			mainGroup = 060F083B1E4D6B3900D9166F;
 			packageReferences = (
-				C39DC25727465DB80056C306 /* XCRemoteSwiftPackageReference "networking" */,
 				C39DC25A27465DC40056C306 /* XCRemoteSwiftPackageReference "Nuke" */,
 				C39DC25D27465DCF0056C306 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				C3834B4D274BA0D90091D5CB /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				116C366F27A17F850031DFD3 /* XCRemoteSwiftPackageReference "Networking" */,
 			);
 			productRefGroup = 060F08451E4D6B3900D9166F /* Products */;
 			projectDirPath = "";
@@ -914,7 +913,6 @@
 				287B5FBEC632CF4C08185749 /* FilterReducer.swift in Sources */,
 				C37763A7275FB2CA008308B9 /* CharactersService.swift in Sources */,
 				11A839F7275A51C50015BD55 /* NavigationImageComponent.swift in Sources */,
-				C377639F275FAD2E008308B9 /* NetworkError.swift in Sources */,
 				C3CC729E2752B9F9007FFC54 /* SearchAndFilter.swift in Sources */,
 				1148D5D82753A69E0047E20E /* LocationsModel.swift in Sources */,
 				C37763BD2765014C008308B9 /* EpisodesEndpoint.swift in Sources */,
@@ -1646,20 +1644,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		116C366F27A17F850031DFD3 /* XCRemoteSwiftPackageReference "Networking" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RonasIT/Networking.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		C3834B4D274BA0D90091D5CB /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 3.2.3;
-			};
-		};
-		C39DC25727465DB80056C306 /* XCRemoteSwiftPackageReference "networking" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://projects.ronasit.com/ronas-it/ios/networking";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.0;
 			};
 		};
 		C39DC25A27465DC40056C306 /* XCRemoteSwiftPackageReference "Nuke" */ = {
@@ -1681,15 +1679,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		116C367027A17F850031DFD3 /* Networking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 116C366F27A17F850031DFD3 /* XCRemoteSwiftPackageReference "Networking" */;
+			productName = Networking;
+		};
 		C3834B4E274BA0D90091D5CB /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C3834B4D274BA0D90091D5CB /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
-		};
-		C39DC25827465DB80056C306 /* Networking */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C39DC25727465DB80056C306 /* XCRemoteSwiftPackageReference "networking" */;
-			productName = Networking;
 		};
 		C39DC25B27465DC40056C306 /* Nuke */ = {
 			isa = XCSwiftPackageProductDependency;
