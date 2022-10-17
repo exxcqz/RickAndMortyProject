@@ -1,11 +1,11 @@
 # RickAndMorty
 
 <p align="center">
-        <img src="img/characters.png" width="300" height="650">
-        <img src="img/locations.png" width="300" height="650">
-        <img src="img/episodes.png" width="300" height="650">
-        <img src="img/character.png" width="300" height="650">
-        <img src="img/filter.png" width="300" height="650">
+        <img src="img/characters.PNG" width="300" height="650">
+        <img src="img/locations.PNG" width="300" height="650">
+        <img src="img/episodes.PNG" width="300" height="650">
+        <img src="img/character.PNG" width="300" height="650">
+        <img src="img/filter.PNG" width="300" height="650">
 </p>
 
 ## How to build
